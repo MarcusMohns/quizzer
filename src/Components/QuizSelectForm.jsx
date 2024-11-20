@@ -50,11 +50,38 @@ const QuizSelectForm = ({ setQuizData }) => {
     questions: "10",
   });
 
+  const fetchQuiz = async () => {
+    const categoryId =
+      categories.findIndex((category) => category === formData.category) + 9;
+    const typeId = formData.type === "True/False" ? "boolean" : "multiple";
+
+    const typeReqString = formData.type === "Any Type" ? "" : `&type=${typeId}`;
+    const difficultyReqString =
+      formData.difficulty === "Any Difficulty"
+        ? ""
+        : `&type=${formData.difficulty}`;
+    const categoryReqString =
+      formData.category === "Any Category" ? "" : `&category=${categoryId}`;
+
+    const reqString = `https://opentdb.com/api.php?amount=${formData.questions}${categoryReqString}${difficultyReqString}${typeReqString}`;
+
+    try {
+      const response = await fetch(reqString);
+      const data = await response.json();
+      setQuizData(data.results);
+      console.log(data);
+    } catch (error) {
+      console.log("error fetching data...", error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
-
-    setQuizData(formData);
+    //TODO flesh out error handling
+    console.log(formData.questions);
+    if (formData.questions > 0 || formData.questions < 50) {
+      fetchQuiz();
+    }
   };
 
   const handleChange = (event) => {

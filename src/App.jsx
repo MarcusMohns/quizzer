@@ -18,13 +18,18 @@ const darkModeData =
 
 function App() {
   const [darkMode, setDarkMode] = useState(darkModeData);
+  const [quizData, setQuizData] = useState([]);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        setQuizData={setQuizData}
+      />
       <Container sx={{ width: "100vw" }}>
-        <Quizzer />
+        <Quizzer quizData={quizData} />
       </Container>
     </ThemeProvider>
   );

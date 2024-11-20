@@ -6,12 +6,12 @@ import { Typography } from "@mui/material";
 import ThemeToggler from "./Components/ThemeToggler";
 import SideMenu from "./Components/SideMenu";
 
-export default function ButtonAppBar({ darkMode, setDarkMode }) {
+export default function Navbar({ darkMode, setDarkMode, setQuizData }) {
   return (
     <Box sx={{ flexGrow: 1, mb: 5 }}>
       <AppBar position="static">
         <Toolbar>
-          <SideMenu />
+          <SideMenu setQuizData={setQuizData} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Quizzer
           </Typography>
