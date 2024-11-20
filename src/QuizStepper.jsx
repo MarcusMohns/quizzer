@@ -8,16 +8,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AccessibleForwardIcon from "@mui/icons-material/AccessibleForward";
 
-const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
-];
-
-export default function QuizStepper({}) {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
-
+export default function QuizStepper({
+  steps,
+  activeStep,
+  setActiveStep,
+  completed,
+  setCompleted,
+}) {
   const totalSteps = () => {
     return steps.length;
   };
@@ -66,16 +63,30 @@ export default function QuizStepper({}) {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper nonLinear activeStep={activeStep}>
+    <Box sx={{ display: "flex", flexWrap: "wrap", height: "500px" }}>
+      <Stepper
+        nonLinear
+        activeStep={activeStep}
+        sx={{ flexWrap: "wrap", display: "flex" }}
+      >
         {steps.map((label, index) => (
-          <Step key={label} completed={completed[index]}>
+          <Step key={label.question} completed={completed[index]}>
             <StepButton
               color="inherit"
               onClick={handleStep(index)}
               icon={<AccessibleForwardIcon />}
             >
-              {label}
+              <Typography
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "min-content",
+                  height: "20px",
+                  textAling: "start",
+                }}
+              >
+                {label.question}
+              </Typography>
             </StepButton>
           </Step>
         ))}
@@ -86,8 +97,8 @@ export default function QuizStepper({}) {
             <Typography sx={{ mt: 2, mb: 1 }}>
               All steps completed - you&apos;re finished
             </Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
+            <Box>
+              <Box />
               <Button onClick={handleReset}>Reset</Button>
             </Box>
           </React.Fragment>
@@ -96,7 +107,7 @@ export default function QuizStepper({}) {
             <Typography sx={{ mt: 2, mb: 1, py: 1 }}>
               Step {activeStep + 1}
             </Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <Box>
               <Button
                 color="inherit"
                 disabled={activeStep === 0}
@@ -105,7 +116,7 @@ export default function QuizStepper({}) {
               >
                 Back
               </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
+              <Box />
               <Button onClick={handleNext} sx={{ mr: 1 }}>
                 Next
               </Button>
