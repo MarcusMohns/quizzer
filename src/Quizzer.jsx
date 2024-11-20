@@ -7,6 +7,8 @@ import { useState } from "react";
 const Quizzer = () => {
   // add quizData
   const [step, setStep] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState({});
 
   const quizData = [
     {
@@ -108,11 +110,15 @@ const Quizzer = () => {
       incorrect_answers: ["Jason LeVine", "Borth Sampson", "Uncle Pennybags"],
     },
   ];
-
   return (
     <Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
-      <QuizStepper step={step} setStep={setStep} />
-      <Button onClick={() => console.log(quizData)}>Clcik</Button>
+      <QuizStepper
+        steps={quizData}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        completed={completed}
+        setCompleted={setCompleted}
+      />
     </Box>
   );
 };
