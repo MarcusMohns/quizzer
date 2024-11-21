@@ -1,8 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import QuizStepper from "./QuizStepper";
 import { useState } from "react";
+import QuizControls from "./QuizControls";
+import Quiz from "./Quiz";
 
 const Quizzer = () => {
   // add quizData
@@ -111,13 +112,28 @@ const Quizzer = () => {
     },
   ];
   return (
-    <Box component="section" sx={{ border: "1px dashed grey" }}>
+    <Box
+      component="section"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        border: "1px dashed grey",
+        minHeight: "600px",
+      }}
+    >
+      <Quiz questionData={quizData[activeStep]} />
+      <QuizControls
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        completed={completed}
+        setCompleted={setCompleted}
+        steps={quizData}
+      />
       <QuizStepper
         steps={quizData}
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         completed={completed}
-        setCompleted={setCompleted}
       />
     </Box>
   );
