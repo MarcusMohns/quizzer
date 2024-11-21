@@ -111,7 +111,7 @@ const Quizzer = () => {
     },
   ];
   return (
-    <Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
+    <Box component="section" sx={{ border: "1px dashed grey" }}>
       <QuizStepper
         steps={quizData}
         activeStep={activeStep}

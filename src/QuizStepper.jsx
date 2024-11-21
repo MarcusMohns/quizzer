@@ -3,10 +3,9 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
-import StepLabel from "@mui/material/StepButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import AccessibleForwardIcon from "@mui/icons-material/AccessibleForward";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function QuizStepper({
   steps,
@@ -63,32 +62,42 @@ export default function QuizStepper({
   };
 
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap", height: "500px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        height: "500px",
+        p: 5,
+      }}
+    >
       <Stepper
         nonLinear
+        alternativeLabel
         activeStep={activeStep}
-        sx={{ flexWrap: "wrap", display: "flex" }}
+        sx={{ flexWrap: "wrap" }}
       >
         {steps.map((label, index) => (
-          <Step key={label.question} completed={completed[index]}>
-            <StepButton
-              color="inherit"
-              onClick={handleStep(index)}
-              icon={<AccessibleForwardIcon />}
+          <Tooltip title={label.question}>
+            <Step
+              key={label.question}
+              completed={completed[index]}
+              sx={{ width: "100px" }}
             >
-              <Typography
-                sx={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  maxWidth: "min-content",
-                  height: "20px",
-                  textAling: "start",
-                }}
-              >
-                {label.question}
-              </Typography>
-            </StepButton>
-          </Step>
+              <StepButton color="inherit" onClick={handleStep(index)} sx={{}}>
+                <Typography
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    height: "20px",
+                    width: "50px",
+                  }}
+                >
+                  {label.question}
+                </Typography>
+              </StepButton>
+            </Step>
+          </Tooltip>
         ))}
       </Stepper>
       <div>
