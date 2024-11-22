@@ -60,7 +60,6 @@ const QuizControls = ({
         flexDirection: "row",
         p: 2,
         alignSelf: "flex-end",
-        mt: "auto",
         width: "100%",
       }}
     >

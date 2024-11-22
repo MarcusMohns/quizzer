@@ -119,6 +119,7 @@ const Quizzer = () => {
         flexDirection: "column",
         border: "1px dashed grey",
         minHeight: "600px",
+        p: 0,
       }}
     >
       <Quiz questionData={quizData[activeStep]} />
