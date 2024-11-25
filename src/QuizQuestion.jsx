@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 
 const letters = ["A", "B", "C", "D"];
 
-const Quiz = ({ questionData }) => {
+const QuizQuestion = ({ questionData }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);
@@ -23,9 +23,8 @@ const Quiz = ({ questionData }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
         height: "100%",
-        flexGrow: 1,
+        mt: { xs: 2, md: 5 },
       }}
     >
       <Typography variant="h4" sx={{ textAlign: "center", p: 5 }}>
@@ -102,4 +101,4 @@ const Quiz = ({ questionData }) => {
   );
 };
 
-export default Quiz;
+export default QuizQuestion;
