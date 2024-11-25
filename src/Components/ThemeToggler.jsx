@@ -57,6 +57,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
+// const userPreference = localStorage.getItem("Darkmode" === "")
+
+const userPref = localStorage.getItem("Darkmode") === "true" ? true : false;
+
 const ThemeToggler = ({ darkMode, setDarkMode }) => {
   // Toggle between dark mode and lightmode and save to localStorage
   const toggleDarkMode = () => {
@@ -76,7 +80,7 @@ const ThemeToggler = ({ darkMode, setDarkMode }) => {
       <MaterialUISwitch
         onChange={toggleDarkMode}
         inputProps={{ "aria-label": "darkmode-toggle" }}
-        defaultChecked
+        defaultChecked={userPref}
       />
       <Typography>Dark Mode</Typography>
     </Stack>
