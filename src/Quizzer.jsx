@@ -117,9 +117,9 @@ const Quizzer = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        border: "1px dashed grey",
         minHeight: "600px",
         p: 0,
+        borderRadius: "7px",
       }}
     >
       <Quiz questionData={quizData[activeStep]} />

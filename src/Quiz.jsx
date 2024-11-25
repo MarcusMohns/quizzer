@@ -28,7 +28,7 @@ const Quiz = ({ questionData }) => {
         flexGrow: 1,
       }}
     >
-      <Typography variant="h5" sx={{ textAlign: "center" }}>
+      <Typography variant="h4" sx={{ textAlign: "center", p: 5 }}>
         {questionData.question}
       </Typography>
 
@@ -52,37 +52,41 @@ const Quiz = ({ questionData }) => {
                 }}
               >
                 <ButtonBase
-                  control={<Radio />}
                   sx={{
                     flexDirection: "row",
                     width: "100%",
-                    backgroundColor: "#1d161644",
-                    borderRadius: "3px",
+                    borderRadius: "8px",
                     m: 0,
+                    border: "5px solid",
+                    borderColor: "secondary.main",
                   }}
                 >
                   <Avatar
                     sx={{
+                      position: "relative",
+                      top: 5,
+                      left: 10,
                       width: 24,
                       height: 24,
-                      ml: 1,
                       fontSize: "0.8rem",
                       fontWeight: "bold",
+                      alignSelf: "flex-start",
+                      backgroundColor: "secondary.main",
                     }}
                   >
                     {letters[index]}
                   </Avatar>
-
                   <FormControlLabel
                     component={FormControlLabel}
                     value={index}
                     label={answer}
-                    control={<Radio />}
-                    size="large"
+                    control={
+                      <Radio size="medium" sx={{ color: "secondary.main" }} />
+                    }
                     sx={{
                       width: "100%",
                       flexDirection: "row",
-                      justifyContent: "center",
+                      justifyContent: "flex-start",
                       p: 2,
                     }}
                   >
