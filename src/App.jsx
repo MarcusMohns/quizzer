@@ -28,7 +28,7 @@ function App() {
         setDarkMode={setDarkMode}
         setQuizData={setQuizData}
       />
-      <Container sx={{ width: "100vw" }}>
+      <Container sx={{ width: "100vw", height: "90vh" }}>
         <Quizzer quizData={quizData} />
       </Container>
     </ThemeProvider>

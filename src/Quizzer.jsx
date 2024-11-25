@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
 import { useState } from "react";
 import QuizControls from "./QuizControls";
-import Quiz from "./Quiz";
+import QuizQuestion from "./QuizQuestion.jsx";
 
 const Quizzer = () => {
   // add quizData
@@ -118,11 +118,12 @@ const Quizzer = () => {
         display: "flex",
         flexDirection: "column",
         minHeight: "600px",
+        height: "100%",
         p: 0,
         borderRadius: "7px",
       }}
     >
-      <Quiz questionData={quizData[activeStep]} />
+      <QuizQuestion questionData={quizData[activeStep]} />
       <QuizControls
         activeStep={activeStep}
         setActiveStep={setActiveStep}
@@ -130,6 +131,7 @@ const Quizzer = () => {
         setCompleted={setCompleted}
         steps={quizData}
       />
+
       <QuizStepper
         steps={quizData}
         activeStep={activeStep}

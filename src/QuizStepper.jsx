@@ -25,7 +25,9 @@ export default function QuizStepper({
       <Stepper
         nonLinear
         activeStep={activeStep}
-        sx={{ justifyContent: "center", flexWrap: "wrap" }}
+        sx={{
+          flexWrap: "wrap",
+        }}
       >
         {steps.map((label, index) => (
           <Tooltip title={label.question} key={label.question}>
@@ -36,8 +38,8 @@ export default function QuizStepper({
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
-                    height: "20px",
                     maxWidth: "100px",
+                    m: 1,
                   }}
                 >
                   {label.question}

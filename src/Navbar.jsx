@@ -8,7 +8,7 @@ import SideMenu from "./Components/SideMenu";
 
 export default function Navbar({ darkMode, setDarkMode, setQuizData }) {
   return (
-    <Box sx={{ flexGrow: 1, mb: 5 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <SideMenu setQuizData={setQuizData} />
