@@ -1,13 +1,12 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
-import { useState } from "react";
 import QuizControls from "./QuizControls";
 import QuizQuestion from "./QuizQuestion.jsx";
 
 const Quizzer = () => {
   // add quizData
-  const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(0);
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
 

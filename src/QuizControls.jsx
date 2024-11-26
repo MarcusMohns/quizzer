@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import PropTypes from "prop-types";
 
 const QuizControls = ({
   activeStep,
@@ -10,6 +11,14 @@ const QuizControls = ({
   completed,
   steps,
 }) => {
+  QuizControls.propTypes = {
+    steps: PropTypes.array.isRequired,
+    activeStep: PropTypes.number.isRequired,
+    setActiveStep: PropTypes.func.isRequired,
+    completed: PropTypes.object.isRequired,
+    setCompleted: PropTypes.func.isRequired,
+  };
+
   const totalSteps = () => {
     return steps.length;
   };
@@ -65,7 +74,7 @@ const QuizControls = ({
     >
       {allStepsCompleted() ? (
         <React.Fragment>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>Quiz completed - you&apos;re finished</Typography>
           <Box>
             <Box />
             <Button onClick={handleReset}>Reset</Button>
@@ -73,7 +82,7 @@ const QuizControls = ({
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mr: "auto" }}>Step {activeStep + 1}</Typography>
+          <Typography sx={{ mr: "auto" }}>Question {activeStep + 1}</Typography>
           <Box>
             <Button
               color="inherit"

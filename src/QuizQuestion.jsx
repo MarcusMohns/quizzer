@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import Radio from "@mui/material/Radio";
@@ -8,10 +7,15 @@ import Grid from "@mui/material/Grid2";
 import { Typography } from "@mui/material";
 import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
+import PropTypes from "prop-types";
 
 const letters = ["A", "B", "C", "D"];
 
 const QuizQuestion = ({ questionData }) => {
+  QuizQuestion.propTypes = {
+    questionData: PropTypes.object.isRequired,
+  };
+
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);

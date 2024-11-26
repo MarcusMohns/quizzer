@@ -1,4 +1,3 @@
-import React from "react";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
+import PropTypes from "prop-types";
 
 const categories = [
   "Any Category",
@@ -43,6 +43,10 @@ const difficulties = ["Any Difficulty", "Easy", "Medium", "Hard"];
 const types = ["Any Type", "Multiple Choice", "True/False"];
 
 const QuizSelectForm = ({ setQuizData }) => {
+  QuizSelectForm.propTypes = {
+    setQuizData: PropTypes.array.isRequired,
+  };
+
   const [formData, setFormData] = useState({
     type: "Any Type",
     difficulty: "Any Difficulty",
@@ -85,9 +89,6 @@ const QuizSelectForm = ({ setQuizData }) => {
   };
 
   const handleChange = (event) => {
-    const changedField = event.target.name;
-    const newValue = event.target.value;
-
     setFormData((prevData) => {
       return {
         ...prevData,

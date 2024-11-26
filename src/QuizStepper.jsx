@@ -1,10 +1,10 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
+import PropTypes from "prop-types";
 
 export default function QuizStepper({
   steps,
@@ -12,6 +12,13 @@ export default function QuizStepper({
   setActiveStep,
   completed,
 }) {
+  QuizStepper.propTypes = {
+    steps: PropTypes.array.isRequired,
+    activeStep: PropTypes.number.isRequired,
+    setActiveStep: PropTypes.func.isRequired,
+    completed: PropTypes.object.isRequired,
+  };
+
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
