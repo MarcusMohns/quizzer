@@ -1,73 +1,76 @@
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import PropTypes from "prop-types";
+import FormGroup from "@mui/material/FormGroup";
+import FormLabel from "@mui/material/FormLabel";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
-const categories = [
-  "Any Category",
-  "General Knowledge",
-  "Entertainment: Books",
-  "Entertainment: Film",
-  "Entertainment: Music",
-  "Entertainment: Musicals & Theatres",
-  "Entertainment: Television",
-  "Entertainment: Video Games",
-  "Entertainment: Board Games",
-  "Science & Nature",
-  "Science: Computers",
-  "Science: Mathematics",
-  "Mythology",
-  "Sports",
-  "Geography",
-  "History",
-  "Politics",
-  "Art",
-  "Celebrities",
-  "Animals",
-  "Vehicles",
-  "Entertainment: Comics",
-  "Science: Gadgets",
-  "Entertainment: Japanese Anime & Manga",
-  "Entertainment: Cartoon & Animations",
+import PropTypes from "prop-types";
+import Checkbox from "@mui/material/Checkbox";
+
+const categoryOptions = [
+  { name: "Music", id: "music" },
+  { name: "Sports and Leisure", id: "sport_and_leisure" },
+  { name: "Film and TV", id: "film_and_tv" },
+  { name: "Arts and Literature", id: "arts_and_literature" },
+  { name: "History", id: "history" },
+  { name: "Society and Culture", id: "society_and_culture" },
+  { name: "Science", id: "science" },
+  { name: "Geography", id: "geography" },
+  { name: "Food and Drink", id: "food_and_drink" },
+  { name: "General Knowledge", id: "general_knowledge" },
 ];
 
-const difficulties = ["Any Difficulty", "Easy", "Medium", "Hard"];
-
-const types = ["Any Type", "Multiple Choice", "True/False"];
+const difficultyOptions = [
+  { name: "Easy", id: "easy" },
+  { name: "Medium", id: "medium" },
+  { name: "Hard", id: "hard" },
+];
 
 const QuizSelectForm = ({ setQuizData }) => {
   QuizSelectForm.propTypes = {
-    setQuizData: PropTypes.array.isRequired,
+    setQuizData: PropTypes.func.isRequired,
   };
 
   const [formData, setFormData] = useState({
     type: "Any Type",
-    difficulty: "Any Difficulty",
-    category: "Any Category",
-    questions: "10",
+    difficulties: {
+      easy: true,
+      medium: true,
+      hard: true,
+    },
+    categories: {
+      arts_and_literature: true,
+      film_and_tv: true,
+      food_and_drink: true,
+      geography: true,
+      history: true,
+      music: true,
+      science: true,
+      society_and_culture: true,
+      sport_and_leisure: true,
+      general_knowledge: true,
+    },
+    qty: "1",
   });
 
   const fetchQuiz = async () => {
-    const categoryId =
-      categories.findIndex((category) => category === formData.category) + 9;
-    const typeId = formData.type === "True/False" ? "boolean" : "multiple";
+    const limitRequest = `limit=${formData.qty}`;
+    const categoriesRequestArray = categoryOptions.map(
+      (category) => `${category.id}`
+    );
+    const categoriesRequest = categoriesRequestArray.join();
+    const difficultiesRequestArray = difficultyOptions.map(
+      (difficulty) => `${difficulty.id}`
+    );
+    const difficultiesRequest = difficultiesRequestArray.join();
 
-    const typeReqString = formData.type === "Any Type" ? "" : `&type=${typeId}`;
-    const difficultyReqString =
-      formData.difficulty === "Any Difficulty"
-        ? ""
-        : `&type=${formData.difficulty}`;
-    const categoryReqString =
-      formData.category === "Any Category" ? "" : `&category=${categoryId}`;
+    const regionRequest = "GB";
 
-    const reqString = `https://opentdb.com/api.php?amount=${formData.questions}${categoryReqString}${difficultyReqString}${typeReqString}`;
+    const reqString = `https://the-trivia-api.com/v2/questions?${limitRequest}&${categoriesRequest}&${difficultiesRequest}&${regionRequest}`;
 
     try {
       const response = await fetch(reqString);
@@ -82,8 +85,7 @@ const QuizSelectForm = ({ setQuizData }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     //TODO flesh out error handling
-    console.log(formData.questions);
-    if (formData.questions > 0 || formData.questions < 50) {
+    if (formData.qty > 0 || formData.qty < 50) {
       fetchQuiz();
     }
   };
@@ -93,6 +95,30 @@ const QuizSelectForm = ({ setQuizData }) => {
       return {
         ...prevData,
         [event.target.name]: event.target.value,
+      };
+    });
+  };
+
+  const handleCheckedCategory = (event) => {
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        categories: {
+          ...prevData.categories,
+          [event.target.name]: event.target.checked,
+        },
+      };
+    });
+  };
+
+  const handleCheckedDifficulty = (event) => {
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        difficulties: {
+          ...prevData.difficulties,
+          [event.target.name]: event.target.checked,
+        },
       };
     });
   };
@@ -113,65 +139,53 @@ const QuizSelectForm = ({ setQuizData }) => {
         Generate a Quiz
       </Typography>
       <TextField
-        aria-label="Demo number input"
+        aria-label="qty-questions"
         placeholder="Type a number…"
         name="questions"
-        value={formData.questions}
+        value={formData.qty}
         onChange={handleChange}
         label="Number of Questions:"
         sx={{ m: 1, minWidth: 120 }}
       />
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="category-select-label">Select Category</InputLabel>
-        <Select
-          labelId="category-select-label"
-          id="category-select"
-          value={formData.category}
-          name="category"
-          label="Select Category"
-          onChange={handleChange}
-        >
-          {categories.map((category) => (
-            <MenuItem key={category} value={category}>
-              {category}
-            </MenuItem>
+        <FormLabel component="legend" id="category-select-label">
+          Select Category
+        </FormLabel>
+        <FormGroup>
+          {categoryOptions.map((category) => (
+            <FormControlLabel
+              key={category.id}
+              control={
+                <Checkbox
+                  checked={formData.categories[category.id]}
+                  onChange={handleCheckedCategory}
+                  name={category.id}
+                />
+              }
+              label={category.name}
+            />
           ))}
-        </Select>
+        </FormGroup>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="difficulty-select-label">Select Difficulty</InputLabel>
-        <Select
-          labelId="difficulty-select-label"
-          id="difficulty-select"
-          value={formData.difficulty}
-          name="difficulty"
-          label="Select Difficulty"
-          onChange={handleChange}
-        >
-          {difficulties.map((difficulty) => (
-            <MenuItem key={difficulty} value={difficulty}>
-              {difficulty}
-            </MenuItem>
+        <FormLabel component="legend" id="difficulty-select-label">
+          Select Difficulty
+        </FormLabel>
+        <FormGroup>
+          {difficultyOptions.map((difficulty) => (
+            <FormControlLabel
+              key={difficulty.id}
+              control={
+                <Checkbox
+                  checked={formData.categories[difficulty.id]}
+                  onChange={handleCheckedDifficulty}
+                  name={difficulty.id}
+                />
+              }
+              label={difficulty.name}
+            />
           ))}
-        </Select>
-      </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="type-select-label">Select Type</InputLabel>
-        <Select
-          labelId="type-select-label"
-          id="type-select"
-          value={formData.type}
-          name="type"
-          label="Select Type"
-          onChange={handleChange}
-        >
-          {types.map((type) => (
-            <MenuItem key={type} value={type}>
-              {type}
-            </MenuItem>
-          ))}
-        </Select>
-        <FormHelperText>With label + helper text</FormHelperText>
+        </FormGroup>
       </FormControl>
 
       <Button variant="contained" type="submit">
