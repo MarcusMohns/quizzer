@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
 import QuizControls from "./QuizControls";
@@ -7,8 +7,9 @@ import QuizQuestion from "./QuizQuestion.jsx";
 const Quizzer = () => {
   // add quizData
   // const [step, setStep] = useState(0);
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
+
+  const [activeStep, setActiveStep] = useState(0);
+  const [completed, setCompleted] = useState({});
 
   const quizData = [
     {
@@ -110,6 +111,11 @@ const Quizzer = () => {
       incorrect_answers: ["Jason LeVine", "Borth Sampson", "Uncle Pennybags"],
     },
   ];
+
+  // Shuffle the questions so the correct answer isn't always the last alternative.
+
+  // Modify quizData so it contains correct answers etc and add it to a state ... Keep answers in a seperate state. ok
+
   return (
     <Box
       component="section"

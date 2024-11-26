@@ -45,60 +45,58 @@ const QuizQuestion = ({ questionData }) => {
         }}
       >
         <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
-          {[...questionData.incorrect_answers, questionData.correct_answer].map(
-            (answer, index) => (
-              <Grid
-                size={{ xs: 12, md: 6 }}
-                key={answer}
+          {questionData.incorrect_answers.map((answer, index) => (
+            <Grid
+              size={{ xs: 12, md: 6 }}
+              key={answer}
+              sx={{
+                display: "flex",
+              }}
+            >
+              <ButtonBase
                 sx={{
-                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  borderRadius: "8px",
+                  m: 0,
+                  border: "5px solid",
+                  borderColor: "secondary.main",
                 }}
               >
-                <ButtonBase
+                <Avatar
                   sx={{
-                    flexDirection: "row",
-                    width: "100%",
-                    borderRadius: "8px",
-                    m: 0,
-                    border: "5px solid",
-                    borderColor: "secondary.main",
+                    position: "relative",
+                    top: 5,
+                    left: 10,
+                    width: 24,
+                    height: 24,
+                    fontSize: "0.8rem",
+                    fontWeight: "bold",
+                    alignSelf: "flex-start",
+                    backgroundColor: "secondary.main",
                   }}
                 >
-                  <Avatar
-                    sx={{
-                      position: "relative",
-                      top: 5,
-                      left: 10,
-                      width: 24,
-                      height: 24,
-                      fontSize: "0.8rem",
-                      fontWeight: "bold",
-                      alignSelf: "flex-start",
-                      backgroundColor: "secondary.main",
-                    }}
-                  >
-                    {letters[index]}
-                  </Avatar>
-                  <FormControlLabel
-                    component={FormControlLabel}
-                    value={index}
-                    label={answer}
-                    control={
-                      <Radio size="medium" sx={{ color: "secondary.main" }} />
-                    }
-                    sx={{
-                      width: "100%",
-                      flexDirection: "row",
-                      justifyContent: "flex-start",
-                      p: 2,
-                    }}
-                  >
-                    {answer}
-                  </FormControlLabel>
-                </ButtonBase>
-              </Grid>
-            )
-          )}
+                  {letters[index]}
+                </Avatar>
+                <FormControlLabel
+                  component={FormControlLabel}
+                  value={index}
+                  label={answer}
+                  control={
+                    <Radio size="medium" sx={{ color: "secondary.main" }} />
+                  }
+                  sx={{
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    p: 2,
+                  }}
+                >
+                  {answer}
+                </FormControlLabel>
+              </ButtonBase>
+            </Grid>
+          ))}
         </Grid>
       </RadioGroup>
     </Box>
