@@ -85,6 +85,7 @@ const ThemeToggler = ({ darkMode, setDarkMode }) => {
         onChange={toggleDarkMode}
         inputProps={{ "aria-label": "darkmode-toggle" }}
         defaultChecked={userPref}
+        name={"theme-toggle"}
       />
       <Typography>Dark Mode</Typography>
     </Stack>
