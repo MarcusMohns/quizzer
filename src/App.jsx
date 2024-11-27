@@ -18,7 +18,22 @@ const darkModeData =
 
 function App() {
   const [darkMode, setDarkMode] = useState(darkModeData);
-  const [quizData, setQuizData] = useState([]);
+  const [quizData, setQuizData] = useState([
+    {
+      category: "history",
+      id: "622a1c3c7cc59eab6f951ae9",
+      correctAnswer: "1066",
+      incorrectAnswers: ["1166", "1266", "1366"],
+      question: {
+        text: "In Which Year Did The Battle Of Hastings Take Place?",
+      },
+      tags: ["battles", "uk", "history"],
+      type: "text_choice",
+      difficulty: "medium",
+      regions: [],
+      isNiche: false,
+    },
+  ]);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
