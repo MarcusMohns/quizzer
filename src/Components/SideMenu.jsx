@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 export default function SideMenu({ setQuizData }) {
   SideMenu.propTypes = {
-    setQuizData: PropTypes.array.isRequired,
+    setQuizData: PropTypes.func.isRequired,
   };
 
   const [open, setOpen] = React.useState(false);
@@ -37,7 +37,7 @@ export default function SideMenu({ setQuizData }) {
   return (
     <div>
       <StyledMenuIconButton bool={true} />
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer open={open} onClose={toggleDrawer(false)} aria-hidden="false">
         <Box
           sx={{
             display: "flex",
