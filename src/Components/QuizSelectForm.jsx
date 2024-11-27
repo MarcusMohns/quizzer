@@ -7,28 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
 import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
-
-const categoryOptions = [
-  { name: "Music", id: "music" },
-  { name: "Sports and Leisure", id: "sport_and_leisure" },
-  { name: "Film and TV", id: "film_and_tv" },
-  { name: "Arts and Literature", id: "arts_and_literature" },
-  { name: "History", id: "history" },
-  { name: "Society and Culture", id: "society_and_culture" },
-  { name: "Science", id: "science" },
-  { name: "Geography", id: "geography" },
-  { name: "Food and Drink", id: "food_and_drink" },
-  { name: "General Knowledge", id: "general_knowledge" },
-];
-
-const difficultyOptions = [
-  { name: "Easy", id: "easy" },
-  { name: "Medium", id: "medium" },
-  { name: "Hard", id: "hard" },
-];
 
 const QuizSelectForm = ({ setQuizData }) => {
   QuizSelectForm.propTypes = {
@@ -36,47 +16,65 @@ const QuizSelectForm = ({ setQuizData }) => {
   };
 
   const [formData, setFormData] = useState({
-    type: "Any Type",
-    difficulties: {
-      easy: true,
-      medium: true,
-      hard: true,
-    },
-    categories: {
-      arts_and_literature: true,
-      film_and_tv: true,
-      food_and_drink: true,
-      geography: true,
-      history: true,
-      music: true,
-      science: true,
-      society_and_culture: true,
-      sport_and_leisure: true,
-      general_knowledge: true,
-    },
-    qty: "1",
+    difficulties: [
+      { name: "Easy", id: "easy", checked: false },
+      { name: "Medium", id: "medium", checked: false },
+      { name: "Hard", id: "hard", checked: false },
+    ],
+    categories: [
+      { name: "Music", id: "music", checked: false },
+      { name: "Sports and Leisure", id: "sport_and_leisure", checked: false },
+      { name: "Film and TV", id: "film_and_tv", checked: false },
+      {
+        name: "Arts and Literature",
+        id: "arts_and_literature",
+        checked: false,
+      },
+      { name: "History", id: "history", checked: false },
+      {
+        name: "Society and Culture",
+        id: "society_and_culture",
+        checked: false,
+      },
+      { name: "Science", id: "science", checked: false },
+      { name: "Geography", id: "geography", checked: false },
+      { name: "Food and Drink", id: "food_and_drink", checked: false },
+      { name: "General Knowledge", id: "general_knowledge", checked: false },
+    ],
+    qty: "10",
   });
 
   const fetchQuiz = async () => {
     const limitRequest = `limit=${formData.qty}`;
-    const categoriesRequestArray = categoryOptions.map(
+
+    // Get all the categories to pass into the reqString
+    const categoriesRequestArray = formData.categories.map(
       (category) => `${category.id}`
     );
-    const categoriesRequest = categoriesRequestArray.join();
-    const difficultiesRequestArray = difficultyOptions.map(
+
+    // Format the categories to work as our query string
+    const categoriesRequest =
+      categoriesRequestArray.length > 0
+        ? `&${categoriesRequestArray.join()}`
+        : "";
+
+    // Get all the difficulties to pass into the reqString
+    const difficultiesRequestArray = formData.difficulties.map(
       (difficulty) => `${difficulty.id}`
     );
-    const difficultiesRequest = difficultiesRequestArray.join();
+    // Format the difficulties to work as our query string
+    const difficultiesRequest =
+      difficultiesRequestArray.length > 0
+        ? `&${difficultiesRequestArray.join()}`
+        : "";
 
-    const regionRequest = "GB";
-
-    const reqString = `https://the-trivia-api.com/v2/questions?${limitRequest}&${categoriesRequest}&${difficultiesRequest}&${regionRequest}`;
+    const reqString = `https://the-trivia-api.com/v2/questions?${limitRequest}${categoriesRequest}${difficultiesRequest}`;
 
     try {
       const response = await fetch(reqString);
       const data = await response.json();
       setQuizData(data.results);
-      console.log(data);
+      console.log("fetching data...");
     } catch (error) {
       console.log("error fetching data...", error);
     }
@@ -94,7 +92,7 @@ const QuizSelectForm = ({ setQuizData }) => {
     setFormData((prevData) => {
       return {
         ...prevData,
-        [event.target.name]: event.target.value,
+        qty: event.target.value,
       };
     });
   };
@@ -103,10 +101,11 @@ const QuizSelectForm = ({ setQuizData }) => {
     setFormData((prevData) => {
       return {
         ...prevData,
-        categories: {
-          ...prevData.categories,
-          [event.target.name]: event.target.checked,
-        },
+        categories: prevData.categories.map((category) =>
+          category.id === event.target.name
+            ? { ...category, checked: event.target.checked }
+            : category
+        ),
       };
     });
   };
@@ -115,12 +114,42 @@ const QuizSelectForm = ({ setQuizData }) => {
     setFormData((prevData) => {
       return {
         ...prevData,
-        difficulties: {
-          ...prevData.difficulties,
-          [event.target.name]: event.target.checked,
-        },
+        difficulties: prevData.difficulties.map((difficulty) =>
+          difficulty.id === event.target.name
+            ? { ...difficulty, checked: event.target.checked }
+            : difficulty
+        ),
       };
     });
+  };
+
+  const toggleCategoryCheckBoxes = () => {
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        categories: prevData.categories.map((category) => ({
+          ...category,
+          checked: allChecked(prevData.categories) ? false : true,
+        })),
+      };
+    });
+  };
+
+  const toggleDifficultyCheckBoxes = () => {
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        difficulties: prevData.difficulties.map((difficulty) => ({
+          ...difficulty,
+          checked: allChecked(prevData.difficulties) ? false : true,
+        })),
+      };
+    });
+  };
+
+  // return true if all difficulties are checked
+  const allChecked = (array) => {
+    return array.every((entry) => entry.checked);
   };
 
   return (
@@ -152,12 +181,22 @@ const QuizSelectForm = ({ setQuizData }) => {
           Select Category
         </FormLabel>
         <FormGroup>
-          {categoryOptions.map((category) => (
+          <FormControlLabel
+            label="Parent"
+            control={
+              <Checkbox
+                checked={allChecked(formData.categories)}
+                indeterminate={allChecked(formData.categories)}
+                onChange={toggleCategoryCheckBoxes}
+              />
+            }
+          />
+          {formData.categories.map((category) => (
             <FormControlLabel
               key={category.id}
               control={
                 <Checkbox
-                  checked={formData.categories[category.id]}
+                  checked={category.checked}
                   onChange={handleCheckedCategory}
                   name={category.id}
                 />
@@ -167,17 +206,28 @@ const QuizSelectForm = ({ setQuizData }) => {
           ))}
         </FormGroup>
       </FormControl>
+
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <FormLabel component="legend" id="difficulty-select-label">
           Select Difficulty
         </FormLabel>
         <FormGroup>
-          {difficultyOptions.map((difficulty) => (
+          <FormControlLabel
+            label="Parent"
+            control={
+              <Checkbox
+                checked={allChecked(formData.difficulties)}
+                indeterminate={allChecked(formData.difficulties) === false}
+                onChange={toggleDifficultyCheckBoxes}
+              />
+            }
+          />
+          {formData.difficulties.map((difficulty) => (
             <FormControlLabel
               key={difficulty.id}
               control={
                 <Checkbox
-                  checked={formData.categories[difficulty.id]}
+                  checked={difficulty.checked}
                   onChange={handleCheckedDifficulty}
                   name={difficulty.id}
                 />

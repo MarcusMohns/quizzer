@@ -16,6 +16,12 @@ const QuizQuestion = ({ questionData }) => {
     questionData: PropTypes.object.isRequired,
   };
 
+  const sortedAnswers = [
+    // Sort answers alphabetically
+    questionData.correctAnswer,
+    ...questionData.incorrectAnswers,
+  ].sort();
+
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);
@@ -32,7 +38,7 @@ const QuizQuestion = ({ questionData }) => {
       }}
     >
       <Typography variant="h4" sx={{ textAlign: "center", p: 5 }}>
-        {questionData.question}
+        {questionData.question.text}
       </Typography>
 
       <RadioGroup
@@ -45,7 +51,7 @@ const QuizQuestion = ({ questionData }) => {
         }}
       >
         <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
-          {questionData.incorrect_answers.map((answer, index) => (
+          {sortedAnswers.map((answer, index) => (
             <Grid
               size={{ xs: 12, md: 6 }}
               key={answer}

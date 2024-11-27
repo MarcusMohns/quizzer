@@ -36,8 +36,8 @@ export default function QuizStepper({
           flexWrap: "wrap",
         }}
       >
-        {steps.map((label, index) => (
-          <Tooltip title={label.question} key={label.question}>
+        {steps.map((step, index) => (
+          <Tooltip title={step.question.text} key={step.question.text}>
             <Step completed={completed[index]} sx={{ m: 1 }}>
               <StepButton color="inherit" onClick={handleStep(index)}>
                 <Typography
@@ -49,7 +49,7 @@ export default function QuizStepper({
                     m: 1,
                   }}
                 >
-                  {label.question}
+                  {step.question.text}
                 </Typography>
               </StepButton>
             </Step>
