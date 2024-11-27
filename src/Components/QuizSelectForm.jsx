@@ -9,6 +9,7 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
+import FormHelperText from "@mui/material/FormHelperText";
 
 const QuizSelectForm = ({ setQuizData }) => {
   QuizSelectForm.propTypes = {
@@ -47,25 +48,27 @@ const QuizSelectForm = ({ setQuizData }) => {
   const fetchQuiz = async () => {
     const limitRequest = `limit=${formData.qty}`;
 
-    // Get all the categories to pass into the reqString
-    const categoriesRequestArray = formData.categories.map(
-      (category) => `${category.id}`
-    );
+    // Get all category ids strings to pass into the reqString
+
+    // Make an array of strings from category ids that are checked to pass into the reqString
+    const categoriesRequestArray = formData.categories
+      .filter((category) => category.checked && category.id)
+      .map((category) => category.id);
 
     // Format the categories to work as our query string
     const categoriesRequest =
       categoriesRequestArray.length > 0
-        ? `&${categoriesRequestArray.join()}`
+        ? `&catagories=${categoriesRequestArray.join()}`
         : "";
 
     // Get all the difficulties to pass into the reqString
-    const difficultiesRequestArray = formData.difficulties.map(
-      (difficulty) => `${difficulty.id}`
-    );
+    const difficultiesRequestArray = formData.difficulties
+      .filter((difficulty) => difficulty.checked && difficulty.id)
+      .map((difficulty) => difficulty.id);
     // Format the difficulties to work as our query string
     const difficultiesRequest =
       difficultiesRequestArray.length > 0
-        ? `&${difficultiesRequestArray.join()}`
+        ? `&difficulties=${difficultiesRequestArray.join()}`
         : "";
 
     const reqString = `https://the-trivia-api.com/v2/questions?${limitRequest}${categoriesRequest}${difficultiesRequest}`;
@@ -73,7 +76,7 @@ const QuizSelectForm = ({ setQuizData }) => {
     try {
       const response = await fetch(reqString);
       const data = await response.json();
-      setQuizData(data.results);
+      setQuizData(data);
       console.log("fetching data...");
     } catch (error) {
       console.log("error fetching data...", error);
@@ -82,9 +85,15 @@ const QuizSelectForm = ({ setQuizData }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //TODO flesh out error handling
-    if (formData.qty > 0 || formData.qty < 50) {
+    if (
+      someChecked(formData.categories) &&
+      someChecked(formData.difficulties) &&
+      formData.qty > 0 &&
+      formData.qty < 50
+    ) {
       fetchQuiz();
+    } else {
+      console.log("add catagory or difficulty");
     }
   };
 
@@ -152,10 +161,15 @@ const QuizSelectForm = ({ setQuizData }) => {
     return array.every((entry) => entry.checked);
   };
 
+  // return tru if some categories are checked
+  const someChecked = (array) => {
+    return array.some((entry) => entry.checked);
+  };
+
   return (
     <Box
       component="form"
-      sx={{ display: "flex", flexDirection: "column", p: 5 }}
+      sx={{ display: "flex", flexDirection: "column", p: 3, width: "100%" }}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
@@ -176,18 +190,22 @@ const QuizSelectForm = ({ setQuizData }) => {
         label="Number of Questions:"
         sx={{ m: 1, minWidth: 120 }}
       />
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl
+        sx={{ m: 1, minWidth: 120 }}
+        error={!someChecked(formData.categories)}
+      >
         <FormLabel component="legend" id="category-select-label">
           Select Category
         </FormLabel>
         <FormGroup>
           <FormControlLabel
-            label="Parent"
+            label="All Categories"
             control={
               <Checkbox
                 checked={allChecked(formData.categories)}
-                indeterminate={allChecked(formData.categories)}
+                indeterminate={!allChecked(formData.categories)}
                 onChange={toggleCategoryCheckBoxes}
+                name={"all-categories-checkbox"}
               />
             }
           />
@@ -199,26 +217,32 @@ const QuizSelectForm = ({ setQuizData }) => {
                   checked={category.checked}
                   onChange={handleCheckedCategory}
                   name={category.id}
+                  size="small"
                 />
               }
               label={category.name}
             />
           ))}
         </FormGroup>
+        <FormHelperText>Select at least one category</FormHelperText>
       </FormControl>
 
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl
+        sx={{ m: 1, minWidth: 120 }}
+        error={!someChecked(formData.difficulties)}
+      >
         <FormLabel component="legend" id="difficulty-select-label">
           Select Difficulty
         </FormLabel>
         <FormGroup>
           <FormControlLabel
-            label="Parent"
+            label="All Difficulties"
             control={
               <Checkbox
                 checked={allChecked(formData.difficulties)}
-                indeterminate={allChecked(formData.difficulties) === false}
+                indeterminate={!allChecked(formData.difficulties)}
                 onChange={toggleDifficultyCheckBoxes}
+                name={"all-difficulties-checkbox"}
               />
             }
           />
@@ -230,12 +254,14 @@ const QuizSelectForm = ({ setQuizData }) => {
                   checked={difficulty.checked}
                   onChange={handleCheckedDifficulty}
                   name={difficulty.id}
+                  size="small"
                 />
               }
               label={difficulty.name}
             />
           ))}
         </FormGroup>
+        <FormHelperText>Select at least one difficulty</FormHelperText>
       </FormControl>
 
       <Button variant="contained" type="submit">
