@@ -169,7 +169,12 @@ const QuizSelectForm = ({ setQuizData }) => {
   return (
     <Box
       component="form"
-      sx={{ display: "flex", flexDirection: "column", p: 3, width: "100%" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        px: 3,
+        width: "100%",
+      }}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
@@ -188,7 +193,9 @@ const QuizSelectForm = ({ setQuizData }) => {
         value={formData.qty}
         onChange={handleChange}
         label="Number of Questions:"
-        sx={{ m: 1, minWidth: 120 }}
+        sx={{ minWidth: 120 }}
+        helperText="Enter a number between 1 and 50"
+        error={formData.qty <= 0 || formData.qty > 50}
       />
       <FormControl
         sx={{ m: 1, minWidth: 120 }}
@@ -203,7 +210,7 @@ const QuizSelectForm = ({ setQuizData }) => {
             control={
               <Checkbox
                 checked={allChecked(formData.categories)}
-                indeterminate={!allChecked(formData.categories)}
+                indeterminate={someChecked(formData.categories)}
                 onChange={toggleCategoryCheckBoxes}
                 name={"all-categories-checkbox"}
               />
@@ -240,7 +247,7 @@ const QuizSelectForm = ({ setQuizData }) => {
             control={
               <Checkbox
                 checked={allChecked(formData.difficulties)}
-                indeterminate={!allChecked(formData.difficulties)}
+                indeterminate={someChecked(formData.difficulties)}
                 onChange={toggleDifficultyCheckBoxes}
                 name={"all-difficulties-checkbox"}
               />
