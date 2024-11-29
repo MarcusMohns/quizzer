@@ -11,8 +11,8 @@ import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 
-const QuizSelectForm = ({ setQuizData }) => {
-  QuizSelectForm.propTypes = {
+const GenerateQuizForm = ({ setQuizData }) => {
+  GenerateQuizForm.propTypes = {
     setQuizData: PropTypes.func.isRequired,
   };
 
@@ -46,32 +46,20 @@ const QuizSelectForm = ({ setQuizData }) => {
   });
 
   const fetchQuiz = async () => {
-    const limitRequest = `limit=${formData.qty}`;
+    const queryParams = new URLSearchParams({
+      // Get all checkboxes that are checked and format them into a string we can use in the url
+      limit: formData.qty,
+      categories: formData.categories
+        .filter((category) => category.checked)
+        .map((category) => category.id)
+        .join(),
+      difficulties: formData.difficulties
+        .filter((difficulty) => difficulty.checked)
+        .map((difficulty) => difficulty.id)
+        .join(),
+    });
 
-    // Get all category ids strings to pass into the reqString
-
-    // Make an array of strings from category ids that are checked to pass into the reqString
-    const categoriesRequestArray = formData.categories
-      .filter((category) => category.checked && category.id)
-      .map((category) => category.id);
-
-    // Format the categories to work as our query string
-    const categoriesRequest =
-      categoriesRequestArray.length > 0
-        ? `&catagories=${categoriesRequestArray.join()}`
-        : "";
-
-    // Get all the difficulties to pass into the reqString
-    const difficultiesRequestArray = formData.difficulties
-      .filter((difficulty) => difficulty.checked && difficulty.id)
-      .map((difficulty) => difficulty.id);
-    // Format the difficulties to work as our query string
-    const difficultiesRequest =
-      difficultiesRequestArray.length > 0
-        ? `&difficulties=${difficultiesRequestArray.join()}`
-        : "";
-
-    const reqString = `https://the-trivia-api.com/v2/questions?${limitRequest}${categoriesRequest}${difficultiesRequest}`;
+    const reqString = `https://the-trivia-api.com/v2/questions?${queryParams}`;
 
     try {
       const response = await fetch(reqString);
@@ -98,73 +86,59 @@ const QuizSelectForm = ({ setQuizData }) => {
   };
 
   const handleChange = (event) => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        qty: event.target.value,
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      qty: event.target.value,
+    }));
   };
 
   const handleCheckedCategory = (event) => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        categories: prevData.categories.map((category) =>
-          category.id === event.target.name
-            ? { ...category, checked: event.target.checked }
-            : category
-        ),
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      categories: prevData.categories.map((category) =>
+        category.id === event.target.name
+          ? { ...category, checked: event.target.checked }
+          : category
+      ),
+    }));
   };
 
   const handleCheckedDifficulty = (event) => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        difficulties: prevData.difficulties.map((difficulty) =>
-          difficulty.id === event.target.name
-            ? { ...difficulty, checked: event.target.checked }
-            : difficulty
-        ),
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      difficulties: prevData.difficulties.map((difficulty) =>
+        difficulty.id === event.target.name
+          ? { ...difficulty, checked: event.target.checked }
+          : difficulty
+      ),
+    }));
   };
 
   const toggleCategoryCheckBoxes = () => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        categories: prevData.categories.map((category) => ({
-          ...category,
-          checked: allChecked(prevData.categories) ? false : true,
-        })),
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      categories: prevData.categories.map((category) => ({
+        ...category,
+        checked: allChecked(prevData.categories) ? false : true,
+      })),
+    }));
   };
 
   const toggleDifficultyCheckBoxes = () => {
-    setFormData((prevData) => {
-      return {
-        ...prevData,
-        difficulties: prevData.difficulties.map((difficulty) => ({
-          ...difficulty,
-          checked: allChecked(prevData.difficulties) ? false : true,
-        })),
-      };
-    });
+    setFormData((prevData) => ({
+      ...prevData,
+      difficulties: prevData.difficulties.map((difficulty) => ({
+        ...difficulty,
+        checked: allChecked(prevData.difficulties) ? false : true,
+      })),
+    }));
   };
 
-  // return true if all difficulties are checked
-  const allChecked = (array) => {
-    return array.every((entry) => entry.checked);
-  };
+  // return true if all objects in array are checked
+  const allChecked = (array) => array.every((entry) => entry.checked);
 
-  // return tru if some categories are checked
-  const someChecked = (array) => {
-    return array.some((entry) => entry.checked);
-  };
+  // return true if some objects in array are checked
+  const someChecked = (array) => array.some((entry) => entry.checked);
 
   return (
     <Box
@@ -278,4 +252,4 @@ const QuizSelectForm = ({ setQuizData }) => {
   );
 };
 
-export default QuizSelectForm;
+export default GenerateQuizForm;

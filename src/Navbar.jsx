@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import ThemeToggler from "./Components/ThemeToggler";
-import SideMenu from "./Components/SideMenu";
+import SideMenu from "./SideMenu";
 import PropTypes from "prop-types";
 
 export default function Navbar({ darkMode, setDarkMode, setQuizData }) {

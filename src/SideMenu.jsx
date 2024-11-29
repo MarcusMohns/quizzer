@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import QuizSelectForm from "./QuizSelectForm";
+import GenerateQuizForm from "./GenerateQuizForm";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
 
@@ -51,7 +51,7 @@ export default function SideMenu({ setQuizData }) {
             Quizzer
           </Typography>
         </Box>
-        <QuizSelectForm setQuizData={setQuizData} />
+        <GenerateQuizForm setQuizData={setQuizData} />
       </Drawer>
     </div>
   );
