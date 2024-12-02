@@ -11,9 +11,11 @@ import PropTypes from "prop-types";
 
 const letters = ["A", "B", "C", "D"];
 
-const QuizQuestion = ({ questionData }) => {
+const QuizQuestion = ({ questionData, setResults, activeStep }) => {
   QuizQuestion.propTypes = {
     questionData: PropTypes.object.isRequired,
+    setResults: PropTypes.func.isRequired,
+    activeStep: PropTypes.number.isRequired,
   };
 
   const sortedAnswers = [
@@ -25,6 +27,10 @@ const QuizQuestion = ({ questionData }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);
+    setResults((prevResults) => ({
+      ...prevResults,
+      [activeStep]: e.target.name === questionData.correctAnswer,
+    }));
   };
 
   return (
@@ -88,6 +94,7 @@ const QuizQuestion = ({ questionData }) => {
                   component={FormControlLabel}
                   value={index}
                   label={answer}
+                  name={answer}
                   control={
                     <Radio size="medium" sx={{ color: "secondary.main" }} />
                   }

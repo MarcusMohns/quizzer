@@ -4,6 +4,7 @@ import QuizStepper from "./QuizStepper";
 import QuizControls from "./QuizControls";
 import QuizQuestion from "./QuizQuestion.jsx";
 import PropTypes from "prop-types";
+import Results from "./Results.jsx";
 
 const Quizzer = ({ quizData }) => {
   Quizzer.propTypes = {
@@ -12,6 +13,7 @@ const Quizzer = ({ quizData }) => {
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
+  const [results, setResults] = useState({});
 
   return (
     <Box
@@ -25,15 +27,25 @@ const Quizzer = ({ quizData }) => {
         borderRadius: "7px",
       }}
     >
-      <QuizQuestion questionData={quizData[activeStep]} />
+      {activeStep === quizData.length ? (
+        <Results results={results} quizData={quizData} />
+      ) : (
+        <QuizQuestion
+          questionData={quizData[activeStep]}
+          setResults={setResults}
+          activeStep={activeStep}
+          results={results}
+        />
+      )}
       <QuizControls
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         completed={completed}
         setCompleted={setCompleted}
         steps={quizData}
+        setResults={setResults}
+        results={results}
       />
-
       <QuizStepper
         steps={quizData}
         activeStep={activeStep}
