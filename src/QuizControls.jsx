@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const QuizControls = ({
   activeStep,
@@ -10,6 +11,8 @@ const QuizControls = ({
   setCompleted,
   completed,
   steps,
+  results,
+  setResults,
 }) => {
   QuizControls.propTypes = {
     steps: PropTypes.array.isRequired,
@@ -17,6 +20,8 @@ const QuizControls = ({
     setActiveStep: PropTypes.func.isRequired,
     completed: PropTypes.object.isRequired,
     setCompleted: PropTypes.func.isRequired,
+    results: PropTypes.object.isRequired,
+    setResults: PropTypes.func.isRequired,
   };
 
   const totalSteps = () => {
@@ -28,7 +33,7 @@ const QuizControls = ({
   };
 
   const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
+    return activeStep === totalSteps();
   };
 
   const handleComplete = () => {
@@ -60,7 +65,17 @@ const QuizControls = ({
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+    setResults({});
   };
+
+  useEffect(() => {
+    if (results[activeStep] !== undefined) {
+      setCompleted({
+        ...completed,
+        [activeStep]: true,
+      });
+    }
+  }, [results, activeStep, completed, setCompleted]);
 
   return (
     <Box
