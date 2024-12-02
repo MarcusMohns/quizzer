@@ -47,7 +47,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
 
   const fetchQuiz = async () => {
     const queryParams = new URLSearchParams({
-      // Get all checkboxes that are checked and format them into a string we can use in the url
+      // Pass all checked checkboxes' ids into queryParams
       limit: formData.qty,
       categories: formData.categories
         .filter((category) => category.checked)
