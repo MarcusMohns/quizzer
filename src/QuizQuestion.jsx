@@ -8,12 +8,14 @@ import { Typography } from "@mui/material";
 import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const letters = ["A", "B", "C", "D"];
 
-const QuizQuestion = ({ questionData, setResults, activeStep }) => {
+const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
   QuizQuestion.propTypes = {
     questionData: PropTypes.object.isRequired,
+    results: PropTypes.object.isRequired,
     setResults: PropTypes.func.isRequired,
     activeStep: PropTypes.number.isRequired,
   };
@@ -29,9 +31,25 @@ const QuizQuestion = ({ questionData, setResults, activeStep }) => {
     setSelectedAnswer(e.target.value);
     setResults((prevResults) => ({
       ...prevResults,
-      [activeStep]: e.target.name === questionData.correctAnswer,
+      [activeStep]:
+        e.target.name === questionData.correctAnswer
+          ? { [e.target.value]: true }
+          : { [e.target.value]: false },
     }));
   };
+
+  // Get the previous selected answer if it exists
+  // If it doesn't, default to ""
+  const prevSelectedAnswer = results[activeStep]
+    ? Object.keys(results[activeStep]).find(
+        (key) => results[activeStep][key] !== undefined
+      ) || ""
+    : "";
+
+  // Set the selected answer to the previous selected answer
+  useEffect(() => {
+    if (prevSelectedAnswer !== undefined) setSelectedAnswer(prevSelectedAnswer);
+  }, [activeStep, prevSelectedAnswer]);
 
   return (
     <Box

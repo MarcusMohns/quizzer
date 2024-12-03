@@ -13,7 +13,7 @@ const Quizzer = ({ quizData }) => {
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState({ 0: 0 });
 
   return (
     <Box

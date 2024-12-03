@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 
 const QuizControls = ({
   activeStep,
@@ -49,6 +48,13 @@ const QuizControls = ({
   };
 
   const handleNext = () => {
+    if (results[activeStep] !== undefined) {
+      setCompleted({
+        ...completed,
+        [activeStep]: true,
+      });
+    }
+
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -67,15 +73,6 @@ const QuizControls = ({
     setCompleted({});
     setResults({});
   };
-
-  useEffect(() => {
-    if (results[activeStep] !== undefined) {
-      setCompleted({
-        ...completed,
-        [activeStep]: true,
-      });
-    }
-  }, [results, activeStep, completed, setCompleted]);
 
   return (
     <Box
