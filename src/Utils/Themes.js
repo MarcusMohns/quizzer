@@ -19,12 +19,14 @@ export const darkTheme = createTheme({
       faded1: "#2e417a",
     },
     success: {
-      main: "#005577",
-      light: "#0085b9",
+      main: "#09cf13",
+      light: "#73e664",
       dark: "#003950",
     },
     error: {
       main: "#e0605e",
+      light: "#c90303",
+      dark: "#750000",
     },
 
     info: {

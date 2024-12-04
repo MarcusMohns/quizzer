@@ -9,8 +9,10 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
-const letters = ["A", "B", "C", "D"];
+const LETTERS = ["A", "B", "C", "D"];
 
 const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
   QuizQuestion.propTypes = {
@@ -20,6 +22,8 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
     activeStep: PropTypes.number.isRequired,
   };
 
+  // const questionAnswered = Object.values(results[activeStep])[0] !== undefined ?
+
   const sortedAnswers = [
     // Sort answers alphabetically
     questionData.correctAnswer,
@@ -27,6 +31,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
   ].sort();
 
   const [selectedAnswer, setSelectedAnswer] = useState("");
+
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);
     setResults((prevResults) => ({
@@ -36,6 +41,8 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
           ? { [e.target.value]: true }
           : { [e.target.value]: false },
     }));
+
+    console.log(results);
   };
 
   // Get the previous selected answer if it exists
@@ -87,9 +94,9 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                 sx={{
                   flexDirection: "row",
                   width: "100%",
-                  borderRadius: "8px",
+                  borderRadius: "15px",
                   m: 0,
-                  border: "5px solid",
+                  border: "4px solid",
                   borderColor: "secondary.main",
                 }}
               >
@@ -106,7 +113,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                     backgroundColor: "secondary.main",
                   }}
                 >
-                  {letters[index]}
+                  {LETTERS[index]}
                 </Avatar>
                 <FormControlLabel
                   component={FormControlLabel}
@@ -130,6 +137,36 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
           ))}
         </Grid>
       </RadioGroup>
+      {results[activeStep] !== undefined &&
+        (results[selectedAnswer] ? (
+          <Alert
+            severity="success"
+            variant="outlined"
+            sx={{ m: 2, textAlign: "center" }}
+          >
+            <AlertTitle>
+              Correct! The answer is:{" "}
+              <Typography
+                component="span"
+                sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+              >
+                {questionData.correctAnswer}
+              </Typography>
+            </AlertTitle>
+          </Alert>
+        ) : (
+          <Alert severity="error" variant="outlined" sx={{ m: 2 }}>
+            <AlertTitle>
+              Incorrect! The answer to the question is:{" "}
+              <Typography
+                component="span"
+                sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+              >
+                {questionData.correctAnswer}
+              </Typography>
+            </AlertTitle>
+          </Alert>
+        ))}
     </Box>
   );
 };
