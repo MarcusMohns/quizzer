@@ -138,7 +138,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
         </Grid>
       </RadioGroup>
       {results[activeStep] !== undefined &&
-        (results[selectedAnswer] ? (
+        (results[activeStep][selectedAnswer] ? (
           <Alert
             severity="success"
             variant="outlined"
