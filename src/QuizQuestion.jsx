@@ -41,6 +41,8 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
           : { [e.target.value]: false },
     }));
   };
+
+  // Check if the selected answer is correct
   const correctlyAnswered =
     results[activeStep] !== undefined &&
     results[activeStep][selectedAnswer] === true;
@@ -171,17 +173,19 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
             </Alert>
           </Zoom>
         ) : (
-          <Alert severity="error" variant="outlined" sx={{ m: 2 }}>
-            <AlertTitle>
-              Incorrect! The answer to the question is:{" "}
-              <Typography
-                component="span"
-                sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
-              >
-                {questionData.correctAnswer}
-              </Typography>
-            </AlertTitle>
-          </Alert>
+          <Zoom in={results[activeStep] !== undefined}>
+            <Alert severity="error" variant="outlined" sx={{ m: 2 }}>
+              <AlertTitle>
+                Incorrect! The answer to the question is:{" "}
+                <Typography
+                  component="span"
+                  sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+                >
+                  {questionData.correctAnswer}
+                </Typography>
+              </AlertTitle>
+            </Alert>
+          </Zoom>
         ))}
     </Box>
   );
