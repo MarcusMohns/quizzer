@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import Zoom from "@mui/material/Zoom";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -21,8 +22,6 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
     setResults: PropTypes.func.isRequired,
     activeStep: PropTypes.number.isRequired,
   };
-
-  // const questionAnswered = Object.values(results[activeStep])[0] !== undefined ?
 
   const sortedAnswers = [
     // Sort answers alphabetically
@@ -41,9 +40,10 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
           ? { [e.target.value]: true }
           : { [e.target.value]: false },
     }));
-
-    console.log(results);
   };
+  const correctlyAnswered =
+    results[activeStep] !== undefined &&
+    results[activeStep][selectedAnswer] === true;
 
   // Get the previous selected answer if it exists
   // If it doesn't, default to ""
@@ -55,7 +55,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
 
   // Set the selected answer to the previous selected answer
   useEffect(() => {
-    if (prevSelectedAnswer !== undefined) setSelectedAnswer(prevSelectedAnswer);
+    setSelectedAnswer(prevSelectedAnswer);
   }, [activeStep, prevSelectedAnswer]);
 
   return (
@@ -96,8 +96,16 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                   width: "100%",
                   borderRadius: "15px",
                   m: 0,
-                  border: "4px solid",
-                  borderColor: "secondary.main",
+                  "&:hover": {
+                    backgroundColor: "secondary.light",
+                  },
+                  border: "2px solid",
+                  borderColor:
+                    sortedAnswers[selectedAnswer] === answer
+                      ? correctlyAnswered
+                        ? "success.main"
+                        : "error.light"
+                      : "secondary.main",
                 }}
               >
                 <Avatar
@@ -110,12 +118,18 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                     fontSize: "0.8rem",
                     fontWeight: "bold",
                     alignSelf: "flex-start",
-                    backgroundColor: "secondary.main",
+                    backgroundColor:
+                      sortedAnswers[selectedAnswer] === answer
+                        ? correctlyAnswered
+                          ? "green"
+                          : "red"
+                        : "secondary.main",
                   }}
                 >
                   {LETTERS[index]}
                 </Avatar>
                 <FormControlLabel
+                  disabled={results[activeStep] !== undefined}
                   component={FormControlLabel}
                   value={index}
                   label={answer}
@@ -138,22 +152,24 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
         </Grid>
       </RadioGroup>
       {results[activeStep] !== undefined &&
-        (results[activeStep][selectedAnswer] ? (
-          <Alert
-            severity="success"
-            variant="outlined"
-            sx={{ m: 2, textAlign: "center" }}
-          >
-            <AlertTitle>
-              Correct! The answer is:{" "}
-              <Typography
-                component="span"
-                sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
-              >
-                {questionData.correctAnswer}
-              </Typography>
-            </AlertTitle>
-          </Alert>
+        (correctlyAnswered ? (
+          <Zoom in={results[activeStep] !== undefined}>
+            <Alert
+              severity="success"
+              variant="outlined"
+              sx={{ m: 2, textAlign: "center" }}
+            >
+              <AlertTitle>
+                Correct! The answer is:{" "}
+                <Typography
+                  component="span"
+                  sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+                >
+                  {questionData.correctAnswer}
+                </Typography>
+              </AlertTitle>
+            </Alert>
+          </Zoom>
         ) : (
           <Alert severity="error" variant="outlined" sx={{ m: 2 }}>
             <AlertTitle>
