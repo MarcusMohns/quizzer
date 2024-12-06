@@ -10,7 +10,7 @@ const Results = ({ results, quizData }) => {
   };
 
   // turn results object into an array of objects
-  const results123 = Object.keys(results).map((key) => {
+  const resultsArray = Object.keys(results).map((key) => {
     return {
       ...quizData[key],
       pickedAnswer: Object.keys(results[key])[0] - 1,
@@ -19,10 +19,9 @@ const Results = ({ results, quizData }) => {
     };
   });
 
-  console.log(results123);
   return (
     <Box sx={{ p: 5, mt: 5 }}>
-      {results123.map((result, index) =>
+      {resultsArray.map((result, index) =>
         result.correctlyAnswered ? (
           <Alert severity="success" color="success" key={index} sx={{ m: 2 }}>
             <AlertTitle>
