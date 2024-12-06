@@ -55,6 +55,23 @@ export default function QuizStepper({
             </Step>
           </Tooltip>
         ))}
+        <Tooltip title="Results">
+          <Step sx={{ m: 1 }}>
+            <StepButton color="inherit" onClick={handleStep(steps.length)}>
+              <Typography
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  maxWidth: "100px",
+                  m: 1,
+                }}
+              >
+                {"Results"}
+              </Typography>
+            </StepButton>
+          </Step>
+        </Tooltip>
       </Stepper>
     </Box>
   );
