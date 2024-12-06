@@ -35,6 +35,7 @@ const Quizzer = ({ quizData }) => {
           setResults={setResults}
           activeStep={activeStep}
           results={results}
+          setCompleted={setCompleted}
         />
       )}
       <QuizControls

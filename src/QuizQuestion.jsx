@@ -15,21 +15,29 @@ import Zoom from "@mui/material/Zoom";
 
 const LETTERS = ["A", "B", "C", "D"];
 
-const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
+const QuizQuestion = ({
+  questionData,
+  setResults,
+  results,
+  activeStep,
+  setCompleted,
+}) => {
   QuizQuestion.propTypes = {
     questionData: PropTypes.object.isRequired,
     results: PropTypes.object.isRequired,
     setResults: PropTypes.func.isRequired,
     activeStep: PropTypes.number.isRequired,
+    setCompleted: PropTypes.func.isRequired,
+    handleComplete: PropTypes.func.isRequired,
   };
+
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   const sortedAnswers = [
     // Sort answers alphabetically
     questionData.correctAnswer,
     ...questionData.incorrectAnswers,
   ].sort();
-
-  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   const handleChange = (e) => {
     setSelectedAnswer(e.target.value);
@@ -54,6 +62,10 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
         (key) => results[activeStep][key] !== undefined
       ) || ""
     : "";
+
+  const handleComplete = () => {
+    setCompleted((prevCompleted) => ({ ...prevCompleted, [activeStep]: true }));
+  };
 
   // Set the selected answer to the previous selected answer
   useEffect(() => {
@@ -135,6 +147,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                   component={FormControlLabel}
                   value={index}
                   label={answer}
+                  onClick={handleComplete}
                   name={answer}
                   control={
                     <Radio size="medium" sx={{ color: "secondary.main" }} />
@@ -144,6 +157,7 @@ const QuizQuestion = ({ questionData, setResults, results, activeStep }) => {
                     flexDirection: "row",
                     justifyContent: "flex-start",
                     p: 2,
+                    m: 0,
                   }}
                 >
                   {answer}

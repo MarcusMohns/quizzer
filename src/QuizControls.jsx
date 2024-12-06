@@ -10,7 +10,6 @@ const QuizControls = ({
   setCompleted,
   completed,
   steps,
-  results,
   setResults,
 }) => {
   QuizControls.propTypes = {
@@ -35,26 +34,11 @@ const QuizControls = ({
     return activeStep === totalSteps();
   };
 
-  const handleComplete = () => {
-    setCompleted({
-      ...completed,
-      [activeStep]: true,
-    });
-    handleNext();
-  };
-
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
   };
 
   const handleNext = () => {
-    if (results[activeStep] !== undefined) {
-      setCompleted({
-        ...completed,
-        [activeStep]: true,
-      });
-    }
-
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -86,10 +70,13 @@ const QuizControls = ({
     >
       {allStepsCompleted() ? (
         <React.Fragment>
-          <Typography>Quiz completed - you&apos;re finished</Typography>
+          <Typography>Quiz completed! </Typography>
           <Box>
             <Box />
             <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={() => setActiveStep(totalSteps())}>
+              Go the the Results!{" "}
+            </Button>
           </Box>
         </React.Fragment>
       ) : (
@@ -104,18 +91,6 @@ const QuizControls = ({
               Back
             </Button>
             <Button onClick={handleNext}>Next</Button>
-            {activeStep !== steps.length &&
-              (completed[activeStep] ? (
-                <Typography variant="caption" sx={{ display: "inline-block" }}>
-                  Step {activeStep + 1} already completed
-                </Typography>
-              ) : (
-                <Button onClick={handleComplete}>
-                  {completedSteps() === totalSteps() - 1
-                    ? "Finish"
-                    : "Complete Step"}
-                </Button>
-              ))}
           </Box>
         </React.Fragment>
       )}
