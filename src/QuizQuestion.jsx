@@ -12,7 +12,9 @@ import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Zoom from "@mui/material/Zoom";
-
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import tags from "./images/tags.jsx";
 const LETTERS = ["A", "B", "C", "D"];
 
 const QuizQuestion = ({
@@ -28,7 +30,6 @@ const QuizQuestion = ({
     setResults: PropTypes.func.isRequired,
     activeStep: PropTypes.number.isRequired,
     setCompleted: PropTypes.func.isRequired,
-    handleComplete: PropTypes.func.isRequired,
   };
 
   const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -78,13 +79,32 @@ const QuizQuestion = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100%",
         mt: { xs: 2, md: 5 },
+        borderRadius: "10px",
       }}
     >
-      <Typography variant="h4" sx={{ textAlign: "center", p: 5 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          textAlign: "center",
+          p: 2,
+          borderRadius: "10px",
+        }}
+      >
         {questionData.question.text}
       </Typography>
+      <Box sx={{ display: "flex", width: "60%" }}>
+        <Stack direction="row" spacing={1}>
+          <Chip
+            variant="outlined"
+            label={tags[questionData.category].title}
+            icon={tags[questionData.category].icon}
+          />
+          {questionData.tags.map((tag) => (
+            <Chip label={tag} key={tag} />
+          ))}
+        </Stack>
+      </Box>
 
       <RadioGroup
         value={selectedAnswer}
@@ -111,7 +131,7 @@ const QuizQuestion = ({
                   borderRadius: "15px",
                   m: 0,
                   "&:hover": {
-                    backgroundColor: "secondary.light",
+                    border: "2px solid white",
                   },
                   border: "2px solid",
                   borderColor:
@@ -120,6 +140,7 @@ const QuizQuestion = ({
                         ? "success.main"
                         : "error.light"
                       : "secondary.main",
+                  boxShadow: 8,
                 }}
               >
                 <Avatar
@@ -167,40 +188,46 @@ const QuizQuestion = ({
           ))}
         </Grid>
       </RadioGroup>
-      {results[activeStep] !== undefined &&
-        (correctlyAnswered ? (
-          <Zoom in={results[activeStep] !== undefined}>
-            <Alert
-              severity="success"
-              variant="outlined"
-              sx={{ m: 2, textAlign: "center" }}
-            >
-              <AlertTitle>
-                Correct! The answer is:{" "}
-                <Typography
-                  component="span"
-                  sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
-                >
-                  {questionData.correctAnswer}
-                </Typography>
-              </AlertTitle>
-            </Alert>
-          </Zoom>
-        ) : (
-          <Zoom in={results[activeStep] !== undefined}>
-            <Alert severity="error" variant="outlined" sx={{ m: 2 }}>
-              <AlertTitle>
-                Incorrect! The answer to the question is:{" "}
-                <Typography
-                  component="span"
-                  sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
-                >
-                  {questionData.correctAnswer}
-                </Typography>
-              </AlertTitle>
-            </Alert>
-          </Zoom>
-        ))}
+      <Box sx={{ minHeight: "100px" }}>
+        {results[activeStep] !== undefined &&
+          (correctlyAnswered ? (
+            <Zoom in={results[activeStep] !== undefined}>
+              <Alert
+                severity="success"
+                variant="outlined"
+                sx={{ textAlign: "center" }}
+              >
+                <AlertTitle>
+                  Correct! The answer is:{" "}
+                  <Typography
+                    component="span"
+                    sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+                  >
+                    {questionData.correctAnswer}
+                  </Typography>
+                </AlertTitle>
+              </Alert>
+            </Zoom>
+          ) : (
+            <Zoom in={results[activeStep] !== undefined}>
+              <Alert
+                severity="error"
+                variant="outlined"
+                sx={{ textAlign: "center" }}
+              >
+                <AlertTitle>
+                  Incorrect! The answer to the question is:{" "}
+                  <Typography
+                    component="span"
+                    sx={{ fontWeight: "bold", ml: 0.2, color: "primary.main" }}
+                  >
+                    {questionData.correctAnswer}
+                  </Typography>
+                </AlertTitle>
+              </Alert>
+            </Zoom>
+          ))}
+      </Box>
     </Box>
   );
 };
