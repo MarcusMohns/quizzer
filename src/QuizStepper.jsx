@@ -27,6 +27,10 @@ export default function QuizStepper({
     <Box
       sx={{
         p: 2,
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        flexGrow: "1",
       }}
     >
       <Stepper
@@ -34,7 +38,11 @@ export default function QuizStepper({
         activeStep={activeStep}
         sx={{
           flexWrap: "wrap",
+          borderRadius: "5px",
+          px: 5,
+          color: "white",
         }}
+        connector={<>―</>}
       >
         {steps.map((step, index) => (
           <Tooltip title={step.question.text} key={step.question.text}>
@@ -57,7 +65,7 @@ export default function QuizStepper({
         ))}
         <Tooltip title="Results">
           <Step sx={{ m: 1 }}>
-            <StepButton color="inherit" onClick={handleStep(steps.length)}>
+            <StepButton onClick={handleStep(steps.length)}>
               <Typography
                 sx={{
                   overflow: "hidden",

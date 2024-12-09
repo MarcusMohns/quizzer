@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -69,30 +68,64 @@ const QuizControls = ({
       }}
     >
       {allStepsCompleted() ? (
-        <React.Fragment>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
           <Typography>Quiz completed! </Typography>
           <Box>
             <Box />
-            <Button onClick={handleReset}>Reset</Button>
-            <Button onClick={() => setActiveStep(totalSteps())}>
+            <Button
+              onClick={handleReset}
+              size="large"
+              variant="outlined"
+              sx={{ m: 2 }}
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={() => setActiveStep(totalSteps())}
+              size="large"
+              variant="contained"
+              sx={{ m: 2 }}
+            >
               Go the the Results!{" "}
             </Button>
           </Box>
-        </React.Fragment>
+        </Box>
       ) : (
-        <React.Fragment>
-          <Typography sx={{ mr: "auto" }}>Question {activeStep + 1}</Typography>
-          <Box>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
-              Back
-            </Button>
-            <Button onClick={handleNext}>Next</Button>
-          </Box>
-        </React.Fragment>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <Button
+            onClick={handleBack}
+            disabled={activeStep === 0}
+            size="large"
+            variant="outlined"
+            sx={{ m: 2, px: 5, py: 2 }}
+          >
+            Back
+          </Button>
+          <Button
+            onClick={handleNext}
+            size="large"
+            variant="contained"
+            sx={{ m: 2, px: 5, py: 2 }}
+          >
+            Next
+          </Button>
+        </Box>
       )}
     </Box>
   );
