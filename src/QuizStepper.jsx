@@ -2,9 +2,9 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import PropTypes from "prop-types";
+import DvrIcon from "@mui/icons-material/Dvr";
 
 export default function QuizStepper({
   steps,
@@ -46,37 +46,18 @@ export default function QuizStepper({
       >
         {steps.map((step, index) => (
           <Tooltip title={step.question.text} key={step.question.text}>
-            <Step completed={completed[index]} sx={{ m: 1 }}>
-              <StepButton color="inherit" onClick={handleStep(index)}>
-                <Typography
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    maxWidth: "100px",
-                    m: 1,
-                  }}
-                >
-                  {step.question.text}
-                </Typography>
-              </StepButton>
+            <Step completed={completed[index]} sx={{ m: 1, ml: 2 }}>
+              <StepButton onClick={handleStep(index)} />
             </Step>
           </Tooltip>
         ))}
         <Tooltip title="Results">
-          <Step sx={{ m: 1 }}>
-            <StepButton onClick={handleStep(steps.length)}>
-              <Typography
-                sx={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  maxWidth: "100px",
-                  m: 1,
-                }}
-              >
-                {"Results"}
-              </Typography>
+          <Step>
+            <StepButton
+              onClick={handleStep(steps.length)}
+              icon={<DvrIcon sx={{ ml: 1, pr: 0 }} />}
+            >
+              Results
             </StepButton>
           </Step>
         </Tooltip>
