@@ -40,7 +40,6 @@ export default function QuizStepper({
           flexWrap: "wrap",
           borderRadius: "5px",
           px: 5,
-          color: "white",
         }}
         connector={<>―</>}
       >

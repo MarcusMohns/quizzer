@@ -22,11 +22,13 @@ export const darkTheme = createTheme({
       main: "#09cf13",
       light: "#73e664",
       dark: "#003950",
+      default: "#398552",
     },
     error: {
       main: "#e0605e",
       light: "#c90303",
       dark: "#750000",
+      default: "#4e100f",
     },
 
     info: {
@@ -41,7 +43,7 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#ffffff",
+      default: "#e7e6f7",
     },
     primary: {
       main: "#000",

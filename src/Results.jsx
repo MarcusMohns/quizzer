@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const Results = ({ results, quizData }) => {
   Results.propTypes = {
@@ -20,26 +24,41 @@ const Results = ({ results, quizData }) => {
   });
 
   return (
-    <Box sx={{ p: 5, mt: 5 }}>
+    <List dense={true}>
       {resultsArray.map((result, index) =>
         result.correctlyAnswered ? (
-          <Alert severity="success" color="success" key={index} sx={{ m: 2 }}>
-            <AlertTitle>
-              Correct! - Question {result.questionNum}: {result.question.text}
-            </AlertTitle>
-            {result.correctAnswer} is the correct answer!
-          </Alert>
+          <ListItem
+            key={index}
+            sx={{ backgroundColor: "success.default", my: 1 }}
+          >
+            <ListItemIcon>{result.questionNum}</ListItemIcon>
+            <ListItemText
+              primary={result.question.text}
+              secondary={`Correct!  the answer was: ${result.correctAnswer}`}
+            />
+            <ListItemIcon>
+              <CheckCircleOutlineIcon />
+            </ListItemIcon>
+          </ListItem>
         ) : (
-          <Alert severity="error" color="error" key={index} sx={{ m: 2 }}>
-            <AlertTitle>
-              Incorrect - Question {result.questionNum}: {result.question.text}
-            </AlertTitle>
-            You answered: {result.incorrectAnswers[result.pickedAnswer]} - The
-            correct answer was: {result.correctAnswer}
-          </Alert>
+          <ListItem
+            key={index}
+            sx={{ backgroundColor: "error.default", my: 1 }}
+          >
+            <ListItemIcon>{result.questionNum}</ListItemIcon>
+            <ListItemText
+              primary={result.question.text}
+              secondary={`Incorrect - You picked ${
+                result.incorrectAnswers[result.pickedAnswer]
+              }, the correct answer was: ${result.correctAnswer}`}
+            />
+            <ListItemIcon>
+              <CancelOutlinedIcon />
+            </ListItemIcon>
+          </ListItem>
         )
       )}
-    </Box>
+    </List>
   );
 };
 export default Results;
