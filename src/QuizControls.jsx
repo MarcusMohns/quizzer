@@ -1,24 +1,21 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 const QuizControls = ({
+  steps,
   activeStep,
   setActiveStep,
-  setCompleted,
   completed,
-  steps,
-  setResults,
+  handleReset,
 }) => {
   QuizControls.propTypes = {
     steps: PropTypes.array.isRequired,
     activeStep: PropTypes.number.isRequired,
     setActiveStep: PropTypes.func.isRequired,
     completed: PropTypes.object.isRequired,
-    setCompleted: PropTypes.func.isRequired,
-    results: PropTypes.object.isRequired,
-    setResults: PropTypes.func.isRequired,
+    handleReset: PropTypes.func.isRequired,
   };
 
   const totalSteps = () => {
@@ -51,81 +48,47 @@ const QuizControls = ({
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-    setResults({});
-  };
-
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
         p: 2,
         alignSelf: "flex-end",
         width: "100%",
       }}
     >
-      {allStepsCompleted() ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-          }}
+      <Box sx={{ display: "flex" }}>
+        <Button
+          onClick={handleBack}
+          disabled={activeStep === 0}
+          size="large"
+          variant="outlined"
+          sx={{ m: 2, px: 5, py: 2 }}
         >
-          <Typography>Quiz completed! </Typography>
-          <Box>
-            <Box />
-            <Button
-              onClick={handleReset}
-              size="large"
-              variant="outlined"
-              sx={{ m: 2 }}
-            >
-              Reset
-            </Button>
-            <Button
-              onClick={() => setActiveStep(totalSteps())}
-              size="large"
-              variant="contained"
-              sx={{ m: 2 }}
-            >
-              Go the the Results!{" "}
-            </Button>
-          </Box>
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-          }}
+          Back
+        </Button>
+        <Button
+          onClick={handleNext}
+          disabled={activeStep === totalSteps()}
+          size="large"
+          variant="contained"
+          sx={{ m: 2, px: 5, py: 2 }}
         >
-          <Button
-            onClick={handleBack}
-            disabled={activeStep === 0}
-            size="large"
-            variant="outlined"
-            sx={{ m: 2, px: 5, py: 2 }}
-          >
-            Back
-          </Button>
-          <Button
-            onClick={handleNext}
-            size="large"
-            variant="contained"
-            sx={{ m: 2, px: 5, py: 2 }}
-          >
-            Next
-          </Button>
-        </Box>
+          Next
+        </Button>
+      </Box>
+      {allStepsCompleted() && (
+        <Button
+          onClick={handleReset}
+          size="large"
+          variant="outlined"
+          sx={{ m: 2 }}
+        >
+          <RestartAltIcon /> Reset
+        </Button>
       )}
     </Box>
   );
