@@ -88,18 +88,33 @@ const QuizQuestion = ({
         sx={{
           textAlign: "center",
           p: 2,
+          mb: 4,
           borderRadius: "10px",
+          fontSize: { xs: "1.4rem", md: "1.8rem" },
         }}
       >
         {questionData.question.text}
       </Typography>
-      <Box sx={{ display: "flex", width: "60%" }}>
-        <Stack direction="row" spacing={1}>
+      <Box
+        sx={{ display: "flex", justifyContent: "flex-start" }}
+        direction="column"
+      >
+        <Stack
+          direction="row"
+          spacing={1}
+          useFlexGap
+          sx={{ alignItems: "center", flexWrap: "wrap" }}
+        >
+          <Typography sx={{ textAlign: "center" }} variant="subtitle2">
+            tags:
+          </Typography>
           <Chip
             variant="outlined"
             label={tags[questionData.category].title}
             icon={tags[questionData.category].icon}
           />
+          <Chip variant="outlined" label={questionData.difficulty} />
+
           {questionData.tags.map((tag) => (
             <Chip label={tag} key={tag} />
           ))}
@@ -112,7 +127,7 @@ const QuizQuestion = ({
         aria-label="question"
         sx={{
           width: { xs: "100%", md: "60%" },
-          p: { xs: 5, md: 5 },
+          p: 3,
         }}
       >
         <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
@@ -177,7 +192,7 @@ const QuizQuestion = ({
                     width: "100%",
                     flexDirection: "row",
                     justifyContent: "flex-start",
-                    p: 2,
+                    p: { xs: 1, md: 2 },
                     m: 0,
                   }}
                 >
@@ -188,7 +203,7 @@ const QuizQuestion = ({
           ))}
         </Grid>
       </RadioGroup>
-      <Box sx={{ minHeight: "100px" }}>
+      <Box sx={{ minHeight: "100px", display: "flex", alignItems: "center" }}>
         {results[activeStep] !== undefined &&
           (correctlyAnswered ? (
             <Zoom in={results[activeStep] !== undefined}>
