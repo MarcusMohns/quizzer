@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
 import QuizControls from "./QuizControls";
@@ -26,6 +26,11 @@ const Quizzer = ({ quizData }) => {
     setResults({});
   };
 
+  useEffect(() => {
+    console.log(quizData);
+    handleReset();
+  }, [quizData]);
+
   return (
     <Box
       component="section"
@@ -43,11 +48,15 @@ const Quizzer = ({ quizData }) => {
           setActiveStep={setActiveStep}
           results={results}
           handleReset={handleReset}
-          lastStep={quizData.length}
+          totalQuestions={quizData.length}
         />
       )}
       {activeStep === quizData.length ? (
-        <Results results={results} quizData={quizData} />
+        <Results
+          results={results}
+          quizData={quizData}
+          totalQuestions={quizData.length}
+        />
       ) : (
         <QuizQuestion
           questionData={quizData[activeStep]}
