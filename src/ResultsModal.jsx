@@ -25,13 +25,13 @@ export default function ResultsModal({
   handleReset,
   setActiveStep,
   results,
-  lastStep,
+  totalQuestions,
 }) {
   ResultsModal.propTypes = {
     handleReset: PropTypes.func.isRequired,
     setActiveStep: PropTypes.func.isRequired,
     results: PropTypes.object.isRequired,
-    lastStep: PropTypes.number.isRequired,
+    totalQuestions: PropTypes.number.isRequired,
   };
   const [open, setOpen] = React.useState(true);
   //   const handleOpen = () => setOpen(true);
@@ -42,12 +42,11 @@ export default function ResultsModal({
   };
   const handleResultClick = () => {
     handleClose();
-    setActiveStep(lastStep);
+    setActiveStep(totalQuestions);
   };
 
-  const totalQuestions = Object.values(results).length;
-  const correctAnswers = Object.values(results).filter(
-    (result) => result[0]
+  const correctAnswers = Object.values(results).filter((result) =>
+    Object.values(result)
   ).length;
 
   return (
@@ -58,12 +57,15 @@ export default function ResultsModal({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography
+          id="modal-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ textAlign: "center" }}
+        >
           {correctAnswers} correct out of {totalQuestions} total questions!
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Well done! :)
-        </Typography>
+
         <Box
           sx={{
             display: "flex",
