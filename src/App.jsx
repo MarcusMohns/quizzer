@@ -21,13 +21,13 @@ function App() {
   const [quizData, setQuizData] = useState([
     {
       category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
+      id: "65056f0c7a97013de78b53bc",
+      correctAnswer: "Russia",
+      incorrectAnswers: ["Japan", "France", "Canada"],
       question: {
-        text: "In Which Year Did The Battle Of Hastings Take Place?",
+        text: "Which country was suspended from the G8 in 2014?",
       },
-      tags: ["battles", "uk", "history"],
+      tags: ["history", "2010's", "organisations", "organizations"],
       type: "text_choice",
       difficulty: "medium",
       regions: [],
@@ -35,13 +35,13 @@ function App() {
     },
     {
       category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
+      id: "647edb8d520523194910c347",
+      correctAnswer: "1929",
+      incorrectAnswers: ["1987", "2001", "2008"],
       question: {
-        text: "In Whi2ch Year Did The Battle Of Hastings Take Place?",
+        text: "In what year did the Dow Jones Industrial Average crash and lose 23% of its value in what is known as 'Black Tuesday'?",
       },
-      tags: ["battles", "uk", "history"],
+      tags: ["economics", "events", "history"],
       type: "text_choice",
       difficulty: "medium",
       regions: [],
@@ -49,13 +49,13 @@ function App() {
     },
     {
       category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
+      id: "622a1c3c7cc59eab6f951afe",
+      correctAnswer: "Salem",
+      incorrectAnswers: ["Greensboro", "Alexandria", "Wilmington"],
       question: {
-        text: "In Whi3ch Year Did The Battle Of Hastings Take Place?",
+        text: "In which Massachusetts town were 20 people executed for witchcraft in 1692?",
       },
-      tags: ["battles", "uk", "history"],
+      tags: ["1600's", "usa", "halloween", "history"],
       type: "text_choice",
       difficulty: "medium",
       regions: [],
@@ -63,13 +63,13 @@ function App() {
     },
     {
       category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
+      id: "622a1c357cc59eab6f94fd41",
+      correctAnswer: "Constantine",
+      incorrectAnswers: ["Byzantine", "Marcus Aurelius", "Trajan"],
       question: {
-        text: "In Whi4ch Year Did The Battle Of Hastings Take Place?",
+        text: "Which Roman Emperor moved the capital from Rome to the city now known as Istanbul? ",
       },
-      tags: ["battles", "uk", "history"],
+      tags: ["romans", "classics", "history"],
       type: "text_choice",
       difficulty: "medium",
       regions: [],
@@ -77,41 +77,13 @@ function App() {
     },
     {
       category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
+      id: "622a1c367cc59eab6f950358",
+      correctAnswer: "John Adams",
+      incorrectAnswers: ["Thomas Jefferson", "Andrew Jackson", "James Monroe"],
       question: {
-        text: "In Whi5ch Year Did The Battle Of Hastings Take Place?",
+        text: "Who was George Washington's vice-president?",
       },
-      tags: ["battles", "uk", "history"],
-      type: "text_choice",
-      difficulty: "medium",
-      regions: [],
-      isNiche: false,
-    },
-    {
-      category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
-      question: {
-        text: "In Whi6ch Year Did The Battle Of Hastings Take Place?",
-      },
-      tags: ["battles", "uk", "history"],
-      type: "text_choice",
-      difficulty: "medium",
-      regions: [],
-      isNiche: false,
-    },
-    {
-      category: "history",
-      id: "622a1c3c7cc59eab6f951ae9",
-      correctAnswer: "1066",
-      incorrectAnswers: ["1166", "1266", "1366"],
-      question: {
-        text: "In Whi7ch Year Did The Battle Of Hastings Take Place?",
-      },
-      tags: ["battles", "uk", "history"],
+      tags: ["history"],
       type: "text_choice",
       difficulty: "medium",
       regions: [],
@@ -127,7 +99,7 @@ function App() {
         setDarkMode={setDarkMode}
         setQuizData={setQuizData}
       />
-      <Container sx={{ width: "100vw", height: "90vh" }}>
+      <Container sx={{ height: "90vh" }}>
         <Quizzer quizData={quizData} />
       </Container>
     </ThemeProvider>
