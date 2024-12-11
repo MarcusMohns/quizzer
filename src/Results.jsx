@@ -3,14 +3,18 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { Typography } from "@mui/material";
+import tags from "./images/tags";
+import Chip from "@mui/material/Chip";
 
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-const Results = ({ results, quizData }) => {
+const Results = ({ results, quizData, totalQuestions }) => {
   Results.propTypes = {
     results: PropTypes.object.isRequired,
     quizData: PropTypes.array.isRequired,
+    totalQuestions: PropTypes.number.isRequired,
   };
 
   // turn results object into an array of objects
@@ -23,42 +27,70 @@ const Results = ({ results, quizData }) => {
     };
   });
 
+  const correctAnswers = Object.values(results).filter((result) =>
+    Object.values(result)
+  ).length;
+
+  // map quizData and find unique categories
+  const categories = [
+    ...new Set(quizData.map((question) => question.category)),
+  ];
+
   return (
-    <List dense={true}>
-      {resultsArray.map((result, index) =>
-        result.correctlyAnswered ? (
-          <ListItem
-            key={index}
-            sx={{ backgroundColor: "success.default", my: 1 }}
-          >
-            <ListItemIcon>{result.questionNum}</ListItemIcon>
-            <ListItemText
-              primary={result.question.text}
-              secondary={`Correct!  the answer was: ${result.correctAnswer}`}
-            />
-            <ListItemIcon>
-              <CheckCircleOutlineIcon />
-            </ListItemIcon>
-          </ListItem>
-        ) : (
-          <ListItem
-            key={index}
-            sx={{ backgroundColor: "error.default", my: 1 }}
-          >
-            <ListItemIcon>{result.questionNum}</ListItemIcon>
-            <ListItemText
-              primary={result.question.text}
-              secondary={`Incorrect - You picked ${
-                result.incorrectAnswers[result.pickedAnswer]
-              }, the correct answer was: ${result.correctAnswer}`}
-            />
-            <ListItemIcon>
-              <CancelOutlinedIcon />
-            </ListItemIcon>
-          </ListItem>
-        )
-      )}
-    </List>
+    <>
+      <Typography
+        id=""
+        variant="h6"
+        component="h2"
+        sx={{ mt: 5, textAlign: "center" }}
+      >
+        {correctAnswers} correct out of {totalQuestions} total questions!
+      </Typography>
+      {categories.map((category) => (
+        <Chip
+          key={category}
+          variant="outlined"
+          label={tags[category].title}
+          icon={tags[category].icon}
+          sx={{ width: "min-content" }}
+        />
+      ))}
+      <List dense={true}>
+        {resultsArray.map((result, index) =>
+          result.correctlyAnswered ? (
+            <ListItem
+              key={index}
+              sx={{ backgroundColor: "success.default", my: 1 }}
+            >
+              <ListItemIcon>{result.questionNum}</ListItemIcon>
+              <ListItemText
+                primary={result.question.text}
+                secondary={`Correct!  the answer was: ${result.correctAnswer}`}
+              />
+              <ListItemIcon>
+                <CheckCircleOutlineIcon />
+              </ListItemIcon>
+            </ListItem>
+          ) : (
+            <ListItem
+              key={index}
+              sx={{ backgroundColor: "error.default", my: 1 }}
+            >
+              <ListItemIcon>{result.questionNum}</ListItemIcon>
+              <ListItemText
+                primary={result.question.text}
+                secondary={`Incorrect - You picked ${
+                  result.incorrectAnswers[result.pickedAnswer]
+                }, the correct answer was: ${result.correctAnswer}`}
+              />
+              <ListItemIcon>
+                <CancelOutlinedIcon />
+              </ListItemIcon>
+            </ListItem>
+          )
+        )}
+      </List>
+    </>
   );
 };
 export default Results;
