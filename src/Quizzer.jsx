@@ -27,7 +27,6 @@ const Quizzer = ({ quizData }) => {
   };
 
   useEffect(() => {
-    console.log(quizData);
     handleReset();
   }, [quizData]);
 

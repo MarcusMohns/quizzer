@@ -12,14 +12,11 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  //   bgcolor: "background.paper",
   bgcolor: "secondary.dark",
   boxShadow: 24,
   p: 4,
   borderRadius: 2,
 };
-
-//prop validate
 
 export default function ResultsModal({
   handleReset,
@@ -45,8 +42,8 @@ export default function ResultsModal({
     setActiveStep(totalQuestions);
   };
 
-  const correctAnswers = Object.values(results).filter((result) =>
-    Object.values(result)
+  const correctAnswers = Object.values(results).filter(
+    (result) => Object.values(result)[0] === true
   ).length;
 
   return (

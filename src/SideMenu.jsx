@@ -35,7 +35,7 @@ export default function SideMenu({ setQuizData }) {
   };
 
   return (
-    <div>
+    <Box>
       <StyledMenuIconButton bool={true} />
       <Drawer open={open} onClose={toggleDrawer(false)} aria-hidden="false">
         <Box
@@ -53,6 +53,6 @@ export default function SideMenu({ setQuizData }) {
         </Box>
         <GenerateQuizForm setQuizData={setQuizData} />
       </Drawer>
-    </div>
+    </Box>
   );
 }
