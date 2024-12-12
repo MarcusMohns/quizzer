@@ -93,7 +93,15 @@ const QuizQuestion = ({
           fontSize: { xs: "1.4rem", md: "1.8rem" },
         }}
       >
-        {questionData.question.text}
+        <Stack
+          direction="row"
+          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+        >
+          <Avatar variant="rounded">{activeStep + 1}</Avatar>
+          <Typography variant="h5" sx={{ ml: 1 }}>
+            {questionData.question.text}
+          </Typography>
+        </Stack>
       </Typography>
       <Box
         sx={{ display: "flex", justifyContent: "flex-start" }}
