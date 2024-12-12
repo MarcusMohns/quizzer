@@ -15,6 +15,7 @@ import Zoom from "@mui/material/Zoom";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "./images/tags.jsx";
+
 const LETTERS = ["A", "B", "C", "D"];
 
 const QuizQuestion = ({
@@ -32,7 +33,15 @@ const QuizQuestion = ({
     setCompleted: PropTypes.func.isRequired,
   };
 
-  const [selectedAnswer, setSelectedAnswer] = useState("");
+  // Get the previous selected answer if it exists
+  // If it doesn't, default to ""
+  const prevSelectedAnswer = results[activeStep]
+    ? Object.keys(results[activeStep]).find(
+        (key) => results[activeStep][key] !== undefined
+      ) || ""
+    : "";
+
+  const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
 
   const sortedAnswers = [
     // Sort answers alphabetically
@@ -55,14 +64,6 @@ const QuizQuestion = ({
   const correctlyAnswered =
     results[activeStep] !== undefined &&
     results[activeStep][selectedAnswer] === true;
-
-  // Get the previous selected answer if it exists
-  // If it doesn't, default to ""
-  const prevSelectedAnswer = results[activeStep]
-    ? Object.keys(results[activeStep]).find(
-        (key) => results[activeStep][key] !== undefined
-      ) || ""
-    : "";
 
   const handleComplete = () => {
     setCompleted((prevCompleted) => ({ ...prevCompleted, [activeStep]: true }));
@@ -94,11 +95,20 @@ const QuizQuestion = ({
         }}
       >
         <Stack
-          direction="row"
-          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            flexDirection: { xs: "column", md: "row" },
+          }}
         >
-          <Avatar variant="rounded">{activeStep + 1}</Avatar>
-          <Typography variant="h5" sx={{ ml: 1 }}>
+          <Avatar
+            variant="rounded"
+            sx={{ width: 30, height: 30, mb: { xs: 2, md: 0 } }}
+          >
+            {activeStep + 1}
+          </Avatar>
+          <Typography variant="h5" sx={{ ml: { xs: 0, md: 1 } }}>
             {questionData.question.text}
           </Typography>
         </Stack>

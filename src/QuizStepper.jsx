@@ -26,7 +26,7 @@ export default function QuizStepper({
   return (
     <Box
       sx={{
-        p: 2,
+        p: 5,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
