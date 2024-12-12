@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
@@ -10,12 +9,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
+import CircularProgress from "@mui/material/CircularProgress";
+import { memo } from "react";
 
-const GenerateQuizForm = ({ setQuizData }) => {
-  GenerateQuizForm.propTypes = {
-    setQuizData: PropTypes.func.isRequired,
-  };
-
+const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
   const [formData, setFormData] = useState({
     difficulties: [
       { name: "Easy", id: "easy", checked: false },
@@ -45,7 +42,11 @@ const GenerateQuizForm = ({ setQuizData }) => {
     qty: "10",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const fetchQuiz = async () => {
+    setLoading(true);
+
     const queryParams = new URLSearchParams({
       // Pass all checked checkboxes' ids into queryParams
       limit: formData.qty,
@@ -65,9 +66,11 @@ const GenerateQuizForm = ({ setQuizData }) => {
       const response = await fetch(reqString);
       const data = await response.json();
       setQuizData(data);
+      setLoading(false);
       console.log("fetching data...");
     } catch (error) {
       console.log("error fetching data...", error);
+      setLoading(false);
     }
   };
 
@@ -147,19 +150,12 @@ const GenerateQuizForm = ({ setQuizData }) => {
         display: "flex",
         flexDirection: "column",
         px: 3,
-        width: "100%",
+        width: "280px",
       }}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit}
     >
-      <Typography
-        variant="h6"
-        component="h6"
-        sx={{ m: 2, textAlign: "center" }}
-      >
-        Generate a Quiz
-      </Typography>
       <TextField
         aria-label="qty-questions"
         placeholder="Type a number…"
@@ -199,6 +195,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                   onChange={handleCheckedCategory}
                   name={category.id}
                   size="small"
+                  sx={{ p: 1 }}
                 />
               }
               label={category.name}
@@ -217,6 +214,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
         </FormLabel>
         <FormGroup>
           <FormControlLabel
+            sx={{ fontSize: "0.2rem" }}
             label="All Difficulties"
             control={
               <Checkbox
@@ -224,6 +222,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                 indeterminate={someChecked(formData.difficulties)}
                 onChange={toggleDifficultyCheckBoxes}
                 name={"all-difficulties-checkbox"}
+                sx={{ p: 1 }}
               />
             }
           />
@@ -245,11 +244,24 @@ const GenerateQuizForm = ({ setQuizData }) => {
         <FormHelperText>Select at least one difficulty</FormHelperText>
       </FormControl>
 
-      <Button variant="contained" type="submit">
+      <Button variant="contained" type="submit" disabled={loading}>
         Generate Quiz
+        {loading && (
+          <CircularProgress
+            size={24}
+            sx={{
+              color: "secondary.dark",
+              position: "absolute",
+            }}
+          />
+        )}
       </Button>
     </Box>
   );
+});
+
+GenerateQuizForm.propTypes = {
+  setQuizData: PropTypes.func.isRequired,
 };
 
 export default GenerateQuizForm;
