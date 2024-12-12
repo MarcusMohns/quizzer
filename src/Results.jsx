@@ -6,9 +6,11 @@ import ListItemText from "@mui/material/ListItemText";
 import { Typography } from "@mui/material";
 import tags from "./images/tags";
 import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
 
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
 const Results = ({ results, quizData, totalQuestions }) => {
   Results.propTypes = {
@@ -17,18 +19,35 @@ const Results = ({ results, quizData, totalQuestions }) => {
     totalQuestions: PropTypes.number.isRequired,
   };
 
-  // turn results object into an array of objects
-  const resultsArray = Object.keys(results).map((key) => {
-    return {
-      ...quizData[key],
-      pickedAnswer: Object.keys(results[key])[0] - 1,
-      correctlyAnswered: Object.values(results[key])[0],
-      questionNum: Number(key) + 1,
-    };
-  });
+  // Modify results so we can display unanswered questions that are not included in results
+  const modifiedResults = {};
+  for (let i = 0; i < quizData.length; i++) {
+    modifiedResults[i] = { 0: 0 };
+  }
 
-  const correctAnswers = Object.values(results).filter((result) =>
-    Object.values(result)
+  // turn results object into an array of objects
+  const resultsArray = Object.keys(modifiedResults).map((key) =>
+    results[key] !== undefined
+      ? {
+          ...quizData[key],
+          pickedAnswer: Object.keys(results[key])[0],
+          correctlyAnswered: Object.values(results[key])[0],
+          questionNum: Number(key) + 1,
+          sortedAnswers: [
+            quizData[key].correctAnswer,
+            ...quizData[key].incorrectAnswers,
+          ].sort(),
+        }
+      : {
+          ...quizData[key],
+          pickedAnswer: "None",
+          correctlyAnswered: "None",
+          questionNum: Number(key) + 1,
+        }
+  );
+
+  const correctAnswers = Object.values(results).filter(
+    (result) => Object.values(result)[0] === true
   ).length;
 
   // map quizData and find unique categories
@@ -46,18 +65,25 @@ const Results = ({ results, quizData, totalQuestions }) => {
       >
         {correctAnswers} correct out of {totalQuestions} total questions!
       </Typography>
-      {categories.map((category) => (
-        <Chip
-          key={category}
-          variant="outlined"
-          label={tags[category].title}
-          icon={tags[category].icon}
-          sx={{ width: "min-content" }}
-        />
-      ))}
+      <Stack
+        direction="row"
+        spacing={1}
+        useFlexGap
+        sx={{ alignItems: "center", flexWrap: "wrap" }}
+      >
+        {categories.map((category) => (
+          <Chip
+            key={category}
+            variant="outlined"
+            label={tags[category].title}
+            icon={tags[category].icon}
+            sx={{ width: "min-content" }}
+          />
+        ))}
+      </Stack>
       <List dense={true}>
         {resultsArray.map((result, index) =>
-          result.correctlyAnswered ? (
+          result.correctlyAnswered === true ? (
             <ListItem
               key={index}
               sx={{ backgroundColor: "success.default", my: 1 }}
@@ -71,6 +97,17 @@ const Results = ({ results, quizData, totalQuestions }) => {
                 <CheckCircleOutlineIcon />
               </ListItemIcon>
             </ListItem>
+          ) : result.pickedAnswer === "None" ? (
+            <ListItem key={index} sx={{ backgroundColor: "#666", my: 1 }}>
+              <ListItemIcon>{result.questionNum}</ListItemIcon>
+              <ListItemText
+                primary={result.question.text}
+                secondary={`You have yet to pick an answer.`}
+              />
+              <ListItemIcon>
+                <HelpOutlineOutlinedIcon />
+              </ListItemIcon>
+            </ListItem>
           ) : (
             <ListItem
               key={index}
@@ -80,7 +117,7 @@ const Results = ({ results, quizData, totalQuestions }) => {
               <ListItemText
                 primary={result.question.text}
                 secondary={`Incorrect - You picked ${
-                  result.incorrectAnswers[result.pickedAnswer]
+                  result.sortedAnswers[result.pickedAnswer]
                 }, the correct answer was: ${result.correctAnswer}`}
               />
               <ListItemIcon>
