@@ -72,6 +72,7 @@ const QuizControls = ({
         </Button>
         <Button
           onClick={handleNext}
+          disabled={activeStep === steps.length}
           size="large"
           variant="contained"
           sx={{ m: 2, px: 5, py: 2 }}
