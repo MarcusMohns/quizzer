@@ -6,6 +6,7 @@ import QuizQuestion from "./QuizQuestion.jsx";
 import PropTypes from "prop-types";
 import Results from "./Results.jsx";
 import ResultsModal from "./ResultsModal.jsx";
+import FrontPage from "./FrontPage.jsx";
 
 const Quizzer = ({ quizData }) => {
   Quizzer.propTypes = {
@@ -42,45 +43,51 @@ const Quizzer = ({ quizData }) => {
         borderRadius: "7px",
       }}
     >
-      {allStepsCompleted() && (
-        <ResultsModal
-          setActiveStep={setActiveStep}
-          results={results}
-          handleReset={handleReset}
-          totalQuestions={quizData.length}
-        />
-      )}
-      {activeStep === quizData.length ? (
-        <Results
-          results={results}
-          quizData={quizData}
-          totalQuestions={quizData.length}
-        />
+      {quizData.length <= 0 ? (
+        <FrontPage />
       ) : (
-        <QuizQuestion
-          questionData={quizData[activeStep]}
-          setResults={setResults}
-          activeStep={activeStep}
-          results={results}
-          setCompleted={setCompleted}
-        />
+        <>
+          {allStepsCompleted() && (
+            <ResultsModal
+              setActiveStep={setActiveStep}
+              results={results}
+              handleReset={handleReset}
+              totalQuestions={quizData.length}
+            />
+          )}
+          {activeStep === quizData.length ? (
+            <Results
+              results={results}
+              quizData={quizData}
+              totalQuestions={quizData.length}
+            />
+          ) : (
+            <QuizQuestion
+              questionData={quizData[activeStep]}
+              setResults={setResults}
+              activeStep={activeStep}
+              results={results}
+              setCompleted={setCompleted}
+            />
+          )}
+          <QuizControls
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            completed={completed}
+            setCompleted={setCompleted}
+            steps={quizData}
+            setResults={setResults}
+            results={results}
+            handleReset={handleReset}
+          />
+          <QuizStepper
+            steps={quizData}
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            completed={completed}
+          />
+        </>
       )}
-      <QuizControls
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        completed={completed}
-        setCompleted={setCompleted}
-        steps={quizData}
-        setResults={setResults}
-        results={results}
-        handleReset={handleReset}
-      />
-      <QuizStepper
-        steps={quizData}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        completed={completed}
-      />
     </Box>
   );
 };
