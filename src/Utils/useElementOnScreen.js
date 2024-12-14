@@ -1,12 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 
 const useElementsOnScreen = (options) => {
-  const { root, rootMargin, treshold } = options;
+  const { root, rootMargin, threshold } = options;
 
   const refs = useRef([]);
   const [visibleStates, setVisibleStates] = useState({});
-
-  //   console.log(refs.current[0].id);
 
   const callbackFunction = (entries) => {
     entries.map((entry) => {
@@ -25,7 +23,7 @@ const useElementsOnScreen = (options) => {
     const observer = new IntersectionObserver(callbackFunction, {
       root: root,
       rootMargin: rootMargin,
-      threshold: treshold,
+      threshold: threshold,
     });
     currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
@@ -35,7 +33,7 @@ const useElementsOnScreen = (options) => {
         if (ref) observer.unobserve(ref);
       });
     };
-  }, [refs]);
+  }, [refs, root, rootMargin, threshold]);
 
   return [refs, visibleStates];
 };
