@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Zoom from "@mui/material/Zoom";
+import Fade from "@mui/material/Fade";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "./images/tags.jsx";
@@ -138,89 +139,98 @@ const QuizQuestion = ({
           ))}
         </Stack>
       </Box>
-
-      <RadioGroup
-        value={selectedAnswer}
-        onChange={handleChange}
-        aria-label="question"
-        sx={{
-          width: { xs: "100%", md: "60%" },
-          p: 3,
-        }}
-      >
-        <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
-          {sortedAnswers.map((answer, index) => (
-            <Grid
-              size={{ xs: 12, md: 6 }}
-              key={answer}
-              sx={{
-                display: "flex",
-              }}
-            >
-              <ButtonBase
+      {/* lazy load or delay the fade in maybe orrrrrr ye think of osmething good */}
+      <Fade in={true} appear={true}>
+        <RadioGroup
+          value={selectedAnswer}
+          onChange={handleChange}
+          aria-label="question"
+          sx={{
+            width: { xs: "100%", md: "60%" },
+            p: 3,
+          }}
+        >
+          <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
+            {sortedAnswers.map((answer, index) => (
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                key={answer}
                 sx={{
-                  flexDirection: "row",
-                  width: "100%",
-                  borderRadius: "15px",
-                  m: 0,
-                  "&:hover": {
-                    border: "2px solid white",
-                  },
-                  border: "2px solid",
-                  borderColor:
-                    sortedAnswers[selectedAnswer] === answer
-                      ? correctlyAnswered
-                        ? "success.main"
-                        : "error.light"
-                      : "secondary.main",
-                  boxShadow: 8,
+                  display: "flex",
                 }}
               >
-                <Avatar
+                <ButtonBase
                   sx={{
-                    position: "relative",
-                    top: 5,
-                    left: 10,
-                    width: 24,
-                    height: 24,
-                    fontSize: "0.8rem",
-                    fontWeight: "bold",
-                    alignSelf: "flex-start",
-                    backgroundColor:
+                    flexDirection: "row",
+                    width: "100%",
+                    borderRadius: "15px",
+                    m: 0,
+                    "&:hover": {
+                      border: "2px solid white",
+                    },
+                    border: "2px solid",
+                    borderColor:
                       sortedAnswers[selectedAnswer] === answer
                         ? correctlyAnswered
-                          ? "green"
-                          : "red"
+                          ? "success.main"
+                          : "error.light"
+                        : answer === questionData.correctAnswer &&
+                          selectedAnswer !== ""
+                        ? "success.light"
                         : "secondary.main",
+                    boxShadow: 8,
                   }}
                 >
-                  {LETTERS[index]}
-                </Avatar>
-                <FormControlLabel
-                  disabled={results[activeStep] !== undefined}
-                  component={FormControlLabel}
-                  value={index}
-                  label={answer}
-                  onClick={handleComplete}
-                  name={answer}
-                  control={
-                    <Radio size="medium" sx={{ color: "secondary.main" }} />
-                  }
-                  sx={{
-                    width: "100%",
-                    flexDirection: "row",
-                    justifyContent: "flex-start",
-                    p: { xs: 1, md: 2 },
-                    m: 0,
-                  }}
-                >
-                  {answer}
-                </FormControlLabel>
-              </ButtonBase>
-            </Grid>
-          ))}
-        </Grid>
-      </RadioGroup>
+                  <Avatar
+                    sx={{
+                      position: "relative",
+                      top: 5,
+                      left: 10,
+                      width: 24,
+                      height: 24,
+                      fontSize: "0.8rem",
+                      fontWeight: "bold",
+                      alignSelf: "flex-start",
+                      backgroundColor:
+                        sortedAnswers[selectedAnswer] === answer
+                          ? correctlyAnswered
+                            ? "success.main"
+                            : "error.light"
+                          : answer === questionData.correctAnswer &&
+                            selectedAnswer !== ""
+                          ? "success.light"
+                          : "secondary.main",
+                    }}
+                  >
+                    {LETTERS[index]}
+                  </Avatar>
+                  <FormControlLabel
+                    disabled={results[activeStep] !== undefined}
+                    component={FormControlLabel}
+                    value={index}
+                    label={answer}
+                    onClick={handleComplete}
+                    name={answer}
+                    control={
+                      <Radio size="medium" sx={{ color: "secondary.main" }} />
+                    }
+                    sx={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      p: { xs: 1, md: 2 },
+                      m: 0,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {answer}
+                  </FormControlLabel>
+                </ButtonBase>
+              </Grid>
+            ))}
+          </Grid>
+        </RadioGroup>
+      </Fade>
       <Box sx={{ minHeight: "100px", display: "flex", alignItems: "center" }}>
         {results[activeStep] !== undefined &&
           (correctlyAnswered ? (
