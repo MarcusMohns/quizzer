@@ -4,7 +4,12 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import Fade from "@mui/material/Fade";
+import Grow from "@mui/material/Grow";
+import Zoom from "@mui/material/Zoom";
+import Collapse from "@mui/material/Zoom";
 import useElementOnScreen from "./Utils/useElementOnScreen";
+import QuizCard from "./Components/QuizCard";
+import { preparedQuizzes } from "./Utils/preparedQuizzes";
 
 const FrontPage = () => {
   const [refs, visibleStates] = useElementOnScreen({
@@ -34,7 +39,7 @@ const FrontPage = () => {
           height: "100vh",
         }}
       >
-        <Fade in={visibleStates["welcome-message"]} style={{ timeout: 1000 }}>
+        <Fade in={visibleStates["welcome-message"]} timeout={500}>
           <Stack id="welcome-message" ref={(el) => (refs.current[0] = el)}>
             <Typography
               sx={{ textAlign: "center", mt: "10%" }}
@@ -51,7 +56,11 @@ const FrontPage = () => {
             </Typography>
           </Stack>
         </Fade>
-        <Fade in={visibleStates["welcome-box"]} style={{ timeout: 1000 }}>
+        <Fade
+          in={visibleStates["welcome-box"]}
+          timeout={900}
+          style={{ transitionDelay: "200ms" }}
+        >
           <Box
             ref={(el) => (refs.current[1] = el)}
             id="welcome-box"
@@ -59,7 +68,6 @@ const FrontPage = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "success.petrol",
               borderRadius: "10px",
               width: "75%",
               mt: 5,
@@ -97,15 +105,11 @@ const FrontPage = () => {
         component="section"
         sx={{
           width: { xs: "100%" },
-          height: "100vh",
-          backgroundColor: "secondary.dark",
+          minHeight: "100vh",
           pt: 5,
         }}
       >
-        <Fade
-          in={visibleStates["existing-quiz-header"]}
-          style={{ timeout: 1000 }}
-        >
+        <Fade in={visibleStates["existing-quiz-header"]} timeout={500}>
           <Typography
             ref={(el) => (refs.current[2] = el)}
             id="existing-quiz-header"
@@ -118,6 +122,32 @@ const FrontPage = () => {
           >
             ... or find an existing quiz in our list of quizs!
           </Typography>
+        </Fade>
+        <Fade
+          in={visibleStates["quiz-cards"]}
+          timeout={700}
+          style={{ transitionDelay: "400ms" }}
+        >
+          <Box
+            id="quiz-cards"
+            ref={(el) => (refs.current[3] = el)}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              p: 5,
+            }}
+          >
+            {preparedQuizzes.map((quiz) => (
+              <QuizCard
+                key={quiz.category}
+                text={quiz.text}
+                image={quiz.image}
+                header={quiz.category}
+              />
+            ))}
+          </Box>
         </Fade>
       </Box>
       <Box
