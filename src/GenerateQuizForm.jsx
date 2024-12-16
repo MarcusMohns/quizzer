@@ -164,11 +164,11 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
         onChange={handleChange}
         label="Number of Questions:"
         sx={{ minWidth: 120 }}
-        helperText="Enter a number between 1 and 50"
+        helperText="Enter a number between 1 & 50"
         error={formData.qty <= 0 || formData.qty > 50}
       />
       <FormControl
-        sx={{ m: 1, minWidth: 120 }}
+        sx={{ m: 0.5, minWidth: 120 }}
         error={!someChecked(formData.categories)}
       >
         <FormLabel component="legend" id="category-select-label">
@@ -206,7 +206,7 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
       </FormControl>
 
       <FormControl
-        sx={{ m: 1, minWidth: 120 }}
+        sx={{ m: 0.5, minWidth: 120 }}
         error={!someChecked(formData.difficulties)}
       >
         <FormLabel component="legend" id="difficulty-select-label">
@@ -214,7 +214,6 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
         </FormLabel>
         <FormGroup>
           <FormControlLabel
-            sx={{ fontSize: "0.2rem" }}
             label="All Difficulties"
             control={
               <Checkbox
@@ -235,6 +234,7 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
                   onChange={handleCheckedDifficulty}
                   name={difficulty.id}
                   size="small"
+                  sx={{ fontSize: "0.5rem" }}
                 />
               }
               label={difficulty.name}

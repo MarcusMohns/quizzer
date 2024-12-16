@@ -44,10 +44,13 @@ export const darkTheme = createTheme({
 });
 
 export const lightTheme = createTheme({
+  typography: {
+    fontFamily: "monospace, Segoe UI,Roboto,Raleway",
+  },
   palette: {
     mode: "light",
     background: {
-      default: "#e7e6f7",
+      default: "#eefafc",
     },
     primary: {
       main: "#000",
@@ -55,14 +58,14 @@ export const lightTheme = createTheme({
     },
     secondary: {
       main: "#4169e1",
-      light: "#718cdd",
-      dark: "#1e3fa0",
+      light: "#97b0fc",
+      dark: "#91a5ff",
       highlight: "#d6dcfa",
     },
 
     success: {
       main: "#5897c7",
-      light: "#7fa8c7",
+      light: "#7ca5c5",
       dark: "#3588c7",
     },
     error: {
