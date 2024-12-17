@@ -4,19 +4,22 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import Fade from "@mui/material/Fade";
-import Grow from "@mui/material/Grow";
-import Zoom from "@mui/material/Zoom";
-import Collapse from "@mui/material/Zoom";
 import useElementOnScreen from "./Utils/useElementOnScreen";
 import QuizCard from "./Components/QuizCard";
 import { preparedQuizzes } from "./Utils/preparedQuizzes";
+import PropTypes from "prop-types";
 
-const FrontPage = () => {
+const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
-    threshold: 0.3,
+    threshold: 0.1,
   });
+
+  FrontPage.propTypes = {
+    setQuizData: PropTypes.func.isRequired,
+    setOpenSideMenu: PropTypes.func.isRequired,
+  };
 
   return (
     <Box
@@ -91,6 +94,7 @@ const FrontPage = () => {
                 doloremque dolorem modi voluptatem iste?
               </Typography>
               <Button
+                onClick={() => setOpenSideMenu(true)}
                 variant="contained"
                 endIcon={<MenuIcon />}
                 sx={{ fontWeight: "bold" }}
@@ -109,44 +113,48 @@ const FrontPage = () => {
           pt: 5,
         }}
       >
-        <Fade in={visibleStates["existing-quiz-header"]} timeout={500}>
-          <Typography
-            ref={(el) => (refs.current[2] = el)}
-            id="existing-quiz-header"
-            sx={{
-              textAlign: "center",
-              fontFamily: "monospace",
-              width: "100%",
-            }}
-            variant="h5"
-          >
-            ... or find an existing quiz in our list of quizs!
-          </Typography>
-        </Fade>
-        <Fade
-          in={visibleStates["quiz-cards"]}
-          timeout={700}
-          style={{ transitionDelay: "400ms" }}
-        >
-          <Box
-            id="quiz-cards"
-            ref={(el) => (refs.current[3] = el)}
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              p: 5,
-            }}
-          >
-            {preparedQuizzes.map((quiz) => (
-              <QuizCard
-                key={quiz.category}
-                text={quiz.text}
-                image={quiz.image}
-                header={quiz.category}
-              />
-            ))}
+        <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
+          <Box ref={(el) => (refs.current[2] = el)} id="quiz-cards-container">
+            <Typography
+              id="existing-quiz-header"
+              sx={{
+                textAlign: "center",
+                fontFamily: "monospace",
+                width: "100%",
+              }}
+              variant="h5"
+            >
+              ... or find an existing quiz in our list of quizs!
+            </Typography>
+
+            <Fade
+              in={visibleStates["quiz-cards-container"]}
+              timeout={700}
+              style={{ transitionDelay: "700ms" }}
+            >
+              <Box
+                id="quiz-cards"
+                ref={(el) => (refs.current[3] = el)}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  p: 5,
+                }}
+              >
+                {preparedQuizzes.map((quiz) => (
+                  <QuizCard
+                    key={quiz.category}
+                    text={quiz.text}
+                    image={quiz.image}
+                    header={quiz.category}
+                    questions={quiz.questions}
+                    setQuizData={setQuizData}
+                  />
+                ))}
+              </Box>
+            </Fade>
           </Box>
         </Fade>
       </Box>
