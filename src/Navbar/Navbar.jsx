@@ -2,8 +2,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
-import ThemeToggler from "./Components/ThemeToggler";
-import SideMenu from "./SideMenu";
+import ThemeToggler from "./ThemeToggler";
+import SideMenu from "./SideMenu/SideMenu.jsx";
 import PropTypes from "prop-types";
 
 export default function Navbar({

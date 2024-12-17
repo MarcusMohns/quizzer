@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import GenerateQuizSkeleton from "./Utils/Skeletons/GenerateQuizSkeleton.jsx";
+import GenerateQuizSkeleton from "./GenerateQuizSkeleton.jsx";
 
 const GenerateQuizForm = lazy(() => import("./GenerateQuizForm.jsx"));
 

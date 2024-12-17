@@ -4,9 +4,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Typography } from "@mui/material";
-import tags from "./images/tags";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import tags from "../Utils/tags";
 
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";

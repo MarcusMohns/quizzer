@@ -3,12 +3,14 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import Quizzer from "./Quizzer";
-import Navbar from "./Navbar";
+import Quizzer from "./Quizzer/Quizzer.jsx";
 import { useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Utils/Themes";
-import FrontPage from "./FrontPage";
+// import FrontPage from "./FrontPage";
+import Navbar from "./Navbar/Navbar.jsx";
+import FrontPage from "./Frontpage/FrontPage.jsx";
+
 // Fetch darkMode settings from localStorage if they exist
 const darkModeData =
   localStorage.getItem("Darkmode") !== null

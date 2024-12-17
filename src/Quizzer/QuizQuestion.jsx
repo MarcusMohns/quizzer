@@ -15,7 +15,7 @@ import Zoom from "@mui/material/Zoom";
 import Fade from "@mui/material/Fade";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import tags from "./images/tags.jsx";
+import tags from "../Utils/tags.jsx";
 
 const LETTERS = ["A", "B", "C", "D"];
 
