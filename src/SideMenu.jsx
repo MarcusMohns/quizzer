@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -9,15 +9,19 @@ import GenerateQuizSkeleton from "./Utils/Skeletons/GenerateQuizSkeleton.jsx";
 
 const GenerateQuizForm = lazy(() => import("./GenerateQuizForm.jsx"));
 
-export default function SideMenu({ setQuizData }) {
+export default function SideMenu({
+  setQuizData,
+  openSideMenu,
+  setOpenSideMenu,
+}) {
   SideMenu.propTypes = {
     setQuizData: PropTypes.func.isRequired,
+    openSideMenu: PropTypes.bool.isRequired,
+    setOpenSideMenu: PropTypes.func.isRequired,
   };
 
-  const [open, setOpen] = useState(false);
-
   const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+    setOpenSideMenu(newOpen);
   };
 
   const StyledMenuIconButton = ({ bool }) => (
@@ -39,7 +43,11 @@ export default function SideMenu({ setQuizData }) {
   return (
     <Box>
       <StyledMenuIconButton bool={true} />
-      <Drawer open={open} onClose={toggleDrawer(false)} aria-hidden="false">
+      <Drawer
+        open={openSideMenu}
+        onClose={toggleDrawer(false)}
+        aria-hidden="false"
+      >
         <Box
           sx={{
             display: "flex",
