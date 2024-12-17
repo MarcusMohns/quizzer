@@ -8,8 +8,7 @@ import Navbar from "./Navbar";
 import { useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Utils/Themes";
-import Box from "@mui/material/Box";
-
+import FrontPage from "./FrontPage";
 // Fetch darkMode settings from localStorage if they exist
 const darkModeData =
   localStorage.getItem("Darkmode") !== null
@@ -18,7 +17,9 @@ const darkModeData =
 
 function App() {
   const [darkMode, setDarkMode] = useState(darkModeData);
+  const [openSideMenu, setOpenSideMenu] = useState(false);
   const [quizData, setQuizData] = useState([]);
+
   // const [quizData, setQuizData] = useState([
   //   {
   //     category: "history",
@@ -99,10 +100,17 @@ function App() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
         setQuizData={setQuizData}
+        openSideMenu={openSideMenu}
+        setOpenSideMenu={setOpenSideMenu}
       />
-      <Box sx={{ height: "90vh", p: 0 }}>
-        <Quizzer quizData={quizData} />
-      </Box>
+      {quizData.length <= 0 ? (
+        <FrontPage
+          setQuizData={setQuizData}
+          setOpenSideMenu={setOpenSideMenu}
+        />
+      ) : (
+        <Quizzer quizData={quizData} setQuizData={setQuizData} />
+      )}
     </ThemeProvider>
   );
 }
