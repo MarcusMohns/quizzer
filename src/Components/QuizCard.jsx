@@ -9,10 +9,19 @@ export default function QuizCard({
   text = "Quiz Text",
   header = "Quiz Header",
   image = "https://mui.com/static/images/cards/contemplative-reptile.jpg",
+  questions,
+  setQuizData,
 }) {
+  QuizCard.propTypes = {
+    header: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    questions: PropTypes.array.isRequired,
+    setQuizData: PropTypes.func.isRequired,
+  };
   return (
     <Card sx={{ maxWidth: 345, m: 5 }}>
-      <CardActionArea>
+      <CardActionArea onClick={() => setQuizData(questions)}>
         <CardMedia
           component="img"
           height="140"
@@ -31,8 +40,3 @@ export default function QuizCard({
     </Card>
   );
 }
-QuizCard.propTypes = {
-  header: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-};
