@@ -6,11 +6,12 @@ import QuizQuestion from "./QuizQuestion.jsx";
 import PropTypes from "prop-types";
 import Results from "./Results.jsx";
 import ResultsModal from "./ResultsModal.jsx";
-import FrontPage from "./FrontPage.jsx";
+import Button from "@mui/material/Button";
 
-const Quizzer = ({ quizData }) => {
+const Quizzer = ({ quizData, setQuizData }) => {
   Quizzer.propTypes = {
     quizData: PropTypes.array.isRequired,
+    setQuizData: PropTypes.func.isRequired,
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -31,6 +32,10 @@ const Quizzer = ({ quizData }) => {
     handleReset();
   }, [quizData]);
 
+  const handleBackClick = () => {
+    setQuizData([]);
+  };
+
   return (
     <Box
       component="section"
@@ -39,55 +44,61 @@ const Quizzer = ({ quizData }) => {
         flexDirection: "column",
         minHeight: "600px",
         height: "100%",
+        alignItems: "center",
         p: 0,
         borderRadius: "7px",
       }}
     >
-      {quizData.length <= 0 ? (
-        <FrontPage />
-      ) : (
-        <>
-          {allStepsCompleted() && (
-            <ResultsModal
-              setActiveStep={setActiveStep}
-              results={results}
-              handleReset={handleReset}
-              totalQuestions={quizData.length}
-            />
-          )}
-          {activeStep === quizData.length ? (
-            <Results
-              results={results}
-              quizData={quizData}
-              totalQuestions={quizData.length}
-            />
-          ) : (
-            <QuizQuestion
-              questionData={quizData[activeStep]}
-              setResults={setResults}
-              activeStep={activeStep}
-              results={results}
-              setCompleted={setCompleted}
-            />
-          )}
-          <QuizControls
-            activeStep={activeStep}
+      <Button
+        variant="outlined"
+        onClick={handleBackClick}
+        size="small"
+        sx={{ alignSelf: "flex-start", mx: "10%", my: 2 }}
+        color="secondary"
+      >
+        Back
+      </Button>
+      <>
+        {allStepsCompleted() && (
+          <ResultsModal
             setActiveStep={setActiveStep}
-            completed={completed}
-            setCompleted={setCompleted}
-            steps={quizData}
-            setResults={setResults}
             results={results}
             handleReset={handleReset}
+            totalQuestions={quizData.length}
           />
-          <QuizStepper
-            steps={quizData}
+        )}
+        {activeStep === quizData.length ? (
+          <Results
+            results={results}
+            quizData={quizData}
+            totalQuestions={quizData.length}
+          />
+        ) : (
+          <QuizQuestion
+            questionData={quizData[activeStep]}
+            setResults={setResults}
             activeStep={activeStep}
-            setActiveStep={setActiveStep}
-            completed={completed}
+            results={results}
+            setCompleted={setCompleted}
           />
-        </>
-      )}
+        )}
+        <QuizControls
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          completed={completed}
+          setCompleted={setCompleted}
+          steps={quizData}
+          setResults={setResults}
+          results={results}
+          handleReset={handleReset}
+        />
+        <QuizStepper
+          steps={quizData}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          completed={completed}
+        />
+      </>
     </Box>
   );
 };

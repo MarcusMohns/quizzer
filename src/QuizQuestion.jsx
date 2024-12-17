@@ -89,7 +89,7 @@ const QuizQuestion = ({
         variant="h4"
         sx={{
           textAlign: "center",
-          p: 2,
+          pb: 2,
           mb: 4,
           borderRadius: "10px",
           fontSize: { xs: "1.4rem", md: "1.8rem" },
@@ -122,7 +122,11 @@ const QuizQuestion = ({
           direction="row"
           spacing={1}
           useFlexGap
-          sx={{ alignItems: "center", flexWrap: "wrap" }}
+          sx={{
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Typography sx={{ textAlign: "center" }} variant="subtitle2">
             tags:
@@ -140,13 +144,12 @@ const QuizQuestion = ({
         </Stack>
       </Box>
       {/* lazy load or delay the fade in maybe orrrrrr ye think of osmething good */}
-      <Fade in={true} appear={true}>
+      <Fade in={true} appear={false}>
         <RadioGroup
           value={selectedAnswer}
           onChange={handleChange}
           aria-label="question"
           sx={{
-            width: { xs: "100%", md: "60%" },
             p: 3,
           }}
         >
@@ -231,14 +234,20 @@ const QuizQuestion = ({
           </Grid>
         </RadioGroup>
       </Fade>
-      <Box sx={{ minHeight: "100px", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          minHeight: "100px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         {results[activeStep] !== undefined &&
           (correctlyAnswered ? (
             <Zoom in={results[activeStep] !== undefined}>
               <Alert
                 severity="success"
                 variant="outlined"
-                sx={{ textAlign: "center" }}
+                sx={{ textAlign: "center", m: 2 }}
               >
                 <AlertTitle>
                   Correct! The answer is:{" "}
@@ -256,7 +265,7 @@ const QuizQuestion = ({
               <Alert
                 severity="error"
                 variant="outlined"
-                sx={{ textAlign: "center" }}
+                sx={{ textAlign: "center", m: 2 }}
               >
                 <AlertTitle>
                   Incorrect! The answer to the question is:{" "}
