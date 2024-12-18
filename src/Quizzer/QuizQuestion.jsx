@@ -83,6 +83,7 @@ const QuizQuestion = ({
         alignItems: "center",
         mt: { xs: 2, md: 5 },
         borderRadius: "10px",
+        px: { sm: "5%", lg: "20%" },
       }}
     >
       <Typography
