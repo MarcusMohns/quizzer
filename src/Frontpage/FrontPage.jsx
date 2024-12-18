@@ -4,6 +4,7 @@ import useElementOnScreen from "../Utils/useElementOnScreen";
 import PropTypes from "prop-types";
 import CardsSection from "./CardsSection";
 import WelcomeSection from "./WelcomeSection";
+import { useRef } from "react";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   FrontPage.propTypes = {
@@ -16,6 +17,11 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
     threshold: 0.1,
   });
 
+  const scrollRef = useRef();
+  const handleScroll = () => {
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Box
       sx={{
@@ -27,15 +33,19 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         mt: 1,
       }}
     >
+      <WelcomeSection
+        visibleStates={visibleStates}
+        setOpenSideMenu={setOpenSideMenu}
+        refs={refs}
+        scrollRef={scrollRef}
+        handleScroll={handleScroll}
+      />
       <CardsSection
         refs={refs}
         visibleStates={visibleStates}
-        setOpenSideMenu={setOpenSideMenu}
-      />
-      <WelcomeSection
-        visibleStates={visibleStates}
-        refs={refs}
         setQuizData={setQuizData}
+        scrollRef={scrollRef}
+        handleScroll={handleScroll}
       />
       <Box
         component="section"
