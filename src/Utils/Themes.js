@@ -17,9 +17,8 @@ export const darkTheme = createTheme({
       main: "#677ec2",
       default: "#677ec2",
       light: "#8995bb",
-      dark: "#152452",
-      highlight: "#4a5b8f",
-      faded1: "#2e417a",
+      dark: "#2746a1",
+      highlight: "#152452",
     },
     success: {
       main: "#09cf13",
@@ -59,7 +58,7 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#4169e1",
       light: "#97b0fc",
-      dark: "#91a5ff",
+      dark: "#2f4eda",
       highlight: "#d6dcfa",
     },
 

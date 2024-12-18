@@ -162,6 +162,7 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
         name="questions"
         value={formData.qty}
         onChange={handleChange}
+        type="number"
         label="Number of Questions:"
         sx={{ minWidth: 120 }}
         helperText="Enter a number between 1 & 50"
@@ -250,7 +251,7 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
           <CircularProgress
             size={24}
             sx={{
-              color: "secondary.dark",
+              color: "secondary.highlight",
               position: "absolute",
             }}
           />
