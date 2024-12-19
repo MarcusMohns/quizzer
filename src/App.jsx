@@ -3,13 +3,13 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import Quizzer from "./Quizzer/Quizzer.jsx";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Utils/Themes";
 // import FrontPage from "./FrontPage";
 import Navbar from "./Navbar/Navbar.jsx";
 import FrontPage from "./Frontpage/FrontPage.jsx";
+const Quizzer = lazy(() => import("./Quizzer/Quizzer.jsx"));
 
 // Fetch darkMode settings from localStorage if they exist
 const darkModeData =
@@ -111,7 +111,9 @@ function App() {
           setOpenSideMenu={setOpenSideMenu}
         />
       ) : (
-        <Quizzer quizData={quizData} setQuizData={setQuizData} />
+        <Suspense fallback={<div>loading</div>}>
+          <Quizzer quizData={quizData} setQuizData={setQuizData} />
+        </Suspense>
       )}
     </ThemeProvider>
   );
