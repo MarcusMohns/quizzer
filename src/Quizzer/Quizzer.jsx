@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import Results from "./Results.jsx";
 import ResultsModal from "./ResultsModal.jsx";
 import Button from "@mui/material/Button";
+import { memo } from "react";
 
 const Quizzer = ({ quizData, setQuizData }) => {
   Quizzer.propTypes = {
@@ -103,4 +104,4 @@ const Quizzer = ({ quizData, setQuizData }) => {
   );
 };
 
-export default Quizzer;
+export default memo(Quizzer);

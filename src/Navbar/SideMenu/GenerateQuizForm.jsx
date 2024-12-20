@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -10,9 +10,11 @@ import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import CircularProgress from "@mui/material/CircularProgress";
-import { memo } from "react";
 
-const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
+const GenerateQuizForm = ({ setQuizData }) => {
+  GenerateQuizForm.propTypes = {
+    setQuizData: PropTypes.func.isRequired,
+  };
   const [formData, setFormData] = useState({
     difficulties: [
       { name: "Easy", id: "easy", checked: false },
@@ -259,10 +261,6 @@ const GenerateQuizForm = memo(function GenerateQuizForm({ setQuizData }) {
       </Button>
     </Box>
   );
-});
-
-GenerateQuizForm.propTypes = {
-  setQuizData: PropTypes.func.isRequired,
 };
 
-export default GenerateQuizForm;
+export default memo(GenerateQuizForm);
