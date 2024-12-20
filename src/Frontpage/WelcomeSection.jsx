@@ -38,7 +38,7 @@ export const WelcomeSection = ({
           >
             Good Quizzing
           </Typography>
-          <Typography sx={{ textAlign: "center" }} variant="h4" component="h4">
+          <Typography sx={{ textAlign: "center" }} variant="h3" component="h3">
             Welcome to Quizzer
           </Typography>
         </Stack>
@@ -77,6 +77,12 @@ export const WelcomeSection = ({
               officia. Repellendus voluptas iusto debitis animi doloremque
               dolorem modi voluptatem iste?
             </Typography>
+            <Box
+              component="img"
+              src="/images/question-mark.png"
+              loading="lazy"
+              sx={{ height: "320px", width: "320px" }}
+            />
             <Stack direction="row" spacing={2}>
               <Button
                 onClick={() => setOpenSideMenu(true)}

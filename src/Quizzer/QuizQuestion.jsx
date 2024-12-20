@@ -16,6 +16,9 @@ import Fade from "@mui/material/Fade";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "../Utils/tags.jsx";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
 
 const LETTERS = ["A", "B", "C", "D"];
 
@@ -81,11 +84,49 @@ const QuizQuestion = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mt: { xs: 2, md: 5 },
+        mt: { xs: 2, md: 4 },
         borderRadius: "10px",
         px: { sm: "5%", lg: "20%" },
       }}
     >
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "640px",
+          height: "200px",
+          justifySelf: "center",
+          mb: 2,
+        }}
+      >
+        <Box
+          component="img"
+          srcSet={`${
+            tags[questionData.category].image
+          }?w=248&fit=crop&auto=format&dpr=2 2x`}
+          src={tags[questionData.category].image}
+          alt={questionData.category}
+          loading="lazy"
+          sx={{
+            width: "100%",
+            height: "200px",
+            objectFit: "cover",
+            borderRadius: "10px",
+          }}
+        />
+        <Typography
+          sx={{
+            position: "relative",
+            bottom: "50%",
+            width: "100%",
+            backgroundColor: "#00000091",
+            fontSize: "1.5rem",
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          {[tags[questionData.category].title]}
+        </Typography>
+      </Box>
       <Typography
         variant="h4"
         sx={{
@@ -101,7 +142,7 @@ const QuizQuestion = ({
             display: "flex",
             alignItems: "center",
             textAlign: "center",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", md: "row", mt: 3 },
           }}
         >
           <Avatar
@@ -110,6 +151,7 @@ const QuizQuestion = ({
           >
             {activeStep + 1}
           </Avatar>
+
           <Typography variant="h5" sx={{ ml: { xs: 0, md: 1 } }}>
             {questionData.question.text}
           </Typography>
@@ -144,7 +186,6 @@ const QuizQuestion = ({
           ))}
         </Stack>
       </Box>
-      {/* lazy load or delay the fade in maybe orrrrrr ye think of osmething good */}
       <Fade in={true} appear={false}>
         <RadioGroup
           value={selectedAnswer}
@@ -170,9 +211,10 @@ const QuizQuestion = ({
                     borderRadius: "15px",
                     m: 0,
                     "&:hover": {
-                      border: "2px solid white",
+                      border: "3px solid",
+                      borderColor: "primary.main",
                     },
-                    border: "2px solid",
+                    border: "3px solid",
                     borderColor:
                       sortedAnswers[selectedAnswer] === answer
                         ? correctlyAnswered
@@ -266,7 +308,7 @@ const QuizQuestion = ({
               <Alert
                 severity="error"
                 variant="outlined"
-                sx={{ textAlign: "center", m: 2 }}
+                sx={{ textAlign: "center", m: 2, fontWeight: "bold" }}
               >
                 <AlertTitle>
                   Incorrect! The answer to the question is:{" "}
