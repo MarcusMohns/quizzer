@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material/styles";
 export const darkTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
+    fontSize: 14,
   },
   palette: {
     mode: "dark",
@@ -45,6 +46,7 @@ export const darkTheme = createTheme({
 export const lightTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
+    fontSize: 14,
   },
   palette: {
     mode: "light",
@@ -63,12 +65,17 @@ export const lightTheme = createTheme({
     },
 
     success: {
-      main: "#5897c7",
+      main: "#398552",
       light: "#7ca5c5",
       dark: "#3588c7",
+      petrol: "#004A4F",
+      default: "#55c279",
     },
     error: {
       main: "#c44c4a",
+      light: "#c90303",
+      dark: "#750000",
+      default: "#f36866",
     },
     info: {
       main: "#faddb2",
