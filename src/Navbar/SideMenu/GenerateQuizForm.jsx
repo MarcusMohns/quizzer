@@ -153,6 +153,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
         flexDirection: "column",
         px: 3,
         width: "280px",
+        height: "100%",
       }}
       noValidate
       autoComplete="off"
@@ -247,7 +248,12 @@ const GenerateQuizForm = ({ setQuizData }) => {
         <FormHelperText>Select at least one difficulty</FormHelperText>
       </FormControl>
 
-      <Button variant="contained" type="submit" disabled={loading}>
+      <Button
+        variant="contained"
+        type="submit"
+        disabled={loading}
+        sx={{ mt: "auto", mb: 2 }}
+      >
         Generate Quiz
         {loading && (
           <CircularProgress
