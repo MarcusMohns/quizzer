@@ -16,9 +16,6 @@ import Fade from "@mui/material/Fade";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "../Utils/tags.jsx";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
 
 const LETTERS = ["A", "B", "C", "D"];
 

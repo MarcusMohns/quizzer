@@ -81,7 +81,7 @@ export const WelcomeSection = ({
               component="img"
               src="/images/question-mark.png"
               loading="lazy"
-              sx={{ height: "320px", width: "320px" }}
+              sx={{ height: "160px", width: "160px" }}
             />
             <Stack direction="row" spacing={2}>
               <Button
