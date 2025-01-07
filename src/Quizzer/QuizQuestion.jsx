@@ -77,7 +77,7 @@ const QuizQuestion = ({
   }, [activeStep, prevSelectedAnswer]);
 
   return (
-    <Fade in={true} appear={true} timeout={1000}>
+    <Fade in={true} appear={true} timeout={1500}>
       <Box
         sx={{
           display: "flex",
@@ -86,6 +86,7 @@ const QuizQuestion = ({
           mt: { xs: 2, md: 4 },
           borderRadius: "10px",
           px: { sm: "5%", lg: "20%" },
+          width: "100%",
         }}
       >
         <Box
@@ -126,35 +127,28 @@ const QuizQuestion = ({
             {[tags[questionData.category].title]}
           </Typography>
         </Box>
+
         <Typography
-          variant="h4"
+          variant="h5"
           sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            minHeight: "100px",
             textAlign: "center",
-            pb: 2,
-            mb: 4,
-            borderRadius: "10px",
-            fontSize: { xs: "1.4rem", md: "1.8rem" },
           }}
         >
-          <Stack
+          <Avatar
+            variant="rounded"
             sx={{
-              display: "flex",
-              alignItems: "center",
-              textAlign: "center",
-              flexDirection: { xs: "column", md: "row", mt: 3 },
+              width: 30,
+              height: 30,
+              ml: "auto",
+              mr: 1,
             }}
           >
-            <Avatar
-              variant="rounded"
-              sx={{ width: 30, height: 30, mb: { xs: 2, md: 0 } }}
-            >
-              {activeStep + 1}
-            </Avatar>
-
-            <Typography variant="h5" sx={{ ml: { xs: 0, md: 1 } }}>
-              {questionData.question.text}
-            </Typography>
-          </Stack>
+            {activeStep + 1}
+          </Avatar>
+          {questionData.question.text}
         </Typography>
         <Box
           sx={{ display: "flex", justifyContent: "flex-start" }}
@@ -215,7 +209,7 @@ const QuizQuestion = ({
                       },
                       border: "1px solid",
                       borderColor:
-                        sortedAnswers[selectedAnswer] === answer
+                        selectedAnswer === answer
                           ? correctlyAnswered
                             ? "success.main"
                             : "error.light"
@@ -237,14 +231,14 @@ const QuizQuestion = ({
                         fontWeight: "bold",
                         alignSelf: "flex-start",
                         backgroundColor:
-                          sortedAnswers[selectedAnswer] === answer
-                            ? correctlyAnswered
-                              ? "success.main"
-                              : "error.light"
-                            : answer === questionData.correctAnswer &&
+                          selectedAnswer === answer // if we selected this answer being rendered
+                            ? correctlyAnswered // if the selected answer is correct
+                              ? "success.main" // Highlight it as green
+                              : "error.light" // highlight it as red
+                            : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
                               selectedAnswer !== ""
-                            ? "success.light"
-                            : "secondary.main",
+                            ? "success.light" // make it green
+                            : "secondary.main", // otherwise make it blue..
                       }}
                     >
                       {LETTERS[index]}
