@@ -39,10 +39,9 @@ function App() {
           setOpenSideMenu={setOpenSideMenu}
         />
       ) : (
-        <QuizzerSkeleton />
-        // <Suspense fallback={<QuizzerSkeleton />}>
-        //   <Quizzer quizData={quizData} setQuizData={setQuizData} />
-        // </Suspense>
+        <Suspense fallback={<QuizzerSkeleton />}>
+          <Quizzer quizData={quizData} setQuizData={setQuizData} />
+        </Suspense>
       )}
     </ThemeProvider>
   );
