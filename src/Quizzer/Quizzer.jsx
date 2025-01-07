@@ -22,20 +22,19 @@ const Quizzer = ({ quizData, setQuizData }) => {
   const allStepsCompleted = () => {
     return Object.keys(completed).length === quizData.length;
   };
-
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
     setResults({});
   };
 
-  useEffect(() => {
-    handleReset();
-  }, [quizData]);
-
   const handleBackClick = () => {
     setQuizData([]);
   };
+
+  useEffect(() => {
+    handleReset();
+  }, [quizData]);
 
   return (
     <Box
