@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -8,17 +8,16 @@ import { Typography } from "@mui/material";
 import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import Zoom from "@mui/material/Zoom";
-import Fade from "@mui/material/Fade";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "../Utils/tags.jsx";
-import Grow from "@mui/material/Grow";
+import Fade from "@mui/material/Fade";
+import Zoom from "@mui/material/Zoom";
 
 const LETTERS = ["A", "B", "C", "D"];
+const AnswersTimeoutDelay = [100, 200, 300, 400];
 
 const QuizQuestion = ({
   questionData,
@@ -44,7 +43,6 @@ const QuizQuestion = ({
     : "";
 
   const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
-
   const sortedAnswers = [
     // Sort answers alphabetically
     questionData.correctAnswer,
@@ -127,29 +125,32 @@ const QuizQuestion = ({
             {[tags[questionData.category].title]}
           </Typography>
         </Box>
-
-        <Typography
-          variant="h5"
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            minHeight: "100px",
-            textAlign: "center",
-          }}
-        >
-          <Avatar
-            variant="rounded"
+        <Fade in={true} appear={true} timeout={800} key={questionData.id}>
+          <Typography
+            variant="h5"
             sx={{
-              width: 30,
-              height: 30,
-              ml: "auto",
-              mr: 1,
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              minHeight: "100px",
+              textAlign: "center",
             }}
           >
-            {activeStep + 1}
-          </Avatar>
-          {questionData.question.text}
-        </Typography>
+            <Avatar
+              variant="rounded"
+              sx={{
+                width: 30,
+                height: 30,
+                alignSelf: { xs: "center", md: "flex-start" },
+                ml: { xs: "0", md: "auto" },
+                mr: 1,
+              }}
+            >
+              {activeStep + 1}
+            </Avatar>
+            {questionData.question.text}
+          </Typography>
+        </Fade>
+
         <Box
           sx={{ display: "flex", justifyContent: "flex-start" }}
           direction="column"
@@ -179,23 +180,29 @@ const QuizQuestion = ({
             ))}
           </Stack>
         </Box>
-        <Grow in={true} appear={true} timeout={500} unmountOnExit={false}>
-          <RadioGroup
-            value={selectedAnswer}
-            onChange={handleChange}
-            aria-label="question"
-            sx={{
-              p: 3,
-            }}
-          >
-            <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
-              {sortedAnswers.map((answer, index) => (
-                <Grid
-                  size={{ xs: 12, md: 6 }}
-                  key={answer}
-                  sx={{
-                    display: "flex",
-                  }}
+        <RadioGroup
+          value={selectedAnswer}
+          onChange={handleChange}
+          aria-label="question"
+          sx={{
+            p: 3,
+          }}
+        >
+          <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
+            {sortedAnswers.map((answer, index) => (
+              <Grid
+                size={{ xs: 12, md: 6 }}
+                key={answer}
+                sx={{
+                  display: "flex",
+                }}
+              >
+                <Fade
+                  in={true}
+                  // timeout={AnswersTimeoutDelay[index]}
+                  key={`${questionData.id}-${index}`}
+                  easing={"ease-in-out"}
+                  style={{ transitionDelay: `${AnswersTimeoutDelay[index]}ms` }}
                 >
                   <ButtonBase
                     sx={{
@@ -209,15 +216,15 @@ const QuizQuestion = ({
                       },
                       border: "1px solid",
                       borderColor:
-                        selectedAnswer === answer
-                          ? correctlyAnswered
-                            ? "success.main"
-                            : "error.light"
-                          : answer === questionData.correctAnswer &&
+                        selectedAnswer === answer // if we selected this answer being rendered
+                          ? correctlyAnswered // if the selected answer is correct
+                            ? "success.main" // Highlight it as green
+                            : "error.light" // if incorrect highlight it as red
+                          : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
                             selectedAnswer !== ""
-                          ? "success.light"
-                          : "secondary.main",
-                      boxShadow: 8,
+                          ? "success.light" // make it green
+                          : "secondary.main", // default to blue
+                      boxShadow: 10,
                     }}
                   >
                     <Avatar
@@ -234,11 +241,11 @@ const QuizQuestion = ({
                           selectedAnswer === answer // if we selected this answer being rendered
                             ? correctlyAnswered // if the selected answer is correct
                               ? "success.main" // Highlight it as green
-                              : "error.light" // highlight it as red
+                              : "error.light" // if incorrect highlight it as red
                             : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
                               selectedAnswer !== ""
                             ? "success.light" // make it green
-                            : "secondary.main", // otherwise make it blue..
+                            : "secondary.main", // default to blue
                       }}
                     >
                       {LETTERS[index]}
@@ -265,11 +272,12 @@ const QuizQuestion = ({
                       {answer}
                     </FormControlLabel>
                   </ButtonBase>
-                </Grid>
-              ))}
-            </Grid>
-          </RadioGroup>
-        </Grow>
+                </Fade>
+              </Grid>
+            ))}
+          </Grid>
+        </RadioGroup>
+        {/* </Grow> */}
 
         <Box
           sx={{
