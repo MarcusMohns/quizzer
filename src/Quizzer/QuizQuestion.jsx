@@ -216,7 +216,7 @@ const QuizQuestion = ({
                       },
                       border: "1px solid",
                       borderColor:
-                        selectedAnswer === answer // if we selected this answer being rendered
+                        sortedAnswers[selectedAnswer] === answer // if we selected this answer being rendered
                           ? correctlyAnswered // if the selected answer is correct
                             ? "success.main" // Highlight it as green
                             : "error.light" // if incorrect highlight it as red
@@ -238,7 +238,7 @@ const QuizQuestion = ({
                         fontWeight: "bold",
                         alignSelf: "flex-start",
                         backgroundColor:
-                          selectedAnswer === answer // if we selected this answer being rendered
+                          sortedAnswers[selectedAnswer] === answer // if we selected this answer being rendered
                             ? correctlyAnswered // if the selected answer is correct
                               ? "success.main" // Highlight it as green
                               : "error.light" // if incorrect highlight it as red
