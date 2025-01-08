@@ -7,14 +7,11 @@ const useElementsOnScreen = (options) => {
   const [visibleStates, setVisibleStates] = useState({});
 
   const callbackFunction = (entries) => {
-    entries.map((entry) => {
-      setVisibleStates(
-        (prevVisibleStates) =>
-          (prevVisibleStates = {
-            ...prevVisibleStates,
-            [entry.target.id]: entry.isIntersecting,
-          })
-      );
+    entries.forEach((entry) => {
+      setVisibleStates((prevVisibleStates) => ({
+        ...prevVisibleStates,
+        [entry.target.id]: entry.isIntersecting,
+      }));
     });
   };
 
