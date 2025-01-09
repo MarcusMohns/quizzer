@@ -59,7 +59,7 @@ const Results = ({ results, quizData, totalQuestions }) => {
           component="h2"
           sx={{ mt: 5, textAlign: "center" }}
         >
-          {(correctAnswers / totalQuestions) * 100}% Correct!
+          {(correctAnswers / totalQuestions) * 100}% Correct!🎊
         </Typography>
       </Zoom>
       <Grow in={true} appear={true} timeout={900}>
@@ -69,7 +69,7 @@ const Results = ({ results, quizData, totalQuestions }) => {
           component="h3"
           sx={{ mt: 1, textAlign: "center" }}
         >
-          {correctAnswers} correct out of {totalQuestions} total questions!
+          {correctAnswers} correct out of {totalQuestions} total questions! 🎈
         </Typography>
       </Grow>
 

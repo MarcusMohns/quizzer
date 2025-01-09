@@ -53,11 +53,12 @@ export default function ResultsModal({
           component="h2"
           sx={{ textAlign: "center" }}
         >
-          {correctAnswers} correct out of {totalQuestions} total questions!
+          {correctAnswers} correct out of {totalQuestions} total questions! 🎉
         </Typography>
 
         <Box
           sx={{
+            alignSelf: "center",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -65,24 +66,22 @@ export default function ResultsModal({
             width: "100%",
           }}
         >
-          <Box sx={{ alignSelf: "center" }}>
-            <Button
-              onClick={handleResetClick}
-              size="large"
-              variant="outlined"
-              sx={{ m: 2 }}
-            >
-              <RestartAltIcon /> Reset
-            </Button>
-            <Button
-              onClick={handleResultClick}
-              size="large"
-              variant="contained"
-              sx={{ m: 2 }}
-            >
-              Full Results
-            </Button>
-          </Box>
+          <Button
+            onClick={handleResetClick}
+            size="medium"
+            variant="outlined"
+            sx={{ m: 2 }}
+          >
+            <RestartAltIcon /> Reset
+          </Button>
+          <Button
+            onClick={handleResultClick}
+            size="medium"
+            variant="contained"
+            sx={{ m: 2 }}
+          >
+            Full Results
+          </Button>
         </Box>
       </Box>
     </Modal>

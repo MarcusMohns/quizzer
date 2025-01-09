@@ -3,8 +3,9 @@ import { createTheme } from "@mui/material/styles";
 export const darkTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
-    fontSize: 14,
+    fontSize: 16,
   },
+
   palette: {
     mode: "dark",
     background: {
