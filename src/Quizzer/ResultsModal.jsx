@@ -15,7 +15,7 @@ const style = {
   bgcolor: "secondary.highlight",
   boxShadow: 24,
   p: 4,
-  borderRadius: 2,
+  borderRadius: 1,
 };
 
 export default function ResultsModal({

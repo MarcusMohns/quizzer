@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useElementOnScreen from "../Utils/useElementOnScreen";
 import PropTypes from "prop-types";
-import CardsSection from "./CardsSection";
+import CardsSection from "./CardsSection/CardsSection";
 import WelcomeSection from "./WelcomeSection";
 import { useRef } from "react";
 

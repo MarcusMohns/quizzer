@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
 import QuizControls from "./QuizControls";
-import QuizQuestion from "./QuizQuestion.jsx";
+import Quiz from "./Quiz/Quiz.jsx";
 import PropTypes from "prop-types";
 import Results from "./Results.jsx";
 import ResultsModal from "./ResultsModal.jsx";
@@ -74,7 +74,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
             totalQuestions={quizData.length}
           />
         ) : (
-          <QuizQuestion
+          <Quiz
             questionData={quizData[activeStep]}
             setResults={setResults}
             activeStep={activeStep}
