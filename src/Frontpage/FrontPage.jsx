@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import useElementOnScreen from "../Utils/useElementOnScreen";
 import CardsSection from "./CardsSection/CardsSection";
 import WelcomeSection from "./WelcomeSection";
+import Footer from "../Footer";
 import { useRef } from "react";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
@@ -42,17 +42,7 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         scrollRef={scrollRef}
         handleScroll={handleScroll}
       />
-      <Box
-        component="section"
-        sx={{
-          width: { xs: "100%" },
-          height: "100vh",
-        }}
-      >
-        <Typography sx={{ textAlign: "center" }} variant="h2" component="h2">
-          Welcome to Quizzer!
-        </Typography>
-      </Box>
+      <Footer />
     </Box>
   );
 };
