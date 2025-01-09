@@ -70,12 +70,8 @@ export const WelcomeSection = ({
               officia. Repellendus voluptas iusto debitis animi doloremque
               dolorem modi voluptatem iste?
             </Typography>
-            <Box
-              component="img"
-              src="/images/question-mark.png"
-              loading="lazy"
-              sx={{ height: "160px", width: "160px" }}
-            />
+
+            <Typography fontSize="3rem"> 🍊 📚 🔮 🔍 🌌</Typography>
             <Stack direction="row" spacing={2}>
               <Button
                 onClick={() => setOpenSideMenu(true)}
