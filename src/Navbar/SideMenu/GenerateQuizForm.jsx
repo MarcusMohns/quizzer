@@ -9,33 +9,51 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Typography } from "@mui/material";
 
 const GenerateQuizForm = ({ setQuizData }) => {
   const [formData, setFormData] = useState({
     difficulties: [
-      { name: "Easy", id: "easy", checked: false },
-      { name: "Medium", id: "medium", checked: false },
-      { name: "Hard", id: "hard", checked: false },
+      { name: "Easy", id: "easy", checked: false, emoji: "🍏" },
+      { name: "Medium", id: "medium", checked: false, emoji: "🍋" },
+      { name: "Hard", id: "hard", checked: false, emoji: "🌶️" },
     ],
     categories: [
-      { name: "Music", id: "music", checked: false },
-      { name: "Sports and Leisure", id: "sport_and_leisure", checked: false },
-      { name: "Film and TV", id: "film_and_tv", checked: false },
+      { name: "Music", id: "music", checked: false, emoji: "🎵" },
+      {
+        name: "Sports and Leisure",
+        id: "sport_and_leisure",
+        checked: false,
+        emoji: "⚽",
+      },
+      { name: "Film and TV", id: "film_and_tv", checked: false, emoji: "🎬" },
       {
         name: "Arts and Literature",
         id: "arts_and_literature",
         checked: false,
+        emoji: "🎨",
       },
-      { name: "History", id: "history", checked: false },
+      { name: "History", id: "history", checked: false, emoji: "📜" },
       {
         name: "Society and Culture",
         id: "society_and_culture",
         checked: false,
+        emoji: "🌍",
       },
-      { name: "Science", id: "science", checked: false },
-      { name: "Geography", id: "geography", checked: false },
-      { name: "Food and Drink", id: "food_and_drink", checked: false },
-      { name: "General Knowledge", id: "general_knowledge", checked: false },
+      { name: "Science", id: "science", checked: false, emoji: "🔬" },
+      { name: "Geography", id: "geography", checked: false, emoji: "🌍" },
+      {
+        name: "Food and Drink",
+        id: "food_and_drink",
+        checked: false,
+        emoji: "🍔",
+      },
+      {
+        name: "General Knowledge",
+        id: "general_knowledge",
+        checked: false,
+        emoji: "🧠",
+      },
     ],
     qty: "10",
   });
@@ -148,7 +166,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
         display: "flex",
         flexDirection: "column",
         px: 3,
-        width: "280px",
+        width: "300px",
         height: "100%",
       }}
       noValidate
@@ -195,10 +213,15 @@ const GenerateQuizForm = ({ setQuizData }) => {
                   onChange={handleCheckedCategory}
                   name={category.id}
                   size="small"
-                  sx={{ p: 1 }}
+                  sx={{ p: 1, minWidth: "max-content" }}
                 />
               }
-              label={category.name}
+              label={
+                <Box sx={{ display: "flex", width: "max-content" }}>
+                  {category.name}
+                  <Typography fontSize="1.3rem">{category.emoji}</Typography>
+                </Box>
+              }
             />
           ))}
         </FormGroup>
@@ -237,7 +260,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                   sx={{ fontSize: "0.5rem" }}
                 />
               }
-              label={difficulty.name}
+              label={difficulty.name + difficulty.emoji}
             />
           ))}
         </FormGroup>
