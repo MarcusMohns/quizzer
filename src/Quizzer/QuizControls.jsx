@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import PropTypes from "prop-types";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 const QuizControls = ({
@@ -10,14 +9,6 @@ const QuizControls = ({
   completed,
   handleReset,
 }) => {
-  QuizControls.propTypes = {
-    steps: PropTypes.array.isRequired,
-    activeStep: PropTypes.number.isRequired,
-    setActiveStep: PropTypes.func.isRequired,
-    completed: PropTypes.object.isRequired,
-    handleReset: PropTypes.func.isRequired,
-  };
-
   const totalSteps = () => {
     return steps.length;
   };

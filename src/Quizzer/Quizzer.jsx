@@ -3,18 +3,12 @@ import Box from "@mui/material/Box";
 import QuizStepper from "./QuizStepper";
 import QuizControls from "./QuizControls";
 import Quiz from "./Quiz/Quiz.jsx";
-import PropTypes from "prop-types";
 import Results from "./Results.jsx";
 import ResultsModal from "./ResultsModal.jsx";
 import Button from "@mui/material/Button";
 import { memo } from "react";
 
 const Quizzer = ({ quizData, setQuizData }) => {
-  Quizzer.propTypes = {
-    quizData: PropTypes.array.isRequired,
-    setQuizData: PropTypes.func.isRequired,
-  };
-
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
   const [results, setResults] = useState({});

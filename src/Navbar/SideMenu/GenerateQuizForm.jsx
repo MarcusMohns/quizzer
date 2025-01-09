@@ -6,15 +6,11 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const GenerateQuizForm = ({ setQuizData }) => {
-  GenerateQuizForm.propTypes = {
-    setQuizData: PropTypes.func.isRequired,
-  };
   const [formData, setFormData] = useState({
     difficulties: [
       { name: "Easy", id: "easy", checked: false },

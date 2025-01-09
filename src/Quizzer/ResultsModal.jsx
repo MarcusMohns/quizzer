@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import PropTypes from "prop-types";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 const style = {
@@ -24,12 +23,6 @@ export default function ResultsModal({
   results,
   totalQuestions,
 }) {
-  ResultsModal.propTypes = {
-    handleReset: PropTypes.func.isRequired,
-    setActiveStep: PropTypes.func.isRequired,
-    results: PropTypes.object.isRequired,
-    totalQuestions: PropTypes.number.isRequired,
-  };
   const [open, setOpen] = React.useState(true);
   //   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

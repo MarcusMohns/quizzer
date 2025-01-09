@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import tags from "../../Utils/tags.jsx";
 import Fade from "@mui/material/Fade";
 import AnswerResultAlert from "./AnswerResultAlert.jsx";
@@ -16,14 +15,6 @@ const Quiz = ({
   activeStep,
   setCompleted,
 }) => {
-  Quiz.propTypes = {
-    questionData: PropTypes.object.isRequired,
-    results: PropTypes.object.isRequired,
-    setResults: PropTypes.func.isRequired,
-    activeStep: PropTypes.number.isRequired,
-    setCompleted: PropTypes.func.isRequired,
-  };
-
   // Get the previous selected answer if it exists
   // If it doesn't, default to ""
   const prevSelectedAnswer = results[activeStep]

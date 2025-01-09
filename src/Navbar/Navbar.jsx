@@ -4,7 +4,6 @@ import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import ThemeToggler from "./ThemeToggler";
 import SideMenu from "./SideMenu/SideMenu.jsx";
-import PropTypes from "prop-types";
 
 export default function Navbar({
   darkMode,
@@ -13,14 +12,6 @@ export default function Navbar({
   openSideMenu,
   setOpenSideMenu,
 }) {
-  Navbar.propTypes = {
-    darkMode: PropTypes.bool.isRequired,
-    setDarkMode: PropTypes.func.isRequired,
-    setQuizData: PropTypes.func.isRequired,
-    openSideMenu: PropTypes.bool.isRequired,
-    setOpenSideMenu: PropTypes.func.isRequired,
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

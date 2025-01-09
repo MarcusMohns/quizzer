@@ -3,7 +3,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import PropTypes from "prop-types";
 
 export default function QuizCard({
   text = "Quiz Text",
@@ -12,13 +11,6 @@ export default function QuizCard({
   questions,
   setQuizData,
 }) {
-  QuizCard.propTypes = {
-    header: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    questions: PropTypes.array.isRequired,
-    setQuizData: PropTypes.func.isRequired,
-  };
   return (
     <Card sx={{ maxWidth: 345, m: 5 }}>
       <CardActionArea onClick={() => setQuizData(questions)}>

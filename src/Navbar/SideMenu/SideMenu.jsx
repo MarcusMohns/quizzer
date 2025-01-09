@@ -4,7 +4,6 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Typography } from "@mui/material";
-import PropTypes from "prop-types";
 import GenerateQuizSkeleton from "./GenerateQuizSkeleton.jsx";
 
 const GenerateQuizForm = lazy(() => import("./GenerateQuizForm.jsx"));
@@ -14,12 +13,6 @@ export default function SideMenu({
   openSideMenu,
   setOpenSideMenu,
 }) {
-  SideMenu.propTypes = {
-    setQuizData: PropTypes.func.isRequired,
-    openSideMenu: PropTypes.bool.isRequired,
-    setOpenSideMenu: PropTypes.func.isRequired,
-  };
-
   const toggleDrawer = (newOpen) => () => {
     setOpenSideMenu(newOpen);
   };
@@ -36,9 +29,6 @@ export default function SideMenu({
       <MenuIcon />
     </IconButton>
   );
-  StyledMenuIconButton.propTypes = {
-    bool: PropTypes.bool.isRequired,
-  };
 
   return (
     <Box>

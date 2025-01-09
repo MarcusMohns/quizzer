@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -15,12 +14,6 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 
 const Results = ({ results, quizData, totalQuestions }) => {
-  Results.propTypes = {
-    results: PropTypes.object.isRequired,
-    quizData: PropTypes.array.isRequired,
-    totalQuestions: PropTypes.number.isRequired,
-  };
-
   // Modify results so we can display unanswered questions that are not included in results
   const modifiedResults = {};
   for (let i = 0; i < quizData.length; i++) {

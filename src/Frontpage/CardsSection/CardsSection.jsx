@@ -2,16 +2,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import { preparedQuizzes } from "../../Utils/preparedQuizzes";
-import PropTypes from "prop-types";
 import QuizCard from "./QuizCard";
 
 const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
-  CardsSection.propTypes = {
-    refs: PropTypes.object.isRequired,
-    visibleStates: PropTypes.object.isRequired,
-    scrollRef: PropTypes.object.isRequired,
-    setQuizData: PropTypes.func.isRequired,
-  };
   return (
     <Box
       ref={scrollRef}

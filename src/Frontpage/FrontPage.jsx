@@ -1,16 +1,11 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useElementOnScreen from "../Utils/useElementOnScreen";
-import PropTypes from "prop-types";
 import CardsSection from "./CardsSection/CardsSection";
 import WelcomeSection from "./WelcomeSection";
 import { useRef } from "react";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
-  FrontPage.propTypes = {
-    setQuizData: PropTypes.func.isRequired,
-    setOpenSideMenu: PropTypes.func.isRequired,
-  };
   const [refs, visibleStates] = useElementOnScreen({
     root: null,
     rootMargin: "0px",

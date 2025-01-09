@@ -5,7 +5,6 @@ import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import Fade from "@mui/material/Fade";
-import PropTypes from "prop-types";
 
 export const WelcomeSection = ({
   refs,
@@ -13,12 +12,6 @@ export const WelcomeSection = ({
   setOpenSideMenu,
   handleScroll,
 }) => {
-  WelcomeSection.propTypes = {
-    refs: PropTypes.object.isRequired,
-    visibleStates: PropTypes.object.isRequired,
-    setOpenSideMenu: PropTypes.func.isRequired,
-    handleScroll: PropTypes.func.isRequired,
-  };
   return (
     <Box
       component="section"

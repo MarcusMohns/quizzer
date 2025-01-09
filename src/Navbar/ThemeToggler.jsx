@@ -1,5 +1,4 @@
 import { styled, Switch, Typography, Stack } from "@mui/material";
-import PropTypes from "prop-types";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -62,10 +61,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const userPref = localStorage.getItem("Darkmode") === "false" ? false : true;
 
 const ThemeToggler = ({ darkMode, setDarkMode }) => {
-  ThemeToggler.propTypes = {
-    darkMode: PropTypes.bool.isRequired,
-    setDarkMode: PropTypes.func.isRequired,
-  };
   // Toggle between dark mode and lightmode and save to localStorage
   const toggleDarkMode = () => {
     localStorage.setItem("Darkmode", JSON.stringify(!darkMode));
