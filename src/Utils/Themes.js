@@ -35,11 +35,10 @@ export const darkTheme = createTheme({
       dark: "#750000",
       default: "#4e100f",
     },
-
     info: {
       main: "#2b2b2b",
-      light: "#8b8b8b",
-      dark: "#1b1b1b",
+      light: "#666",
+      dark: "#00000028",
     },
   },
 });
@@ -47,7 +46,7 @@ export const darkTheme = createTheme({
 export const lightTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
-    fontSize: 14,
+    fontSize: 16,
   },
   palette: {
     mode: "light",
@@ -59,7 +58,8 @@ export const lightTheme = createTheme({
       faded: "#0000007f",
     },
     secondary: {
-      main: "#4169e1",
+      main: "#1741bd",
+      // main: "#4169e1",
       light: "#97b0fc",
       dark: "#2f4eda",
       highlight: "#d6dcfa",
@@ -67,7 +67,8 @@ export const lightTheme = createTheme({
 
     success: {
       main: "#398552",
-      light: "#7ca5c5",
+      light: "#00862d",
+      // light: "#7ca5c5",
       dark: "#3588c7",
       petrol: "#004A4F",
       default: "#55c279",
@@ -79,9 +80,9 @@ export const lightTheme = createTheme({
       default: "#f36866",
     },
     info: {
-      main: "#faddb2",
-      light: "#f8e5c9",
-      dark: "#f7cc8b",
+      main: "#666",
+      light: "#cfcece",
+      dark: "#00000028",
     },
   },
 });

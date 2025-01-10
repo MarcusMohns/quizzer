@@ -22,7 +22,7 @@ export default function Navbar({
             setOpenSideMenu={setOpenSideMenu}
           />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Generate a Quiz!
+            Quizzer
           </Typography>
 
           <ThemeToggler darkMode={darkMode} setDarkMode={setDarkMode} />

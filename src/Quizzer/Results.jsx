@@ -107,7 +107,10 @@ const Results = ({ results, quizData, totalQuestions }) => {
                 </ListItemIcon>
               </ListItem>
             ) : result.pickedAnswer === "None" ? (
-              <ListItem key={index} sx={{ backgroundColor: "#666", my: 1 }}>
+              <ListItem
+                key={index}
+                sx={{ backgroundColor: "info.light", my: 1 }}
+              >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
                   primary={result.question.text}
