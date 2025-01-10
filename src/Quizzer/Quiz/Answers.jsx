@@ -1,11 +1,11 @@
 import React from "react";
-import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid2";
 import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
 import Fade from "@mui/material/Fade";
+import StyledRadio from "./StyledRadio";
 
 const LETTERS = ["A", "B", "C", "D"];
 const TimeoutDelay = [100, 200, 300, 400];
@@ -52,7 +52,7 @@ const Answers = ({
                   m: 0,
                   transition: "background .2s ease-in-out",
                   "&:hover": {
-                    background: "#00000028",
+                    backgroundColor: "info.dark",
                   },
                   border: "1px solid",
                   borderColor:
@@ -64,7 +64,7 @@ const Answers = ({
                         selectedAnswer !== ""
                       ? "success.light" // make it green
                       : "secondary.main", // default to blue
-                  boxShadow: 10,
+                  boxShadow: 7,
                 }}
               >
                 <Avatar
@@ -97,9 +97,7 @@ const Answers = ({
                   label={answer}
                   onClick={handleComplete}
                   name={answer}
-                  control={
-                    <Radio size="medium" sx={{ color: "secondary.main" }} />
-                  }
+                  control={<StyledRadio />}
                   sx={{
                     width: "100%",
                     flexDirection: "row",
