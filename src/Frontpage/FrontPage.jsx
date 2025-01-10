@@ -4,6 +4,7 @@ import CardsSection from "./CardsSection/CardsSection";
 import WelcomeSection from "./WelcomeSection";
 import Footer from "../Footer";
 import { useRef } from "react";
+import ScrollTopButton from "./ScrollTopButton";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
@@ -12,9 +13,9 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
     threshold: 0.1,
   });
 
-  const scrollRef = useRef();
-  const handleScroll = () => {
-    scrollRef.current.scrollIntoView({ behavior: "smooth" });
+  const scrollRef = useRef([]);
+  const handleScroll = (idx) => {
+    scrollRef.current[idx].scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -41,6 +42,10 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         setQuizData={setQuizData}
         scrollRef={scrollRef}
         handleScroll={handleScroll}
+      />
+      <ScrollTopButton
+        handleScroll={handleScroll}
+        visible={visibleStates["quiz-cards-container"]}
       />
       <Footer />
     </Box>

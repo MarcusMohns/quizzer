@@ -7,7 +7,7 @@ import QuizCard from "./QuizCard";
 const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
   return (
     <Box
-      ref={scrollRef}
+      ref={(el) => (scrollRef.current[1] = el)}
       component="section"
       sx={{
         width: { xs: "100%" },

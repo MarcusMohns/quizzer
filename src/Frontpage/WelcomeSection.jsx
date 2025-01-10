@@ -11,9 +11,11 @@ export const WelcomeSection = ({
   visibleStates,
   setOpenSideMenu,
   handleScroll,
+  scrollRef,
 }) => {
   return (
     <Box
+      ref={(el) => (scrollRef.current[0] = el)}
       component="section"
       sx={{
         display: "flex",
@@ -21,6 +23,7 @@ export const WelcomeSection = ({
         alignItems: "center",
         width: { xs: "100%" },
         height: "100vh",
+        mt: "5%",
       }}
     >
       <Fade in={visibleStates["welcome-message"]} timeout={500}>
@@ -49,7 +52,7 @@ export const WelcomeSection = ({
             justifyContent: "center",
             alignItems: "center",
             borderRadius: "10px",
-            width: "75%",
+            width: { xs: "100%", md: "75%" },
             mt: 5,
           }}
         >
@@ -71,23 +74,28 @@ export const WelcomeSection = ({
               dolorem modi voluptatem iste?
             </Typography>
 
-            <Typography fontSize="3rem"> 🍊 📚 🔮 🔍 🌌</Typography>
-            <Stack direction="row" spacing={2}>
+            <Typography fontSize="3rem" sx={{ textAlign: "center" }}>
+              🍊 📚 🔮 🔍 🌌
+            </Typography>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
               <Button
                 onClick={() => setOpenSideMenu(true)}
                 color="secondary"
                 variant="contained"
                 endIcon={<MenuIcon />}
                 sx={{ fontWeight: "bold" }}
+                size="large"
               >
                 Generate a quiz
               </Button>
               <Button
-                onClick={handleScroll}
+                // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
+                onClick={() => handleScroll(1)}
                 color="secondary"
                 variant="outlined"
                 endIcon={<KeyboardDoubleArrowDownIcon />}
                 sx={{ fontWeight: "bold" }}
+                size="large"
               >
                 Pick a Quiz
               </Button>
