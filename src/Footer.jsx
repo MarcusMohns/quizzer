@@ -14,16 +14,15 @@ const Footer = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           width: "100%",
-          p: 5,
-          m: 5,
+          px: 8,
         }}
       >
-        <Typography sx={{}} variant="subtitle2">
+        <Typography variant="subtitle2">
           Made by @MarcusMohns using React and Material-UI
         </Typography>
         <Box
@@ -50,7 +49,13 @@ const Footer = () => {
             <FireplaceIcon fontSize="large" />
           </Link>
         </Box>
-        <Typography sx={{ visibility: "hidden" }}>
+        <Typography
+          sx={{
+            visibility: "hidden",
+            display: { xs: "none", lg: "flex" },
+          }}
+          variant="subtitle2"
+        >
           Made by @MarcusMohns using React and Material-UI
         </Typography>
       </Box>
