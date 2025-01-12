@@ -217,7 +217,14 @@ const GenerateQuizForm = ({ setQuizData }) => {
                 />
               }
               label={
-                <Box sx={{ display: "flex", width: "max-content" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "max-content",
+                    // fontSize: "16px",
+                  }}
+                >
                   {category.name}
                   <Typography fontSize="1.3rem">{category.emoji}</Typography>
                 </Box>
@@ -260,7 +267,19 @@ const GenerateQuizForm = ({ setQuizData }) => {
                   sx={{ fontSize: "0.5rem" }}
                 />
               }
-              label={difficulty.name + difficulty.emoji}
+              label={
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    width: "max-content",
+                    // fontSize: "16px",
+                  }}
+                >
+                  {difficulty.name}
+                  <Typography fontSize="1.3rem">{difficulty.emoji}</Typography>
+                </Box>
+              }
             />
           ))}
         </FormGroup>
