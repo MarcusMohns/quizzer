@@ -68,14 +68,19 @@ export const WelcomeSection = ({
             }}
           >
             <Typography sx={{ textAlign: "center" }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita
-              iusto eius autem incidunt accusamus odio debitis, iste sunt culpa
-              officia. Repellendus voluptas iusto debitis animi doloremque
-              dolorem modi voluptatem iste?
+              Welcome to Quizzer, your ultimate destination for fun and
+              challenging quizzes! Whether you're looking to test your
+              knowledge, learn something new, or just have a good time, we've
+              got a quiz for you. Dive in and start quizzing now!
             </Typography>
-
+            <Typography sx={{ textAlign: "center" }}>
+              You can select a quiz from our collection or generate a new one
+              tailored to your preferences. Our quizzes cover a wide range of
+              topics and difficulty levels, ensuring there's something for
+              everyone.
+            </Typography>
             <Typography fontSize="3rem" sx={{ textAlign: "center" }}>
-              🍊 📚 🔮 🔍 🌌
+              🍊 📚 🔮 🔍 🌌 🦘⚽
             </Typography>
             <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
               <Button
