@@ -38,7 +38,7 @@ const BpCheckedIcon = styled(BpIcon)({
     display: "block",
     width: 20,
     height: 20,
-    backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+    backgroundImage: "radial-gradient(#fff,#fff 43%,transparent 10%)",
     content: '""',
   },
 });
