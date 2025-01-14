@@ -4,6 +4,7 @@ import CardsSection from "./CardsSection/CardsSection";
 import WelcomeSection from "./WelcomeSection/WelcomeSection";
 import { useRef } from "react";
 import ScrollTopButton from "./ScrollTopButton";
+import Footer from "../Footer";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
@@ -47,6 +48,7 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         scrollToTop={scrollToTop}
         visible={visibleStates["quiz-cards-container"]}
       />
+      <Footer />
     </Box>
   );
 };

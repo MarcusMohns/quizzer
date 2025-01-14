@@ -6,6 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FireplaceIcon from "@mui/icons-material/Fireplace";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import Tooltip from "@mui/material/Tooltip";
 
 const Footer = () => {
   return (
@@ -39,15 +40,25 @@ const Footer = () => {
             },
           }}
         >
-          <Link href="#" underline="hover">
-            <GitHubIcon fontSize="large" />
-          </Link>
-          <Link href="#" underline="hover">
-            <LinkedInIcon fontSize="large" />
-          </Link>
-          <Link href="#" underline="hover">
-            <FireplaceIcon fontSize="large" />
-          </Link>
+          <Tooltip title="GitHub" aria-label="scrollToTop" placement="left">
+            <Link href="#" underline="hover">
+              <GitHubIcon fontSize="large" />
+            </Link>
+          </Tooltip>
+          <Tooltip title="LinkedIn" aria-label="scrollToTop" placement="top">
+            <Link href="#" underline="hover">
+              <LinkedInIcon fontSize="large" />
+            </Link>
+          </Tooltip>
+          <Tooltip
+            title="Marcus' Portfolio"
+            aria-label="scrollToTop"
+            placement="right"
+          >
+            <Link href="#" underline="hover">
+              <FireplaceIcon fontSize="large" />
+            </Link>
+          </Tooltip>
         </Box>
         <Typography
           sx={{

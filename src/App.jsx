@@ -7,7 +7,6 @@ import { useState, lazy, Suspense, useRef } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Utils/Themes.js";
 import Navbar from "./Navbar/Navbar.jsx";
-import Footer from "./Footer.jsx";
 import FrontPage from "./Frontpage/FrontPage.jsx";
 import QuizzerSkeleton from "./Quizzer/Components/QuizzerSkeleton.jsx";
 const Quizzer = lazy(() => import("./Quizzer/Quizzer.jsx"));
@@ -43,7 +42,6 @@ function App() {
           <Quizzer quizData={quizData} setQuizData={setQuizData} />
         </Suspense>
       )}
-      <Footer />
     </ThemeProvider>
   );
 }
