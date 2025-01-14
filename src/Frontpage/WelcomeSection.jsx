@@ -22,7 +22,7 @@ export const WelcomeSection = ({
         flexDirection: "column",
         alignItems: "center",
         width: { xs: "100%" },
-        height: "100vh",
+        height: { xs: "100%", lg: "100vh" },
         mt: "5%",
       }}
     >
@@ -67,44 +67,73 @@ export const WelcomeSection = ({
               p: 5,
             }}
           >
-            <Typography sx={{ textAlign: "center" }}>
-              Welcome to Quizzer, your ultimate destination for fun and
-              challenging quizzes! Whether you're looking to test your
-              knowledge, learn something new, or just have a good time, we've
-              got a quiz for you. Dive in and start quizzing now!
-            </Typography>
-            <Typography sx={{ textAlign: "center" }}>
-              You can select a quiz from our collection or generate a new one
-              tailored to your preferences. Our quizzes cover a wide range of
-              topics and difficulty levels, ensuring there's something for
-              everyone.
-            </Typography>
-            <Typography fontSize="3rem" sx={{ textAlign: "center" }}>
-              🍊 📚 🔮 🔍 🌌 🦘⚽
-            </Typography>
-            <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-              <Button
-                onClick={() => setOpenSideMenu(true)}
-                color="secondary"
-                variant="contained"
-                endIcon={<MenuIcon />}
-                sx={{ fontWeight: "bold" }}
-                size="large"
+            <Fade
+              in={visibleStates["welcome-box"]}
+              timeout={400}
+              style={{ transitionDelay: "300ms" }}
+            >
+              <Typography sx={{ textAlign: "center" }}>
+                Welcome to Quizzer, your ultimate destination for fun and
+                challenging quizzes! Whether you're looking to test your
+                knowledge, learn something new, or just have a good time, we've
+                got a quiz for you. Dive in and start quizzing now!
+              </Typography>
+            </Fade>
+            <Fade
+              in={visibleStates["welcome-box"]}
+              timeout={600}
+              style={{ transitionDelay: "400ms" }}
+            >
+              <Typography
+                sx={{
+                  textAlign: "center",
+                  display: { xs: "none", md: "flex" },
+                }}
               >
-                Generate a quiz
-              </Button>
-              <Button
-                // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
-                onClick={() => handleScroll(1)}
-                color="secondary"
-                variant="outlined"
-                endIcon={<KeyboardDoubleArrowDownIcon />}
-                sx={{ fontWeight: "bold" }}
-                size="large"
-              >
-                Pick a Quiz
-              </Button>
-            </Stack>
+                You can select a quiz from our collection or generate a new one
+                tailored to your preferences. Our quizzes cover a wide range of
+                topics and difficulty levels, ensuring there's something for
+                everyone.
+              </Typography>
+            </Fade>
+            <Fade
+              in={visibleStates["welcome-box"]}
+              timeout={800}
+              style={{ transitionDelay: "500ms" }}
+            >
+              <Typography fontSize="3rem" sx={{ textAlign: "center" }}>
+                🍊 📚 🔮 🔍 🌌 🦘⚽
+              </Typography>
+            </Fade>
+            <Fade
+              in={visibleStates["welcome-box"]}
+              timeout={600}
+              style={{ transitionDelay: "500ms" }}
+            >
+              <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
+                <Button
+                  onClick={() => setOpenSideMenu(true)}
+                  color="secondary"
+                  variant="contained"
+                  endIcon={<MenuIcon />}
+                  sx={{ fontWeight: "bold" }}
+                  size="large"
+                >
+                  Generate a quiz
+                </Button>
+                <Button
+                  // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
+                  onClick={() => handleScroll(1)}
+                  color="secondary"
+                  variant="outlined"
+                  endIcon={<KeyboardDoubleArrowDownIcon />}
+                  sx={{ fontWeight: "bold" }}
+                  size="large"
+                >
+                  Pick a Quiz
+                </Button>
+              </Stack>
+            </Fade>
           </Stack>
         </Box>
       </Fade>

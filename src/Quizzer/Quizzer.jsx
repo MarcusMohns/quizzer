@@ -50,7 +50,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
         sx={{ alignSelf: "flex-start", mx: "10%", my: 2 }}
         color="secondary"
       >
-        Back
+        Back to Frontpage
       </Button>
       <>
         {allStepsCompleted() && (

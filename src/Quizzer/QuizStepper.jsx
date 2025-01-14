@@ -18,7 +18,7 @@ export default function QuizStepper({
   return (
     <Box
       sx={{
-        p: 5,
+        p: { xs: 1, sm: 5 },
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
@@ -32,6 +32,7 @@ export default function QuizStepper({
           flexWrap: "wrap",
           borderRadius: "5px",
           px: 5,
+          justifyContent: "center",
         }}
         connector={<>―</>}
       >

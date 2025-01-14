@@ -212,7 +212,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                   checked={category.checked}
                   onChange={handleCheckedCategory}
                   name={category.id}
-                  size="small"
+                  size="tiny"
                   sx={{ p: 1, minWidth: "max-content" }}
                 />
               }
@@ -222,7 +222,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                     display: "flex",
                     alignItems: "center",
                     width: "max-content",
-                    // fontSize: "16px",
+                    fontSize: "17px",
                   }}
                 >
                   {category.name}
@@ -273,7 +273,7 @@ const GenerateQuizForm = ({ setQuizData }) => {
                     display: "flex",
                     alignItems: "center",
                     width: "max-content",
-                    // fontSize: "16px",
+                    fontSize: "17px",
                   }}
                 >
                   {difficulty.name}

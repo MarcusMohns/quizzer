@@ -71,18 +71,26 @@ const ThemeToggler = ({ darkMode, setDarkMode }) => {
       sx={{
         alignItems: "center",
         justifyContent: { xs: "center", sm: "flex-end" },
-        p: 2,
+        p: { xs: 0, sm: 2 },
       }}
       direction="row"
     >
-      <Typography>Light Mode</Typography>
+      <Typography
+        sx={{ fontSize: { xs: "12px", sm: "initial" }, textAlign: "center" }}
+      >
+        Light
+      </Typography>
       <MaterialUISwitch
         onChange={toggleDarkMode}
         inputProps={{ "aria-label": "darkmode-toggle" }}
         defaultChecked={userPref}
         name={"theme-toggle"}
       />
-      <Typography>Dark Mode</Typography>
+      <Typography
+        sx={{ fontSize: { xs: "12px", sm: "initial" }, textAlign: "center" }}
+      >
+        Dark
+      </Typography>
     </Stack>
   );
 };
