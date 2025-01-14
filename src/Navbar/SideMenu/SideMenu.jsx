@@ -4,9 +4,11 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Typography } from "@mui/material";
-import GenerateQuizSkeleton from "./GenerateQuizSkeleton.jsx";
+import GenerateQuizSkeleton from "./Components/GenerateQuizSkeleton.jsx";
 
-const GenerateQuizForm = lazy(() => import("./GenerateQuizForm.jsx"));
+const GenerateQuizForm = lazy(() =>
+  import("./Components/GenerateQuizForm.jsx")
+);
 
 export default function SideMenu({
   setQuizData,

@@ -5,18 +5,21 @@ import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState, lazy, Suspense } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme, lightTheme } from "./Utils/Themes";
-// import FrontPage from "./FrontPage";
-import Navbar from "./Navbar/Navbar.jsx";
-import FrontPage from "./Frontpage/FrontPage.jsx";
-import QuizzerSkeleton from "./Quizzer/QuizzerSkeleton.jsx";
-const Quizzer = lazy(() => import("./Quizzer/Quizzer.jsx"));
+import { darkTheme, lightTheme } from "../Utils/Themes.js";
+import Navbar from "../Navbar/Navbar.jsx";
+import Footer from "../Footer.jsx";
+import FrontPage from "../Frontpage/FrontPage.jsx";
+import QuizzerSkeleton from "../Quizzer/Components/QuizzerSkeleton.jsx";
+import ScrollTopButton from "./Components/ScrollTopButton.jsx";
+const Quizzer = lazy(() => import("../Quizzer/Quizzer.jsx"));
 
 // Fetch darkMode settings from localStorage if they exist
 const darkModeData =
   localStorage.getItem("Darkmode") !== null
     ? JSON.parse(localStorage.getItem("Darkmode"))
     : true;
+
+const navRef = useRef(0);
 
 function App() {
   const [darkMode, setDarkMode] = useState(darkModeData);
@@ -32,6 +35,7 @@ function App() {
         setQuizData={setQuizData}
         openSideMenu={openSideMenu}
         setOpenSideMenu={setOpenSideMenu}
+        navRef={navRef}
       />
       {quizData.length <= 0 ? (
         <FrontPage
@@ -43,6 +47,8 @@ function App() {
           <Quizzer quizData={quizData} setQuizData={setQuizData} />
         </Suspense>
       )}
+      <ScrollTopButton visible={window.scrollY > 900} scrollTop={scrollTop} />
+      <Footer />
     </ThemeProvider>
   );
 }

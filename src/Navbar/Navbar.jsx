@@ -2,7 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
-import ThemeToggler from "./ThemeToggler";
+import ThemeToggler from "./Components/ThemeToggler.jsx";
 import SideMenu from "./SideMenu/SideMenu.jsx";
 
 export default function Navbar({
@@ -11,9 +11,10 @@ export default function Navbar({
   setQuizData,
   openSideMenu,
   setOpenSideMenu,
+  navRef,
 }) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} ref={navRef}>
       <AppBar position="static">
         <Toolbar>
           <SideMenu

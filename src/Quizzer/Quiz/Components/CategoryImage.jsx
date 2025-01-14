@@ -23,7 +23,7 @@ const CategoryImage = ({ image, title }) => {
           width: "100%",
           height: "200px",
           objectFit: "cover",
-          borderRadius: "10px",
+          borderRadius: { xs: "0px", sm: "10px" },
         }}
       />
       <Typography

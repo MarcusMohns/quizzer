@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import { preparedQuizzes } from "../../Utils/preparedQuizzes";
-import QuizCard from "./QuizCard";
+import QuizCard from "./Components/QuizCard";
 
 const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
   return (

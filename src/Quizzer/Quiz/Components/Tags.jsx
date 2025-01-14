@@ -1,5 +1,5 @@
 import React from "react";
-import tags from "../../Utils/tags";
+import tags from "../../../Utils/tags";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";

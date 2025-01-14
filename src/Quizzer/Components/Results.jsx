@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { Box, Typography } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import tags from "../Utils/tags";
+import tags from "../../Utils/tags";
 import Grow from "@mui/material/Grow";
 import Zoom from "@mui/material/Zoom";
 import Fade from "@mui/material/Fade";

@@ -2,11 +2,11 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import tags from "../../Utils/tags.jsx";
 import Fade from "@mui/material/Fade";
-import AnswerResultAlert from "./AnswerResultAlert.jsx";
-import CategoryImage from "./CategoryImage.jsx";
-import Tags from "./Tags.jsx";
-import Answers from "./Answers.jsx";
-import Question from "./Question.jsx";
+import AnswerResultAlert from "./Components/AnswerResultAlert.jsx";
+import CategoryImage from "./Components/CategoryImage.jsx";
+import Tags from "./Components/Tags.jsx";
+import Answers from "./Components/Answers.jsx";
+import Question from "./Components/Question.jsx";
 
 const Quiz = ({
   questionData,

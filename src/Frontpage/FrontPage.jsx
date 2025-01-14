@@ -1,10 +1,8 @@
 import Box from "@mui/material/Box";
 import useElementOnScreen from "../Utils/useElementOnScreen";
 import CardsSection from "./CardsSection/CardsSection";
-import WelcomeSection from "./WelcomeSection";
-import Footer from "../Footer";
+import WelcomeSection from "./WelcomeSection/WelcomeSection";
 import { useRef } from "react";
-import ScrollTopButton from "./ScrollTopButton";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
@@ -43,11 +41,6 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         scrollRef={scrollRef}
         handleScroll={handleScroll}
       />
-      <ScrollTopButton
-        handleScroll={handleScroll}
-        visible={visibleStates["quiz-cards-container"]}
-      />
-      <Footer />
     </Box>
   );
 };

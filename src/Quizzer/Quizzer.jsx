@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import QuizStepper from "./QuizStepper";
-import QuizControls from "./QuizControls";
+import QuizStepper from "./Components/QuizStepper.jsx";
+import QuizControls from "./Components/QuizControls.jsx";
 import Quiz from "./Quiz/Quiz.jsx";
-import Results from "./Results.jsx";
-import ResultsModal from "./ResultsModal.jsx";
+import Results from "./Components/Results.jsx";
+import ResultsModal from "./Components/ResultsModal.jsx";
 import Button from "@mui/material/Button";
 import { memo } from "react";
 
