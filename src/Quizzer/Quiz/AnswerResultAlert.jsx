@@ -9,7 +9,7 @@ const AnswerResultAlert = ({ correctlyAnswered, questionData, alertShown }) => {
   return (
     <Box
       sx={{
-        minHeight: "100px",
+        minHeight: { xs: "150px", sm: "100px" },
         display: "flex",
         alignItems: "center",
       }}
