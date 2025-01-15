@@ -3,7 +3,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useState, lazy, Suspense, useRef } from "react";
+import { useState, lazy, Suspense } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Utils/Themes.js";
 import Navbar from "./Navbar/Navbar.jsx";

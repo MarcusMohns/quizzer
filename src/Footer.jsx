@@ -15,11 +15,12 @@ const Footer = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", lg: "row" },
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           width: "100%",
+          height: "200px",
           px: 8,
         }}
       >
