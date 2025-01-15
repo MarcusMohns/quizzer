@@ -13,6 +13,10 @@ export default function Navbar({
   setOpenSideMenu,
   navRef,
 }) {
+  const resetQuizData = () => {
+    setQuizData([]);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }} ref={navRef}>
       <AppBar position="static">
@@ -22,8 +26,13 @@ export default function Navbar({
             openSideMenu={openSideMenu}
             setOpenSideMenu={setOpenSideMenu}
           />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Quizzer
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, cursor: "pointer" }}
+            onClick={resetQuizData}
+          >
+            🐦Quizzer
           </Typography>
 
           <ThemeToggler darkMode={darkMode} setDarkMode={setDarkMode} />
