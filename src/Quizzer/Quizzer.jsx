@@ -22,7 +22,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
     setResults({});
   };
 
-  const handleBackClick = () => {
+  const resetQuizData = () => {
     setQuizData([]);
   };
 
@@ -45,7 +45,8 @@ const Quizzer = ({ quizData, setQuizData }) => {
     >
       <Button
         variant="outlined"
-        onClick={handleBackClick}
+        // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
+        onClick={resetQuizData}
         size="small"
         sx={{ alignSelf: "flex-start", mx: "10%", my: 2 }}
         color="secondary"
