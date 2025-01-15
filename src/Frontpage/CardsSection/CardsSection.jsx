@@ -16,17 +16,16 @@ const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
       }}
     >
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
-        <Box ref={(el) => (refs.current[2] = el)} id="quiz-cards-container">
+        <Box ref={(el) => (refs.current[4] = el)} id="quiz-cards-container">
           <Typography
             id="existing-quiz-header"
             sx={{
               textAlign: "center",
-              fontFamily: "monospace",
               width: "100%",
             }}
             variant="h5"
           >
-            ... or find an existing quiz in our list of quizzes!
+            ...or find an existing quiz in our list of quizzes!
           </Typography>
 
           <Fade
@@ -36,7 +35,7 @@ const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
           >
             <Box
               id="quiz-cards"
-              ref={(el) => (refs.current[3] = el)}
+              ref={(el) => (refs.current[5] = el)}
               sx={{
                 display: "flex",
                 flexDirection: "row",

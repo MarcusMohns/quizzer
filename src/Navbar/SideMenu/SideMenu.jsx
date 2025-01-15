@@ -39,6 +39,9 @@ export default function SideMenu({
         open={openSideMenu}
         onClose={toggleDrawer(false)}
         aria-hidden="false"
+        PaperProps={{
+          sx: { backgroundColor: "secondary.sidemenu" },
+        }}
       >
         <Box
           sx={{
@@ -50,7 +53,7 @@ export default function SideMenu({
         >
           <StyledMenuIconButton bool={false} />
           <Typography variant="h6" component="div">
-            Quizzer
+            🐦Quizzer
           </Typography>
         </Box>
         <Suspense fallback={<GenerateQuizSkeleton />}>

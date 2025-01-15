@@ -21,6 +21,7 @@ export const darkTheme = createTheme({
       light: "#8995bb",
       dark: "#2746a1",
       highlight: "#152452",
+      sidemenu: "#181e33",
     },
     success: {
       main: "#09cf13",
@@ -59,10 +60,11 @@ export const lightTheme = createTheme({
     },
     secondary: {
       main: "#1741bd",
-      // main: "#4169e1",
+      default: "#4169e1",
       light: "#97b0fc",
       dark: "#2f4eda",
       highlight: "#d6dcfa",
+      sidemenu: "#ffffff",
     },
 
     success: {

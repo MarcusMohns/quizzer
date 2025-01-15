@@ -22,7 +22,8 @@ export const WelcomeSection = ({
         flexDirection: "column",
         alignItems: "center",
         width: { xs: "100%" },
-        height: { xs: "100%", lg: "100vh" },
+        // height: { xs: "100%", lg: "90vh" },
+        height: "90vh",
         mt: "5%",
       }}
     >
@@ -52,7 +53,6 @@ export const WelcomeSection = ({
             justifyContent: "center",
             alignItems: "center",
             borderRadius: "10px",
-            width: { xs: "100%", md: "75%" },
             mt: 5,
           }}
         >
@@ -79,7 +79,7 @@ export const WelcomeSection = ({
                 got a quiz for you. Dive in and start quizzing now!
               </Typography>
             </Fade>
-            <Fade
+            {/* <Fade
               in={visibleStates["welcome-box"]}
               timeout={600}
               style={{ transitionDelay: "400ms" }}
@@ -95,7 +95,7 @@ export const WelcomeSection = ({
                 topics and difficulty levels, ensuring there's something for
                 everyone.
               </Typography>
-            </Fade>
+            </Fade> */}
             <Fade
               in={visibleStates["welcome-box"]}
               timeout={800}
@@ -130,7 +130,7 @@ export const WelcomeSection = ({
                   sx={{ fontWeight: "bold" }}
                   size="large"
                 >
-                  Pick a Quiz
+                  Pick an existing Quiz
                 </Button>
               </Stack>
             </Fade>
