@@ -5,6 +5,7 @@ import WelcomeSection from "./WelcomeSection/WelcomeSection";
 import { useRef } from "react";
 import ScrollTopButton from "./ScrollTopButton";
 import Footer from "../Footer";
+import GenerateSection from "./GenerateSection/GenerateSection";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
@@ -26,8 +27,11 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        alignSelf: "center",
+        justifySelf: "center",
         p: 0,
         mt: 1,
+        width: { xs: "100%", md: "75%" },
       }}
     >
       <WelcomeSection
@@ -36,6 +40,11 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         refs={refs}
         scrollRef={scrollRef}
         handleScroll={handleScroll}
+      />
+      <GenerateSection
+        refs={refs}
+        visibleStates={visibleStates}
+        setOpenSideMenu={setOpenSideMenu}
       />
       <CardsSection
         refs={refs}
