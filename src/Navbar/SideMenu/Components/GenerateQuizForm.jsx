@@ -11,7 +11,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Typography } from "@mui/material";
 
-const GenerateQuizForm = ({ setQuizData }) => {
+const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
   const [formData, setFormData] = useState({
     difficulties: [
       { name: "Easy", id: "easy", checked: false, emoji: "🍏" },
@@ -99,8 +99,9 @@ const GenerateQuizForm = ({ setQuizData }) => {
       formData.qty < 50
     ) {
       fetchQuiz();
+      setOpenSideMenu(false);
     } else {
-      console.log("add catagory or difficulty");
+      console.log("add category or difficulty");
     }
   };
 

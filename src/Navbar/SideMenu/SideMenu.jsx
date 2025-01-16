@@ -57,7 +57,10 @@ export default function SideMenu({
           </Typography>
         </Box>
         <Suspense fallback={<GenerateQuizSkeleton />}>
-          <GenerateQuizForm setQuizData={setQuizData} />
+          <GenerateQuizForm
+            setQuizData={setQuizData}
+            setOpenSideMenu={setOpenSideMenu}
+          />
         </Suspense>
       </Drawer>
     </Box>
