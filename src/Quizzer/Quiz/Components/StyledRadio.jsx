@@ -1,5 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Radio from "@mui/material/Radio";
+import Zoom from "@mui/material/Zoom";
 
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: "50%",
@@ -48,7 +49,11 @@ const StyledRadio = (props) => {
     <Radio
       disableRipple
       color="default"
-      checkedIcon={<BpCheckedIcon />}
+      checkedIcon={
+        <Zoom in={true} timeout={100}>
+          <BpCheckedIcon />
+        </Zoom>
+      }
       icon={<BpIcon />}
       {...props}
     />
