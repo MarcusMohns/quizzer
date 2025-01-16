@@ -17,7 +17,9 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: { lg: "70vh" },
+        minHeight: "50vh",
+        height: { xs: "100%", sm: "70vh" },
+        py: { xs: 10, sm: 0 },
       }}
     >
       <Box

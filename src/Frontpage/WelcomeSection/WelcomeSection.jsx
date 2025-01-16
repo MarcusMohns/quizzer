@@ -22,8 +22,8 @@ export const WelcomeSection = ({
         flexDirection: "column",
         alignItems: "center",
         width: { xs: "100%" },
-        // height: { xs: "100%", lg: "90vh" },
-        height: "90vh",
+        minHeight: "100%",
+        height: { xs: "100%", sm: "90vh" },
         mt: "5%",
       }}
     >
