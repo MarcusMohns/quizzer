@@ -6,7 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import Fade from "@mui/material/Fade";
 
-export const WelcomeSection = ({
+const WelcomeSection = ({
   refs,
   visibleStates,
   setOpenSideMenu,
@@ -79,23 +79,6 @@ export const WelcomeSection = ({
                 got a quiz for you. Dive in and start quizzing now!
               </Typography>
             </Fade>
-            {/* <Fade
-              in={visibleStates["welcome-box"]}
-              timeout={600}
-              style={{ transitionDelay: "400ms" }}
-            >
-              <Typography
-                sx={{
-                  textAlign: "center",
-                  display: { xs: "none", md: "flex" },
-                }}
-              >
-                You can select a quiz from our collection or generate a new one
-                tailored to your preferences. Our quizzes cover a wide range of
-                topics and difficulty levels, ensuring there's something for
-                everyone.
-              </Typography>
-            </Fade> */}
             <Fade
               in={visibleStates["welcome-box"]}
               timeout={800}
@@ -113,7 +96,7 @@ export const WelcomeSection = ({
               <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
                 <Button
                   onClick={() => setOpenSideMenu(true)}
-                  color="secondary"
+                  color="altOrange"
                   variant="contained"
                   endIcon={<MenuIcon />}
                   sx={{ fontWeight: "bold" }}
@@ -124,7 +107,7 @@ export const WelcomeSection = ({
                 <Button
                   // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
                   onClick={() => handleScroll(1)}
-                  color="secondary"
+                  color="orange"
                   variant="outlined"
                   endIcon={<KeyboardDoubleArrowDownIcon />}
                   sx={{ fontWeight: "bold" }}

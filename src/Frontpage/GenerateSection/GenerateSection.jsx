@@ -1,10 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "@mui/material/Link";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import Fade from "@mui/material/Fade";
 
 const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
@@ -62,7 +60,7 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
               color="secondary"
               size="large"
               variant="outlined"
-              sx={{ my: 3 }}
+              sx={{ my: 3, color: "secondary.light" }}
               onClick={() => setOpenSideMenu(true)}
               endIcon={<MenuIcon />}
             >
