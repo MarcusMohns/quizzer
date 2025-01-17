@@ -55,7 +55,6 @@ const QuizControls = ({
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
-          size="large"
           variant="outlined"
           sx={{ m: 2, px: 5, py: 2 }}
         >
@@ -64,7 +63,6 @@ const QuizControls = ({
         <Button
           onClick={handleNext}
           disabled={activeStep === steps.length}
-          size="large"
           variant="contained"
           sx={{ m: 2, px: 5, py: 2 }}
         >
@@ -72,12 +70,7 @@ const QuizControls = ({
         </Button>
       </Box>
       {allStepsCompleted() && (
-        <Button
-          onClick={handleReset}
-          size="large"
-          variant="outlined"
-          sx={{ m: 2 }}
-        >
+        <Button onClick={handleReset} variant="outlined" sx={{ m: 2 }}>
           <RestartAltIcon /> Reset
         </Button>
       )}
