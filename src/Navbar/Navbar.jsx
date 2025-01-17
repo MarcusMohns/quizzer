@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import ThemeToggler from "./Components/ThemeToggler.jsx";
-import SideMenu from "./SideMenu/SideMenu.jsx";
+import SideMenu from "../SideMenu/SideMenu.jsx";
 
 export default function Navbar({
   darkMode,
