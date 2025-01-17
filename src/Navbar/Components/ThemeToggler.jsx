@@ -56,8 +56,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-// const userPreference = localStorage.getItem("Darkmode" === "")
-
 const userPref = localStorage.getItem("Darkmode") === "false" ? false : true;
 
 const ThemeToggler = ({ darkMode, setDarkMode }) => {

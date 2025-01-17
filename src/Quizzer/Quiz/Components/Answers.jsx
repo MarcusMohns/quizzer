@@ -12,7 +12,7 @@ const TimeoutDelay = [100, 200, 300, 400];
 
 const Answers = ({
   selectedAnswer,
-  handleChange,
+  handleSelectedAnswer,
   sortedAnswers,
   questionData,
   handleComplete,
@@ -23,7 +23,7 @@ const Answers = ({
   return (
     <RadioGroup
       value={selectedAnswer}
-      onChange={handleChange}
+      onChange={handleSelectedAnswer}
       aria-label="question"
       sx={{
         p: 3,

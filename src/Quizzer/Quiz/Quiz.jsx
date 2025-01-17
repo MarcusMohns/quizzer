@@ -30,7 +30,7 @@ const Quiz = ({
     ...questionData.incorrectAnswers,
   ].sort();
 
-  const handleChange = (e) => {
+  const handleSelectedAnswer = (e) => {
     setSelectedAnswer(e.target.value);
     setResults((prevResults) => ({
       ...prevResults,
@@ -41,7 +41,7 @@ const Quiz = ({
     }));
   };
 
-  // Check if the selected answer is correct
+  // Check if the currently selected answer is correct
   const correctlyAnswered =
     results[activeStep] !== undefined &&
     results[activeStep][selectedAnswer] === true;
@@ -76,7 +76,7 @@ const Quiz = ({
         <Tags questionData={questionData} />
         <Answers
           selectedAnswer={selectedAnswer}
-          handleChange={handleChange}
+          handleSelectedAnswer={handleSelectedAnswer}
           sortedAnswers={sortedAnswers}
           questionData={questionData}
           handleComplete={handleComplete}
