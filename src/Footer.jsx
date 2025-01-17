@@ -15,7 +15,7 @@ const Footer = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", lg: "row" },
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
@@ -24,7 +24,7 @@ const Footer = () => {
           px: 8,
         }}
       >
-        <Typography variant="subtitle2">
+        <Typography variant="subtitle2" component="p">
           Made by @MarcusMohns using React and Material-UI
         </Typography>
         <Box
@@ -67,6 +67,7 @@ const Footer = () => {
             display: { xs: "none", lg: "flex" },
           }}
           variant="subtitle2"
+          component="p"
         >
           Made by @MarcusMohns using React and Material-UI
         </Typography>
