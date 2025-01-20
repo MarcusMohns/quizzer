@@ -26,7 +26,8 @@ const Answers = ({
       onChange={handleSelectedAnswer}
       aria-label="question"
       sx={{
-        p: 3,
+        px: 3,
+        py: 2,
       }}
     >
       <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
@@ -51,20 +52,19 @@ const Answers = ({
                   borderRadius: "2px",
                   m: 0,
                   transition: "background .2s ease-in-out",
-                  "&:hover": {
+                  "&:hover": selectedAnswer === "" && {
                     backgroundColor: "info.dark",
                   },
-                  border: "1px solid",
-                  borderColor:
+                  backgroundColor:
                     sortedAnswers[selectedAnswer] === answer // if we selected this answer being rendered
                       ? correctlyAnswered // if the selected answer is correct
-                        ? "success.main" // Highlight it as green
-                        : "error.light" // if incorrect highlight it as red
+                        ? "success.cool" // Highlight it as green
+                        : "error.cool" // if incorrect highlight it as red
                       : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
                         selectedAnswer !== ""
-                      ? "success.light" // make it green
-                      : "secondary.main", // default to blue
-                  boxShadow: 7,
+                      ? "success.lightCool" // make it green
+                      : "secondary.cool", // default to blue
+                  boxShadow: 8,
                 }}
               >
                 <Avatar

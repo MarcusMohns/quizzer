@@ -18,7 +18,7 @@ const BpIcon = styled("span")(({ theme }) => ({
 
   "input:disabled ~ &": {
     boxShadow: "none",
-    background: "rgba(206,217,224,.5)",
+    background: "rgba(105, 133, 150, 0.5)",
     ...theme.applyStyles("dark", {
       background: "rgba(57,75,89,.5)",
     }),
@@ -48,7 +48,6 @@ const StyledRadio = (props) => {
   return (
     <Radio
       disableRipple
-      color="default"
       checkedIcon={
         <Zoom in={true} timeout={100}>
           <BpCheckedIcon />

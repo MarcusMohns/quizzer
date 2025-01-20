@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 export const darkTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
-    fontSize: 16,
+    fontSize: 14,
   },
 
   palette: {
@@ -22,6 +22,7 @@ export const darkTheme = createTheme({
       dark: "#40549C",
       highlight: "#152452",
       sidemenu: "#181e33",
+      cool: "#272d49",
     },
     success: {
       main: "#09cf13",
@@ -29,12 +30,16 @@ export const darkTheme = createTheme({
       dark: "#08860e",
       petrol: "#004A4F",
       default: "#398552",
+      cool: "#1c9642ad",
+      lightCool: "#43975ead",
+      // lightCool: "#3b8a54ad",
     },
     error: {
       main: "#e0605e",
       light: "#c90303",
       dark: "#750000",
       default: "#4e100f",
+      cool: "#7c1111",
     },
     info: {
       main: "#2b2b2b",
@@ -59,7 +64,7 @@ export const darkTheme = createTheme({
 export const lightTheme = createTheme({
   typography: {
     fontFamily: "monospace, Segoe UI,Roboto,Raleway",
-    fontSize: 16,
+    fontSize: 14,
   },
   palette: {
     mode: "light",
@@ -77,21 +82,25 @@ export const lightTheme = createTheme({
       dark: "#2f4eda",
       highlight: "#d6dcfa",
       sidemenu: "#ffffff",
+      cool: "#b6c3ff",
+      // cool: "#cbd3f7",
     },
 
     success: {
       main: "#398552",
       light: "#00862d",
-      // light: "#7ca5c5",
       dark: "#3588c7",
       petrol: "#004A4F",
       default: "#55c279",
+      cool: "#1c9642ad",
+      lightCool: "#43975ead",
     },
     error: {
       main: "#c44c4a",
       light: "#c90303",
       dark: "#750000",
       default: "#f36866",
+      cool: "#f17979",
     },
     info: {
       main: "#666",
