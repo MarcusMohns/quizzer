@@ -8,7 +8,7 @@ const QuestionSkeleton = () => (
     sx={{
       display: "flex",
       justifyContent: "center",
-      height: "75px",
+      height: { sm: "30px", md: "75px" },
     }}
   >
     <Skeleton
@@ -17,7 +17,7 @@ const QuestionSkeleton = () => (
         alignItems: "center",
         borderRadius: "10px",
         width: "100%",
-        height: "75px",
+        height: { sm: "30px", md: "75px" },
       }}
     />
   </Grid>
