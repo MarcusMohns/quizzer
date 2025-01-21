@@ -11,8 +11,6 @@ const Question = ({ questionData, activeStep }) => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           textAlign: "center",
-          minHeight: "100px",
-          mb: 3,
         }}
       >
         <Avatar

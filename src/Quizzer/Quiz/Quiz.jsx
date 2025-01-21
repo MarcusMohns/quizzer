@@ -7,6 +7,7 @@ import CategoryImage from "./Components/CategoryImage.jsx";
 import Tags from "./Components/Tags.jsx";
 import Answers from "./Components/Answers.jsx";
 import Question from "./Components/Question.jsx";
+import QuizTimer from "./Components/QuizTimer.jsx";
 
 const Quiz = ({
   questionData,
@@ -14,6 +15,7 @@ const Quiz = ({
   results,
   activeStep,
   setCompleted,
+  timeLimit,
 }) => {
   // Get the previous selected answer if it exists
   // If it doesn't, default to ""
@@ -73,6 +75,7 @@ const Quiz = ({
           title={[tags[questionData.category].title]}
         />
         <Question questionData={questionData} activeStep={activeStep} />
+        <QuizTimer timeLimit={timeLimit} />
         <Tags questionData={questionData} />
         <Answers
           selectedAnswer={selectedAnswer}
