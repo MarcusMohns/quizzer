@@ -10,19 +10,22 @@ import Button from "@mui/material/Button";
 import { memo } from "react";
 
 const Quizzer = ({ quizData, setQuizData }) => {
+  const [quizState, setQuizState] = useState({
+    started: false,
+    finished: false,
+  });
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
   const [results, setResults] = useState({});
-  const [quizStarted, setQuizStarted] = useState(false);
   const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
 
-  const allStepsCompleted = () => {
-    return Object.keys(completed).length === quizData.length;
-  };
+  const allStepsCompleted = Object.keys(completed).length === quizData.length;
+
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
     setResults({});
+    setQuizState({ started: false, finished: false });
   };
 
   const resetQuizData = () => {
@@ -55,7 +58,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
       >
         Back to Frontpage
       </Button>
-      {allStepsCompleted() && (
+      {quizState.finished && (
         <ResultsModal
           setActiveStep={setActiveStep}
           results={results}
@@ -64,7 +67,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
         />
       )}
 
-      {quizStarted ? (
+      {quizState.started ? (
         activeStep === quizData.length ? (
           <Results
             results={results}
@@ -79,18 +82,22 @@ const Quizzer = ({ quizData, setQuizData }) => {
             timeLimit={timeLimit}
             results={results}
             setCompleted={setCompleted}
+            quizState={quizState}
+            setQuizState={setQuizState}
+            allStepsCompleted={allStepsCompleted}
           />
         )
       ) : (
         <StartPage
           timeLimit={timeLimit}
           setTimeLimit={setTimeLimit}
-          quizStarted={quizStarted}
-          setQuizStarted={setQuizStarted}
+          quizState={quizState}
+          setQuizState={setQuizState}
           quizData={quizData}
+          resetQuizData={resetQuizData}
         />
       )}
-      {quizStarted && (
+      {quizState.started && (
         <>
           <QuizControls
             activeStep={activeStep}
@@ -107,6 +114,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
             activeStep={activeStep}
             setActiveStep={setActiveStep}
             completed={completed}
+            quizState={quizState.finished}
           />
         </>
       )}
