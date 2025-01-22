@@ -10,6 +10,7 @@ export default function QuizStepper({
   activeStep,
   setActiveStep,
   completed,
+  quizState,
 }) {
   const handleStep = (step) => () => {
     setActiveStep(step);
@@ -48,6 +49,7 @@ export default function QuizStepper({
             <StepButton
               onClick={handleStep(steps.length)}
               icon={<DvrIcon sx={{ ml: 1, pr: 0 }} />}
+              disabled={!quizState.finished}
             >
               Results
             </StepButton>
