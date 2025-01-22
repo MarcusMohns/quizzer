@@ -8,7 +8,11 @@ import { Typography } from "@mui/material";
 const Tags = ({ questionData }) => {
   return (
     <Box
-      sx={{ display: { xs: "none", sm: "flex" }, justifyContent: "flex-start" }}
+      sx={{
+        display: { xs: "none", sm: "flex" },
+        justifyContent: "flex-start",
+        mt: 4,
+      }}
       direction="column"
     >
       <Stack

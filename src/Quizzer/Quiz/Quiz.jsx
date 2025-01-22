@@ -16,6 +16,9 @@ const Quiz = ({
   activeStep,
   setCompleted,
   timeLimit,
+  quizState,
+  setQuizState,
+  allStepsCompleted,
 }) => {
   // Get the previous selected answer if it exists
   // If it doesn't, default to ""
@@ -50,6 +53,7 @@ const Quiz = ({
 
   const handleComplete = () => {
     setCompleted((prevCompleted) => ({ ...prevCompleted, [activeStep]: true }));
+    allStepsCompleted && setQuizState({ ...quizState, finished: true });
   };
 
   // Set the selected answer to the previous selected answer
@@ -75,7 +79,13 @@ const Quiz = ({
           title={[tags[questionData.category].title]}
         />
         <Question questionData={questionData} activeStep={activeStep} />
-        <QuizTimer timeLimit={timeLimit} />
+        {!quizState.finished && (
+          <QuizTimer
+            timeLimit={timeLimit}
+            quizState={quizState}
+            setQuizState={setQuizState}
+          />
+        )}
         <Tags questionData={questionData} />
         <Answers
           selectedAnswer={selectedAnswer}
@@ -86,6 +96,7 @@ const Quiz = ({
           activeStep={activeStep}
           results={results}
           correctlyAnswered={correctlyAnswered}
+          setQuizState={setQuizState}
         />
         <AnswerResultAlert
           alertShown={results[activeStep] !== undefined}

@@ -7,7 +7,6 @@ import tags from "../../../../Utils/tags";
 import { styled } from "@mui/material/styles";
 
 const QuizInfo = ({ quizData }) => {
-  console.log(tags);
   const tagsAndCategories = { categories: [], tags: [], difficulties: [] };
   quizData.forEach((quiz) => {
     tagsAndCategories.categories.push(quiz.category);

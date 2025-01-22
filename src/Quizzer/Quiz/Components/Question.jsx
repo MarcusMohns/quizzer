@@ -11,12 +11,16 @@ const Question = ({ questionData, activeStep }) => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100px",
         }}
       >
         <Avatar
           variant="rounded"
           sx={{
-            alignSelf: { xs: "center", md: "flex-start" },
+            // alignSelf: { xs: "center", md: "flex-start" },
+            alignSelf: "center",
             ml: { xs: "0", md: "auto" },
             mr: 1,
           }}
