@@ -12,6 +12,7 @@ import Fade from "@mui/material/Fade";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import { useEffect } from "react";
 
 const Results = ({ results, quizData, totalQuestions }) => {
   // Modify results so we can display unanswered questions that are not included in results
@@ -50,6 +51,10 @@ const Results = ({ results, quizData, totalQuestions }) => {
     ...new Set(quizData.map((question) => question.category)),
   ];
 
+  useEffect(() => {
+    scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <Box>
       <Zoom in={true} appear={true} timeout={300}>
@@ -72,7 +77,6 @@ const Results = ({ results, quizData, totalQuestions }) => {
           {correctAnswers} correct out of {totalQuestions} total questions! 🎈
         </Typography>
       </Grow>
-
       <Stack
         direction="row"
         spacing={1}
