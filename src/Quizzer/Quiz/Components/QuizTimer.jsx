@@ -7,7 +7,12 @@ import millisToMinutesAndSeconds from "../../../Utils/millisToMinutesAndSeconds"
 import minutesAndSecondsToMillis from "../../../Utils/minutesAndSecondsToMillis";
 
 const CircularProgressWithLabel = ({ value, timer }) => (
-  <Box sx={{ position: "relative", display: "inline-flex", p: 3 }}>
+  <Box
+    sx={{
+      position: "relative",
+      display: "inline-flex",
+    }}
+  >
     <CircularProgress
       variant="determinate"
       value={value}
@@ -33,7 +38,7 @@ const CircularProgressWithLabel = ({ value, timer }) => (
   </Box>
 );
 
-const QuizTimer = ({ timeLimit }) => {
+const QuizTimer = ({ timeLimit, quizState, setQuizState }) => {
   const timeLimitInMillis = minutesAndSecondsToMillis(timeLimit);
   const [timer, setTimer] = useState(timeLimitInMillis);
   const [progress, setProgress] = useState(100);
@@ -55,8 +60,10 @@ const QuizTimer = ({ timeLimit }) => {
     // Clear the interval when the component is unmounted to prevent memory leaks
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
     setProgress(() => (timer / timeLimitInMillis) * 100);
+    timer <= 0 && setQuizState({ ...quizState, finished: true });
   }, [timer]);
 
   return <CircularProgressWithLabel value={progress} timer={timer} />;
