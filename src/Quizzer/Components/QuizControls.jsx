@@ -18,7 +18,7 @@ const QuizControls = ({
   };
 
   const isLastStep = () => {
-    return activeStep === totalSteps();
+    return activeStep === totalSteps() - 1;
   };
 
   const allStepsCompleted = () => {
@@ -72,6 +72,16 @@ const QuizControls = ({
       {allStepsCompleted() && (
         <Button onClick={handleReset} variant="outlined" sx={{ m: 2 }}>
           <RestartAltIcon /> Reset
+        </Button>
+      )}
+      {/* make complete button complete all the questions  */}
+      {isLastStep() && (
+        <Button
+          onClick={() => setActiveStep(steps.length)}
+          variant="outlined"
+          sx={{ m: 2 }}
+        >
+          <RestartAltIcon /> Complete Quiz
         </Button>
       )}
     </Box>
