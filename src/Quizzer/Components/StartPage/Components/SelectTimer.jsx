@@ -1,9 +1,10 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
+import Stack from "@mui/material/Stack";
 
 const SelectTimer = ({ timeLimit, setTimeLimit }) => {
   const minutes = [0, 1, 2, 5, 7, 10, 15, 20, 25, 30];
@@ -14,41 +15,67 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", width: "30%", p: 5 }}>
-      <FormControl fullWidth>
-        <InputLabel id="minutes">Minutes</InputLabel>
-        <Select
-          labelId="minutes"
-          name="minutes"
-          id="minutes-select"
-          value={timeLimit.minutes}
-          label="Minutes"
-          onChange={handleChange}
-        >
-          {minutes.map((minute) => (
-            <MenuItem value={minute} key={minute}>
-              {minute}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel id="seconds">Seconds</InputLabel>
-        <Select
-          labelId="seconds"
-          name="seconds"
-          id="seconds-select"
-          value={timeLimit.seconds}
-          label="Seconds"
-          onChange={handleChange}
-        >
-          {seconds.map((second) => (
-            <MenuItem value={second} key={second} name="seconds">
-              {second}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: "30%",
+        p: 5,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Stack direction="row" sx={{ width: "100%" }} spacing={2}>
+        <FormControl fullWidth>
+          {/* <InputLabel id="minutes">Minutes</InputLabel> */}
+          <Select
+            labelId="minutes"
+            name="minutes"
+            id="minutes-select"
+            value={timeLimit.minutes}
+            label="Minutes"
+            variant="filled"
+            onChange={handleChange}
+            aria-hidden="false"
+          >
+            {minutes.map((minute) => (
+              <MenuItem value={minute} key={minute}>
+                {minute} Minutes
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          {/* <InputLabel id="seconds">Seconds</InputLabel> */}
+          <Select
+            labelId="seconds"
+            name="seconds"
+            id="seconds-select"
+            value={timeLimit.seconds}
+            label="Seconds"
+            variant="filled"
+            onChange={handleChange}
+            aria-hidden="false"
+          >
+            {seconds.map((second) => (
+              <MenuItem value={second} key={second} name="seconds">
+                {second} Seconds
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Stack>
+      <FormHelperText
+        error
+        sx={{
+          visibility:
+            timeLimit.minutes <= 0 && timeLimit.seconds <= 0
+              ? "visible"
+              : "hidden",
+        }}
+      >
+        Add some time to the timer
+      </FormHelperText>
     </Box>
   );
 };
