@@ -24,7 +24,6 @@ export default function ResultsModal({
   totalQuestions,
 }) {
   const [open, setOpen] = React.useState(true);
-  //   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleResetClick = () => {
     handleClose();

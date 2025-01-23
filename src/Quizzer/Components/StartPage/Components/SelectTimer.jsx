@@ -19,13 +19,16 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: "30%",
         p: 5,
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <Stack direction="row" sx={{ width: "100%" }} spacing={2}>
+      <Stack
+        direction="row"
+        sx={{ width: "100%", minWidth: "150px" }}
+        spacing={2}
+      >
         <FormControl fullWidth>
           {/* <InputLabel id="minutes">Minutes</InputLabel> */}
           <Select

@@ -12,7 +12,6 @@ export default function QuizStepper({
   results,
   quizState,
 }) {
-  console.log(results);
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
@@ -40,7 +39,10 @@ export default function QuizStepper({
       >
         {steps.map((step, index) => (
           <Tooltip title={step.question.text} key={step.question.text}>
-            <Step completed={results[index] !== undefined} sx={{ m: 1, ml: 2 }}>
+            <Step
+              completed={results[index] !== "Not Answered"}
+              sx={{ m: 1, ml: 2 }}
+            >
               <StepButton onClick={handleStep(index)} />
             </Step>
           </Tooltip>

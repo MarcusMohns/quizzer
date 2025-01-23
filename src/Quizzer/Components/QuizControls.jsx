@@ -6,7 +6,7 @@ const QuizControls = ({
   steps,
   activeStep,
   setActiveStep,
-  // completed,
+  handleCompleteQuiz,
   results,
   handleReset,
 }) => {
@@ -34,13 +34,6 @@ const QuizControls = ({
           steps.findIndex((step, i) => !(i in results))
         : activeStep + 1;
     setActiveStep(newActiveStep);
-  };
-
-  const handleCompleteQuiz = () => {
-    setActiveStep(steps.length);
-
-    // set all the steps as completed . .  . . . . .
-    console.log("completed the quiz!!!!");
   };
 
   const handleBack = () => {

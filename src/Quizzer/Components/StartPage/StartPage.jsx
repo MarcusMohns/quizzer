@@ -25,11 +25,12 @@ const StartPage = ({
           minHeight: "600px",
           height: "100%",
           width: "100%",
+          py: 5,
+          px: { sm: "5%", lg: "20%" },
           alignItems: "center",
-          p: 5,
         }}
       >
-        <Typography variant="h5" component="h3">
+        <Typography variant="h5" component="h3" sx={{ textAlign: "center" }}>
           About to start the quiz!
           {quizData.length} questions!
         </Typography>
