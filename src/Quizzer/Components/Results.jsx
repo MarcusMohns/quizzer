@@ -15,15 +15,9 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useEffect } from "react";
 
 const Results = ({ results, quizData, totalQuestions }) => {
-  // Modify results so we can display unanswered questions that are not included in results
-  const modifiedResults = {};
-  for (let i = 0; i < quizData.length; i++) {
-    modifiedResults[i] = { 0: 0 };
-  }
-
   // turn results object into an array of objects
-  const resultsArray = Object.keys(modifiedResults).map((key) =>
-    results[key] !== undefined
+  const resultsArray = Object.keys(results).map((key) =>
+    results[key] !== "Not Answered"
       ? {
           ...quizData[key],
           pickedAnswer: Object.keys(results[key])[0],

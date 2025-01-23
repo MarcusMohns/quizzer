@@ -17,17 +17,13 @@ const Quiz = ({
   timeLimit,
   quizState,
   setQuizState,
-  allStepsCompleted,
 }) => {
-  // Get the previous selected answer if it exists
-  // If it doesn't, default to ""
-  const prevSelectedAnswer = results[activeStep]
-    ? Object.keys(results[activeStep]).find(
-        (key) => results[activeStep][key] !== undefined
-      ) || ""
-    : "";
-
+  const prevSelectedAnswer =
+    results[activeStep] === "Not Answered"
+      ? "Not Answered"
+      : Object.keys(results[activeStep])[0];
   const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
+
   const sortedAnswers = [
     // Sort answers alphabetically
     questionData.correctAnswer,
@@ -46,9 +42,7 @@ const Quiz = ({
   };
 
   // Check if the currently selected answer is correct
-  const correctlyAnswered =
-    results[activeStep] !== undefined &&
-    results[activeStep][selectedAnswer] === true;
+  const correctlyAnswered = results[activeStep][0];
 
   // Set the selected answer to the previous selected answer
   useEffect(() => {
@@ -92,7 +86,7 @@ const Quiz = ({
           setQuizState={setQuizState}
         />
         <AnswerResultAlert
-          alertShown={results[activeStep] !== undefined}
+          alertShown={results[activeStep] !== "Not Answered"}
           correctlyAnswered={correctlyAnswered}
           questionData={questionData}
         />

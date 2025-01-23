@@ -60,7 +60,7 @@ const Answers = ({
                         ? "success.cool" // Highlight it as green
                         : "error.cool" // if incorrect highlight it as red
                       : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
-                        selectedAnswer !== ""
+                        selectedAnswer !== "Not Answered"
                       ? "success.lightCool" // make it green
                       : "secondary.cool", // default to blue
                   boxShadow: 8,
@@ -82,7 +82,7 @@ const Answers = ({
                           ? "success.main" // Highlight it as green
                           : "error.light" // if incorrect highlight it as red
                         : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
-                          selectedAnswer !== ""
+                          selectedAnswer !== "Not Answered"
                         ? "success.light" // make it green
                         : "secondary.main", // default to blue
                   }}
@@ -90,7 +90,7 @@ const Answers = ({
                   {LETTERS[index]}
                 </Avatar>
                 <FormControlLabel
-                  disabled={results[activeStep] !== undefined}
+                  disabled={results[activeStep] !== "Not Answered"}
                   component={FormControlLabel}
                   value={index}
                   label={answer}

@@ -15,15 +15,18 @@ const Quizzer = ({ quizData, setQuizData }) => {
     finished: false,
   });
   const [activeStep, setActiveStep] = useState(0);
-  const [results, setResults] = useState({});
   const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
 
-  const allStepsCompleted = Object.keys(results).length === quizData.length;
+  // Create an object with keys as question numbers and values as "Not Answered"
+  const initialResults = Object.fromEntries(
+    quizData.map((_, index) => [index, "Not Answered"])
+  );
+  const [results, setResults] = useState(initialResults);
 
   const handleReset = () => {
     setActiveStep(0);
-    setResults({});
     setQuizState({ started: false, finished: false });
+    setResults(initialResults);
   };
 
   const resetQuizData = () => {
@@ -35,8 +38,8 @@ const Quizzer = ({ quizData, setQuizData }) => {
   }, [quizData]);
 
   const handleCompleteQuiz = () => {
+    //TODO Set all questions to answered (disabled)
     setActiveStep(quizData.length);
-
     setQuizState({ ...quizState, finished: true });
   };
 
@@ -52,6 +55,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
         p: 0,
       }}
     >
+      <Button onClick={handleCompleteQuiz}>ASd</Button>
       <Button
         variant="outlined"
         // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
@@ -87,7 +91,6 @@ const Quizzer = ({ quizData, setQuizData }) => {
             timeLimit={timeLimit}
             quizState={quizState}
             setQuizState={setQuizState}
-            allStepsCompleted={allStepsCompleted}
           />
         )
       ) : (
@@ -105,7 +108,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
           <QuizControls
             activeStep={activeStep}
             setActiveStep={setActiveStep}
-            // completed={completed}
+            handleCompleteQuiz={handleCompleteQuiz}
             steps={quizData}
             setResults={setResults}
             results={results}
