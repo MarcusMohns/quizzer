@@ -14,7 +14,6 @@ const Quiz = ({
   setResults,
   results,
   activeStep,
-  setCompleted,
   timeLimit,
   quizState,
   setQuizState,
@@ -50,11 +49,6 @@ const Quiz = ({
   const correctlyAnswered =
     results[activeStep] !== undefined &&
     results[activeStep][selectedAnswer] === true;
-
-  const handleComplete = () => {
-    setCompleted((prevCompleted) => ({ ...prevCompleted, [activeStep]: true }));
-    allStepsCompleted && setQuizState({ ...quizState, finished: true });
-  };
 
   // Set the selected answer to the previous selected answer
   useEffect(() => {
@@ -92,7 +86,6 @@ const Quiz = ({
           handleSelectedAnswer={handleSelectedAnswer}
           sortedAnswers={sortedAnswers}
           questionData={questionData}
-          handleComplete={handleComplete}
           activeStep={activeStep}
           results={results}
           correctlyAnswered={correctlyAnswered}

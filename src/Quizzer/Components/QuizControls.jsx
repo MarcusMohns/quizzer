@@ -6,7 +6,8 @@ const QuizControls = ({
   steps,
   activeStep,
   setActiveStep,
-  completed,
+  // completed,
+  results,
   handleReset,
 }) => {
   const totalSteps = () => {
@@ -14,7 +15,7 @@ const QuizControls = ({
   };
 
   const completedSteps = () => {
-    return Object.keys(completed).length;
+    return Object.keys(results).length;
   };
 
   const isLastStep = () => {
@@ -30,9 +31,16 @@ const QuizControls = ({
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
+          steps.findIndex((step, i) => !(i in results))
         : activeStep + 1;
     setActiveStep(newActiveStep);
+  };
+
+  const handleCompleteQuiz = () => {
+    setActiveStep(steps.length);
+
+    // set all the steps as completed . .  . . . . .
+    console.log("completed the quiz!!!!");
   };
 
   const handleBack = () => {
@@ -76,11 +84,7 @@ const QuizControls = ({
       )}
       {/* make complete button complete all the questions  */}
       {isLastStep() && (
-        <Button
-          onClick={() => setActiveStep(steps.length)}
-          variant="outlined"
-          sx={{ m: 2 }}
-        >
+        <Button onClick={handleCompleteQuiz} variant="outlined" sx={{ m: 2 }}>
           <RestartAltIcon /> Complete Quiz
         </Button>
       )}

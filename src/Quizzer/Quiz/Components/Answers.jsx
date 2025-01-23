@@ -15,7 +15,6 @@ const Answers = ({
   handleSelectedAnswer,
   sortedAnswers,
   questionData,
-  handleComplete,
   activeStep,
   results,
   correctlyAnswered,
@@ -95,7 +94,6 @@ const Answers = ({
                   component={FormControlLabel}
                   value={index}
                   label={answer}
-                  onClick={handleComplete}
                   name={answer}
                   control={<StyledRadio />}
                   sx={{

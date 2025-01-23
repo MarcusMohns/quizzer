@@ -15,15 +15,13 @@ const Quizzer = ({ quizData, setQuizData }) => {
     finished: false,
   });
   const [activeStep, setActiveStep] = useState(0);
-  const [completed, setCompleted] = useState({});
   const [results, setResults] = useState({});
   const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
 
-  const allStepsCompleted = Object.keys(completed).length === quizData.length;
+  const allStepsCompleted = Object.keys(results).length === quizData.length;
 
   const handleReset = () => {
     setActiveStep(0);
-    setCompleted({});
     setResults({});
     setQuizState({ started: false, finished: false });
   };
@@ -35,6 +33,12 @@ const Quizzer = ({ quizData, setQuizData }) => {
   useEffect(() => {
     handleReset();
   }, [quizData]);
+
+  const handleCompleteQuiz = () => {
+    setActiveStep(quizData.length);
+
+    setQuizState({ ...quizState, finished: true });
+  };
 
   return (
     <Box
@@ -78,10 +82,9 @@ const Quizzer = ({ quizData, setQuizData }) => {
           <Quiz
             questionData={quizData[activeStep]}
             setResults={setResults}
+            results={results}
             activeStep={activeStep}
             timeLimit={timeLimit}
-            results={results}
-            setCompleted={setCompleted}
             quizState={quizState}
             setQuizState={setQuizState}
             allStepsCompleted={allStepsCompleted}
@@ -102,8 +105,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
           <QuizControls
             activeStep={activeStep}
             setActiveStep={setActiveStep}
-            completed={completed}
-            setCompleted={setCompleted}
+            // completed={completed}
             steps={quizData}
             setResults={setResults}
             results={results}
@@ -113,7 +115,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
             steps={quizData}
             activeStep={activeStep}
             setActiveStep={setActiveStep}
-            completed={completed}
+            results={results}
             quizState={quizState.finished}
           />
         </>
