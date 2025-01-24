@@ -20,6 +20,8 @@ export default function QuizStepper({
     <Box
       sx={{
         p: { xs: 1, sm: 5 },
+        pb: 4,
+        pt: 2,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
@@ -52,7 +54,7 @@ export default function QuizStepper({
             <StepButton
               onClick={handleStep(steps.length)}
               icon={<DvrIcon sx={{ ml: 1, pr: 0 }} />}
-              disabled={!quizState.finished}
+              disabled={!quizState.completed}
             >
               Results
             </StepButton>

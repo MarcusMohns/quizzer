@@ -12,7 +12,7 @@ import { memo } from "react";
 const Quizzer = ({ quizData, setQuizData }) => {
   const [quizState, setQuizState] = useState({
     started: false,
-    finished: false,
+    completed: false,
   });
   const [activeStep, setActiveStep] = useState(0);
   const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
@@ -25,7 +25,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
 
   const handleReset = () => {
     setActiveStep(0);
-    setQuizState({ started: false, finished: false });
+    setQuizState({ started: false, completed: false });
     setResults(initialResults);
   };
 
@@ -34,14 +34,21 @@ const Quizzer = ({ quizData, setQuizData }) => {
   };
 
   useEffect(() => {
+    // Reset Quiz when quizData changes
     handleReset();
   }, [quizData]);
 
-  const handleCompleteQuiz = () => {
+  const completeQuiz = () => {
     //TODO Set all questions to answered (disabled)
-    setActiveStep(quizData.length);
-    setQuizState({ ...quizState, finished: true });
+    // setActiveStep(quizData.length);
+    setQuizState({ ...quizState, completed: true });
+    console.log("completed the quiz :!");
   };
+
+  // Check if all questions are answered
+  const allQuestionsAnswered =
+    Object.values(results).filter((result) => result === "Not Answered")
+      .length === 0;
 
   return (
     <Box
@@ -55,7 +62,6 @@ const Quizzer = ({ quizData, setQuizData }) => {
         p: 0,
       }}
     >
-      <Button onClick={handleCompleteQuiz}>ASd</Button>
       <Button
         variant="outlined"
         // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
@@ -66,7 +72,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
       >
         Back to Frontpage
       </Button>
-      {quizState.finished && (
+      {quizState.completed && (
         <ResultsModal
           setActiveStep={setActiveStep}
           results={results}
@@ -91,6 +97,8 @@ const Quizzer = ({ quizData, setQuizData }) => {
             timeLimit={timeLimit}
             quizState={quizState}
             setQuizState={setQuizState}
+            completeQuiz={completeQuiz}
+            allQuestionsAnswered={allQuestionsAnswered}
           />
         )
       ) : (
@@ -108,18 +116,20 @@ const Quizzer = ({ quizData, setQuizData }) => {
           <QuizControls
             activeStep={activeStep}
             setActiveStep={setActiveStep}
-            handleCompleteQuiz={handleCompleteQuiz}
+            completeQuiz={completeQuiz}
             steps={quizData}
+            quizState={quizState}
             setResults={setResults}
             results={results}
             handleReset={handleReset}
+            allQuestionsAnswered={allQuestionsAnswered}
           />
           <QuizStepper
             steps={quizData}
             activeStep={activeStep}
             setActiveStep={setActiveStep}
             results={results}
-            quizState={quizState.finished}
+            quizState={quizState}
           />
         </>
       )}

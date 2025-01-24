@@ -17,6 +17,8 @@ const Quiz = ({
   timeLimit,
   quizState,
   setQuizState,
+  completeQuiz,
+  allQuestionsAnswered,
 }) => {
   const prevSelectedAnswer =
     results[activeStep] === "Not Answered"
@@ -25,7 +27,7 @@ const Quiz = ({
   const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
 
   const sortedAnswers = [
-    // Sort answers alphabetically
+    // Sort answers alphabetically (shuffling them)
     questionData.correctAnswer,
     ...questionData.incorrectAnswers,
   ].sort();
@@ -42,12 +44,17 @@ const Quiz = ({
   };
 
   // Check if the currently selected answer is correct
-  const correctlyAnswered = results[activeStep][0];
+  const correctlyAnswered = results[activeStep][selectedAnswer];
 
   // Set the selected answer to the previous selected answer
   useEffect(() => {
     setSelectedAnswer(prevSelectedAnswer);
   }, [activeStep, prevSelectedAnswer]);
+
+  useEffect(() => {
+    // if all questions are answered complete the quiz
+    allQuestionsAnswered && completeQuiz();
+  }, [results]);
 
   return (
     <Fade in={true} appear={true} timeout={1500}>
@@ -67,13 +74,11 @@ const Quiz = ({
           title={[tags[questionData.category].title]}
         />
         <Question questionData={questionData} activeStep={activeStep} />
-        {!quizState.finished && (
-          <QuizTimer
-            timeLimit={timeLimit}
-            quizState={quizState}
-            setQuizState={setQuizState}
-          />
-        )}
+        <QuizTimer
+          timeLimit={timeLimit}
+          quizState={quizState}
+          setQuizState={setQuizState}
+        />
         <Tags questionData={questionData} />
         <Answers
           selectedAnswer={selectedAnswer}
@@ -83,7 +88,7 @@ const Quiz = ({
           activeStep={activeStep}
           results={results}
           correctlyAnswered={correctlyAnswered}
-          setQuizState={setQuizState}
+          quizState={quizState}
         />
         <AnswerResultAlert
           alertShown={results[activeStep] !== "Not Answered"}

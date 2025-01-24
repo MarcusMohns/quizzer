@@ -18,6 +18,7 @@ const Answers = ({
   activeStep,
   results,
   correctlyAnswered,
+  quizState,
 }) => {
   return (
     <RadioGroup
@@ -90,7 +91,11 @@ const Answers = ({
                   {LETTERS[index]}
                 </Avatar>
                 <FormControlLabel
-                  disabled={results[activeStep] !== "Not Answered"}
+                  disabled={
+                    results[activeStep] !== "Not Answered" ||
+                    (results[activeStep] === "Not Answered" &&
+                      quizState.completed === true)
+                  }
                   component={FormControlLabel}
                   value={index}
                   label={answer}
