@@ -54,12 +54,16 @@ const QuizTimer = ({ timeLimit, quizState, setQuizState }) => {
   }, []);
 
   useEffect(() => {
-    // Every time timer is updated, update the progress(0-100 value) - If timer is 0, set finished to true but wait 0.5s so the user can see the bar reach 0 first
+    // Every time timer is updated, update the progress(0-100 value) - If timer is 0, set completed to true but wait 0.5s so the user can see the bar reach 0 first
     setProgress(() => (timer / timeLimitInMillis) * 100);
     timer <= 0 &&
-      setTimeout(() => setQuizState({ ...quizState, finished: true }), 500);
+      setTimeout(() => setQuizState({ ...quizState, completed: true }), 500);
   }, [timer]);
 
-  return <LinearProgressWithLabel value={progress} timer={timer} />;
+  return !quizState.completed ? (
+    <LinearProgressWithLabel value={progress} timer={timer} />
+  ) : (
+    <LinearProgressWithLabel value={0} timer={0} />
+  );
 };
 export default QuizTimer;
