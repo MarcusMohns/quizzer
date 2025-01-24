@@ -20,7 +20,7 @@ const AnswerResultAlert = ({ correctlyAnswered, questionData, alertShown }) => {
             <Alert
               severity="success"
               variant="outlined"
-              sx={{ textAlign: "center", m: 2 }}
+              sx={{ textAlign: "center", mb: 2 }}
             >
               <AlertTitle>
                 Correct! The answer is:{" "}
