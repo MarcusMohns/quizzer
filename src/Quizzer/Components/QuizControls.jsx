@@ -1,38 +1,38 @@
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 const QuizControls = ({
   steps,
   activeStep,
   setActiveStep,
-  handleCompleteQuiz,
+  completeQuiz,
   results,
   handleReset,
+  allQuestionsAnswered,
+  quizState,
 }) => {
   const totalSteps = () => {
     return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(results).length;
   };
 
   const isLastStep = () => {
     return activeStep === totalSteps() - 1;
   };
 
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
   const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
+    // TODO CLEAN THIS UP PLS
+    const newActiveStep = !quizState.completed
+      ? isLastStep() && !allQuestionsAnswered
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in results))
-        : activeStep + 1;
+          Object.values(results).findIndex(
+            (result) => result === "Not Answered"
+          )
+        : activeStep + 1
+      : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
@@ -46,18 +46,17 @@ const QuizControls = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        p: 2,
-        alignSelf: "flex-end",
         width: "100%",
       }}
     >
-      <Box sx={{ display: "flex" }}>
+      <Stack sx={{ display: "flex", width: "30%" }} direction="row" spacing={2}>
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
-          variant="outlined"
-          sx={{ m: 2, px: 5, py: 2 }}
+          variant="contained"
+          color="secondary"
+          size="large"
+          sx={{ width: "100%", height: "100%" }}
         >
           Back
         </Button>
@@ -65,22 +64,51 @@ const QuizControls = ({
           onClick={handleNext}
           disabled={activeStep === steps.length}
           variant="contained"
-          sx={{ m: 2, px: 5, py: 2 }}
+          color="secondary"
+          size="large"
+          sx={{ width: "100%", height: "100%" }}
         >
           Next
         </Button>
-      </Box>
-      {allStepsCompleted() && (
-        <Button onClick={handleReset} variant="outlined" sx={{ m: 2 }}>
-          <RestartAltIcon /> Reset
+      </Stack>
+      <Stack
+        sx={{
+          display: "flex",
+          width: "30%",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mt: "60px",
+        }}
+        direction="column"
+        spacing={2}
+      >
+        <Button
+          onClick={handleReset}
+          variant="outlined"
+          color="primary"
+          sx={{ width: "30%", height: "50%" }}
+          size="large"
+          startIcon={<RestartAltIcon />}
+        >
+          Reset
         </Button>
-      )}
-      {/* make complete button complete all the questions  */}
-      {isLastStep() && (
-        <Button onClick={handleCompleteQuiz} variant="outlined" sx={{ m: 2 }}>
-          <RestartAltIcon /> Complete Quiz
+
+        {/* TODO HIDE THIS WHEN COMPLETED  */}
+        <Button
+          onClick={completeQuiz}
+          color="success"
+          variant="outlined"
+          sx={{
+            width: "50%",
+            height: "50%",
+            visibility: !quizState.completed ? "visible" : "hidden",
+          }}
+          size="large"
+          endIcon={<DoneAllIcon />}
+        >
+          Complete All
         </Button>
-      )}
+      </Stack>
     </Box>
   );
 };
