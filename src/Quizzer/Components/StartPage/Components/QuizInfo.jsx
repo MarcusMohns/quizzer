@@ -22,7 +22,7 @@ const QuizInfo = ({ quizData }) => {
     alignItems: "center",
     justifyContent: "center",
     flexWrap: "wrap",
-    p: 2,
+    p: 1,
   };
 
   return (
@@ -30,12 +30,26 @@ const QuizInfo = ({ quizData }) => {
       sx={{
         flexDirection: "column",
         alignItems: "center",
-        p: 5,
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          backgroundColor: "rgba(0,0,0,0.1)",
+          p: 1,
+          borderRadius: 5,
+          m: 2,
+        }}
+      >
+        <Typography sx={{ textAlign: "center", px: 2 }} variant="h5">
+          {quizData.length} Questions 💭
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+      >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          Quiz will be on the categories:
+          Quiz will be on the categories 📚
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueCategories.map((category) => (
@@ -43,13 +57,17 @@ const QuizInfo = ({ quizData }) => {
               label={tags[category].title}
               icon={tags[category].icon}
               key={category}
+              sx={{ p: 2, fontSize: "0.9rem" }}
             />
           ))}
         </Stack>
       </Box>
-      <Box>
+
+      <Box
+        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+      >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          This quiz will contain questions about:
+          This quiz will have questions about:
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueTags.map((tag) => (
@@ -57,7 +75,9 @@ const QuizInfo = ({ quizData }) => {
           ))}
         </Stack>
       </Box>
-      <Box>
+      <Box
+        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+      >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
           This quiz will have questions with the following difficulty levels:
         </Typography>

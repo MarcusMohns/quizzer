@@ -32,8 +32,7 @@ const StartPage = ({
         }}
       >
         <Typography variant="h5" component="h3" sx={{ textAlign: "center" }}>
-          About to start the quiz!
-          {quizData.length} questions!
+          The quiz is ready! Set a timer and start answering! :){" "}
         </Typography>
         <SelectTimer timeLimit={timeLimit} setTimeLimit={setTimeLimit} />
         <QuizInfo quizData={quizData} />
