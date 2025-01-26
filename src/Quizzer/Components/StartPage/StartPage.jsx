@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import QuizInfo from "./Components/QuizInfo.jsx";
 import SelectTimer from "./Components/SelectTimer.jsx";
 import Fade from "@mui/material/Fade";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const StartPage = ({
   timeLimit,
@@ -37,7 +38,11 @@ const StartPage = ({
         <SelectTimer timeLimit={timeLimit} setTimeLimit={setTimeLimit} />
         <QuizInfo quizData={quizData} />
         <Stack spacing={2} direction="row">
-          <Button variant="outlined" onClick={resetQuizData}>
+          <Button
+            variant="outlined"
+            onClick={resetQuizData}
+            startIcon={<NavigateBeforeIcon />}
+          >
             Back
           </Button>
           <Button

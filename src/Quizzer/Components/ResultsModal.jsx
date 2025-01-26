@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import DvrIcon from "@mui/icons-material/Dvr";
 
 const style = {
   position: "absolute",
@@ -70,14 +71,16 @@ export default function ResultsModal({
             size="medium"
             variant="outlined"
             sx={{ m: 2 }}
+            startIcon={<RestartAltIcon />}
           >
-            <RestartAltIcon /> Reset
+            Reset
           </Button>
           <Button
             onClick={handleResultClick}
             size="medium"
             variant="contained"
             sx={{ m: 2 }}
+            startIcon={<DvrIcon />}
           >
             Full Results
           </Button>

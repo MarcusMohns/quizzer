@@ -8,6 +8,7 @@ import ResultsModal from "./Components/ResultsModal.jsx";
 import StartPage from "./Components/StartPage/StartPage.jsx";
 import Button from "@mui/material/Button";
 import { memo } from "react";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const Quizzer = ({ quizData, setQuizData }) => {
   const [quizState, setQuizState] = useState({
@@ -69,6 +70,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
         size="small"
         sx={{ alignSelf: "flex-start", mx: "10%", my: 2 }}
         color="secondary"
+        startIcon={<NavigateBeforeIcon />}
       >
         Back to Frontpage
       </Button>

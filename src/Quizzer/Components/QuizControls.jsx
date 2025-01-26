@@ -3,6 +3,8 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 
 const QuizControls = ({
   steps,
@@ -57,6 +59,7 @@ const QuizControls = ({
           color="secondary"
           size="large"
           sx={{ width: "100%", height: "100%" }}
+          startIcon={<NavigateBeforeIcon />}
         >
           Back
         </Button>
@@ -67,6 +70,7 @@ const QuizControls = ({
           color="secondary"
           size="large"
           sx={{ width: "100%", height: "100%" }}
+          endIcon={<NavigateNextIcon />}
         >
           Next
         </Button>
@@ -79,13 +83,13 @@ const QuizControls = ({
           justifyContent: "space-between",
           mt: "60px",
         }}
-        direction="column"
+        direction="column-reverse"
         spacing={2}
       >
         <Button
           onClick={handleReset}
           variant="outlined"
-          color="primary"
+          color="error"
           sx={{ width: "30%", height: "50%" }}
           size="large"
           startIcon={<RestartAltIcon />}
@@ -93,7 +97,6 @@ const QuizControls = ({
           Reset
         </Button>
 
-        {/* TODO HIDE THIS WHEN COMPLETED  */}
         <Button
           onClick={completeQuiz}
           color="success"
