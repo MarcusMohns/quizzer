@@ -26,17 +26,17 @@ const StartPage = ({
           minHeight: "600px",
           height: "100%",
           width: "100%",
-          py: 5,
           px: { sm: "5%", lg: "20%" },
           alignItems: "center",
         }}
       >
-        <Typography variant="h5" component="h3" sx={{ textAlign: "center" }}>
-          The quiz is ready! Set a timer and start answering! :){" "}
+        <Typography variant="h4" component="h3" sx={{ textAlign: "center" }}>
+          Your quiz is ready🎺
         </Typography>
         <SelectTimer timeLimit={timeLimit} setTimeLimit={setTimeLimit} />
+
         <QuizInfo quizData={quizData} />
-        <Stack spacing={2} direction="row">
+        <Stack spacing={2} direction="row" sx={{ mb: 5 }}>
           <Button
             variant="outlined"
             onClick={resetQuizData}
@@ -48,6 +48,10 @@ const StartPage = ({
             variant="contained"
             onClick={() => setQuizState({ ...quizState, started: true })}
             disabled={timeLimit.minutes === 0 && timeLimit.seconds === 0}
+            size="large"
+            color="altSuccess"
+            sx={{ width: "200px" }}
+            endIcon={"💥"}
           >
             Start Quiz!
           </Button>

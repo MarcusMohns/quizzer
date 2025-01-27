@@ -49,9 +49,14 @@ const QuizControls = ({
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
+        // mt: { xs: 5, sm: 0 },
       }}
     >
-      <Stack sx={{ display: "flex", width: "30%" }} direction="row" spacing={2}>
+      <Stack
+        sx={{ display: "flex", width: { xs: "80%", sm: "30%" } }}
+        direction="row"
+        spacing={2}
+      >
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
@@ -78,10 +83,11 @@ const QuizControls = ({
       <Stack
         sx={{
           display: "flex",
-          width: "30%",
+          width: { xs: "100%", sm: "30%" },
           alignItems: "center",
           justifyContent: "space-between",
           mt: "60px",
+          mb: { xs: 5, sm: 0 },
         }}
         direction="column-reverse"
         spacing={2}
@@ -90,7 +96,7 @@ const QuizControls = ({
           onClick={handleReset}
           variant="outlined"
           color="error"
-          sx={{ width: "30%", height: "50%" }}
+          sx={{ height: "50%" }}
           size="large"
           startIcon={<RestartAltIcon />}
         >
@@ -99,10 +105,9 @@ const QuizControls = ({
 
         <Button
           onClick={completeQuiz}
-          color="success"
-          variant="outlined"
+          color="altSuccess"
+          variant="contained"
           sx={{
-            width: "50%",
             height: "50%",
             visibility: !quizState.completed ? "visible" : "hidden",
           }}

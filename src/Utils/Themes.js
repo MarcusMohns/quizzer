@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { light } from "@mui/material/styles/createPalette";
 
 export const darkTheme = createTheme({
   typography: {
@@ -27,12 +28,16 @@ export const darkTheme = createTheme({
     success: {
       main: "#09cf13",
       light: "#73e664",
-      dark: "#08860e",
+      dark: "#18c44fad",
       petrol: "#004A4F",
       default: "#398552",
       cool: "#1c9642ad",
       lightCool: "#43975ead",
-      // lightCool: "#3b8a54ad",
+    },
+    altSuccess: {
+      main: "#27752b",
+      light: "#3eb444",
+      dark: "#135716",
     },
     error: {
       main: "#e0605e",
@@ -82,8 +87,7 @@ export const lightTheme = createTheme({
       dark: "#2f4eda",
       highlight: "#d6dcfa",
       sidemenu: "#ffffff",
-      cool: "#b6c3ff",
-      // cool: "#cbd3f7",
+      cool: "#dbe6fd",
     },
 
     success: {
@@ -94,6 +98,11 @@ export const lightTheme = createTheme({
       default: "#55c279",
       cool: "#1c9642ad",
       lightCool: "#43975ead",
+    },
+    altSuccess: {
+      main: "#68d36d",
+      light: "#85f08b",
+      dark: "#5fc564",
     },
     error: {
       main: "#c44c4a",
