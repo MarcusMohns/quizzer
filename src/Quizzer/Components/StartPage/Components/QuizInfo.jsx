@@ -4,7 +4,6 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import tags from "../../../../Utils/tags";
-import { styled } from "@mui/material/styles";
 
 const QuizInfo = ({ quizData }) => {
   const tagsAndCategories = { categories: [], tags: [], difficulties: [] };
@@ -16,7 +15,6 @@ const QuizInfo = ({ quizData }) => {
   const uniqueCategories = [...new Set(tagsAndCategories.categories)];
   const uniqueDifficulties = [...new Set(tagsAndCategories.difficulties)];
   const uniqueTags = [...new Set(tagsAndCategories.tags)];
-
   const stackStyles = {
     display: "flex",
     alignItems: "center",
@@ -32,24 +30,25 @@ const QuizInfo = ({ quizData }) => {
         alignItems: "center",
       }}
     >
-      <Box
+      <Typography
         sx={{
-          backgroundColor: "rgba(0,0,0,0.1)",
+          textAlign: "center",
           p: 1,
+          backgroundColor: "rgba(0,0,0,0.1)",
           borderRadius: 5,
-          m: 2,
+          mx: 2,
         }}
+        variant="h5"
       >
-        <Typography sx={{ textAlign: "center", px: 2 }} variant="h5">
-          {quizData.length} Questions 💭
-        </Typography>
-      </Box>
+        {quizData.length} Questions 📕
+      </Typography>
 
       <Box
         sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          Quiz will be on the categories 📚
+          📚 This quiz will test you on the{" "}
+          {uniqueCategories > 1 ? "categories" : "category"}:
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueCategories.map((category) => (
@@ -67,7 +66,7 @@ const QuizInfo = ({ quizData }) => {
         sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          This quiz will have questions about:
+          👀 The questions will be about:
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueTags.map((tag) => (
@@ -79,11 +78,25 @@ const QuizInfo = ({ quizData }) => {
         sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          This quiz will have questions with the following difficulty levels:
+          🦾 and the {uniqueDifficulties > 1 ? "difficulties" : "difficulty"}{" "}
+          will be
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueDifficulties.map((difficulty) => (
-            <Chip label={difficulty} key={difficulty} />
+            <Chip
+              label={difficulty}
+              key={difficulty}
+              sx={{ p: 2, fontSize: "0.9rem" }}
+              icon={
+                <span role="img" aria-label="difficulty-emoji">
+                  {difficulty === "easy"
+                    ? "🍏"
+                    : difficulty === "medium"
+                    ? "🍋"
+                    : "🌶️"}
+                </span>
+              }
+            />
           ))}
         </Stack>
       </Box>
