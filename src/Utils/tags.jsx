@@ -16,7 +16,7 @@ const tags = {
     icon: <MusicNoteOutlinedIcon />,
     image: "/images/music-card.webp",
   },
-  sports_and_leisure: {
+  sport_and_leisure: {
     title: "Sports and Leisure",
     icon: <SportsSoccerOutlinedIcon />,
     image: "/images/sports-and-leisure-card.webp",
