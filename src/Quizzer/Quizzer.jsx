@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./Components/QuizStepper.jsx";
 import QuizControls from "./Components/QuizControls.jsx";
-import Quiz from "./Quiz/Quiz.jsx";
 import Results from "./Components/Results.jsx";
 import ResultsModal from "./Components/ResultsModal.jsx";
 import StartPage from "./Components/StartPage/StartPage.jsx";
 import Button from "@mui/material/Button";
-import { memo } from "react";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import Quiz from "./Quiz/Quiz.jsx";
 
 const Quizzer = ({ quizData, setQuizData }) => {
   const [quizState, setQuizState] = useState({
@@ -34,11 +33,6 @@ const Quizzer = ({ quizData, setQuizData }) => {
     setQuizData([]);
   };
 
-  useEffect(() => {
-    // Reset Quiz when quizData changes
-    handleReset();
-  }, [quizData]);
-
   const completeQuiz = () => {
     //TODO Set all questions to answered (disabled)
     // setActiveStep(quizData.length);
@@ -50,6 +44,11 @@ const Quizzer = ({ quizData, setQuizData }) => {
   const allQuestionsAnswered =
     Object.values(results).filter((result) => result === "Not Answered")
       .length === 0;
+
+  useEffect(() => {
+    // Reset Quiz when quizData changes
+    handleReset();
+  }, [quizData]);
 
   return (
     <Box
@@ -138,5 +137,4 @@ const Quizzer = ({ quizData, setQuizData }) => {
     </Box>
   );
 };
-
 export default memo(Quizzer);

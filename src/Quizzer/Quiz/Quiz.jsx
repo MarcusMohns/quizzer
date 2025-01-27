@@ -56,6 +56,10 @@ const Quiz = ({
     allQuestionsAnswered && completeQuiz();
   }, [results]);
 
+  useEffect(() => {
+    scrollTo({ top: 120, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <Fade in={true} appear={true} timeout={1500}>
       <Box
