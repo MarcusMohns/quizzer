@@ -88,6 +88,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
             results={results}
             quizData={quizData}
             totalQuestions={quizData.length}
+            timeLimit={timeLimit}
           />
         ) : (
           <Quiz

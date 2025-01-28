@@ -14,7 +14,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useEffect } from "react";
 
-const Results = ({ results, quizData, totalQuestions }) => {
+const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
   // turn results object into an array of objects
   const resultsArray = Object.keys(results).map((key) =>
     results[key] !== "Not Answered"
@@ -71,11 +71,27 @@ const Results = ({ results, quizData, totalQuestions }) => {
           {correctAnswers} correct out of {totalQuestions} total questions! 🎈
         </Typography>
       </Grow>
+      <Grow
+        in={true}
+        appear={true}
+        timeout={900}
+        style={{ transitionDelay: "300ms" }}
+      >
+        <Box sx={{ textAlign: "center", p: 1 }}>
+          The timelimit was {timeLimit.minutes} minute and {timeLimit.seconds}{" "}
+          seconds 🕰️
+        </Box>
+      </Grow>
       <Stack
         direction="row"
         spacing={1}
         useFlexGap
-        sx={{ alignItems: "center", flexWrap: "wrap" }}
+        sx={{
+          alignItems: "center",
+          flexWrap: "wrap",
+          justifyContent: { xs: "center" },
+          mt: 5,
+        }}
       >
         {categories.map((category) => (
           <Chip
@@ -112,7 +128,7 @@ const Results = ({ results, quizData, totalQuestions }) => {
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
                   primary={result.question.text}
-                  secondary={`You have yet to pick an answer.`}
+                  secondary={`No answer was picked`}
                 />
                 <ListItemIcon>
                   <HelpOutlineOutlinedIcon />
