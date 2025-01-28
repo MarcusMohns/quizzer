@@ -9,14 +9,16 @@ const StyledAlert = (props) => {
   return (
     <Zoom in={true}>
       <Alert variant="outlined" severity={props.severity} sx={{ m: 2 }}>
-        <AlertTitle>{props.title}</AlertTitle>
-        {props.text}
+        <AlertTitle sx={{ display: { xs: "none", sm: "block" } }}>
+          {props.title}
+        </AlertTitle>
+        The correct answer was:{" "}
         <Typography
           component="span"
           sx={{
             fontWeight: "bold",
             ml: 0.2,
-            fontSize: "1.2rem",
+            fontSize: { xs: "1rem", sm: "1.2rem" },
             height: "100%",
           }}
         >
@@ -29,20 +31,18 @@ const StyledAlert = (props) => {
 
 const AnswerResultAlert = ({ correctlyAnswered, questionData, alertShown }) => {
   return (
-    <Box sx={{ minHeight: { xs: "100px", sm: "130px" } }}>
+    <Box sx={{ minHeight: { xs: "120px", sm: "150px" } }}>
       {alertShown &&
         (correctlyAnswered ? (
           <StyledAlert
             severity="success"
             title="Correct!"
-            text="The correct answer was indeed: "
             correctAnswer={questionData.correctAnswer}
           />
         ) : (
           <StyledAlert
             severity="error"
             title="Incorrect!"
-            text="The correct answer was: "
             correctAnswer={questionData.correctAnswer}
           />
         ))}

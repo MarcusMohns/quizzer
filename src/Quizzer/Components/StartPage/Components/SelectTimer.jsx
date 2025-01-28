@@ -5,8 +5,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Stack from "@mui/material/Stack";
-import InputLabel from "@mui/material/InputLabel";
-
 const SelectTimer = ({ timeLimit, setTimeLimit }) => {
   const minutes = [0, 1, 2, 5, 7, 10, 15, 20, 25, 30];
   const seconds = [0, 5, 10, 15, 20, 25, 30, 40, 50];
@@ -32,7 +30,6 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
         sx={{
           width: "100%",
           minWidth: "150px",
-          mt: 1,
         }}
         spacing={2}
       >

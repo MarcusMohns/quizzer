@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -16,6 +17,9 @@ const StartPage = ({
   quizState,
   resetQuizData,
 }) => {
+  useEffect(() => {
+    scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <Fade in={true} timeout={1000}>
       <Box
@@ -30,32 +34,42 @@ const StartPage = ({
           alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="h3" sx={{ textAlign: "center" }}>
+        <Typography
+          variant="h4"
+          component="h3"
+          sx={{
+            textAlign: "center",
+            fontSize: { xs: "1.7rem", sm: "2rem" },
+            p: 2,
+          }}
+        >
           Your quiz is ready🎺
         </Typography>
+        <QuizInfo quizData={quizData} />
         <SelectTimer timeLimit={timeLimit} setTimeLimit={setTimeLimit} />
 
-        <QuizInfo quizData={quizData} />
-        <Stack spacing={2} direction="row" sx={{ mb: 5 }}>
-          <Button
-            variant="outlined"
-            onClick={resetQuizData}
-            startIcon={<NavigateBeforeIcon />}
-          >
-            Back
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => setQuizState({ ...quizState, started: true })}
-            disabled={timeLimit.minutes === 0 && timeLimit.seconds === 0}
-            size="large"
-            color="altSuccess"
-            sx={{ width: "200px" }}
-            endIcon={"💥"}
-          >
-            Start Quiz!
-          </Button>
-        </Stack>
+        <Box>
+          <Stack spacing={2} direction="row" sx={{ mb: 5 }}>
+            <Button
+              variant="outlined"
+              onClick={resetQuizData}
+              startIcon={<NavigateBeforeIcon />}
+            >
+              Back
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => setQuizState({ ...quizState, started: true })}
+              disabled={timeLimit.minutes === 0 && timeLimit.seconds === 0}
+              size="large"
+              color="altSuccess"
+              sx={{ width: "200px" }}
+              endIcon={"💥"}
+            >
+              Start Quiz!
+            </Button>
+          </Stack>
+        </Box>
       </Box>
     </Fade>
   );

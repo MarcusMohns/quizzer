@@ -10,8 +10,7 @@ const Tags = ({ questionData }) => {
     <Box
       sx={{
         display: { xs: "none", sm: "flex" },
-        justifyContent: "flex-start",
-        mt: 4,
+        minHeight: "80px",
       }}
       direction="column"
     >
@@ -20,12 +19,12 @@ const Tags = ({ questionData }) => {
         spacing={1}
         useFlexGap
         sx={{
-          alignItems: "center",
+          alignItems: "flex-end",
           justifyContent: "center",
           flexWrap: "wrap",
         }}
       >
-        <Typography sx={{ textAlign: "center" }} variant="subtitle2">
+        <Typography sx={{ mb: 1 }} variant="subtitle2">
           tags:
         </Typography>
         <Chip
