@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DvrIcon from "@mui/icons-material/Dvr";
+import Fade from "@mui/material/Fade";
 
 const style = {
   position: "absolute",
@@ -45,47 +46,54 @@ export default function ResultsModal({
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      aria-hidden="false"
     >
-      <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          sx={{ textAlign: "center" }}
-        >
-          {correctAnswers} correct out of {totalQuestions} total questions! 🎉
-        </Typography>
+      <Fade
+        timeout={{ enter: 300, exit: 0 }}
+        in={open}
+        easing={{ enter: "ease", exit: "" }}
+      >
+        <Box sx={style}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ textAlign: "center" }}
+          >
+            {correctAnswers} correct out of {totalQuestions} total questions! 🎉
+          </Typography>
 
-        <Box
-          sx={{
-            alignSelf: "center",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
-          <Button
-            onClick={handleResetClick}
-            size="medium"
-            variant="outlined"
-            sx={{ m: 2 }}
-            startIcon={<RestartAltIcon />}
+          <Box
+            sx={{
+              alignSelf: "center",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+            }}
           >
-            Reset
-          </Button>
-          <Button
-            onClick={handleResultClick}
-            size="medium"
-            variant="contained"
-            sx={{ m: 2 }}
-            startIcon={<DvrIcon />}
-          >
-            Full Results
-          </Button>
+            <Button
+              onClick={handleResetClick}
+              size="medium"
+              variant="outlined"
+              sx={{ m: 2 }}
+              startIcon={<RestartAltIcon />}
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={handleResultClick}
+              size="medium"
+              variant="contained"
+              sx={{ m: 2 }}
+              startIcon={<DvrIcon />}
+            >
+              Full Results
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      </Fade>
     </Modal>
   );
 }
