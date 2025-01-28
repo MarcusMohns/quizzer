@@ -44,11 +44,16 @@ const QuizInfo = ({ quizData }) => {
       </Typography>
 
       <Box
-        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+        sx={{
+          backgroundColor: "rgba(0,0,0,0.1)",
+          p: 1,
+          borderRadius: 5,
+          m: 2,
+        }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          📚 This quiz will test you on the{" "}
-          {uniqueCategories > 1 ? "categories" : "category"}:
+          📚 This quiz will test you on the following{" "}
+          {uniqueCategories.length > 1 ? "categories" : "category"}:
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueCategories.map((category) => (
@@ -63,7 +68,12 @@ const QuizInfo = ({ quizData }) => {
       </Box>
 
       <Box
-        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+        sx={{
+          backgroundColor: "rgba(0,0,0,0.1)",
+          p: 1,
+          borderRadius: 5,
+          m: 2,
+        }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
           👀 The questions will be about:
@@ -75,7 +85,12 @@ const QuizInfo = ({ quizData }) => {
         </Stack>
       </Box>
       <Box
-        sx={{ backgroundColor: "rgba(0,0,0,0.1)", p: 1, borderRadius: 5, m: 2 }}
+        sx={{
+          backgroundColor: "rgba(0,0,0,0.1)",
+          p: 1,
+          borderRadius: 5,
+          m: 2,
+        }}
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
           🦾 and the {uniqueDifficulties > 1 ? "difficulties" : "difficulty"}{" "}
