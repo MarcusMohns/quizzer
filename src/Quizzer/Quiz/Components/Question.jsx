@@ -8,18 +8,14 @@ const Question = ({ questionData, activeStep }) => {
       <Typography
         variant="h5"
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          display: "ruby",
           textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
           minHeight: "100px",
         }}
       >
         <Avatar
           variant="rounded"
           sx={{
-            // alignSelf: { xs: "center", md: "flex-start" },
             alignSelf: "center",
             ml: { xs: "0", md: "auto" },
             mr: 1,

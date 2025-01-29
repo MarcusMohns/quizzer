@@ -89,20 +89,9 @@ const QuizControls = ({
           mt: "60px",
           mb: { xs: 5, sm: 0 },
         }}
-        direction="column-reverse"
+        direction="column"
         spacing={2}
       >
-        <Button
-          onClick={handleReset}
-          variant="outlined"
-          color="error"
-          sx={{ height: "50%" }}
-          size="large"
-          startIcon={<RestartAltIcon />}
-        >
-          Reset
-        </Button>
-
         <Button
           onClick={completeQuiz}
           color="altSuccess"
@@ -115,6 +104,16 @@ const QuizControls = ({
           endIcon={<DoneAllIcon />}
         >
           Complete All
+        </Button>
+        <Button
+          onClick={handleReset}
+          variant="outlined"
+          color="error"
+          sx={{ height: "50%" }}
+          size="large"
+          startIcon={<RestartAltIcon />}
+        >
+          Reset
         </Button>
       </Stack>
     </Box>

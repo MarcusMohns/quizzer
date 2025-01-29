@@ -68,7 +68,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
         onClick={resetQuizData}
         size="small"
         sx={{ alignSelf: "flex-start", mx: "10%", my: 2 }}
-        color="secondary"
+        color="lightSecondary"
         startIcon={<NavigateBeforeIcon />}
       >
         Back to Frontpage

@@ -19,10 +19,15 @@ function LinearProgressWithLabel(props) {
       }}
     >
       <Box sx={{ width: "100%" }}>
-        <LinearProgress color={color} variant="determinate" {...props} />
+        <LinearProgress
+          color={color}
+          variant="determinate"
+          {...props}
+          aria-label="progress-bar"
+        />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body1" color={color}>
+        <Typography variant="body1" color={color} aria-label="timer">
           {millisToMinutesAndSeconds(props.timer)}
         </Typography>
       </Box>

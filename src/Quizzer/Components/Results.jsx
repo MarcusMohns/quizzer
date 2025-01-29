@@ -109,7 +109,7 @@ const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
             result.correctlyAnswered === true ? (
               <ListItem
                 key={index}
-                sx={{ backgroundColor: "success.default", my: 1 }}
+                sx={{ backgroundColor: "success.default", my: 1, boxShadow: 1 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
@@ -123,7 +123,7 @@ const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
             ) : result.pickedAnswer === "None" ? (
               <ListItem
                 key={index}
-                sx={{ backgroundColor: "info.light", my: 1 }}
+                sx={{ backgroundColor: "info.default", my: 1, boxShadow: 1 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
@@ -137,7 +137,7 @@ const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
             ) : (
               <ListItem
                 key={index}
-                sx={{ backgroundColor: "error.default", my: 1 }}
+                sx={{ backgroundColor: "error.default", my: 1, boxShadow: 1 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText

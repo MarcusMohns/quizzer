@@ -45,13 +45,17 @@ export default function QuizStepper({
               completed={results[index] !== "Not Answered"}
               sx={{ m: 1, ml: 2 }}
             >
-              <StepButton onClick={handleStep(index)} />
+              <StepButton
+                onClick={handleStep(index)}
+                aria-label={`step-${index}`}
+              />
             </Step>
           </Tooltip>
         ))}
         <Tooltip title="Results">
           <Step>
             <StepButton
+              name="Result"
               onClick={handleStep(steps.length)}
               icon={<DvrIcon sx={{ ml: 1, pr: 0 }} />}
               disabled={!quizState.completed}
