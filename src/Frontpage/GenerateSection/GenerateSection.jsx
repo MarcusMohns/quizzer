@@ -73,16 +73,16 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
                 fontSize: "0.9rem",
               }}
             >
-              Quizzer uses the{" "}
+              Quizzer uses{" "}
               <Link
-                href="https://the-trivia-api.com/"
+                href="https://the-trivia-api.com/docs/v2/"
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="body2"
               >
                 the-trivia-api
               </Link>{" "}
-              Database
+              to generate quizzes
             </Typography>
           </Box>
         </Fade>
