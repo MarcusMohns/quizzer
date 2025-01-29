@@ -1,7 +1,8 @@
 export const preparedQuizzes = [
   {
     category: "History",
-    text: "History Quiz lorem ipsumasdads",
+    description:
+      "A thrilling journey through time with historical events and legendary figures",
     image: "/images/history-card.webp",
     questions: [
       {
@@ -167,7 +168,7 @@ export const preparedQuizzes = [
   },
   {
     category: "Music",
-    text: "Take a music quiz lorem ipsumasdads",
+    description: "Rock out with trivia about music and musicians",
     image: "/images/music-card.webp",
     questions: [
       {
@@ -326,7 +327,8 @@ export const preparedQuizzes = [
   },
   {
     category: "Film and TV",
-    text: "History Quiz lorem ipsumasdads",
+    description:
+      "Challenge your inner movie buff with a quiz about films and TV shows",
     image: "/images/film-and-tv-card.webp",
     questions: [
       {
@@ -494,7 +496,7 @@ export const preparedQuizzes = [
   },
   {
     category: "Arts and Literature",
-    text: "History Quiz lorem ipsumasdads",
+    description: "Immerse yourself in the world of arts and literature",
     image: "/images/arts-and-literature-card.webp",
     questions: [
       {
@@ -666,7 +668,7 @@ export const preparedQuizzes = [
   },
   {
     category: "Society and Culture",
-    text: "History Quiz lorem ipsumasdads",
+    description: "Dive into the rich tapestry of society and culture",
     image: "/images/society-and-culture-card.webp",
     questions: [
       {
@@ -839,7 +841,8 @@ export const preparedQuizzes = [
   },
   {
     category: "Science",
-    text: "History Quiz lorem ipsumasdads",
+    description:
+      "Unleash your inner scientist with mind-blowing facts and discoveries",
     image: "/images/science-card.webp",
     questions: [
       {
@@ -1003,7 +1006,7 @@ export const preparedQuizzes = [
   },
   {
     category: "Geography",
-    text: "History Quiz lorem ipsumasdads",
+    description: "Embark on an adventure with geographical trivia",
     image: "/images/geography-card.webp",
     questions: [
       {
@@ -1154,7 +1157,7 @@ export const preparedQuizzes = [
   },
   {
     category: "Food and Drink",
-    text: "History Quiz lorem ipsumasdads",
+    description: "Feast your mind on delicious food and beverage trivia",
     image: "/images/food-and-drink-card.webp",
     questions: [
       {
@@ -1305,7 +1308,8 @@ export const preparedQuizzes = [
   },
   {
     category: "Sports and Leisure",
-    text: "History Quiz lorem ipsumasdads",
+    description:
+      "Get ready to flex your muscles with sports and leisure trivia",
     image: "/images/sports-and-leisure-card.webp",
     questions: [
       {
@@ -1456,7 +1460,7 @@ export const preparedQuizzes = [
   },
   {
     category: "General Knowledge",
-    text: "History Quiz lorem ipsumasdads",
+    description: "Test your wits with a whirlwind of general knowledge trivia",
     image: "/images/general-knowledge-card.webp",
     questions: [
       {

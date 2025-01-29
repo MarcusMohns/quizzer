@@ -5,22 +5,32 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 
 export default function QuizCard({
-  text = "Quiz Text",
+  description = "Quiz Text",
   header = "Quiz Header",
   image = "https://mui.com/static/images/cards/contemplative-reptile.jpg",
   questions,
   setQuizData,
 }) {
   return (
-    <Card sx={{ maxWidth: 345, m: 5 }}>
+    <Card
+      sx={{
+        maxWidth: 275,
+        m: 5,
+        height: "100%",
+        textAlign: "center",
+      }}
+    >
       <CardActionArea onClick={() => setQuizData(questions)}>
         <CardMedia component="img" height="140" image={image} alt="category" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {header}
           </Typography>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {text}
+          <Typography
+            variant="body2"
+            sx={{ color: "text.secondary", justifySelf: "center" }}
+          >
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>

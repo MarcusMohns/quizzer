@@ -47,7 +47,7 @@ const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
               {preparedQuizzes.map((quiz) => (
                 <QuizCard
                   key={quiz.category}
-                  text={quiz.text}
+                  description={quiz.description}
                   image={quiz.image}
                   header={quiz.category}
                   questions={quiz.questions}
