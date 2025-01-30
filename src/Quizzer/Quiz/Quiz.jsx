@@ -21,6 +21,8 @@ const Quiz = ({
   allQuestionsAnswered,
 }) => {
   const prevSelectedAnswer =
+    // Quiz will be rerendered when the user moves to the next/previous question
+    // so we need set the selected answer to the value saved in results (if it exists)
     results[activeStep] === "Not Answered"
       ? "Not Answered"
       : Object.keys(results[activeStep])[0];
@@ -37,6 +39,7 @@ const Quiz = ({
     setResults((prevResults) => ({
       ...prevResults,
       [activeStep]:
+        // Store selected answer: true if correct, false if incorrect
         e.target.name === questionData.correctAnswer
           ? { [e.target.value]: true }
           : { [e.target.value]: false },

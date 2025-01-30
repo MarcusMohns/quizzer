@@ -65,7 +65,7 @@ export const darkTheme = createTheme({
       dark: "#FC9D22",
     },
     altOrange: {
-      main: "#ad6609",
+      main: "#A46109",
       default: "#8A4700",
       light: "#cc7409",
       dark: "#9e5a07",
@@ -95,7 +95,6 @@ export const lightTheme = createTheme({
       highlight: "#d6dcfa",
       sidemenu: "#ffffff",
       cool: "#f1f6ff",
-      // cool: "#bcd0f8",
     },
     lightSecondary: {
       main: "#3D5499",

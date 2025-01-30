@@ -25,16 +25,12 @@ const QuizControls = ({
   };
 
   const handleNext = () => {
-    // TODO CLEAN THIS UP PLS
-    const newActiveStep = !quizState.completed
-      ? isLastStep() && !allQuestionsAnswered
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          Object.values(results).findIndex(
+    const newActiveStep =
+      isLastStep() && !allQuestionsAnswered && !quizState.completed
+        ? Object.values(results).findIndex(
             (result) => result === "Not Answered"
           )
-        : activeStep + 1
-      : activeStep + 1;
+        : activeStep + 1;
     setActiveStep(newActiveStep);
   };
 
@@ -49,7 +45,6 @@ const QuizControls = ({
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
-        // mt: { xs: 5, sm: 0 },
       }}
     >
       <Stack

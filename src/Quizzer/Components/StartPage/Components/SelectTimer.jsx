@@ -32,6 +32,7 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
         sx={{
           width: "100%",
           minWidth: "150px",
+          mt: 2,
         }}
         spacing={2}
       >
@@ -49,7 +50,7 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
           >
             {minutes.map((minute) => (
               <MenuItem value={minute} key={minute}>
-                {minute} Minutes
+                {minute}
               </MenuItem>
             ))}
           </Select>
@@ -73,7 +74,7 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
                 name="seconds"
                 aria-label="minutes"
               >
-                {second} Seconds
+                {second}
               </MenuItem>
             ))}
           </Select>

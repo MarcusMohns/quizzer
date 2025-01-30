@@ -16,25 +16,25 @@ import { useEffect } from "react";
 
 const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
   // turn results object into an array of objects
-  const resultsArray = Object.keys(results).map((key) =>
-    results[key] !== "Not Answered"
-      ? {
-          ...quizData[key],
-          pickedAnswer: Object.keys(results[key])[0],
-          correctlyAnswered: Object.values(results[key])[0],
-          questionNum: Number(key) + 1,
-          sortedAnswers: [
-            quizData[key].correctAnswer,
-            ...quizData[key].incorrectAnswers,
-          ].sort(),
-        }
-      : {
-          ...quizData[key],
-          pickedAnswer: "None",
-          correctlyAnswered: "None",
-          questionNum: Number(key) + 1,
-        }
-  );
+  const resultsArray = Object.keys(results).map((key) => {
+    const questionData = quizData[key];
+    const pickedAnswer =
+      results[key] !== "Not Answered" ? Object.keys(results[key])[0] : "None";
+    const correctlyAnswered =
+      results[key] !== "Not Answered" ? Object.values(results[key])[0] : "None";
+    const sortedAnswers =
+      results[key] !== "Not Answered"
+        ? [questionData.correctAnswer, ...questionData.incorrectAnswers].sort()
+        : [];
+
+    return {
+      ...questionData,
+      pickedAnswer,
+      correctlyAnswered,
+      questionNum: Number(key) + 1,
+      sortedAnswers,
+    };
+  });
 
   const correctAnswers = Object.values(results).filter(
     (result) => Object.values(result)[0] === true
@@ -78,7 +78,7 @@ const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
         style={{ transitionDelay: "300ms" }}
       >
         <Box sx={{ textAlign: "center", p: 1 }}>
-          The timelimit was {timeLimit.minutes} minute and {timeLimit.seconds}{" "}
+          The time limit was {timeLimit.minutes} minute and {timeLimit.seconds}{" "}
           seconds 🕰️
         </Box>
       </Grow>

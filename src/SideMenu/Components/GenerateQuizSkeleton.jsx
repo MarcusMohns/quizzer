@@ -12,18 +12,12 @@ const SkeletonCheckBoxes = (len) =>
 export default function GenerateQuizSkeleton() {
   return (
     <Stack sx={{ px: 3, width: "280px", alignItems: "flex-start" }}>
-      <Skeleton
-        variant="rounded"
-        animation="wave"
-        width={230}
-        height={60}
-        sx={{ mt: 1 }}
-      />
+      <Skeleton variant="rounded" animation="wave" width={230} height={60} />
       {SkeletonCheckBoxes(7)}
       <Skeleton
         variant="text"
         animation="wave"
-        sx={{ fontSize: "2rem", width: "90%", mt: 2 }}
+        sx={{ fontSize: "2rem", width: "90%", mt: 1 }}
       />
       {SkeletonCheckBoxes(4)}
       <Skeleton

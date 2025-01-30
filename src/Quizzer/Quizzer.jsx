@@ -34,10 +34,7 @@ const Quizzer = ({ quizData, setQuizData }) => {
   };
 
   const completeQuiz = () => {
-    //TODO Set all questions to answered (disabled)
-    // setActiveStep(quizData.length);
     setQuizState({ ...quizState, completed: true });
-    console.log("completed the quiz :!");
   };
 
   // Check if all questions are answered
