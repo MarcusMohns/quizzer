@@ -36,7 +36,6 @@ const StartPage = ({
       >
         <Typography
           variant="h4"
-          component="h3"
           sx={{
             textAlign: "center",
             fontSize: { xs: "1.7rem", sm: "2rem" },
