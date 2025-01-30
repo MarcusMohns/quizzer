@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
 import useElementOnScreen from "../Utils/useElementOnScreen";
-import CardsSection from "./CardsSection/CardsSection";
-import WelcomeSection from "./WelcomeSection/WelcomeSection";
+import CardsSection from "./Components/CardsSection/CardsSection";
+import WelcomeSection from "./Components/WelcomeSection/WelcomeSection";
 import { useRef } from "react";
-import ScrollTopButton from "./ScrollTopButton";
+import ScrollTopButton from "./Components/ScrollTopButton";
 import Footer from "../Footer";
-import GenerateSection from "./GenerateSection/GenerateSection";
+import GenerateSection from "./Components/GenerateSection/GenerateSection";
 
 const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
   const [refs, visibleStates] = useElementOnScreen({
