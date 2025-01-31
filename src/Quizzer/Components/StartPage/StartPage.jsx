@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -74,4 +74,4 @@ const StartPage = ({
   );
 };
 
-export default StartPage;
+export default memo(StartPage);

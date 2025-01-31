@@ -1,13 +1,15 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, Suspense, lazy } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./Components/QuizStepper.jsx";
 import QuizControls from "./Components/QuizControls.jsx";
 import Results from "./Components/Results.jsx";
 import ResultsModal from "./Components/ResultsModal.jsx";
-import StartPage from "./Components/StartPage/StartPage.jsx";
 import Button from "@mui/material/Button";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import Quiz from "./Quiz/Quiz.jsx";
+import StartPageSkeleton from "./Components/StartPage/Components/StartPageSkeleton.jsx";
+import QuizSkeleton from "./Quiz/Components/QuizSkeleton.jsx";
+const StartPage = lazy(() => import("./Components/StartPage/StartPage.jsx"));
+const Quiz = lazy(() => import("./Quiz/Quiz.jsx"));
 
 const Quizzer = ({ quizData, setQuizData }) => {
   const [quizState, setQuizState] = useState({
@@ -47,6 +49,29 @@ const Quizzer = ({ quizData, setQuizData }) => {
     handleReset();
   }, [quizData]);
 
+  const ControlsAndStepper = () => (
+    <>
+      <QuizControls
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        completeQuiz={completeQuiz}
+        steps={quizData}
+        quizState={quizState}
+        setResults={setResults}
+        results={results}
+        handleReset={handleReset}
+        allQuestionsAnswered={allQuestionsAnswered}
+      />
+      <QuizStepper
+        steps={quizData}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        results={results}
+        quizState={quizState}
+      />
+    </>
+  );
+
   return (
     <Box
       component="section"
@@ -81,58 +106,45 @@ const Quizzer = ({ quizData, setQuizData }) => {
 
       {quizState.started ? (
         activeStep === quizData.length ? (
-          <Results
-            results={results}
-            quizData={quizData}
-            totalQuestions={quizData.length}
-            timeLimit={timeLimit}
-          />
+          // If last step render results
+          <>
+            <Results
+              results={results}
+              quizData={quizData}
+              totalQuestions={quizData.length}
+              timeLimit={timeLimit}
+            />
+            <ControlsAndStepper />
+          </>
         ) : (
-          <Quiz
-            questionData={quizData[activeStep]}
-            setResults={setResults}
-            results={results}
-            activeStep={activeStep}
-            timeLimit={timeLimit}
-            quizState={quizState}
-            setQuizState={setQuizState}
-            completeQuiz={completeQuiz}
-            allQuestionsAnswered={allQuestionsAnswered}
-          />
+          <Suspense fallback={<QuizSkeleton />}>
+            <Quiz
+              questionData={quizData[activeStep]}
+              setResults={setResults}
+              results={results}
+              activeStep={activeStep}
+              timeLimit={timeLimit}
+              quizState={quizState}
+              setQuizState={setQuizState}
+              completeQuiz={completeQuiz}
+              allQuestionsAnswered={allQuestionsAnswered}
+            />
+            <ControlsAndStepper />
+          </Suspense>
         )
       ) : (
-        <StartPage
-          timeLimit={timeLimit}
-          setTimeLimit={setTimeLimit}
-          quizState={quizState}
-          setQuizState={setQuizState}
-          quizData={quizData}
-          resetQuizData={resetQuizData}
-        />
-      )}
-      {quizState.started && (
-        <>
-          <QuizControls
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-            completeQuiz={completeQuiz}
-            steps={quizData}
+        <Suspense fallback={<StartPageSkeleton />}>
+          <StartPage
+            timeLimit={timeLimit}
+            setTimeLimit={setTimeLimit}
             quizState={quizState}
-            setResults={setResults}
-            results={results}
-            handleReset={handleReset}
-            allQuestionsAnswered={allQuestionsAnswered}
+            setQuizState={setQuizState}
+            quizData={quizData}
+            resetQuizData={resetQuizData}
           />
-          <QuizStepper
-            steps={quizData}
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-            results={results}
-            quizState={quizState}
-          />
-        </>
+        </Suspense>
       )}
     </Box>
   );
 };
-export default memo(Quizzer);
+export default Quizzer;

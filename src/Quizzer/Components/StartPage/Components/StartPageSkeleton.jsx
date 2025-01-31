@@ -1,56 +1,100 @@
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid2";
-
-const QuestionSkeleton = () => (
-  <Grid
-    size={{ xs: 12, md: 6 }}
-    sx={{
-      display: "flex",
-      justifyContent: "center",
-      height: { sm: "30px", md: "75px" },
-    }}
-  >
-    <Skeleton
-      variant="outlined"
-      sx={{
-        alignItems: "center",
-        borderRadius: "10px",
-        width: "100%",
-        height: { sm: "30px", md: "75px" },
-      }}
-    />
-  </Grid>
-);
 
 const QuizzerSkeleton = () => {
   return (
     <Box
       sx={{
-        mx: { sm: "5%", lg: "20%" },
-        mt: 15,
+        width: "60%",
       }}
     >
       <Skeleton
-        variant="outlined"
+        variant="text"
         sx={{
-          height: "200px",
-          alignItems: "center",
-          borderRadius: "7px",
-          mx: 10,
+          fontSize: "3rem",
+          m: 2,
+          width: "30%",
+          justifySelf: "center",
+          textAlign: "center",
         }}
       />
-      <Skeleton variant="text" sx={{ fontSize: "2rem", mx: 10 }} />
       <Skeleton
         variant="outlined"
-        sx={{ alignSelf: "flex-start", mx: "10%", my: 2, mt: 5 }}
+        sx={{
+          height: "50px",
+          borderRadius: "7px",
+          m: 2,
+        }}
       />
-      <Grid container spacing={2} sx={{ width: "100%", px: 10 }}>
-        <QuestionSkeleton />
-        <QuestionSkeleton />
-        <QuestionSkeleton />
-        <QuestionSkeleton />
-      </Grid>
+      <Skeleton
+        variant="outlined"
+        sx={{
+          height: "80px",
+          borderRadius: "7px",
+          m: 2,
+        }}
+      />
+      <Skeleton
+        variant="outlined"
+        sx={{
+          height: "150px",
+          borderRadius: "7px",
+          m: 2,
+        }}
+      />
+      <Skeleton
+        variant="outlined"
+        sx={{
+          height: "80px",
+          borderRadius: "7px",
+          m: 2,
+        }}
+      />
+      <Skeleton
+        variant="text"
+        sx={{
+          fontSize: "2rem",
+          width: "30%",
+          justifySelf: "center",
+          textAlign: "center",
+        }}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          direction: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Skeleton
+          variant="rectangular"
+          sx={{ width: "150px", height: "55px", mx: 1 }}
+        />
+        <Skeleton
+          variant="rectangular"
+          sx={{ width: "150px", height: "55px", mx: 1 }}
+        />
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          direction: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: 2,
+        }}
+      >
+        <Skeleton
+          variant="rounded"
+          sx={{ width: "75px", height: "40px", m: 1 }}
+        />
+        <Skeleton
+          variant="rounded"
+          sx={{ width: "170px", height: "40px", m: 1 }}
+        />
+      </Box>
     </Box>
   );
 };

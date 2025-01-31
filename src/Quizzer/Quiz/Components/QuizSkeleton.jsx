@@ -8,16 +8,15 @@ const QuestionSkeleton = () => (
     sx={{
       display: "flex",
       justifyContent: "center",
-      height: { sm: "30px", md: "75px" },
+      height: { sm: "30px", md: "60px" },
     }}
   >
     <Skeleton
       variant="outlined"
       sx={{
         alignItems: "center",
-        borderRadius: "10px",
         width: "100%",
-        height: { sm: "30px", md: "75px" },
+        height: { sm: "30px", md: "60px" },
       }}
     />
   </Grid>
@@ -27,9 +26,9 @@ const QuizSkeleton = () => {
   return (
     <Box
       sx={{
-        mx: { sm: "5%", lg: "20%" },
-        mt: 15,
-        width: "100%",
+        mx: { sm: "5%", lg: "50%" },
+        mt: 10,
+        width: "70%",
       }}
     >
       <Skeleton
@@ -38,7 +37,7 @@ const QuizSkeleton = () => {
           height: "200px",
           alignItems: "center",
           borderRadius: "7px",
-          mx: 10,
+          mx: 13,
         }}
       />
       <Skeleton variant="text" sx={{ fontSize: "2rem", mx: 10 }} />
@@ -52,6 +51,34 @@ const QuizSkeleton = () => {
         <QuestionSkeleton />
         <QuestionSkeleton />
       </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: 5,
+        }}
+      >
+        <Skeleton
+          variant="outlined"
+          sx={{
+            alignSelf: "center",
+            height: "50px",
+            width: "20%",
+            mx: 2,
+          }}
+        />
+        <Skeleton
+          variant="outlined"
+          sx={{
+            alignSelf: "center",
+            height: "50px",
+            width: "20%",
+            mx: 2,
+          }}
+        />
+      </Box>
     </Box>
   );
 };
