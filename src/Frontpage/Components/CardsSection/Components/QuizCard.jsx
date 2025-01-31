@@ -21,7 +21,14 @@ export default function QuizCard({
       }}
     >
       <CardActionArea onClick={() => setQuizData(questions)}>
-        <CardMedia component="img" height="140" image={image} alt="category" />
+        <CardMedia
+          component="img"
+          height="140"
+          width="275"
+          image={image}
+          alt="category"
+          loading="lazy"
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {header}

@@ -4,6 +4,7 @@ export const preparedQuizzes = [
     description:
       "A thrilling journey through time with historical events and legendary figures",
     image: "/images/history-card.webp",
+    smallerImage: "/images/history-card-sm.webp",
     questions: [
       {
         category: "history",
@@ -170,6 +171,7 @@ export const preparedQuizzes = [
     category: "Music",
     description: "Rock out with trivia about music and musicians",
     image: "/images/music-card.webp",
+    smallerImage: "/images/music-card-sm.webp",
     questions: [
       {
         category: "music",
@@ -330,6 +332,7 @@ export const preparedQuizzes = [
     description:
       "Challenge your inner movie buff with a quiz about films and TV shows",
     image: "/images/film-and-tv-card.webp",
+    smallerImage: "/images/film-and-tv-card-sm.webp",
     questions: [
       {
         category: "film_and_tv",
@@ -498,6 +501,7 @@ export const preparedQuizzes = [
     category: "Arts and Literature",
     description: "Immerse yourself in the world of arts and literature",
     image: "/images/arts-and-literature-card.webp",
+    smallerImage: "/images/arts-and-literature-card-sm.webp",
     questions: [
       {
         category: "arts_and_literature",
@@ -670,6 +674,7 @@ export const preparedQuizzes = [
     category: "Society and Culture",
     description: "Dive into the rich tapestry of society and culture",
     image: "/images/society-and-culture-card.webp",
+    smallerImage: "/images/society-and-culture-card-sm.webp",
     questions: [
       {
         category: "society_and_culture",
@@ -844,6 +849,7 @@ export const preparedQuizzes = [
     description:
       "Unleash your inner scientist with mind-blowing facts and discoveries",
     image: "/images/science-card.webp",
+    smallerImage: "/images/science-card-sm.webp",
     questions: [
       {
         category: "science",
@@ -1008,6 +1014,7 @@ export const preparedQuizzes = [
     category: "Geography",
     description: "Embark on an adventure with geographical trivia",
     image: "/images/geography-card.webp",
+    smallerImage: "/images/geography-card-sm.webp",
     questions: [
       {
         category: "geography",
@@ -1159,6 +1166,7 @@ export const preparedQuizzes = [
     category: "Food and Drink",
     description: "Feast your mind on delicious food and beverage trivia",
     image: "/images/food-and-drink-card.webp",
+    smallerImage: "/images/food-and-drink-card-sm.webp",
     questions: [
       {
         category: "food_and_drink",
@@ -1311,6 +1319,7 @@ export const preparedQuizzes = [
     description:
       "Get ready to flex your muscles with sports and leisure trivia",
     image: "/images/sports-and-leisure-card.webp",
+    smallerImage: "/images/sports-and-leisure-card-sm.webp",
     questions: [
       {
         category: "general_knowledge",
@@ -1462,6 +1471,7 @@ export const preparedQuizzes = [
     category: "General Knowledge",
     description: "Test your wits with a whirlwind of general knowledge trivia",
     image: "/images/general-knowledge-card.webp",
+    smallerImage: "/images/general-knowledge-card-sm.webp",
     questions: [
       {
         category: "general_knowledge",
