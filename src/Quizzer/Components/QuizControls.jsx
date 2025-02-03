@@ -5,6 +5,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import DvrIcon from "@mui/icons-material/Dvr";
 
 const QuizControls = ({
   steps,
@@ -87,19 +88,34 @@ const QuizControls = ({
         direction="column"
         spacing={2}
       >
-        <Button
-          onClick={completeQuiz}
-          color="altSuccess"
-          variant="contained"
-          sx={{
-            height: "50%",
-            visibility: !quizState.completed ? "visible" : "hidden",
-          }}
-          size="large"
-          endIcon={<DoneAllIcon />}
-        >
-          Complete All
-        </Button>
+        {quizState.completed ? (
+          <Button
+            onClick={() => setActiveStep(steps.length)}
+            color="info"
+            variant="outlined"
+            sx={{
+              height: "50%",
+              visibility: activeStep === steps.length ? "hidden" : "visible",
+            }}
+            size="large"
+            endIcon={<DvrIcon />}
+          >
+            Go To Results
+          </Button>
+        ) : (
+          <Button
+            onClick={completeQuiz}
+            color="success"
+            variant="outlined"
+            sx={{
+              height: "50%",
+            }}
+            size="large"
+            endIcon={<DoneAllIcon />}
+          >
+            Complete All
+          </Button>
+        )}
         <Button
           onClick={handleReset}
           variant="outlined"

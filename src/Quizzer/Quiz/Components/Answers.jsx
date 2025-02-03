@@ -53,7 +53,7 @@ const Answers = ({
                   m: 0,
                   transition: "background .2s ease-in-out",
                   "&:hover": selectedAnswer === "" && {
-                    backgroundColor: "info.dark",
+                    backgroundColor: "info.veryDark",
                   },
                   backgroundColor:
                     sortedAnswers[selectedAnswer] === answer // if we selected this answer being rendered

@@ -42,6 +42,7 @@ export const darkTheme = createTheme({
     },
     altSuccess: {
       main: "#27752b",
+      // main: "#116415",
       light: "#3eb444",
       dark: "#135716",
     },
@@ -53,10 +54,12 @@ export const darkTheme = createTheme({
       cool: "#8a2323",
     },
     info: {
-      main: "#2b2b2b",
+      main: "#b9b9b9",
+      // main: "#2b2b2b",
       light: "#666",
       default: "#525252",
-      dark: "#00000028",
+      dark: "#313030",
+      veryDark: "#00000028",
     },
     orange: {
       main: "#FC9D22",
