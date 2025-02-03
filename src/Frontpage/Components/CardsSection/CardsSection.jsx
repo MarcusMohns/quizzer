@@ -48,7 +48,7 @@ const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
                 <QuizCard
                   key={quiz.category}
                   description={quiz.description}
-                  image={quiz.image}
+                  image={quiz.smallerImage}
                   header={quiz.category}
                   questions={quiz.questions}
                   setQuizData={setQuizData}
