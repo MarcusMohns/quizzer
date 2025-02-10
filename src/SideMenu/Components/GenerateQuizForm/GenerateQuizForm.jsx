@@ -2,6 +2,7 @@ import { useState, memo } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import checkboxData from "./Components/checkboxData";
 import fetchQuiz from "./API/fetchQuiz";
@@ -11,6 +12,7 @@ import CategoryCheckboxes from "./Components/CategoryCheckboxes";
 const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
   const [formData, setFormData] = useState(checkboxData);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ bool: false, name: "", message: "" });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,8 +22,8 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
       formData.qty > 0 &&
       formData.qty < 50
     ) {
-      fetchQuiz(formData, setQuizData, setLoading);
-      setOpenSideMenu(false);
+      fetchQuiz(formData, setQuizData, setLoading, setOpenSideMenu, setError);
+      setLoading(true);
     } else {
       console.error("Missing category or difficulty");
     }
@@ -123,23 +125,38 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
         allChecked={allChecked}
         someChecked={someChecked}
       />
-
+      {error.bool && (
+        <Alert
+          variant="outlined"
+          severity="error"
+          sx={{
+            mt: "auto",
+            mb: 1,
+          }}
+        >
+          {error.name}: {error.message}!
+        </Alert>
+      )}
       <Button
         variant="contained"
         type="submit"
         disabled={loading}
-        sx={{ mt: "auto", mb: 2 }}
+        sx={{ mb: 2, mt: "auto" }}
+        loading={loading}
+        loadingIndicator={
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Loading
+            <CircularProgress size={20} sx={{ ml: "12px" }} />
+          </Box>
+        }
       >
         Generate Quiz
-        {loading && (
-          <CircularProgress
-            size={24}
-            sx={{
-              color: "secondary.highlight",
-              position: "absolute",
-            }}
-          />
-        )}
       </Button>
     </Box>
   );

@@ -1,4 +1,10 @@
-const fetchQuiz = async (formData, setQuizData, setLoading) => {
+const fetchQuiz = async (
+  formData,
+  setQuizData,
+  setLoading,
+  setOpenSideMenu,
+  setError
+) => {
   setLoading(true);
 
   const queryParams = new URLSearchParams({
@@ -21,10 +27,13 @@ const fetchQuiz = async (formData, setQuizData, setLoading) => {
     const data = await response.json();
     setQuizData(data);
     setLoading(false);
+    setOpenSideMenu(false);
+    setError(false);
     console.log("fetching data...");
   } catch (error) {
-    console.log("error fetching data...", error);
+    console.error("error fetching data...", error);
     setLoading(false);
+    setError({ bool: true, name: error.name, message: error.message });
   }
 };
 
