@@ -6,7 +6,6 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DvrIcon from "@mui/icons-material/Dvr";
-import { styled } from "@mui/material/styles";
 
 const QuizControls = ({
   steps,
@@ -46,7 +45,7 @@ const QuizControls = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: { xs: "90%", md: "30%" },
+        width: { xs: "90%", md: "60%", lg: "40%", xl: "30%" },
         my: "30px",
       }}
       direction="row"
@@ -102,20 +101,21 @@ const QuizControls = ({
         </Button>
 
         {quizState.completed ? (
-          <Button
-            onClick={() => setActiveStep(steps.length)}
-            color="info"
-            variant="outlined"
-            sx={{
-              width: "40%",
-              height: "50%",
-              visibility: activeStep === steps.length ? "hidden" : "visible",
-            }}
-            size="large"
-            endIcon={<DvrIcon />}
-          >
-            Go To Results
-          </Button>
+          activeStep !== steps.length && (
+            <Button
+              onClick={() => setActiveStep(steps.length)}
+              color="info"
+              variant="outlined"
+              sx={{
+                width: "40%",
+                height: "50%",
+              }}
+              size="large"
+              endIcon={<DvrIcon />}
+            >
+              Go To Results
+            </Button>
+          )
         ) : (
           <Button
             onClick={completeQuiz}
@@ -126,7 +126,7 @@ const QuizControls = ({
               width: "40%",
             }}
             size="large"
-            startIcon={<DoneAllIcon />}
+            endIcon={<DoneAllIcon />}
           >
             Complete All
           </Button>
