@@ -6,6 +6,7 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DvrIcon from "@mui/icons-material/Dvr";
+import { styled } from "@mui/material/styles";
 
 const QuizControls = ({
   steps,
@@ -39,6 +40,22 @@ const QuizControls = ({
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const ButtonStack = (props) => (
+    <Stack
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: { xs: "90%", md: "30%" },
+        my: "30px",
+      }}
+      direction="row"
+      spacing={2}
+    >
+      {props.children}
+    </Stack>
+  );
+
   return (
     <Box
       sx={{
@@ -48,11 +65,7 @@ const QuizControls = ({
         width: "100%",
       }}
     >
-      <Stack
-        sx={{ display: "flex", width: { xs: "80%", sm: "30%" } }}
-        direction="row"
-        spacing={2}
-      >
+      <ButtonStack>
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
@@ -75,25 +88,26 @@ const QuizControls = ({
         >
           Next
         </Button>
-      </Stack>
-      <Stack
-        sx={{
-          display: "flex",
-          width: { xs: "100%", sm: "30%" },
-          alignItems: "center",
-          justifyContent: "space-between",
-          mt: "60px",
-          mb: { xs: 5, sm: 0 },
-        }}
-        direction="column"
-        spacing={2}
-      >
+      </ButtonStack>
+      <ButtonStack>
+        <Button
+          onClick={handleReset}
+          variant="outlined"
+          color="error"
+          size="large"
+          sx={{ width: "40%", heiht: "50%" }}
+          startIcon={<RestartAltIcon />}
+        >
+          Reset Quiz
+        </Button>
+
         {quizState.completed ? (
           <Button
             onClick={() => setActiveStep(steps.length)}
             color="info"
             variant="outlined"
             sx={{
+              width: "40%",
               height: "50%",
               visibility: activeStep === steps.length ? "hidden" : "visible",
             }}
@@ -109,24 +123,15 @@ const QuizControls = ({
             variant="outlined"
             sx={{
               height: "50%",
+              width: "40%",
             }}
             size="large"
-            endIcon={<DoneAllIcon />}
+            startIcon={<DoneAllIcon />}
           >
             Complete All
           </Button>
         )}
-        <Button
-          onClick={handleReset}
-          variant="outlined"
-          color="error"
-          sx={{ height: "50%" }}
-          size="large"
-          startIcon={<RestartAltIcon />}
-        >
-          Reset
-        </Button>
-      </Stack>
+      </ButtonStack>
     </Box>
   );
 };
