@@ -94,7 +94,7 @@ const QuizInfo = ({ quizData }) => {
       >
         <Typography sx={{ textAlign: "center" }} variant="subtitle2">
           🦾 and the {uniqueDifficulties > 1 ? "difficulties" : "difficulty"}{" "}
-          will be
+          will be:
         </Typography>
         <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
           {uniqueDifficulties.map((difficulty) => (
