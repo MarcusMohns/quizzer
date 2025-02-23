@@ -52,9 +52,10 @@ const Answers = ({
                   borderRadius: "2px",
                   m: 0,
                   transition: "background .2s ease-in-out",
-                  "&:hover": selectedAnswer === "" && {
-                    backgroundColor: "info.veryDark",
-                  },
+                  "&:hover": !quizState.completed &&
+                    selectedAnswer === "Not Answered" && {
+                      backgroundColor: "info.veryDark",
+                    },
                   backgroundColor:
                     sortedAnswers[selectedAnswer] === answer // if we selected this answer being rendered
                       ? correctlyAnswered // if the selected answer is correct
