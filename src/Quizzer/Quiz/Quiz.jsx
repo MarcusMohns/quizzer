@@ -60,7 +60,7 @@ const Quiz = ({
   }, [results]);
 
   useEffect(() => {
-    scrollTo({ top: 155, left: 0, behavior: "smooth" });
+    scrollTo({ top: 134, left: 0, behavior: "smooth" });
   }, []);
 
   return (
