@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, Suspense, lazy } from "react";
+import { useState, useEffect, Suspense, lazy, useMemo } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./Components/QuizStepper.jsx";
 import QuizControls from "./Components/QuizControls.jsx";
@@ -20,9 +20,12 @@ const Quizzer = ({ quizData, setQuizData }) => {
   const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
 
   // Create an object with keys as question numbers and values as "Not Answered"
-  const initialResults = Object.fromEntries(
-    quizData.map((_, index) => [index, "Not Answered"])
+  const initialResults = useMemo(
+    () =>
+      Object.fromEntries(quizData.map((_, index) => [index, "Not Answered"])),
+    [quizData]
   );
+
   const [results, setResults] = useState(initialResults);
 
   const handleReset = () => {
@@ -40,9 +43,11 @@ const Quizzer = ({ quizData, setQuizData }) => {
   };
 
   // Check if all questions are answered
-  const allQuestionsAnswered =
-    Object.values(results).filter((result) => result === "Not Answered")
-      .length === 0;
+  const allQuestionsAnswered = useMemo(
+    () =>
+      Object.values(results).filter((result) => result === "Not Answered")
+        .length === 0
+  );
 
   useEffect(() => {
     // Reset Quiz when quizData changes
