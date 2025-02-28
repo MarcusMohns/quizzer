@@ -7,7 +7,7 @@ import CategoryImage from "./Components/CategoryImage.jsx";
 import Tags from "./Components/Tags.jsx";
 import Answers from "./Components/Answers.jsx";
 import Question from "./Components/Question.jsx";
-import QuizTimer from "./Components/QuizTimer.jsx";
+import QuizTimer from "./Components/QuizTimer/QuizTimer.jsx";
 
 const Quiz = ({
   questionData,
@@ -27,9 +27,8 @@ const Quiz = ({
       ? "Not Answered"
       : Object.keys(results[activeStep])[0];
   const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
-
   const sortedAnswers = [
-    // Sort answers alphabetically (shuffling them)
+    // Sort answers alphabetically ('shuffling' them)
     questionData.correctAnswer,
     ...questionData.incorrectAnswers,
   ].sort();
