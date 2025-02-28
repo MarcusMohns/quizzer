@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -162,4 +162,4 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
   );
 };
 
-export default memo(GenerateQuizForm);
+export default GenerateQuizForm;
