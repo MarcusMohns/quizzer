@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import tags from "../../Utils/tags.jsx";
 import Fade from "@mui/material/Fade";
 import AnswerResultAlert from "./Components/AnswerResultAlert.jsx";
@@ -20,12 +20,16 @@ const Quiz = ({
   completeQuiz,
   allQuestionsAnswered,
 }) => {
-  const prevSelectedAnswer =
-    // Quiz will be rerendered when the user moves to the next/previous question
-    // so we need set the selected answer to the value saved in results (if it exists)
-    results[activeStep] === "Not Answered"
-      ? "Not Answered"
-      : Object.keys(results[activeStep])[0];
+  const prevSelectedAnswer = useMemo(
+    () =>
+      // Quiz will be rerendered when the user moves to the next/previous question
+      // so we need set the selected answer to the value saved in results (if it exists)
+      results[activeStep] === "Not Answered"
+        ? "Not Answered"
+        : Object.keys(results[activeStep])[0],
+    [activeStep]
+  );
+
   const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
   const sortedAnswers = [
     // Sort answers alphabetically ('shuffling' them)
@@ -33,17 +37,20 @@ const Quiz = ({
     ...questionData.incorrectAnswers,
   ].sort();
 
-  const handleSelectedAnswer = (e) => {
-    setSelectedAnswer(e.target.value);
-    setResults((prevResults) => ({
-      ...prevResults,
-      [activeStep]:
-        // Store selected answer: true if correct, false if incorrect
-        e.target.name === questionData.correctAnswer
-          ? { [e.target.value]: true }
-          : { [e.target.value]: false },
-    }));
-  };
+  const handleSelectedAnswer = useCallback(
+    (e) => {
+      setSelectedAnswer(e.target.value);
+      setResults((prevResults) => ({
+        ...prevResults,
+        [activeStep]:
+          // Store selected answer: true if correct, false if incorrect
+          e.target.name === questionData.correctAnswer
+            ? { [e.target.value]: true }
+            : { [e.target.value]: false },
+      }));
+    },
+    [activeStep, questionData.correctAnswer]
+  );
 
   // Check if the currently selected answer is correct
   const correctlyAnswered = results[activeStep][selectedAnswer];
