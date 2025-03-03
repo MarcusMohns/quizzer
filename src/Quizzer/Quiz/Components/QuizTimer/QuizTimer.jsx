@@ -7,7 +7,10 @@ const QuizTimer = ({ timeLimit, quizState, setQuizState }) => {
   const timeLimitInMillis = minutesAndSecondsToMillis(timeLimit);
   const [timer, setTimer] = useState(timeLimitInMillis);
   const [progress, setProgress] = useState(100);
+
   let interval;
+  // How often timer is updated in ms
+  const TIMER_INTERVAL = 250;
 
   const updateTimer = () => {
     setTimer((prevTimer) => {
@@ -15,13 +18,13 @@ const QuizTimer = ({ timeLimit, quizState, setQuizState }) => {
         clearInterval(interval);
         return 0;
       } else {
-        return prevTimer - 250;
+        return prevTimer - TIMER_INTERVAL;
       }
     });
   };
 
   useEffect(() => {
-    interval = setInterval(updateTimer, 250);
+    interval = setInterval(updateTimer, TIMER_INTERVAL);
     // Clear the interval when the component is unmounted to prevent memory leaks
     return () => clearInterval(interval);
   }, []);
