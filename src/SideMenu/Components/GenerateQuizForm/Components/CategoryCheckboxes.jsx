@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox";
+import { memo } from "react";
 
 const CategoryCheckboxes = ({
   categories,
@@ -26,6 +27,7 @@ const CategoryCheckboxes = ({
         <FormControlLabel
           label="All Categories"
           sx={{
+            userSelect: "none",
             "&:hover": {
               background: "#00000036",
             },
@@ -52,4 +54,4 @@ const CategoryCheckboxes = ({
   );
 };
 
-export default CategoryCheckboxes;
+export default memo(CategoryCheckboxes);

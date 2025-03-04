@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox";
+import { memo } from "react";
 
 const DifficulyCheckboxes = ({
   difficulties,
@@ -25,6 +26,7 @@ const DifficulyCheckboxes = ({
         <FormControlLabel
           label="All Difficulties"
           sx={{
+            userSelect: "none",
             "&:hover": {
               background: "#00000036",
             },
@@ -35,7 +37,6 @@ const DifficulyCheckboxes = ({
               indeterminate={someChecked(difficulties)}
               onChange={toggleDifficultyCheckBoxes}
               name={"all-difficulties-checkbox"}
-              sx={{ p: 1 }}
             />
           }
         />
@@ -52,4 +53,4 @@ const DifficulyCheckboxes = ({
   );
 };
 
-export default DifficulyCheckboxes;
+export default memo(DifficulyCheckboxes);

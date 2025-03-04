@@ -7,6 +7,7 @@ const QuizFormCheckbox = ({ checkbox, handleChecked }) => {
   return (
     <FormControlLabel
       sx={{
+        userSelect: "none",
         "&:hover": {
           background: "#00000036",
         },
