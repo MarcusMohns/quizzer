@@ -15,10 +15,16 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
   const [error, setError] = useState({ bool: false, name: "", message: "" });
 
   // return true if all objects in array are checked
-  const allChecked = (array) => array.every((entry) => entry.checked);
+  const allChecked = useCallback(
+    (array) => array.every((entry) => entry.checked),
+    []
+  );
 
   // return true if some objects in array are checked
-  const someChecked = (array) => array.some((entry) => entry.checked);
+  const someChecked = useCallback(
+    (array) => array.some((entry) => entry.checked),
+    []
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
