@@ -16,8 +16,7 @@ const QuizFormCheckbox = ({ checkbox, handleChecked }) => {
           checked={checkbox.checked}
           onChange={handleChecked}
           name={checkbox.id}
-          // a little hacky not sure why it makes the checkboxes the perfect size but it does.
-          size="vsmall"
+          size="small"
         />
       }
       label={
