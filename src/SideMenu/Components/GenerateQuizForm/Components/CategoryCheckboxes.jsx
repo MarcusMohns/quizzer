@@ -7,16 +7,17 @@ import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox";
 
 const CategoryCheckboxes = ({
-  formData,
+  categories,
   toggleCategoryCheckBoxes,
   handleCheckedCategory,
   allChecked,
   someChecked,
 }) => {
+  // return true if all objects in array are checked
   return (
     <FormControl
       sx={{ m: 0.5, minWidth: 120 }}
-      error={!someChecked(formData.categories)}
+      error={!someChecked(categories)}
     >
       <FormLabel component="legend" id="category-select-label">
         Select Category
@@ -24,16 +25,21 @@ const CategoryCheckboxes = ({
       <FormGroup>
         <FormControlLabel
           label="All Categories"
+          sx={{
+            "&:hover": {
+              background: "#00000036",
+            },
+          }}
           control={
             <Checkbox
-              checked={allChecked(formData.categories)}
-              indeterminate={someChecked(formData.categories)}
+              checked={allChecked(categories)}
+              indeterminate={someChecked(categories)}
               onChange={toggleCategoryCheckBoxes}
               name={"all-categories-checkbox"}
             />
           }
         />
-        {formData.categories.map((category) => (
+        {categories.map((category) => (
           <QuizFormCheckbox
             checkbox={category}
             handleChecked={handleCheckedCategory}

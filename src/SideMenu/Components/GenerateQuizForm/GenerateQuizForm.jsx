@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -13,6 +13,12 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
   const [formData, setFormData] = useState(checkboxData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ bool: false, name: "", message: "" });
+
+  // return true if all objects in array are checked
+  const allChecked = (array) => array.every((entry) => entry.checked);
+
+  // return true if some objects in array are checked
+  const someChecked = (array) => array.some((entry) => entry.checked);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +42,7 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
     }));
   };
 
-  const handleCheckedCategory = (event) => {
+  const handleCheckedCategory = useCallback((event) => {
     setFormData((prevData) => ({
       ...prevData,
       categories: prevData.categories.map((category) =>
@@ -45,9 +51,9 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
           : category
       ),
     }));
-  };
+  }, []);
 
-  const handleCheckedDifficulty = (event) => {
+  const handleCheckedDifficulty = useCallback((event) => {
     setFormData((prevData) => ({
       ...prevData,
       difficulties: prevData.difficulties.map((difficulty) =>
@@ -56,9 +62,9 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
           : difficulty
       ),
     }));
-  };
+  }, []);
 
-  const toggleCategoryCheckBoxes = () => {
+  const toggleCategoryCheckBoxes = useCallback(() => {
     setFormData((prevData) => ({
       ...prevData,
       categories: prevData.categories.map((category) => ({
@@ -66,9 +72,9 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
         checked: allChecked(prevData.categories) ? false : true,
       })),
     }));
-  };
+  }, [allChecked]);
 
-  const toggleDifficultyCheckBoxes = () => {
+  const toggleDifficultyCheckBoxes = useCallback(() => {
     setFormData((prevData) => ({
       ...prevData,
       difficulties: prevData.difficulties.map((difficulty) => ({
@@ -76,13 +82,7 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
         checked: allChecked(prevData.difficulties) ? false : true,
       })),
     }));
-  };
-
-  // return true if all objects in array are checked
-  const allChecked = (array) => array.every((entry) => entry.checked);
-
-  // return true if some objects in array are checked
-  const someChecked = (array) => array.some((entry) => entry.checked);
+  }, [allChecked]);
 
   return (
     <Box
@@ -112,14 +112,14 @@ const GenerateQuizForm = ({ setQuizData, setOpenSideMenu }) => {
       />
 
       <CategoryCheckboxes
-        formData={formData}
+        categories={formData.categories}
         toggleCategoryCheckBoxes={toggleCategoryCheckBoxes}
         handleCheckedCategory={handleCheckedCategory}
         allChecked={allChecked}
         someChecked={someChecked}
       />
       <DifficulyCheckboxes
-        formData={formData}
+        difficulties={formData.difficulties}
         toggleDifficultyCheckBoxes={toggleDifficultyCheckBoxes}
         handleCheckedDifficulty={handleCheckedDifficulty}
         allChecked={allChecked}

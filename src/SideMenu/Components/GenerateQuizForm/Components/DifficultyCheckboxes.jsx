@@ -7,7 +7,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox";
 
 const DifficulyCheckboxes = ({
-  formData,
+  difficulties,
   toggleDifficultyCheckBoxes,
   handleCheckedDifficulty,
   allChecked,
@@ -16,7 +16,7 @@ const DifficulyCheckboxes = ({
   return (
     <FormControl
       sx={{ m: 0.5, minWidth: 120 }}
-      error={!someChecked(formData.difficulties)}
+      error={!someChecked(difficulties)}
     >
       <FormLabel component="legend" id="difficulty-select-label">
         Select Difficulty
@@ -24,17 +24,22 @@ const DifficulyCheckboxes = ({
       <FormGroup>
         <FormControlLabel
           label="All Difficulties"
+          sx={{
+            "&:hover": {
+              background: "#00000036",
+            },
+          }}
           control={
             <Checkbox
-              checked={allChecked(formData.difficulties)}
-              indeterminate={someChecked(formData.difficulties)}
+              checked={allChecked(difficulties)}
+              indeterminate={someChecked(difficulties)}
               onChange={toggleDifficultyCheckBoxes}
               name={"all-difficulties-checkbox"}
               sx={{ p: 1 }}
             />
           }
         />
-        {formData.difficulties.map((difficulty) => (
+        {difficulties.map((difficulty) => (
           <QuizFormCheckbox
             checkbox={difficulty}
             handleChecked={handleCheckedDifficulty}
