@@ -111,7 +111,7 @@ const QuizControls = ({
                 height: "50%",
               }}
               size="large"
-              endIcon={<DvrIcon />}
+              startIcon={<DvrIcon />}
             >
               Go To Results
             </Button>
