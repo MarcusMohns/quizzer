@@ -69,10 +69,10 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
           <Box sx={{ textAlign: "center" }}>
             <Button
               id="generate-quiz-button"
-              color="secondary"
+              color="orange"
               size="large"
               variant="outlined"
-              sx={{ my: 3, color: "secondary.light" }}
+              sx={{ my: 3 }}
               onClick={() => setOpenSideMenu(true)}
               endIcon={<MenuIcon />}
             >

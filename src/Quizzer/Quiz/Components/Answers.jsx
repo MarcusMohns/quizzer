@@ -65,7 +65,7 @@ const Answers = ({
                         selectedAnswer !== "Not Answered"
                       ? "success.lightCool" // make it green
                       : "secondary.cool", // default to blue
-                  boxShadow: 8,
+                  boxShadow: 3,
                 }}
               >
                 <Avatar

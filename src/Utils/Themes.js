@@ -82,21 +82,21 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#ffffff",
+      default: "#f7f8ff",
     },
     primary: {
       main: "#000",
       faded: "#0000007f",
     },
     secondary: {
-      main: "#1741bd",
+      main: "#4b5d91",
       default: "#4169e1",
       light: "#97b0fc",
       dark: "#2f4eda",
-      veryDark: "#fdfcfc",
+      veryDark: "#f2f4f8",
       highlight: "#d6dcfa",
       sidemenu: "#ffffff",
-      cool: "#a4b4d1",
+      cool: "#ffffff",
     },
     lightSecondary: {
       main: "#3D5499",
