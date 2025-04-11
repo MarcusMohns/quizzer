@@ -1,4 +1,11 @@
-import { useState, useEffect, Suspense, lazy, useMemo } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  Suspense,
+  lazy,
+  useMemo,
+} from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./Components/QuizStepper.jsx";
 import QuizControls from "./Components/QuizControls.jsx";
@@ -28,19 +35,19 @@ const Quizzer = ({ quizData, setQuizData }) => {
 
   const [results, setResults] = useState(initialResults);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setActiveStep(0);
     setQuizState({ started: false, completed: false });
     setResults(initialResults);
-  };
+  }, [initialResults, setActiveStep, setQuizState, setResults]);
 
-  const resetQuizData = () => {
+  const resetQuizData = useCallback(() => {
     setQuizData([]);
-  };
+  }, [setQuizData]);
 
-  const completeQuiz = () => {
+  const completeQuiz = useCallback(() => {
     setQuizState({ ...quizState, completed: true });
-  };
+  }, [quizState, setQuizState]);
 
   // Check if all questions are answered
   const allQuestionsAnswered = useMemo(
