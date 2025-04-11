@@ -12,7 +12,7 @@ const CardsSection = ({ visibleStates, refs, setQuizData, scrollRef }) => {
       sx={{
         width: { xs: "100%" },
         minHeight: "100vh",
-        pt: 5,
+        pt: 15,
       }}
     >
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>

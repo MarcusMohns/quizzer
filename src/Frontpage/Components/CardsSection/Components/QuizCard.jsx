@@ -18,6 +18,7 @@ export default function QuizCard({
         m: 5,
         height: "100%",
         textAlign: "center",
+        backgroundColor: "secondary.veryDark",
       }}
     >
       <CardActionArea onClick={() => setQuizData(questions)}>

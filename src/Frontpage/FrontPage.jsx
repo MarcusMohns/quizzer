@@ -31,7 +31,6 @@ const FrontPage = ({ setQuizData, setOpenSideMenu }) => {
         justifySelf: "center",
         p: 0,
         mt: 1,
-        px: { sm: "5%", lg: "15%" },
       }}
     >
       <WelcomeSection
