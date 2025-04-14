@@ -9,6 +9,7 @@ import { darkTheme, lightTheme } from "./Utils/Themes.js";
 import Navbar from "./Navbar/Navbar.jsx";
 import FrontPage from "./Frontpage/FrontPage.jsx";
 import Quizzer from "./Quizzer/Quizzer.jsx";
+import "./App.css";
 
 // Fetch darkMode settings from localStorage if they exist
 const darkModeData =
