@@ -110,8 +110,8 @@ export const lightTheme = createTheme({
       light: "#00862d",
       dark: "#3588c7",
       petrol: "#004A4F",
-      cool: "#1c9642ad",
-      lightCool: "#43975ead",
+      cool: "#2bcc5eff",
+      lightCool: "#29c45aff",
     },
     altSuccess: {
       main: "#68d36d",
