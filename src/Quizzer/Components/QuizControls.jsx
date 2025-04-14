@@ -108,7 +108,6 @@ const QuizControls = ({
               variant="outlined"
               sx={{
                 width: "40%",
-                height: "50%",
               }}
               size="large"
               startIcon={<DvrIcon />}
@@ -122,7 +121,6 @@ const QuizControls = ({
             color="success"
             variant="outlined"
             sx={{
-              height: "50%",
               width: "40%",
             }}
             size="large"
