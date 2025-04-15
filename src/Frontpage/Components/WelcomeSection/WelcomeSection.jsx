@@ -30,7 +30,7 @@ const WelcomeSection = ({
         backgroundRepeat: "no-repeat",
       }}
     >
-      <Box sx={{ width: { sm: "100%", md: "50%" }, mt: 10 }}>
+      <Box sx={{ width: { sm: "100%", md: "50%" }, mt: { xs: 5, md: 10 } }}>
         <Fade in={visibleStates["welcome-message"]} timeout={500}>
           <Stack id="welcome-message" ref={(el) => (refs.current[0] = el)}>
             <Typography sx={{ textAlign: "center" }} variant="overline">

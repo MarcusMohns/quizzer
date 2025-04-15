@@ -45,11 +45,11 @@ const QuizControls = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: { xs: "90%", md: "60%", lg: "40%", xl: "30%" },
+        width: { xs: "92%", md: "60%", lg: "40%", xl: "30%" },
         my: "30px",
       }}
       direction="row"
-      spacing={2}
+      spacing={{ xs: 1, md: 2 }}
     >
       {props.children}
     </Stack>
@@ -71,7 +71,7 @@ const QuizControls = ({
           variant="contained"
           color="secondary"
           size="large"
-          sx={{ width: "100%", height: "100%" }}
+          sx={{ width: "50%", height: "100%" }}
           startIcon={<NavigateBeforeIcon />}
         >
           Back
@@ -82,7 +82,7 @@ const QuizControls = ({
           variant="contained"
           color="secondary"
           size="large"
-          sx={{ width: "100%", height: "100%" }}
+          sx={{ width: "50%", height: "100%" }}
           endIcon={<NavigateNextIcon />}
         >
           Next
@@ -94,8 +94,10 @@ const QuizControls = ({
           variant="outlined"
           color="error"
           size="large"
-          sx={{ width: "40%", heiht: "50%" }}
           startIcon={<RestartAltIcon />}
+          sx={{
+            width: "50%",
+          }}
         >
           Reset Quiz
         </Button>
@@ -106,13 +108,13 @@ const QuizControls = ({
               onClick={() => setActiveStep(steps.length)}
               color="info"
               variant="outlined"
-              sx={{
-                width: "40%",
-              }}
               size="large"
               startIcon={<DvrIcon />}
+              sx={{
+                width: "50%",
+              }}
             >
-              Go To Results
+              Results
             </Button>
           )
         ) : (
@@ -121,12 +123,12 @@ const QuizControls = ({
             color="success"
             variant="outlined"
             sx={{
-              width: "40%",
+              width: "50%",
             }}
             size="large"
             endIcon={<DoneAllIcon />}
           >
-            Complete All
+            Complete
           </Button>
         )}
       </ButtonStack>

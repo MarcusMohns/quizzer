@@ -133,7 +133,7 @@ export const lightTheme = createTheme({
       veryDark: "#B7C1E1",
     },
     orange: {
-      main: "#000000",
+      main: "#d36600",
       default: "#af6300",
       light: "#ffb14b",
       dark: "#c27612",

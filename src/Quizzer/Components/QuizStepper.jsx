@@ -34,7 +34,6 @@ export default function QuizStepper({
         sx={{
           flexWrap: "wrap",
           borderRadius: "5px",
-          px: 5,
           justifyContent: "center",
         }}
         connector={<>―</>}

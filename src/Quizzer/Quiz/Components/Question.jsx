@@ -8,9 +8,11 @@ const Question = ({ questionData, activeStep }) => {
       <Typography
         variant="h5"
         sx={{
-          display: "ruby",
-          textAlign: "center",
           minHeight: "100px",
+          mb: { xs: 5, md: 2 },
+          display: { xs: "flex", md: "ruby" },
+          flexDirection: "column",
+          textAlign: "center",
         }}
       >
         <Avatar
@@ -19,6 +21,8 @@ const Question = ({ questionData, activeStep }) => {
             alignSelf: "center",
             ml: { xs: "0", md: "auto" },
             mr: 1,
+            bgcolor: "secondary.main",
+            color: "secondary.contrastText",
           }}
         >
           {activeStep + 1}

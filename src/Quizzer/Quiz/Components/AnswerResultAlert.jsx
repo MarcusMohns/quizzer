@@ -8,7 +8,11 @@ import { Typography } from "@mui/material";
 const StyledAlert = (props) => {
   return (
     <Zoom in={true}>
-      <Alert variant="outlined" severity={props.severity} sx={{ m: 2 }}>
+      <Alert
+        variant="outlined"
+        severity={props.severity}
+        sx={{ m: 2, backgroundColor: "background.default" }}
+      >
         <AlertTitle sx={{ display: { xs: "none", sm: "block" } }}>
           {props.title}
         </AlertTitle>

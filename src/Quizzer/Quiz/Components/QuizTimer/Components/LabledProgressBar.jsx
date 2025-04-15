@@ -21,6 +21,7 @@ const LabledProgressBar = (props) => {
           variant="determinate"
           {...props}
           aria-label="progress-bar"
+          sx={{ height: { xs: "8px", md: "5px" } }}
         />
       </Box>
       <Box sx={{ minWidth: 35 }}>

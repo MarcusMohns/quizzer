@@ -37,7 +37,7 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: { xs: "100%", md: "50%" },
+          width: { xs: "70%", md: "50%" },
         }}
       >
         <Fade
@@ -45,7 +45,7 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
           timeout={600}
           style={{ transitionDelay: "200ms" }}
         >
-          <Box sx={{ width: "50%" }}>
+          <Box>
             <Typography fontSize="4rem" sx={{ textAlign: "center" }}>
               💻 🌍
             </Typography>

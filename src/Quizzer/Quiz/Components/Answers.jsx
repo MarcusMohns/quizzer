@@ -106,6 +106,7 @@ const Answers = ({
                     width: "100%",
                     flexDirection: "row",
                     justifyContent: "flex-start",
+                    textAlign: "left",
                     p: { xs: 1, md: 2 },
                     m: 0,
                     fontWeight: "bold",
