@@ -5,7 +5,7 @@ import "@fontsource/roboto/700.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme, lightTheme } from "./Utils/Themes.js";
+import { darkTheme, lightTheme } from "./Themes.js";
 import Navbar from "./Navbar/Navbar.jsx";
 import FrontPage from "./Frontpage/FrontPage.jsx";
 import Quizzer from "./Quizzer/Quizzer.jsx";

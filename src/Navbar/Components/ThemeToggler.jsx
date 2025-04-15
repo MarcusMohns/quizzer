@@ -2,7 +2,7 @@ import { styled } from "@mui/system";
 import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { darkTheme, lightTheme } from "../../Utils/Themes";
+import { darkTheme, lightTheme } from "../../Themes";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -78,7 +78,11 @@ const ThemeToggler = ({ darkMode, setDarkMode }) => {
       direction="row"
     >
       <Typography
-        sx={{ fontSize: { xs: "12px", sm: "initial" }, textAlign: "center" }}
+        sx={{
+          display: { xs: "none", sm: "flex" },
+          fontSize: { xs: "12px", sm: "initial" },
+          textAlign: "center",
+        }}
       >
         Light
       </Typography>
@@ -89,7 +93,11 @@ const ThemeToggler = ({ darkMode, setDarkMode }) => {
         name={"theme-toggle"}
       />
       <Typography
-        sx={{ fontSize: { xs: "12px", sm: "initial" }, textAlign: "center" }}
+        sx={{
+          display: { xs: "none", sm: "flex" },
+          fontSize: { xs: "12px", sm: "initial" },
+          textAlign: "center",
+        }}
       >
         Dark
       </Typography>
