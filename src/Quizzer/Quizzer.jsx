@@ -94,7 +94,13 @@ const Quizzer = ({ quizData, setQuizData }) => {
         height: "100%",
         alignItems: "center",
         p: 0,
-        backgroundImage: "url(./svgs/animated-shapes.svg)",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundImage: {
+          xs: "url(./svgs/curvy-line.svg)",
+          md: "url(./svgs/animated-shapes.svg)",
+        },
       }}
     >
       <Button

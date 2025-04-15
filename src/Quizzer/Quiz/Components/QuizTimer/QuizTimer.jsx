@@ -10,7 +10,7 @@ const QuizTimer = ({ timeLimit, quizState, setQuizState }) => {
 
   let interval;
   // How often timer is updated in ms
-  const TIMER_INTERVAL = 250;
+  const TIMER_INTERVAL = 1000;
 
   const updateTimer = () => {
     setTimer((prevTimer) => {
