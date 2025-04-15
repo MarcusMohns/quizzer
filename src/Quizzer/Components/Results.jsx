@@ -128,7 +128,7 @@ const Results = ({ results, quizData, totalQuestions, timeLimit }) => {
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
                   primary={result.question.text}
-                  secondary={`No answer was picked`}
+                  secondary={`No answer was picked. The correct answer was: ${result.correctAnswer}`}
                 />
                 <ListItemIcon>
                   <HelpOutlineOutlinedIcon />
