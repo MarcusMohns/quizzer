@@ -97,6 +97,7 @@ const QuizControls = ({
           startIcon={<RestartAltIcon />}
           sx={{
             width: "50%",
+            backgroundColor: "background.default",
           }}
         >
           Reset Quiz
@@ -112,6 +113,7 @@ const QuizControls = ({
               startIcon={<DvrIcon />}
               sx={{
                 width: "50%",
+                backgroundColor: "background.default",
               }}
             >
               Results
@@ -124,6 +126,7 @@ const QuizControls = ({
             variant="outlined"
             sx={{
               width: "50%",
+              backgroundColor: "background.default",
             }}
             size="large"
             endIcon={<DoneAllIcon />}

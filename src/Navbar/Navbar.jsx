@@ -29,10 +29,15 @@ export default function Navbar({
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, cursor: "pointer" }}
+            sx={{
+              flexGrow: 1,
+              cursor: "pointer",
+              display: "flex",
+              justifyContent: { xs: "center", sm: "flex-start" },
+            }}
             onClick={resetQuizData}
           >
-            🐦Quizzer
+            🐦 Quizzer
           </Typography>
 
           <ThemeToggler darkMode={darkMode} setDarkMode={setDarkMode} />

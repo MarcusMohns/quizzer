@@ -47,6 +47,7 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
             variant="outlined"
             onChange={handleChange}
             aria-hidden="false"
+            sx={{ backgroundColor: "background.default" }}
           >
             {minutes.map((minute) => (
               <MenuItem value={minute} key={minute}>
@@ -66,6 +67,7 @@ const SelectTimer = ({ timeLimit, setTimeLimit }) => {
             variant="outlined"
             onChange={handleChange}
             aria-hidden="false"
+            sx={{ backgroundColor: "background.default" }}
           >
             {seconds.map((second) => (
               <MenuItem

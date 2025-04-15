@@ -15,7 +15,7 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: { xs: "center", sm: "flex-start" },
+        justifyContent: "center",
         minHeight: "50vh",
         height: "100vh",
         width: "100%",
@@ -23,13 +23,14 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
     >
       <Box
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: "none", lg: "flex" },
           flexDirection: "row",
-          width: "50%",
-          height: "92%",
+          width: "49%",
+          height: "100%",
           backgroundPosition: "center",
-          m: 5,
           backgroundImage: "url(/svgs/icon-grid.svg)",
+          backgroundRepeat: "no-repeat",
+          m: 5,
         }}
       />
       <Box
@@ -37,7 +38,8 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: { xs: "70%", md: "50%" },
+          width: { xs: "70%", lg: "50%" },
+          m: { xs: 0, lg: 5 },
         }}
       >
         <Fade
@@ -45,14 +47,20 @@ const GenerateSection = ({ refs, visibleStates, setOpenSideMenu }) => {
           timeout={600}
           style={{ transitionDelay: "200ms" }}
         >
-          <Box>
-            <Typography fontSize="4rem" sx={{ textAlign: "center" }}>
-              💻 🌍
-            </Typography>
+          <Box
+            sx={{
+              width: {
+                xs: "100%",
+                lg: "50%",
+                textAlign: "center",
+                justifyContent: "center",
+              },
+            }}
+          >
+            <Typography fontSize="4rem">💻 🌍</Typography>
             <Typography
               id="existing-quiz-header"
               sx={{
-                textAlign: "center",
                 width: "100%",
               }}
               variant="h5"
