@@ -50,7 +50,7 @@ export default function ResultsModal({
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "secondary.cool",
+            bgcolor: "secondary.veryDark",
             boxShadow: 24,
             p: 4,
             borderRadius: 1,
@@ -58,7 +58,9 @@ export default function ResultsModal({
           }}
         >
           <Typography variant="h5" component="h3">
-            Well done! 🌠
+            {correctAnswers < 2 && "Nice try! 🌠"}
+            {correctAnswers > 2 && "Well done! 🌠"}
+            {correctAnswers === totalQuestions && "Perfect! 🌠"}
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h4" py={2}>
             {correctAnswers} correct out of {totalQuestions} total questions! 🎉
