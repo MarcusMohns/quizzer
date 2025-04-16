@@ -5,7 +5,8 @@ const QuizzerSkeleton = () => {
   return (
     <Box
       sx={{
-        width: "60%",
+        width: "100%",
+        px: { sm: "5%", lg: "26%" },
       }}
     >
       <Skeleton

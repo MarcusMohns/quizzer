@@ -16,7 +16,7 @@ const QuestionSkeleton = () => (
       sx={{
         alignItems: "center",
         width: "100%",
-        height: { sm: "30px", md: "60px" },
+        height: { xs: "40px", sm: "30px", md: "60px" },
       }}
     />
   </Grid>
@@ -26,9 +26,13 @@ const QuizSkeleton = () => {
   return (
     <Box
       sx={{
-        mx: { sm: "5%", lg: "50%" },
-        mt: 10,
-        width: "70%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        mt: { xs: 2, md: 4 },
+        borderRadius: "10px",
+        px: { sm: "5%", lg: "20%" },
+        width: { xs: "100%", md: "85%" },
       }}
     >
       <Skeleton
@@ -37,15 +41,20 @@ const QuizSkeleton = () => {
           height: "200px",
           alignItems: "center",
           borderRadius: "7px",
-          mx: 13,
+          width: { xs: "100%", md: "75%" },
         }}
       />
-      <Skeleton variant="text" sx={{ fontSize: "2rem", mx: 10 }} />
+      <Skeleton variant="text" sx={{ fontSize: "2rem", mx: 10, p: 2 }} />
       <Skeleton
         variant="outlined"
-        sx={{ alignSelf: "flex-start", mx: "10%", my: 2, mt: 5 }}
+        sx={{ width: "75%", height: "80px", mb: 2 }}
       />
-      <Grid container spacing={2} sx={{ width: "100%", px: 10 }}>
+      <Skeleton variant="outlined" sx={{ width: "75%", height: "20px" }} />
+      <Skeleton
+        variant="outlined"
+        sx={{ alignSelf: "flex-start", mx: "10%", mt: 5 }}
+      />
+      <Grid container spacing={2} sx={{ width: "100%", px: 3 }}>
         <QuestionSkeleton />
         <QuestionSkeleton />
         <QuestionSkeleton />
