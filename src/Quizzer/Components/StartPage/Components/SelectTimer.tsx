@@ -60,7 +60,7 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
             sx={{ backgroundColor: "background.default" }}
           >
             {minutes.map((minute) => (
-              <MenuItem value={minute} key={minute}>
+              <MenuItem value={minute} key={minute} aria-label="minutes">
                 {minute}
               </MenuItem>
             ))}
@@ -80,12 +80,7 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
             sx={{ backgroundColor: "background.default" }}
           >
             {seconds.map((second) => (
-              <MenuItem
-                value={second}
-                key={second}
-                // name="seconds"
-                aria-label="minutes"
-              >
+              <MenuItem value={second} key={second} aria-label="seconds">
                 {second}
               </MenuItem>
             ))}
