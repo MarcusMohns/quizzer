@@ -31,9 +31,10 @@ export default function ResultsModal({
     handleClose();
     setActiveStep(totalQuestions);
   };
-  const correctAnswers = Object.values(results).filter(
-    (result) => Object.values(result)[0] === true
-  ).length;
+  const correctAnswers = Object.values(results).reduce(
+    (count, result) => count + (result === true ? 1 : 0),
+    0
+  );
 
   return (
     <Modal

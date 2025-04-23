@@ -21,12 +21,14 @@ const FrontPage = ({
   handleSideMenuOpen,
 }: FrontPageProps) => {
   const { refs, visibleStates } = useElementOnScreen({
+    // Returns array of refs to elements already set up and an object containing the visibility state of each element
     root: null,
     rootMargin: "0px",
     threshold: 0.1,
   });
   const scrollRef = useRef<HTMLElement[]>([]);
   const handleScroll = (idx: number) => {
+    // Scroll to the element by ID
     scrollRef.current[idx].scrollIntoView({ behavior: "smooth" });
   };
   const scrollToTop = () => scrollTo({ top: 0, left: 0, behavior: "smooth" });

@@ -56,21 +56,6 @@ const Quiz = ({
     ...questionData.incorrectAnswers,
   ].sort();
 
-  // const handleSelectedAnswer = useCallback(
-  //   (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     setSelectedAnswer(e.target.value);
-  //     handleSetResults({
-  //       ...results,
-  //       [activeStep]:
-  //         // Update the results at the activeStep
-  //         e.target.name === questionData.correctAnswer
-  //           ? { [e.target.value]: true }
-  //           : { [e.target.value]: false },
-  //     });
-  //   },
-  //   [activeStep, questionData.correctAnswer, handleSetResults, results]
-  // );
-
   const handleSelectedAnswer = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSelectedAnswer(e.target.value);

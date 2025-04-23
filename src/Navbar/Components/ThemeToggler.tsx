@@ -2,17 +2,13 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import { MaterialUISwitch } from "./MaterialUISwitch";
 
-const userPref = localStorage.getItem("Darkmode") === "false" ? false : true;
-
 interface ThemeTogglerProps {
   darkMode: boolean;
   handleSetDarkMode: (darkMode: boolean) => void;
 }
 
 const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
-  // Toggle between dark mode and lightmode and save to localStorage
   const toggleDarkMode = () => {
-    localStorage.setItem("Darkmode", JSON.stringify(!darkMode));
     handleSetDarkMode(!darkMode);
   };
   return (
@@ -36,7 +32,7 @@ const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
       <MaterialUISwitch
         onChange={toggleDarkMode}
         slotProps={{ input: { "aria-label": "darkmode-toggle" } }}
-        defaultChecked={userPref}
+        checked={darkMode}
         name={"theme-toggle"}
       />
       <Typography

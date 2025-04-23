@@ -31,12 +31,13 @@ const Results = ({
   // turn results object into an array of objects
   const resultsArray = Object.keys(results).map((key) => {
     const questionData = quizData[Number(key)];
+    const answered = results[key] !== "Not Answered";
     const pickedAnswer =
-      results[key] !== "Not Answered" ? Object.keys(results[key])[0] : false;
+      results[key] && answered ? Object.keys(results[key])[0] : false;
     const correctlyAnswered =
-      results[key] !== "Not Answered" ? Object.values(results[key])[0] : false;
+      results[key] && answered ? Object.values(results[key])[0] : false;
     const sortedAnswers =
-      results[key] !== "Not Answered"
+      results[key] && answered
         ? [questionData.correctAnswer, ...questionData.incorrectAnswers].sort()
         : [];
 
@@ -49,12 +50,13 @@ const Results = ({
     };
   });
 
-  const correctAnswers = Object.values(results).filter(
-    (result) => Object.values(result)[0] === true
-  ).length;
+  const correctAnswers = Object.values(results).reduce(
+    (count, result) => count + (Object.values(result)[0] === true ? 1 : 0),
+    0
+  );
 
-  // map quizData and find unique categories
   const categories = [
+    // map quizData and find unique categories
     ...new Set(quizData.map((question) => question.category)),
   ];
 
