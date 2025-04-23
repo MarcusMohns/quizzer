@@ -17,8 +17,8 @@ import StartPageSkeleton from "./Components/StartPage/Components/StartPageSkelet
 import QuizSkeleton from "./Quiz/Components/QuizSkeleton.tsx";
 const StartPage = lazy(() => import("./Components/StartPage/StartPage.tsx"));
 const Quiz = lazy(() => import("./Quiz/Quiz.tsx"));
-import { QuizState } from "../store.tsx";
-import { QuizQuestion } from "../store.tsx";
+import { QuizState, QuizQuestion } from "../store.tsx";
+
 interface QuizzerProps {
   quizData: QuizState;
   handleSetQuizData: (data: QuizState | null) => void;
@@ -66,8 +66,6 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
     [activeStep, setResults]
   );
 
-  console.log(results);
-
   const handleSetTimeLimit = useCallback(
     (timeLimit: { minutes: number; seconds: number }) => {
       setTimeLimit(timeLimit);
@@ -101,8 +99,6 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
         .length === 0,
     [results]
   );
-
-  console.log(allQuestionsAnswered);
 
   useEffect(() => {
     // Reset Quiz when quizData changes

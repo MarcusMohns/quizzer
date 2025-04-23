@@ -35,8 +35,6 @@ export default function ResultsModal({
     (result) => Object.values(result)[0] === true
   ).length;
 
-  console.log(results);
-
   return (
     <Modal
       open={open}
