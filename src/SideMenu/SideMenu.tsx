@@ -39,7 +39,9 @@ export default function SideMenu({
         onOpen={() => handleSideMenuOpen(true)}
         aria-hidden="false"
         disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}
+        // disableDiscovery={iOS}
+        disableDiscovery={true}
+        allowSwipeInChildren={true}
         // iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. The performance will be good enough.
         //iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
       >
