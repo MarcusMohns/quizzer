@@ -6,7 +6,7 @@ import { useRef } from "react";
 import ScrollTopButton from "./Components/ScrollTopButton.tsx";
 import { QuizState } from "../store";
 import { VisibleStates } from "./store.tsx";
-import { useElementOnScreen } from "./useElementsOnScreen.ts";
+import { useElementOnScreen } from "./store.tsx";
 
 interface FrontPageProps {
   handleSetQuizData: (data: QuizState | null) => void;

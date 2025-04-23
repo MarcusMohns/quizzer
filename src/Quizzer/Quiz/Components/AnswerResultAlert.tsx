@@ -11,6 +11,12 @@ interface StyledAlertProps {
   correctAnswer: string;
 }
 
+interface AnswerResultAlertProps {
+  correctlyAnswered: boolean;
+  questionData: QuizQuestion;
+  alertShown: boolean;
+}
+
 const StyledAlert = (props: StyledAlertProps) => {
   return (
     <Zoom in={true}>
@@ -56,12 +62,6 @@ const StyledAlert = (props: StyledAlertProps) => {
     </Zoom>
   );
 };
-
-interface AnswerResultAlertProps {
-  correctlyAnswered: boolean;
-  questionData: QuizQuestion;
-  alertShown: boolean;
-}
 
 const AnswerResultAlert = ({
   correctlyAnswered,
