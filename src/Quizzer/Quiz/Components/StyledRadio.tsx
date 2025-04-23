@@ -44,7 +44,7 @@ const BpCheckedIcon = styled(BpIcon)({
   },
 });
 
-const StyledRadio = (props) => {
+const StyledRadio = (props: React.ComponentProps<typeof Radio>) => {
   return (
     <Radio
       disableRipple
