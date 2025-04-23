@@ -82,7 +82,7 @@ const StartPage = ({
               }
               disabled={timeLimit.minutes === 0 && timeLimit.seconds === 0}
               size="large"
-              sx={{ width: "200px" }}
+              sx={{ width: "200px", color: "primary.contrastText" }}
               color="success"
               endIcon={"💥"}
             >

@@ -122,7 +122,11 @@ const Results = ({
             result.correctlyAnswered === true ? (
               <ListItem
                 key={index}
-                sx={{ backgroundColor: "success.dark", my: 1, boxShadow: 1 }}
+                sx={{
+                  backgroundColor: "success.contrastText",
+                  my: 1,
+                  boxShadow: 1,
+                }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
@@ -137,7 +141,7 @@ const Results = ({
               <ListItem
                 key={index}
                 sx={{
-                  backgroundColor: "info.main",
+                  backgroundColor: "info.contrastText",
                   my: 1,
                   boxShadow: 1,
                 }}
@@ -154,7 +158,11 @@ const Results = ({
             ) : (
               <ListItem
                 key={index}
-                sx={{ backgroundColor: "error.dark", my: 1, boxShadow: 1 }}
+                sx={{
+                  backgroundColor: "error.contrastText",
+                  my: 1,
+                  boxShadow: 1,
+                }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText

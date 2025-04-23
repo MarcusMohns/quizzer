@@ -68,7 +68,7 @@ const Answers = ({
                   "&:hover":
                     !quizState.completed && selectedAnswer === "Not Answered"
                       ? {
-                          backgroundColor: "primary.dark",
+                          backgroundColor: "secondary.dark",
                         }
                       : "",
                   backgroundColor:
@@ -81,7 +81,7 @@ const Answers = ({
                       ? "success.dark" // make it green
                       : "secondary.main", // default to blue
                   boxShadow: 3,
-                  color: "primary.contrastText",
+                  color: "secondary.contrastText",
                 }}
               >
                 <Avatar
