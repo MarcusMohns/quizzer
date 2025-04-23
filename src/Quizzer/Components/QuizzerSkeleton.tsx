@@ -20,6 +20,7 @@ const QuizzerSkeleton = () => {
         }}
       />
       <Skeleton
+        variant="rounded"
         sx={{
           height: "50px",
           borderRadius: "7px",
@@ -27,6 +28,7 @@ const QuizzerSkeleton = () => {
         }}
       />
       <Skeleton
+        variant="rounded"
         sx={{
           height: "80px",
           borderRadius: "7px",
@@ -34,6 +36,7 @@ const QuizzerSkeleton = () => {
         }}
       />
       <Skeleton
+        variant="rounded"
         sx={{
           height: "150px",
           borderRadius: "7px",
@@ -41,6 +44,7 @@ const QuizzerSkeleton = () => {
         }}
       />
       <Skeleton
+        variant="rounded"
         sx={{
           height: "80px",
           borderRadius: "7px",
