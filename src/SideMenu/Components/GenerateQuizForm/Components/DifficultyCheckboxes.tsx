@@ -29,7 +29,7 @@ const DifficulyCheckboxes = ({
       sx={{ m: 0.5, minWidth: 120 }}
       error={!someChecked(difficulties)}
     >
-      <FormLabel component="legend" id="difficulty-select-label">
+      <FormLabel color="info" id="difficulty-select-label">
         Select Difficulty
       </FormLabel>
       <FormGroup>
@@ -38,7 +38,7 @@ const DifficulyCheckboxes = ({
           sx={{
             userSelect: "none",
             "&:hover": {
-              background: "#00000036",
+              backgroundColor: "secondary.light",
             },
           }}
           control={

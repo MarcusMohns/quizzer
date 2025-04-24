@@ -17,7 +17,7 @@ const QuizFormCheckbox = ({
       sx={{
         userSelect: "none",
         "&:hover": {
-          background: "#00000036",
+          backgroundColor: "secondary.light",
         },
       }}
       control={

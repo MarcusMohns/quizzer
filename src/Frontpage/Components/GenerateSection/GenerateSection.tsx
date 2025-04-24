@@ -35,6 +35,8 @@ const GenerateSection = ({
         minHeight: "50vh",
         height: "100vh",
         width: "100%",
+        p: 5,
+        mt: 2,
       }}
     >
       <Box

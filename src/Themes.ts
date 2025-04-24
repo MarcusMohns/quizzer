@@ -20,6 +20,7 @@ export const darkTheme = createTheme({
       main: "#272d49",
       light: "#314075",
       dark: "#1d2236",
+      contrastText: "#01071b",
     },
     success: {
       main: "#34920e",
@@ -62,17 +63,18 @@ export const lightTheme = createTheme({
       main: "#adbae7",
       light: "#c4cff7",
       dark: "#8593c5",
+      contrastText: "#5c73b9",
     },
     success: {
       main: "#2dbb11",
       light: "#94ec82",
-      dark: "#6ed15a",
+      dark: "#37ad1f",
       contrastText: "#7dda66",
     },
     error: {
       main: "#9D3434",
       light: "#c90303",
-      dark: "#9c0303",
+      dark: "#db4242",
       contrastText: "#f08787",
     },
     info: {

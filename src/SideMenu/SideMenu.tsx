@@ -8,6 +8,7 @@ const GenerateQuizForm = lazy(
 );
 import { QuizState } from "../store.js";
 import SideMenuSkeleton from "./Components/SideMenuSkeleton.js";
+import Stack from "@mui/material/Stack";
 
 export interface SideMenuProps {
   handleSideMenuOpen: (
@@ -43,29 +44,63 @@ export default function SideMenu({
         disableDiscovery={true}
         // iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. The performance will be good enough.
         //iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
+        sx={{
+          "& .MuiDrawer-paper": {
+            display: "flex",
+            flexDirection: "row",
+            backgroundColor: "background.default",
+          },
+        }}
       >
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
-            ml: 2,
+            flexDirection: "column",
             minHeight: "64px",
           }}
         >
-          <StyledMenuIconButton
-            handleSideMenuOpen={handleSideMenuOpen}
-            open={false}
-          />
-          <Typography variant="h6" component="div">
-            🐦Quizzer
-          </Typography>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              minHeight: "64px",
+              ml: 2,
+            }}
+          >
+            <StyledMenuIconButton
+              handleSideMenuOpen={handleSideMenuOpen}
+              open={false}
+            />
+            <Typography variant="h6" component="div">
+              🐦Quizzer
+            </Typography>
+          </Stack>
+          <Suspense fallback={<SideMenuSkeleton />}>
+            <GenerateQuizForm
+              setQuizData={handleSetQuizData}
+              handleSideMenuOpen={handleSideMenuOpen}
+            />
+          </Suspense>
         </Box>
-        <Suspense fallback={<SideMenuSkeleton />}>
-          <GenerateQuizForm
-            setQuizData={handleSetQuizData}
-            handleSideMenuOpen={handleSideMenuOpen}
+        <Box
+          sx={{
+            // display: { xs: "block", md: "none" },
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            pr: 1,
+          }}
+        >
+          <Box
+            sx={{
+              height: "30px",
+              width: "6px",
+              backgroundColor: "secondary.contrastText",
+              borderRadius: 3,
+            }}
           />
-        </Suspense>
+        </Box>
       </SwipeableDrawer>
     </Box>
   );

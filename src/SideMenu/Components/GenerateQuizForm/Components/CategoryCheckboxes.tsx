@@ -26,7 +26,7 @@ const CategoryCheckboxes = ({
       sx={{ m: 0.5, minWidth: 120 }}
       error={!someChecked(categories)}
     >
-      <FormLabel component="legend" id="category-select-label">
+      <FormLabel color="info" id="category-select-label">
         Select Category
       </FormLabel>
       <FormGroup>
@@ -35,7 +35,7 @@ const CategoryCheckboxes = ({
           sx={{
             userSelect: "none",
             "&:hover": {
-              background: "#00000036",
+              backgroundColor: "secondary.light",
             },
           }}
           control={

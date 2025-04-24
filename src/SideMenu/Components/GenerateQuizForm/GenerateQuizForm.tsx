@@ -124,6 +124,7 @@ const GenerateQuizForm = ({
         onChange={handleQtyChange}
         type="number"
         label="Number of Questions:"
+        color="info"
         sx={{ minWidth: 120 }}
         helperText="Enter a number between 1 & 50"
         error={Number(formData.qty) <= 0 || Number(formData.qty) > 50}
