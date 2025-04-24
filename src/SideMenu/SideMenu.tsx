@@ -84,7 +84,7 @@ export default function SideMenu({
         </Box>
         <Box
           sx={{
-            // display: { xs: "block", md: "none" },
+            display: { xs: "block", md: "none" },
             alignContent: "center",
             alignItems: "center",
             justifyContent: "center",
@@ -94,8 +94,8 @@ export default function SideMenu({
         >
           <Box
             sx={{
-              height: "30px",
-              width: "7px",
+              height: "40px",
+              width: "12px",
               backgroundColor: "secondary.dark",
               borderRadius: 3,
             }}

@@ -19,7 +19,7 @@ const Footer = () => {
           justifyContent: "center",
           textAlign: "center",
           width: "100%",
-          height: "200px",
+          height: "250px",
           px: 8,
         }}
       >

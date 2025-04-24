@@ -73,7 +73,7 @@ const Quiz = ({
   }, [activeStep, prevSelectedAnswerIndex]);
 
   useEffect(() => {
-    scrollTo({ top: 134, left: 0, behavior: "smooth" });
+    scrollTo({ top: 170, left: 0, behavior: "smooth" });
   }, []);
 
   return (

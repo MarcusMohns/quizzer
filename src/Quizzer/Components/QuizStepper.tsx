@@ -5,6 +5,11 @@ import StepButton from "@mui/material/StepButton";
 import Tooltip from "@mui/material/Tooltip";
 import DvrIcon from "@mui/icons-material/Dvr";
 import { QuizState, QuizResult } from "../../store";
+import Avatar from "@mui/material/Avatar";
+
+import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+// import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 interface QuizStepperProps {
   quizData: QuizState;
@@ -33,11 +38,9 @@ export default function QuizStepper({
       sx={{
         p: { xs: 1, sm: 5 },
         pb: 4,
-        pt: 2,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
-        flexGrow: "1",
       }}
     >
       <Stepper
@@ -50,19 +53,42 @@ export default function QuizStepper({
         }}
         connector={<>―</>}
       >
-        {quizData.map((step, index) => (
-          <Tooltip title={step.question.text} key={step.question.text}>
-            <Step
-              completed={results[index].selectedAnswer !== "Not Answered"}
-              sx={{ m: 1, ml: 2 }}
-            >
-              <StepButton
-                onClick={handleStep(index)}
-                aria-label={`step-${index}`}
-              />
-            </Step>
-          </Tooltip>
-        ))}
+        {quizData.map((step, index) => {
+          const completed = results[index].selectedAnswer !== "Not Answered";
+          return (
+            <Tooltip title={step.question.text} key={step.question.text}>
+              <Step completed={completed} sx={{ m: 1, ml: 2 }}>
+                <StepButton
+                  onClick={handleStep(index)}
+                  aria-label={`step-${index}`}
+                  icon={
+                    !completed ? (
+                      <Avatar
+                        sx={{
+                          fontSize: 12,
+                          width: 24,
+                          height: 24,
+                          backgroundColor: "secondary.main",
+                          color: "secondary.contrastText",
+                        }}
+                      >
+                        {index + 1}
+                      </Avatar>
+                    ) : results[index].correctlyAnswered ? (
+                      <CheckCircleOutlineOutlinedIcon
+                        color="success"
+                        fontSize="medium"
+                      />
+                    ) : (
+                      <CancelOutlinedIcon color="error" fontSize="medium" />
+                    )
+                  }
+                />
+              </Step>
+            </Tooltip>
+          );
+        })}
+
         <Tooltip title="Results">
           <Step>
             <StepButton
