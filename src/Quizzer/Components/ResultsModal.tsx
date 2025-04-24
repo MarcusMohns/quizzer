@@ -6,13 +6,15 @@ import Modal from "@mui/material/Modal";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DvrIcon from "@mui/icons-material/Dvr";
 import Fade from "@mui/material/Fade";
+import { QuizResult } from "../../store";
 
 interface ResultsModalProps {
   handleReset: () => void;
   setActiveStep: (step: number) => void;
-  results: { [k: string]: boolean | string };
+  results: QuizResult[];
   totalQuestions: number;
 }
+
 export default function ResultsModal({
   handleReset,
   setActiveStep,
@@ -31,8 +33,9 @@ export default function ResultsModal({
     handleClose();
     setActiveStep(totalQuestions);
   };
+
   const correctAnswers = Object.values(results).reduce(
-    (count, result) => count + (result === true ? 1 : 0),
+    (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
     0
   );
 

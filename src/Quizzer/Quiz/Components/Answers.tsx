@@ -6,16 +6,19 @@ import Avatar from "@mui/material/Avatar";
 import Fade from "@mui/material/Fade";
 import StyledRadio from "./StyledRadio";
 import { QuizQuestion } from "../../../store";
+import { QuizResult } from "../../../store";
 const LETTERS = ["A", "B", "C", "D"];
 const TimeoutDelay = [100, 200, 300, 400];
 
 interface AnswerProps {
-  selectedAnswer: string;
-  handleSelectedAnswer: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  selectedAnswerIndex: number;
+  handleSelectedAnswerIndex: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
   sortedAnswers: string[];
   questionData: QuizQuestion;
   activeStep: number;
-  results: { [key: string]: string | boolean };
+  results: QuizResult[];
   correctlyAnswered: boolean;
   quizState: {
     started: boolean;
@@ -24,8 +27,8 @@ interface AnswerProps {
 }
 
 const Answers = ({
-  selectedAnswer,
-  handleSelectedAnswer,
+  selectedAnswerIndex,
+  handleSelectedAnswerIndex,
   sortedAnswers,
   questionData,
   activeStep,
@@ -35,8 +38,8 @@ const Answers = ({
 }: AnswerProps) => {
   return (
     <RadioGroup
-      value={selectedAnswer}
-      onChange={handleSelectedAnswer}
+      value={selectedAnswerIndex}
+      onChange={handleSelectedAnswerIndex}
       aria-label="question"
       sx={{
         px: 3,
@@ -66,18 +69,18 @@ const Answers = ({
                   m: 0,
                   transition: "background .2s ease-in-out",
                   "&:hover":
-                    !quizState.completed && selectedAnswer === "Not Answered"
+                    !quizState.completed && selectedAnswerIndex === -1
                       ? {
                           backgroundColor: "secondary.dark",
                         }
                       : "",
                   backgroundColor:
-                    sortedAnswers[Number(selectedAnswer)] === answer // if we selected this answer being rendered
+                    sortedAnswers[Number(selectedAnswerIndex)] === answer // if we selected this answer being rendered
                       ? correctlyAnswered // if the selected answer is correct
                         ? "success.dark" // Highlight it as green
                         : "error.dark" // if incorrect highlight it as red
                       : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
-                        selectedAnswer !== "Not Answered"
+                        selectedAnswerIndex !== -1
                       ? "success.dark" // make it green
                       : "secondary.main", // default to blue
                   boxShadow: 3,
@@ -95,12 +98,12 @@ const Answers = ({
                     fontWeight: "bold",
                     alignSelf: "flex-start",
                     backgroundColor:
-                      sortedAnswers[Number(selectedAnswer)] === answer // if we selected this answer being rendered
+                      sortedAnswers[Number(selectedAnswerIndex)] === answer // if we selected this answer being rendered
                         ? correctlyAnswered // if the selected answer is correct
                           ? "success.main" // Highlight it as green
                           : "error.light" // if incorrect highlight it as red
                         : answer === questionData.correctAnswer && // if the answer being rendered isnt the one we selected but is the correct answer
-                          selectedAnswer !== "Not Answered"
+                          selectedAnswerIndex !== -1
                         ? "success.light" // make it green
                         : "primary.main", // default to blue
                   }}
@@ -109,9 +112,8 @@ const Answers = ({
                 </Avatar>
                 <FormControlLabel
                   disabled={
-                    results[activeStep] !== "Not Answered" ||
-                    (results[activeStep] === "Not Answered" &&
-                      quizState.completed === true)
+                    results[activeStep].pickedAnswerIndex !== -1 ||
+                    quizState.completed
                   }
                   value={index}
                   label={answer}

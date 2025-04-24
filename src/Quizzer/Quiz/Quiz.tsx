@@ -8,7 +8,7 @@ import Tags from "./Components/Tags.tsx";
 import Answers from "./Components/Answers.tsx";
 import Question from "./Components/Question.tsx";
 import QuizTimer from "./Components/QuizTimer/QuizTimer.tsx";
-import { QuizQuestion } from "../../store.tsx";
+import { QuizQuestion, QuizResult } from "../../store.tsx";
 interface QuizProps {
   questionData: QuizQuestion;
   handleSetResults: (
@@ -16,7 +16,7 @@ interface QuizProps {
     selectedAnswer: string,
     pickedAnswerIndex: number
   ) => void;
-  results: { [k: string]: string | boolean };
+  results: QuizResult[];
   activeStep: number;
   timeLimit: { minutes: number; seconds: number };
   quizState: {
@@ -39,41 +39,38 @@ const Quiz = ({
   quizState,
   handleSetQuizState,
 }: QuizProps) => {
-  const prevSelectedAnswer = useMemo(
+  const prevSelectedAnswerIndex = useMemo(
     () =>
       // Quiz will be rerendered when the user moves to the next/previous question
       // so we need set the selected answer to the value saved in results (if it exists)
-      results[activeStep] === "Not Answered"
-        ? "Not Answered"
-        : Object.keys(results[activeStep])[0],
+      results[activeStep].pickedAnswerIndex === -1
+        ? -1
+        : results[activeStep].pickedAnswerIndex,
     [activeStep, results]
   );
 
-  const [selectedAnswer, setSelectedAnswer] = useState(prevSelectedAnswer);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(
+    prevSelectedAnswerIndex
+  );
   const sortedAnswers = [
     // Sort answers alphabetically ('shuffling' them)
     questionData.correctAnswer,
     ...questionData.incorrectAnswers,
   ].sort();
 
-  const handleSelectedAnswer = useCallback(
+  const handleSelectedAnswerIndex = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedAnswer(e.target.value);
-      handleSetResults(questionData, e.target.name, Number(e.target.value));
+      const answerIndex = Number(e.target.value);
+      setSelectedAnswerIndex(answerIndex);
+      handleSetResults(questionData, e.target.name, answerIndex);
     },
     [handleSetResults, questionData]
   );
 
-  // Check if the currently selected answer is correct
-  const correctlyAnswered =
-    results[activeStep][
-      selectedAnswer as keyof (typeof results)[typeof activeStep]
-    ]; // check if this is boolean
-
   // Set the selected answer to the previous selected answer
   useEffect(() => {
-    setSelectedAnswer(prevSelectedAnswer);
-  }, [activeStep, prevSelectedAnswer]);
+    setSelectedAnswerIndex(prevSelectedAnswerIndex);
+  }, [activeStep, prevSelectedAnswerIndex]);
 
   useEffect(() => {
     scrollTo({ top: 134, left: 0, behavior: "smooth" });
@@ -104,18 +101,18 @@ const Quiz = ({
         />
         <Tags questionData={questionData} />
         <Answers
-          selectedAnswer={selectedAnswer}
-          handleSelectedAnswer={handleSelectedAnswer}
+          selectedAnswerIndex={selectedAnswerIndex}
+          handleSelectedAnswerIndex={handleSelectedAnswerIndex}
           sortedAnswers={sortedAnswers}
           questionData={questionData}
           activeStep={activeStep}
           results={results}
-          correctlyAnswered={Boolean(correctlyAnswered)}
+          correctlyAnswered={results[activeStep].correctlyAnswered}
           quizState={quizState}
         />
         <AnswerResultAlert
-          correctlyAnswered={Boolean(correctlyAnswered)}
-          alertShown={results[activeStep] !== "Not Answered"}
+          correctlyAnswered={results[activeStep].correctlyAnswered}
+          alertShown={results[activeStep].selectedAnswer !== "Not Answered"}
           questionData={questionData}
         />
       </Box>

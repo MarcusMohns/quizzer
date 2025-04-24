@@ -17,6 +17,16 @@ interface Tags {
   };
 }
 
+export interface QuizResult {
+  selectedAnswer: "Not Answered" | string;
+  correctlyAnswered: boolean;
+  pickedAnswerIndex: number;
+  correctAnswer: string;
+  category: string;
+  questionText: string;
+  questionNum: number;
+}
+
 export interface QuizQuestion {
   category: string;
   id: string;

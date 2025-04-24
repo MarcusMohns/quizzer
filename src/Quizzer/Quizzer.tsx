@@ -17,7 +17,7 @@ import StartPageSkeleton from "./Components/StartPage/Components/StartPageSkelet
 import QuizSkeleton from "./Quiz/Components/QuizSkeleton.tsx";
 const StartPage = lazy(() => import("./Components/StartPage/StartPage.tsx"));
 const Quiz = lazy(() => import("./Quiz/Quiz.tsx"));
-import { QuizState, QuizQuestion } from "../store.tsx";
+import { QuizState, QuizQuestion, QuizResult } from "../store.tsx";
 
 interface QuizzerProps {
   quizData: QuizState;
@@ -35,11 +35,19 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
   // Create an object with keys as question numbers and values as "Not Answered"
   const initialResults = useMemo(
     () =>
-      Object.fromEntries(quizData!.map((_, index) => [index, "Not Answered"])),
+      quizData.map((question, idx) => ({
+        selectedAnswer: "Not Answered",
+        correctlyAnswered: false,
+        pickedAnswerIndex: -1,
+        correctAnswer: question.correctAnswer,
+        category: question.category,
+        questionText: question.question.text,
+        questionNum: idx + 1,
+      })),
     [quizData]
   );
 
-  const [results, setResults] = useState(initialResults);
+  const [results, setResults] = useState<QuizResult[]>(initialResults);
 
   const handleSetQuizState = useCallback(
     (newState: { started: boolean; completed: boolean }) => {
@@ -54,14 +62,19 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
       selectedAnswer: string,
       pickedAnswerIndex: number
     ) => {
-      setResults((prevResults) => ({
-        ...prevResults,
-        [activeStep]:
-          // Store selected answer: true if correct, false if incorrect
-          selectedAnswer === questionData.correctAnswer
-            ? { [pickedAnswerIndex]: true }
-            : { [pickedAnswerIndex]: false },
-      }));
+      setResults((prevResults) => {
+        const newResults = [...prevResults];
+        newResults[activeStep] = {
+          selectedAnswer: selectedAnswer,
+          pickedAnswerIndex: pickedAnswerIndex,
+          correctlyAnswered: selectedAnswer === questionData.correctAnswer,
+          correctAnswer: questionData.correctAnswer,
+          questionNum: activeStep + 1,
+          category: questionData.category,
+          questionText: questionData.question.text,
+        };
+        return newResults;
+      });
     },
     [activeStep, setResults]
   );
@@ -95,7 +108,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
   // Check if all questions are answered
   const allQuestionsAnswered = useMemo(
     () =>
-      Object.values(results).filter((result) => result === "Not Answered")
+      results.filter((result) => result.selectedAnswer === "Not Answered")
         .length === 0,
     [results]
   );
@@ -180,12 +193,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
         activeStep === quizData.length ? (
           // If last step render results
           <>
-            <Results
-              results={results}
-              quizData={quizData}
-              totalQuestions={quizData!.length}
-              timeLimit={timeLimit}
-            />
+            <Results results={results} timeLimit={timeLimit} />
             <ControlsAndStepper />
           </>
         ) : (

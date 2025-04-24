@@ -13,51 +13,22 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useEffect } from "react";
-import { QuizState } from "../../store";
+import { QuizResult } from "../../store";
 
 interface ResultsProps {
-  results: { [k: string]: boolean | string };
-  quizData: QuizState;
-  totalQuestions: number;
+  results: QuizResult[];
   timeLimit: { minutes: number; seconds: number };
 }
 
-const Results = ({
-  results,
-  quizData,
-  totalQuestions,
-  timeLimit,
-}: ResultsProps) => {
-  // turn results object into an array of objects
-  const resultsArray = Object.keys(results).map((key) => {
-    const questionData = quizData[Number(key)];
-    const answered = results[key] !== "Not Answered";
-    const pickedAnswer =
-      results[key] && answered ? Object.keys(results[key])[0] : false;
-    const correctlyAnswered =
-      results[key] && answered ? Object.values(results[key])[0] : false;
-    const sortedAnswers =
-      results[key] && answered
-        ? [questionData.correctAnswer, ...questionData.incorrectAnswers].sort()
-        : [];
-
-    return {
-      ...questionData,
-      pickedAnswer,
-      correctlyAnswered,
-      questionNum: Number(key) + 1,
-      sortedAnswers,
-    };
-  });
-
+const Results = ({ results, timeLimit }: ResultsProps) => {
+  const totalQuestions = results.length;
   const correctAnswers = Object.values(results).reduce(
-    (count, result) => count + (Object.values(result)[0] === true ? 1 : 0),
+    (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
     0
   );
-
   const categories = [
     // map quizData and find unique categories
-    ...new Set(quizData.map((question) => question.category)),
+    ...new Set(results.map((question) => question.category)),
   ];
 
   useEffect(() => {
@@ -120,26 +91,8 @@ const Results = ({
       </Stack>
       <Fade in={true} appear={true} timeout={700}>
         <List dense={true}>
-          {resultsArray.map((result, index) =>
-            result.correctlyAnswered === true ? (
-              <ListItem
-                key={index}
-                sx={{
-                  backgroundColor: "success.contrastText",
-                  my: 1,
-                  boxShadow: 1,
-                }}
-              >
-                <ListItemIcon>{result.questionNum}</ListItemIcon>
-                <ListItemText
-                  primary={result.question.text}
-                  secondary={`Correct!  the answer was: ${result.correctAnswer}`}
-                />
-                <ListItemIcon>
-                  <CheckCircleOutlineIcon />
-                </ListItemIcon>
-              </ListItem>
-            ) : result.pickedAnswer === false ? (
+          {results.map((result, index) =>
+            result.selectedAnswer === "Not Answered" ? (
               <ListItem
                 key={index}
                 sx={{
@@ -150,11 +103,29 @@ const Results = ({
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
-                  primary={result.question.text}
+                  primary={result.questionText}
                   secondary={`No answer was picked. The correct answer was: ${result.correctAnswer}`}
                 />
                 <ListItemIcon>
                   <HelpOutlineOutlinedIcon />
+                </ListItemIcon>
+              </ListItem>
+            ) : result.correctlyAnswered ? (
+              <ListItem
+                key={index}
+                sx={{
+                  backgroundColor: "success.contrastText",
+                  my: 1,
+                  boxShadow: 1,
+                }}
+              >
+                <ListItemIcon>{result.questionNum}</ListItemIcon>
+                <ListItemText
+                  primary={result.questionText}
+                  secondary={`Correct!  the answer was: ${result.correctAnswer}`}
+                />
+                <ListItemIcon>
+                  <CheckCircleOutlineIcon />
                 </ListItemIcon>
               </ListItem>
             ) : (
@@ -168,10 +139,8 @@ const Results = ({
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
                 <ListItemText
-                  primary={result.question.text}
-                  secondary={`Incorrect - You picked ${
-                    result.sortedAnswers[Number(result.pickedAnswer)]
-                  }, the correct answer was: ${result.correctAnswer}`}
+                  primary={result.questionText}
+                  secondary={`Incorrect - You picked ${result.selectedAnswer}, the correct answer was: ${result.correctAnswer}`}
                 />
                 <ListItemIcon>
                   <CancelOutlinedIcon />

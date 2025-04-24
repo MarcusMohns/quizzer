@@ -6,14 +6,14 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import DvrIcon from "@mui/icons-material/Dvr";
-import { QuizState } from "../../store";
+import { QuizState, QuizResult } from "../../store";
 
 interface QuizControlsProps {
   quizData: QuizState;
   activeStep: number;
   handleSetActiveStep: (step: number) => void;
   completeQuiz: () => void;
-  results: { [key: string]: string };
+  results: QuizResult[];
   handleReset: () => void;
   allQuestionsAnswered: boolean;
   quizState: {
@@ -43,8 +43,8 @@ const QuizControls = ({
   const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allQuestionsAnswered && !quizState.completed
-        ? Object.values(results).findIndex(
-            (result) => result === "Not Answered"
+        ? results.findIndex(
+            (result) => result.selectedAnswer === "Not Answered"
           )
         : activeStep + 1;
     handleSetActiveStep(newActiveStep);

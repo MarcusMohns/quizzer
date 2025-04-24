@@ -4,13 +4,13 @@ import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
 import Tooltip from "@mui/material/Tooltip";
 import DvrIcon from "@mui/icons-material/Dvr";
-import { QuizState } from "../../store";
+import { QuizState, QuizResult } from "../../store";
 
 interface QuizStepperProps {
   quizData: QuizState;
   activeStep: number;
   handleSetActiveStep: (step: number) => void;
-  results: { [key: string]: string };
+  results: QuizResult[];
   quizState: {
     started: boolean;
     completed: boolean;
@@ -53,7 +53,7 @@ export default function QuizStepper({
         {quizData.map((step, index) => (
           <Tooltip title={step.question.text} key={step.question.text}>
             <Step
-              completed={results[index] !== "Not Answered"}
+              completed={results[index].selectedAnswer !== "Not Answered"}
               sx={{ m: 1, ml: 2 }}
             >
               <StepButton
