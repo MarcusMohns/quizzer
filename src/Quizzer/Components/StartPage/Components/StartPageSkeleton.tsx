@@ -1,12 +1,12 @@
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 
-const QuizzerSkeleton = () => {
+const StartPageSkeleton = () => {
   return (
     <Box
       sx={{
         width: "100%",
-        px: { sm: "5%", lg: "26%" },
+        px: { sm: "5%", lg: "20%" },
       }}
     >
       <Skeleton
@@ -100,4 +100,4 @@ const QuizzerSkeleton = () => {
   );
 };
 
-export default QuizzerSkeleton;
+export default StartPageSkeleton;
