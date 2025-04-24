@@ -14,13 +14,13 @@ export const darkTheme = createTheme({
       main: "#3D5499",
       light: "#B7C1E1",
       dark: "#314075",
-      contrastText: "#fff",
+      contrastText: "#ffffff",
     },
     secondary: {
       main: "#272d49",
       light: "#314075",
       dark: "#1d2236",
-      contrastText: "#01071b",
+      contrastText: "#ffffff",
     },
     success: {
       main: "#34920e",
@@ -63,7 +63,7 @@ export const lightTheme = createTheme({
       main: "#adbae7",
       light: "#c4cff7",
       dark: "#8593c5",
-      contrastText: "#5c73b9",
+      contrastText: "#000000",
     },
     success: {
       main: "#2dbb11",

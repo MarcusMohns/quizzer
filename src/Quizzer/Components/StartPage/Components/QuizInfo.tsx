@@ -31,6 +31,7 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
       sx={{
         flexDirection: "column",
         alignItems: "center",
+        width: "100%",
       }}
     >
       <Typography

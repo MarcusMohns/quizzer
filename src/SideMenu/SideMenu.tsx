@@ -89,14 +89,14 @@ export default function SideMenu({
             alignItems: "center",
             justifyContent: "center",
             height: "100%",
-            pr: 1,
+            pr: 2,
           }}
         >
           <Box
             sx={{
               height: "30px",
-              width: "6px",
-              backgroundColor: "secondary.contrastText",
+              width: "7px",
+              backgroundColor: "secondary.dark",
               borderRadius: 3,
             }}
           />

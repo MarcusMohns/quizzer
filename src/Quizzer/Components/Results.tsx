@@ -97,8 +97,9 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
                 key={index}
                 sx={{
                   backgroundColor: "info.contrastText",
-                  my: 1,
+                  m: 1,
                   boxShadow: 1,
+                  width: "auto",
                 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
@@ -115,8 +116,9 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
                 key={index}
                 sx={{
                   backgroundColor: "success.contrastText",
-                  my: 1,
+                  m: 1,
                   boxShadow: 1,
+                  width: "auto",
                 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
@@ -133,8 +135,9 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
                 key={index}
                 sx={{
                   backgroundColor: "error.contrastText",
-                  my: 1,
+                  m: 1,
                   boxShadow: 1,
+                  width: "auto",
                 }}
               >
                 <ListItemIcon>{result.questionNum}</ListItemIcon>
