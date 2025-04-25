@@ -5,7 +5,6 @@ import StepButton from "@mui/material/StepButton";
 import Tooltip from "@mui/material/Tooltip";
 import DvrIcon from "@mui/icons-material/Dvr";
 import { QuizState, QuizResult } from "../../store";
-import Avatar from "@mui/material/Avatar";
 
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
@@ -62,19 +61,7 @@ export default function QuizStepper({
                   onClick={handleStep(index)}
                   aria-label={`step-${index}`}
                   icon={
-                    !completed ? (
-                      <Avatar
-                        sx={{
-                          fontSize: 12,
-                          width: 24,
-                          height: 24,
-                          backgroundColor: "secondary.main",
-                          color: "secondary.contrastText",
-                        }}
-                      >
-                        {index + 1}
-                      </Avatar>
-                    ) : results[index].correctlyAnswered ? (
+                    !completed ? null : results[index].correctlyAnswered ? (
                       <CheckCircleOutlineOutlinedIcon
                         color="success"
                         fontSize="medium"
