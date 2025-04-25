@@ -9,6 +9,7 @@ import Answers from "./Components/Answers.tsx";
 import Question from "./Components/Question.tsx";
 import QuizTimer from "./Components/QuizTimer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
+
 interface QuizProps {
   questionData: QuizQuestion;
   handleSetResults: (
@@ -30,6 +31,7 @@ interface QuizProps {
   completeQuiz: () => void;
   allQuestionsAnswered: boolean;
 }
+
 const Quiz = ({
   questionData,
   handleSetResults,
@@ -52,11 +54,12 @@ const Quiz = ({
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(
     prevSelectedAnswerIndex
   );
-  const sortedAnswers = [
+
+  const sortedAnswers = useMemo(
     // Sort answers alphabetically ('shuffling' them)
-    questionData.correctAnswer,
-    ...questionData.incorrectAnswers,
-  ].sort();
+    () => [questionData.correctAnswer, ...questionData.incorrectAnswers].sort(),
+    [questionData]
+  );
 
   const handleSelectedAnswerIndex = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

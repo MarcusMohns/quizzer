@@ -26,10 +26,9 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
     (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
     0
   );
-  const categories = [
-    // map quizData and find unique categories
-    ...new Set(results.map((question) => question.category)),
-  ];
+  const categories = Array.from(
+    new Set(results.map((question) => question.category))
+  );
 
   useEffect(() => {
     scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -44,7 +43,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           component="h2"
           sx={{ mt: 5, textAlign: "center" }}
         >
-          {(correctAnswers / totalQuestions) * 100}% Correct!🎊
+          {(correctAnswers / totalQuestions) * 100}% Correct! 🎊
         </Typography>
       </Zoom>
       <Grow in={true} appear={true} timeout={900}>

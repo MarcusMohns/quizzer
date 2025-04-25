@@ -32,13 +32,7 @@ const QuizControls = ({
   allQuestionsAnswered,
   quizState,
 }: QuizControlsProps) => {
-  const totalSteps = () => {
-    return quizData.length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
+  const isLastStep = () => activeStep === quizData.length - 1;
 
   const handleNext = () => {
     const newActiveStep =
@@ -117,7 +111,6 @@ const QuizControls = ({
         >
           Reset Quiz
         </Button>
-
         {quizState.completed ? (
           activeStep !== quizData.length && (
             <Button
@@ -153,5 +146,4 @@ const QuizControls = ({
     </Box>
   );
 };
-
 export default QuizControls;

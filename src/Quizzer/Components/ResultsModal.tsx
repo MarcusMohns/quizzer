@@ -29,13 +29,14 @@ export default function ResultsModal({
     handleClose();
     handleReset();
   };
+
   const handleResultClick = () => {
     handleClose();
     setActiveStep(totalQuestions);
   };
 
-  const correctAnswers = Object.values(results).reduce(
-    (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
+  const correctAnswers = results.reduce(
+    (count, result) => count + (result.correctlyAnswered ? 1 : 0),
     0
   );
 
@@ -45,11 +46,10 @@ export default function ResultsModal({
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      aria-hidden="false"
     >
       <Fade
-        timeout={{ enter: 300, exit: 0 }}
         in={open}
+        timeout={{ enter: 300, exit: 0 }}
         easing={{ enter: "ease", exit: "" }}
       >
         <Box
@@ -67,12 +67,14 @@ export default function ResultsModal({
           }}
         >
           <Typography variant="h5" component="h3">
-            {correctAnswers < 2 && "Nice try! 🌠"}
-            {correctAnswers > 2 && "Well done! 🌠"}
-            {correctAnswers === totalQuestions && "Perfect! 🌠"}
+            {correctAnswers < 2
+              ? "Nice try! 🌠"
+              : correctAnswers === totalQuestions
+              ? "Perfect! 🌠"
+              : "Well done! 🌠"}
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h4" py={2}>
-            {correctAnswers} correct out of {totalQuestions} total questions! 🎉
+            {`${correctAnswers} correct out of ${totalQuestions} total questions! 🎉`}
           </Typography>
 
           <Box
@@ -83,6 +85,7 @@ export default function ResultsModal({
               alignItems: "center",
               justifyContent: "center",
               width: "100%",
+              mt: 2,
             }}
           >
             <Button
@@ -90,7 +93,7 @@ export default function ResultsModal({
               size="medium"
               variant="outlined"
               color="error"
-              sx={{ m: 2 }}
+              sx={{ m: 1 }}
               startIcon={<RestartAltIcon />}
             >
               Reset
@@ -98,9 +101,9 @@ export default function ResultsModal({
             <Button
               onClick={handleResultClick}
               size="medium"
-              color="info"
               variant="outlined"
-              sx={{ m: 2 }}
+              color="info"
+              sx={{ m: 1 }}
               startIcon={<DvrIcon />}
             >
               Full Results

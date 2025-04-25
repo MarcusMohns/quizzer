@@ -8,7 +8,7 @@ const QuestionSkeleton = () => (
     sx={{
       display: "flex",
       justifyContent: "center",
-      height: { sm: "30px", md: "60px" },
+      height: { xs: "30px", md: "60px" },
     }}
   >
     <Skeleton

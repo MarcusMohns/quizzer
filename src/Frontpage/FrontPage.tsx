@@ -5,7 +5,6 @@ import GenerateSection from "./Components/GenerateSection/GenerateSection.tsx";
 import { useRef } from "react";
 import ScrollTopButton from "./Components/ScrollTopButton.tsx";
 import { QuizState } from "../store";
-import { VisibleStates } from "./store.tsx";
 import { useElementOnScreen } from "./store.tsx";
 
 interface FrontPageProps {
@@ -66,7 +65,7 @@ const FrontPage = ({
       />
       <ScrollTopButton
         scrollToTop={scrollToTop}
-        visible={(visibleStates as VisibleStates)["quiz-cards-container"]}
+        visible={visibleStates["quiz-cards-container"]}
       />
     </Box>
   );

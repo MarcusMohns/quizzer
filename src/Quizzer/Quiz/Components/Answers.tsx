@@ -75,7 +75,7 @@ const Answers = ({
                         }
                       : "",
                   backgroundColor:
-                    sortedAnswers[Number(selectedAnswerIndex)] === answer // if we selected this answer being rendered
+                    sortedAnswers[selectedAnswerIndex] === answer // if we selected this answer being rendered
                       ? correctlyAnswered // if the selected answer is correct
                         ? "success.dark" // Highlight it as green
                         : "error.dark" // if incorrect highlight it as red
@@ -84,7 +84,6 @@ const Answers = ({
                       ? "success.dark" // make it green
                       : "secondary.main", // default to blue
                   boxShadow: 3,
-                  color: "secondary.contrastText",
                 }}
               >
                 <Avatar
@@ -98,7 +97,7 @@ const Answers = ({
                     fontWeight: "bold",
                     alignSelf: "flex-start",
                     backgroundColor:
-                      sortedAnswers[Number(selectedAnswerIndex)] === answer // if we selected this answer being rendered
+                      sortedAnswers[selectedAnswerIndex] === answer // if we selected this answer being rendered
                         ? correctlyAnswered // if the selected answer is correct
                           ? "success.main" // Highlight it as green
                           : "error.light" // if incorrect highlight it as red
@@ -106,6 +105,7 @@ const Answers = ({
                           selectedAnswerIndex !== -1
                         ? "success.light" // make it green
                         : "primary.main", // default to blue
+                    color: "primary.contrastText",
                   }}
                 >
                   {LETTERS[index]}

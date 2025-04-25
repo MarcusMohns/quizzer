@@ -19,38 +19,17 @@ const StartPageSkeleton = () => {
           textAlign: "center",
         }}
       />
-      <Skeleton
-        variant="rounded"
-        sx={{
-          height: "50px",
-          borderRadius: "7px",
-          m: 2,
-        }}
-      />
-      <Skeleton
-        variant="rounded"
-        sx={{
-          height: "80px",
-          borderRadius: "7px",
-          m: 2,
-        }}
-      />
-      <Skeleton
-        variant="rounded"
-        sx={{
-          height: "150px",
-          borderRadius: "7px",
-          m: 2,
-        }}
-      />
-      <Skeleton
-        variant="rounded"
-        sx={{
-          height: "80px",
-          borderRadius: "7px",
-          m: 2,
-        }}
-      />
+      {["50px", "80px", "150px", "80px"].map((height, index) => (
+        <Skeleton
+          key={index}
+          variant="rounded"
+          sx={{
+            height,
+            borderRadius: "7px",
+            m: 2,
+          }}
+        />
+      ))}
       <Skeleton
         variant="text"
         sx={{
@@ -77,7 +56,6 @@ const StartPageSkeleton = () => {
           sx={{ width: "150px", height: "55px", mx: 1 }}
         />
       </Box>
-
       <Box
         sx={{
           display: "flex",

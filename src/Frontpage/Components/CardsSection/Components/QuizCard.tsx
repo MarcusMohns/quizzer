@@ -40,15 +40,10 @@ export default function QuizCard({
           loading="lazy"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5">
             {header}
           </Typography>
-          <Typography
-            variant="body2"
-            sx={{ color: "text.secondary", justifySelf: "center" }}
-          >
-            {description}
-          </Typography>
+          <Typography variant="body2">{description}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>

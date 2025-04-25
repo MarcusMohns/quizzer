@@ -16,16 +16,17 @@ const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
       sx={{
         alignItems: "center",
         justifyContent: { xs: "center", sm: "flex-end" },
-        p: { xs: 0, sm: 2 },
+        px: { xs: 0, sm: 2 },
       }}
       direction="row"
     >
       <Typography
         sx={{
-          display: { xs: "none", sm: "flex" },
+          display: { xs: "none", sm: "block" },
           fontSize: { xs: "12px", sm: "initial" },
           textAlign: "center",
         }}
+        variant="body2"
       >
         Light
       </Typography>
@@ -37,10 +38,11 @@ const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
       />
       <Typography
         sx={{
-          display: { xs: "none", sm: "flex" },
+          display: { xs: "none", sm: "block" },
           fontSize: { xs: "12px", sm: "initial" },
           textAlign: "center",
         }}
+        variant="body2"
       >
         Dark
       </Typography>

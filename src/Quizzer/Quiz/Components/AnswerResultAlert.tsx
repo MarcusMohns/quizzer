@@ -17,12 +17,12 @@ interface AnswerResultAlertProps {
   alertShown: boolean;
 }
 
-const StyledAlert = (props: StyledAlertProps) => {
+const StyledAlert = ({ severity, title, correctAnswer }: StyledAlertProps) => {
   return (
     <Zoom in={true}>
       <Alert
         variant="outlined"
-        severity={props.severity}
+        severity={severity}
         sx={{
           m: 2,
           backgroundColor: "background.default",
@@ -33,10 +33,10 @@ const StyledAlert = (props: StyledAlertProps) => {
           sx={{
             display: { xs: "none", sm: "flex" },
             fontSize: "1.1rem",
-            color: props.severity === "success" ? "success.main" : "error.main",
+            color: severity === "success" ? "success.main" : "error.main",
           }}
         >
-          {props.title}
+          {title}
         </AlertTitle>
         <Typography
           component="span"
@@ -51,11 +51,10 @@ const StyledAlert = (props: StyledAlertProps) => {
               display: "inline-block",
               fontWeight: "bold",
               fontSize: "1.1rem",
-              color:
-                props.severity === "success" ? "success.main" : "error.main",
+              color: severity === "success" ? "success.main" : "error.main",
             }}
           >
-            {props.correctAnswer}
+            {correctAnswer}
           </Box>
         </Typography>
       </Alert>

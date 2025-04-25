@@ -5,10 +5,8 @@ import StepButton from "@mui/material/StepButton";
 import Tooltip from "@mui/material/Tooltip";
 import DvrIcon from "@mui/icons-material/Dvr";
 import { QuizState, QuizResult } from "../../store";
-
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-// import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 interface QuizStepperProps {
   quizData: QuizState;

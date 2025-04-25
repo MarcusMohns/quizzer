@@ -15,27 +15,25 @@ import { QuizState } from "./store.js";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function App() {
-  const darkModeSystemPreference = useMediaQuery(
-    "(prefers-color-scheme: dark)"
-  );
-  const darkModeLocalStorage = localStorage.getItem("Darkmode");
+  const systemPrefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const localStorageDarkMode = localStorage.getItem("Darkmode");
 
-  const darkModeData = useMemo(() => {
-    if (darkModeLocalStorage === "true") {
+  const initialDarkMode = useMemo(() => {
+    if (localStorageDarkMode === "true") {
       // Check local storage for dark mode first
       return true;
-    } else if (darkModeLocalStorage === "false") {
+    } else if (localStorageDarkMode === "false") {
       return false;
       // Check for system preference
-    } else if (darkModeSystemPreference) {
+    } else if (systemPrefersDarkMode) {
       return true;
     } else {
       // Default to use light mode
       return false;
     }
-  }, [darkModeLocalStorage, darkModeSystemPreference]);
+  }, [localStorageDarkMode, systemPrefersDarkMode]);
 
-  const [darkMode, setDarkMode] = useState<boolean>(darkModeData);
+  const [darkMode, setDarkMode] = useState<boolean>(initialDarkMode);
   const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
   const [quizData, setQuizData] = useState<QuizState | null>(null);
 

@@ -6,7 +6,7 @@ import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
 import { Refs, VisibleStates } from "../../store";
 
-interface CardsSectionInterface {
+interface GenerateSectionInterface {
   visibleStates: VisibleStates;
   refs: Refs;
   handleSideMenuOpen: (
@@ -19,7 +19,7 @@ const GenerateSection = ({
   refs,
   visibleStates,
   handleSideMenuOpen,
-}: CardsSectionInterface) => {
+}: GenerateSectionInterface) => {
   return (
     <Box
       ref={(el) => {
@@ -45,8 +45,8 @@ const GenerateSection = ({
           flexDirection: "row",
           width: "49%",
           height: "100%",
-          backgroundPosition: "center",
           backgroundImage: "url(/svgs/icon-grid.svg)",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           m: 5,
         }}
@@ -77,7 +77,7 @@ const GenerateSection = ({
           >
             <Typography fontSize="4rem">💻 🌍</Typography>
             <Typography
-              id="existing-quiz-header"
+              id="generate-section-header"
               sx={{
                 width: "100%",
               }}
