@@ -26,6 +26,7 @@ const QuizFormCheckbox = ({
           onChange={handleChecked}
           name={checkbox.id}
           size="small"
+          color="info"
         />
       }
       label={

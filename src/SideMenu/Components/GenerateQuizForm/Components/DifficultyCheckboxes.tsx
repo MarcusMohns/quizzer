@@ -47,6 +47,7 @@ const DifficulyCheckboxes = ({
               indeterminate={someChecked(difficulties)}
               onChange={toggleDifficultyCheckBoxes}
               name={"all-difficulties-checkbox"}
+              color="info"
             />
           }
         />

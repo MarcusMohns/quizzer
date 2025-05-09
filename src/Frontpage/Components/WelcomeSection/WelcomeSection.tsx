@@ -38,7 +38,7 @@ const WelcomeSection = ({
         justifyContent: "flex-start",
         width: "100%",
         minHeight: "100%",
-        height: { xs: "100vh", md: "92vh" },
+        height: { xs: "100vh", md: "93vh" },
         backgroundImage: "url(/svgs/cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",

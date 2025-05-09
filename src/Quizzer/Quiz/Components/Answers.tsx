@@ -126,7 +126,6 @@ const Answers = ({
                     textAlign: "left",
                     p: { xs: 1, md: 2 },
                     m: 0,
-                    fontWeight: "bold",
                   }}
                 />
               </ButtonBase>

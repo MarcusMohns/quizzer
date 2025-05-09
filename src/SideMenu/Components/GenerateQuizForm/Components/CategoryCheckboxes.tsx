@@ -44,6 +44,7 @@ const CategoryCheckboxes = ({
               indeterminate={someChecked(categories)}
               onChange={toggleCategoryCheckBoxes}
               name={"all-categories-checkbox"}
+              color="info"
             />
           }
         />

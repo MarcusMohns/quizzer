@@ -48,6 +48,7 @@ const GenerateSection = ({
           backgroundImage: "url(/svgs/icon-grid.svg)",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
           m: 5,
         }}
       />
