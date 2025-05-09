@@ -43,7 +43,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           component="h2"
           sx={{ mt: 5, textAlign: "center" }}
         >
-          {(correctAnswers / totalQuestions) * 100}% Correct! 🎊
+          {((correctAnswers / totalQuestions) * 100).toFixed(2)}% Correct! 🎊
         </Typography>
       </Zoom>
       <Grow in={true} appear={true} timeout={900}>
