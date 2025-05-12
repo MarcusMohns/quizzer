@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
+import Slide from "@mui/material/Slide";
 import { Refs, VisibleStates } from "../../store";
 
 interface GenerateSectionInterface {
@@ -29,27 +30,26 @@ const GenerateSection = ({
       id="generate-section"
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         minHeight: "50vh",
         height: "100vh",
         width: "100%",
-        p: 5,
-        mt: 2,
+        backgroundColor: "background.paper",
       }}
     >
       <Box
         sx={{
-          display: { xs: "none", lg: "flex" },
-          flexDirection: "row",
-          width: "49%",
+          position: "absolute",
+          width: "100%",
           height: "100%",
-          backgroundImage: "url(/svgs/icon-grid.svg)",
-          backgroundPosition: "center",
+          backgroundImage: "url(/svgs/cloudy.svg)",
+          transform: "scaleY(-1)",
+          backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          m: 5,
+          pointerEvents: "none",
+          zIndex: 10,
         }}
       />
       <Box
@@ -57,42 +57,34 @@ const GenerateSection = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: { xs: "100%", lg: "50%" },
-          m: { xs: 0, lg: 5 },
+          justifyContent: "center",
+          width: { sm: "100%", md: "50%" },
+          mt: { xs: 5, md: 20 },
         }}
       >
-        <Fade
+        <Slide
           in={visibleStates["generate-section"]}
+          container={refs.current[3]}
           timeout={600}
           style={{ transitionDelay: "200ms" }}
         >
-          <Box
+          <Typography
+            id="generate-section-header"
             sx={{
-              width: {
-                xs: "100%",
-                lg: "50%",
-                textAlign: "center",
-                justifyContent: "center",
-              },
+              width: { xs: "100%", lg: "50%" },
+              textAlign: "center",
+              zIndex: 0,
             }}
+            variant="h4"
           >
-            <Typography fontSize="4rem">💻 🌍</Typography>
-            <Typography
-              id="generate-section-header"
-              sx={{
-                width: "100%",
-              }}
-              variant="h5"
-            >
-              Generate a quiz selecting your preferred category and difficulty!
-            </Typography>
-          </Box>
-        </Fade>
+            Generate a quiz selecting your preferred category and difficulty!
+          </Typography>
+        </Slide>
 
         <Fade
           in={visibleStates["generate-section"]}
           timeout={600}
-          style={{ transitionDelay: "400ms" }}
+          style={{ transitionDelay: "600ms" }}
         >
           <Box sx={{ textAlign: "center" }}>
             <Button

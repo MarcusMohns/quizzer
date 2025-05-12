@@ -23,6 +23,7 @@ export default function QuizCard({
 }: QuizCardInterface) {
   return (
     <Card
+      raised={true}
       sx={{
         maxWidth: 275,
         m: 5,

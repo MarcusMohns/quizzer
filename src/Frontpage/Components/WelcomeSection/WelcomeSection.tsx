@@ -42,6 +42,7 @@ const WelcomeSection = ({
         backgroundImage: "url(/svgs/cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
+        zIndex: 10,
       }}
     >
       <Box sx={{ width: { sm: "100%", md: "50%" }, mt: { xs: 5, md: 10 } }}>
@@ -78,7 +79,6 @@ const WelcomeSection = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              borderRadius: "10px",
             }}
           >
             <Stack
@@ -97,7 +97,7 @@ const WelcomeSection = ({
                 timeout={400}
                 style={{ transitionDelay: "300ms" }}
               >
-                <Typography sx={{ textAlign: "center" }}>
+                <Typography sx={{ textAlign: "center" }} variant="body1">
                   Welcome to Quizzer, your ultimate destination for fun and
                   challenging quizzes! Whether you're looking to test your
                   knowledge, learn something new, or just have a good time,

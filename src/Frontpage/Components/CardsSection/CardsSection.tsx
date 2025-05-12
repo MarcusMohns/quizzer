@@ -28,9 +28,19 @@ const CardsSection = ({
       sx={{
         width: { xs: "100%" },
         minHeight: "100vh",
-        pt: 10,
       }}
     >
+      {/* Divider box giving the Card & Generate section a rounded transition  */}
+      <Box
+        sx={{
+          width: "100%",
+          height: "70px",
+          borderRadius: { xs: "0%", md: "100%" },
+          position: "relative",
+          backgroundColor: "background.default",
+          top: "-37px",
+        }}
+      />
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
         <Box
           ref={(el) => {
@@ -44,7 +54,7 @@ const CardsSection = ({
               textAlign: "center",
               width: "100%",
             }}
-            variant="h5"
+            variant="h4"
           >
             ...or find an existing quiz in our list of quizzes!
           </Typography>
