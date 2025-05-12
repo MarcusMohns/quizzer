@@ -30,6 +30,7 @@ const GenerateSection = ({
       id="generate-section"
       sx={{
         display: "flex",
+        position: "relative",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
@@ -42,6 +43,7 @@ const GenerateSection = ({
       <Box
         sx={{
           position: "absolute",
+          top: 0,
           width: "100%",
           height: "100%",
           backgroundImage: "url(/svgs/cloudy.svg)",
@@ -59,7 +61,7 @@ const GenerateSection = ({
           alignItems: "center",
           justifyContent: "center",
           width: { sm: "100%", md: "50%" },
-          mt: { xs: 5, md: 20 },
+          mt: { xs: 20, md: 20 },
         }}
       >
         <Slide
