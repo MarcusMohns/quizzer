@@ -52,7 +52,8 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#FFF",
+      default: "#ffffff",
+      paper: "#eff0ff",
     },
     primary: {
       main: "#cedaff",
@@ -85,9 +86,9 @@ export const lightTheme = createTheme({
       contrastText: "#dfdfdf",
     },
     warning: {
-      main: "#ff871f",
-      light: "#ffac63",
-      dark: "#d87721",
+      main: "#09317a",
+      light: "#9ab4e4",
+      dark: "#2b5197",
     },
   },
 });

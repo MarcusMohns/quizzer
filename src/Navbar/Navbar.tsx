@@ -2,9 +2,9 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
-import ThemeToggler from "./Components/ThemeToggler.js";
-import SideMenu from "../SideMenu/SideMenu.js";
-import { QuizState } from "../store.js";
+import ThemeToggler from "./components/ThemeToggler.tsx";
+import SideMenu from "../SideMenu/SideMenu.tsx";
+import { QuizState } from "../store.tsx";
 
 interface NavbarProps {
   handleSetDarkMode: () => void;
@@ -30,7 +30,12 @@ export default function Navbar({
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="primary">
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "primary",
+        }}
+      >
         <Toolbar>
           <SideMenu
             handleSideMenuOpen={handleSideMenuOpen}
