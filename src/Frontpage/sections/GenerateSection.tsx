@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
-import { Refs, VisibleStates } from "../../store";
+import { Refs, VisibleStates } from "../store";
 
 interface GenerateSectionInterface {
   visibleStates: VisibleStates;
@@ -29,8 +29,8 @@ const GenerateSection = ({
       component="section"
       id="generate-section"
       sx={{
-        display: "flex",
         position: "relative",
+        display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
@@ -67,34 +67,38 @@ const GenerateSection = ({
         <Slide
           in={visibleStates["generate-section"]}
           container={refs.current[3]}
-          timeout={600}
-          style={{ transitionDelay: "200ms" }}
+          timeout={900}
+          style={{ transitionDelay: "300ms" }}
         >
-          <Typography
-            id="generate-section-header"
-            sx={{
-              width: { xs: "100%", lg: "50%" },
-              textAlign: "center",
-              zIndex: 0,
-            }}
-            variant="h4"
-          >
-            Generate a quiz selecting your preferred category and difficulty!
-          </Typography>
+          <Box>
+            <Typography
+              id="generate-section-header"
+              sx={{
+                textAlign: "center",
+                zIndex: 0,
+              }}
+              variant="h4"
+            >
+              Generate a quiz!
+            </Typography>
+            <Typography>
+              Select different categories, difficulty and quantity
+            </Typography>
+          </Box>
         </Slide>
 
         <Fade
           in={visibleStates["generate-section"]}
           timeout={600}
-          style={{ transitionDelay: "600ms" }}
+          style={{ transitionDelay: "900ms" }}
         >
-          <Box sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: "center", my: 3 }}>
             <Button
               id="generate-quiz-button"
               color="warning"
               size="large"
               variant="outlined"
-              sx={{ my: 3 }}
+              sx={{ my: 2 }}
               onClick={() => handleSideMenuOpen(true)}
               endIcon={<MenuIcon />}
             >
@@ -111,7 +115,7 @@ const GenerateSection = ({
                 href="https://the-trivia-api.com/docs/v2/"
                 target="_blank"
                 rel="noopener noreferrer"
-                variant="body2"
+                variant="subtitle2"
                 color="warning"
               >
                 the-trivia-api

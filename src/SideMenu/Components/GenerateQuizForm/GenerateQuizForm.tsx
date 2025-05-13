@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import fetchQuiz from "./store";
-import DifficulyCheckboxes from "./Components/DifficultyCheckboxes";
-import CategoryCheckboxes from "./Components/CategoryCheckboxes";
+import DifficulyCheckboxes from "./components/DifficultyCheckboxes";
+import CategoryCheckboxes from "./components/CategoryCheckboxes";
 import { QuizState } from "../../../store";
 import { someChecked, allChecked, defaultFormData } from "./store";
 

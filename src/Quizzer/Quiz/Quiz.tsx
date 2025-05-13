@@ -2,12 +2,12 @@ import Box from "@mui/material/Box";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import tags from "../../store.tsx";
 import Fade from "@mui/material/Fade";
-import AnswerResultAlert from "./Components/AnswerResultAlert.tsx";
-import CategoryImage from "./Components/CategoryImage.tsx";
-import Tags from "./Components/Tags.tsx";
-import Answers from "./Components/Answers.tsx";
-import Question from "./Components/Question.tsx";
-import QuizTimer from "./Components/QuizTimer/QuizTimer.tsx";
+import AnswerResultAlert from "./components/AnswerResultAlert.tsx";
+import CategoryImage from "./components/CategoryImage.tsx";
+import Tags from "./components/Tags.tsx";
+import Answers from "./components/Answers.tsx";
+import Question from "./components/Question.tsx";
+import QuizTimer from "./components/QuizTimer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 
 interface QuizProps {

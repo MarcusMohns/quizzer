@@ -6,7 +6,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox.tsx";
 import { memo } from "react";
-import { allChecked, someChecked, FormData } from "../store";
+import { allChecked, someChecked, FormData } from "../store.tsx";
 
 interface CategoryCheckboxesProps {
   categories: FormData["categories"];

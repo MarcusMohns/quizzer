@@ -7,16 +7,16 @@ import {
   useMemo,
 } from "react";
 import Box from "@mui/material/Box";
-import QuizStepper from "./Components/QuizStepper.tsx";
-import QuizControls from "./Components/QuizControls.tsx";
-import Results from "./Components/Results.tsx";
-import ResultsModal from "./Components/ResultsModal.tsx";
+import QuizStepper from "./components/QuizStepper.tsx";
+import QuizControls from "./components/QuizControls.tsx";
+import Results from "./components/Results.tsx";
+import ResultsModal from "./components/ResultsModal.tsx";
 import Button from "@mui/material/Button";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import StartPageSkeleton from "./Components/StartPage/Components/StartPageSkeleton.tsx";
-import QuizSkeleton from "./Quiz/Components/QuizSkeleton.tsx";
-const StartPage = lazy(() => import("./Components/StartPage/StartPage.tsx"));
-const Quiz = lazy(() => import("./Quiz/Quiz.tsx"));
+import StartPageSkeleton from "./components/StartPage/components/StartPageSkeleton.tsx";
+import QuizSkeleton from "./quiz/components/QuizSkeleton.tsx";
+const StartPage = lazy(() => import("./components/StartPage/StartPage.tsx"));
+const Quiz = lazy(() => import("./quiz/Quiz.tsx"));
 import { QuizState, QuizQuestion, QuizResult } from "../store.tsx";
 
 interface QuizzerProps {

@@ -6,12 +6,12 @@ import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useCallback, useState, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { darkTheme, lightTheme } from "./Themes.js";
-import Navbar from "./Navbar/Navbar.jsx";
+import { darkTheme, lightTheme } from "./Themes.ts";
+import Navbar from "./Navbar/Navbar.tsx";
 import Quizzer from "./Quizzer/Quizzer.tsx";
-import FrontPage from "./Frontpage/FrontPage.js";
+import FrontPage from "./Frontpage/FrontPage.tsx";
 import Footer from "./Footer.tsx";
-import { QuizState } from "./store.js";
+import { QuizState } from "./store.tsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function App() {

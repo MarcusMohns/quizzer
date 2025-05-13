@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
-import { preparedQuizzes } from "../../store";
-import QuizCard from "./Components/QuizCard.tsx";
-import { VisibleStates, Refs } from "../../store";
-import { QuizState } from "../../../store.tsx";
+import { preparedQuizzes } from "../store.tsx";
+import QuizCard from "../components/QuizCard.tsx";
+import { VisibleStates, Refs } from "../store.tsx";
+import { QuizState } from "../../store.tsx";
 
 interface CardsSectionInterface {
   visibleStates: VisibleStates;

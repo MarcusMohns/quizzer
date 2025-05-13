@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import { QuizState } from "../../../../store";
+import { QuizState } from "../../store";
 
 interface QuizCardInterface {
   description: string;
@@ -29,6 +29,7 @@ export default function QuizCard({
         m: 5,
         height: "100%",
         textAlign: "center",
+        backgroundColor: "background.default",
       }}
     >
       <CardActionArea onClick={() => handleSetQuizData(questions)}>
