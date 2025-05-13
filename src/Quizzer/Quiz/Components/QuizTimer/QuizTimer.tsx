@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { minutesAndSecondsToMillis } from "./store.tsx";
-import LabledProgressBar from "./Components/LabledProgressBar.tsx";
+import LabledProgressBar from "./components/LabledProgressBar.tsx";
 
 interface QuizTimerProps {
   timeLimit: { minutes: number; seconds: number };

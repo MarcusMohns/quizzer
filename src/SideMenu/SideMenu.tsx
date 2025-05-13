@@ -2,12 +2,12 @@ import { Suspense, lazy } from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Typography } from "@mui/material";
-import StyledMenuIconButton from "./Components/StyledMenuIconButton.js";
+import StyledMenuIconButton from "./components/StyledMenuIconButton.tsx";
 const GenerateQuizForm = lazy(
-  () => import("./Components/GenerateQuizForm/GenerateQuizForm.js")
+  () => import("./components/GenerateQuizForm/GenerateQuizForm.tsx")
 );
-import { QuizState } from "../store.js";
-import SideMenuSkeleton from "./Components/SideMenuSkeleton.js";
+import { QuizState } from "../store.tsx";
+import SideMenuSkeleton from "./components/SideMenuSkeleton.tsx";
 import Stack from "@mui/material/Stack";
 
 export interface SideMenuProps {
