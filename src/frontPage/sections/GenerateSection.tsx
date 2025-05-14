@@ -61,14 +61,14 @@ const GenerateSection = ({
           alignItems: "center",
           justifyContent: "center",
           width: { sm: "100%", md: "50%" },
-          mt: { xs: 20, md: 20 },
+          mt: 20,
         }}
       >
         <Slide
           in={visibleStates["generate-section"]}
           container={refs.current[3]}
-          timeout={900}
-          style={{ transitionDelay: "300ms" }}
+          timeout={1000}
+          style={{ transitionDelay: "400ms" }}
         >
           <Box>
             <Typography
