@@ -4,7 +4,7 @@ import WelcomeSection from "./sections/WelcomeSection.tsx";
 import GenerateSection from "./sections/GenerateSection.tsx";
 import { useRef } from "react";
 import ScrollTopButton from "./components/ScrollTopButton.tsx";
-import { QuizState } from "../store";
+import { QuizState } from "../store.tsx";
 import { useElementOnScreen } from "./store.tsx";
 
 interface FrontPageProps {

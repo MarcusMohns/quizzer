@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import ThemeToggler from "./components/ThemeToggler.tsx";
-import SideMenu from "../SideMenu/SideMenu.tsx";
+import SideMenu from "../sideMenu/SideMenu.tsx";
 import { QuizState } from "../store.tsx";
 
 interface NavbarProps {
