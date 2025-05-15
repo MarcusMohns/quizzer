@@ -159,8 +159,8 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundImage: {
-          xs: "url(./svgs/curvy-line.svg)",
-          md: "url(./svgs/animated-shapes.svg)",
+          xs: "url(./images/curvy-line.svg)",
+          md: "url(./images/animated-shapes.svg)",
         },
       }}
     >

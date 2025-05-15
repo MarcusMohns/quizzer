@@ -46,52 +46,52 @@ export const tags: Tags = {
   music: {
     title: "Music",
     icon: <MusicNoteOutlinedIcon />,
-    image: "/images/music-card.webp",
+    image: "/images/music.svg",
   },
   sport_and_leisure: {
     title: "Sports and Leisure",
     icon: <SportsSoccerOutlinedIcon />,
-    image: "/images/sports-and-leisure-card.webp",
+    image: "/images/sports-and-leisure.svg",
   },
   film_and_tv: {
     title: "Film and TV",
     icon: <TheatersOutlinedIcon />,
-    image: "/images/film-and-tv-card.webp",
+    image: "/images/film-and-tv.svg",
   },
   arts_and_literature: {
     title: "Arts and Literature",
     icon: <BrushOutlinedIcon />,
-    image: "/images/arts-and-literature-card.webp",
+    image: "/images/arts-and-literature.svg",
   },
   history: {
     title: "History",
     icon: <HistoryOutlinedIcon />,
-    image: "/images/history-card.webp",
+    image: "/images/history.svg",
   },
   society_and_culture: {
     title: "Society and Culture",
     icon: <Diversity1OutlinedIcon />,
-    image: "/images/society-and-culture-card.webp",
+    image: "/images/society-and-culture.svg",
   },
   science: {
     title: "Science",
     icon: <ScienceOutlinedIcon />,
-    image: "/images/science-card.webp",
+    image: "/images/science.svg",
   },
   geography: {
     title: "Geography",
     icon: <MapOutlinedIcon />,
-    image: "/images/geography-card.webp",
+    image: "/images/geography.svg",
   },
   food_and_drink: {
     title: "Food and Drink",
     icon: <TapasOutlinedIcon />,
-    image: "/images/food-and-drink-card.webp",
+    image: "/images/food-and-drink.svg",
   },
   general_knowledge: {
     title: "General Knowledge",
     icon: <SchoolOutlinedIcon />,
-    image: "/images/general-knowledge-card.webp",
+    image: "/images/general-knowledge.svg",
   },
 };
 

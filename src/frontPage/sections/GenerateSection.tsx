@@ -46,7 +46,7 @@ const GenerateSection = ({
           top: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: "url(/svgs/cloudy.svg)",
+          backgroundImage: "url(/images/cloudy.svg)",
           transform: "scaleY(-1)",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",

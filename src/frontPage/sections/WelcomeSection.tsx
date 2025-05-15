@@ -39,7 +39,7 @@ const WelcomeSection = ({
         width: "100%",
         minHeight: "100%",
         height: { xs: "100vh", md: "93vh" },
-        backgroundImage: "url(/svgs/cloudy.svg)",
+        backgroundImage: "url(images/cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
         zIndex: 10,
