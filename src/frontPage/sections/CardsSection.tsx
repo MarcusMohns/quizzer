@@ -2,9 +2,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import { preparedQuizzes } from "../store.tsx";
-import QuizCard from "../components/QuizCard.tsx";
 import { VisibleStates, Refs } from "../store.tsx";
 import { QuizState } from "../../store.tsx";
+import QuizCard from "../components/QuizCard.tsx";
 
 interface CardsSectionInterface {
   visibleStates: VisibleStates;
@@ -81,7 +81,8 @@ const CardsSection = ({
                 <QuizCard
                   key={quiz.category}
                   description={quiz.description}
-                  image={quiz.smallerImage}
+                  image={quiz.image}
+                  icon={quiz.icon}
                   header={quiz.category}
                   questions={quiz.questions}
                   handleSetQuizData={handleSetQuizData}

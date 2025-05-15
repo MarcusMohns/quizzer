@@ -52,14 +52,14 @@ export const lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#ffffff",
-      paper: "#eff0ff",
+      default: "#e9ebff",
+      paper: "#f8f9fb",
     },
     primary: {
       main: "#cedaff",
       light: "#ffffff",
       dark: "#95a8e2",
-      contrastText: "#000",
+      contrastText: "#000000",
     },
     secondary: {
       main: "#cedaff",
