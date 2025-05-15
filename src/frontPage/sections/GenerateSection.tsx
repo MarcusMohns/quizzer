@@ -60,8 +60,10 @@ const GenerateSection = ({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          textAlign: "center",
           width: { sm: "100%", md: "50%" },
           mt: 20,
+          mx: 2,
         }}
       >
         <Slide
@@ -81,7 +83,7 @@ const GenerateSection = ({
             >
               Generate a quiz!
             </Typography>
-            <Typography>
+            <Typography sx={{ textAlign: "center" }}>
               Select different categories, difficulty and quantity
             </Typography>
           </Box>
