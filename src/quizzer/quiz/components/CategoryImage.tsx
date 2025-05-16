@@ -27,9 +27,9 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
           loading="lazy"
           sx={{
             width: "100%",
-            height: "200px",
-            objectFit: "cover",
+            height: "100%",
             borderRadius: { xs: "0px", sm: "10px" },
+            backgroundColor: "secondary.dark",
           }}
         />
         <Typography
@@ -37,9 +37,8 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
             position: "relative",
             bottom: "50%",
             width: "100%",
-            backgroundColor: "#00000091",
+            backgroundColor: "secondary.main",
             fontSize: "1.5rem",
-            color: "white",
             textAlign: "center",
           }}
         >
