@@ -97,7 +97,7 @@ const WelcomeSection = ({
                 timeout={400}
                 style={{ transitionDelay: "300ms" }}
               >
-                <Typography sx={{ textAlign: "center" }} variant="body1">
+                <Typography sx={{ textAlign: "center" }}>
                   Welcome to Quizzer, your ultimate destination for fun and
                   challenging quizzes! Whether you're looking to test your
                   knowledge, learn something new, or just have a good time,
@@ -114,9 +114,9 @@ const WelcomeSection = ({
                   <Button
                     onClick={() => handleSideMenuOpen(true)}
                     color="warning"
-                    variant="contained"
+                    variant="outlined"
                     endIcon={<MenuIcon />}
-                    sx={{ fontWeight: "bold" }}
+                    sx={{ fontWeight: "bold", boxShadow: 2 }}
                     size="large"
                   >
                     Generate a quiz
@@ -125,9 +125,9 @@ const WelcomeSection = ({
                     // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
                     onClick={() => handleScroll(1)}
                     color="warning"
-                    variant="outlined"
+                    variant="contained"
                     endIcon={<KeyboardDoubleArrowDownIcon />}
-                    sx={{ fontWeight: "bold" }}
+                    sx={{ fontWeight: "bold", boxShadow: 2 }}
                     size="large"
                   >
                     Pick an existing Quiz
