@@ -41,6 +41,7 @@ const FrontPage = ({
         justifyContent: "center",
         alignSelf: "center",
         justifySelf: "center",
+        width: "100%",
         p: 0,
         mt: 1,
       }}
