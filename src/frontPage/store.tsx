@@ -920,7 +920,7 @@ export const preparedQuizzes = [
         correctAnswer: "Coca Cola",
         incorrectAnswers: ["Dr Pepper", "Lucozade", "Irn Bru"],
         question: {
-          text: "Which Significant Did Dr John Pemberton Of Atlanta Georgia Invent In 1886?",
+          text: "Which Significant Drink Did Dr John Pemberton Of Atlanta Georgia Invent In 1886?",
         },
         tags: ["science"],
         type: "text_choice",
