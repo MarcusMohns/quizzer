@@ -78,7 +78,7 @@ const QuizControls = ({
           onClick={handleBack}
           disabled={activeStep === 0}
           variant="contained"
-          color="secondary"
+          color="primary"
           size="large"
           sx={{ width: "50%", height: "100%" }}
           startIcon={<NavigateBeforeIcon />}
@@ -89,7 +89,7 @@ const QuizControls = ({
           onClick={handleNext}
           disabled={activeStep === quizData.length}
           variant="contained"
-          color="secondary"
+          color="primary"
           size="large"
           sx={{ width: "50%", height: "100%" }}
           endIcon={<NavigateNextIcon />}

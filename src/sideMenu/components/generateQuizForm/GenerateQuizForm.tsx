@@ -110,7 +110,6 @@ const GenerateQuizForm = ({
         flexDirection: "column",
         px: 3,
         width: "300px",
-        height: "100%",
       }}
       noValidate
       autoComplete="off"
@@ -157,8 +156,9 @@ const GenerateQuizForm = ({
       <Button
         variant="contained"
         type="submit"
+        color="secondary"
         disabled={loading}
-        sx={{ mb: 2, mt: "auto" }}
+        sx={{ mb: 2, mt: "auto", boxShadow: 3 }}
         loading={loading}
         loadingIndicator={
           <Box

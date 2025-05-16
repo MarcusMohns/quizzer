@@ -37,7 +37,7 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
             position: "relative",
             bottom: "50%",
             width: "100%",
-            backgroundColor: "secondary.main",
+            backgroundColor: "primary.main",
             fontSize: "1.5rem",
             textAlign: "center",
           }}

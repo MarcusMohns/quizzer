@@ -12,7 +12,7 @@ const LabledProgressBar = (props: { value: number; timer: number }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        width: "80%",
+        width: { xs: "80%", md: "70%" },
         flexDirection: "column",
       }}
     >

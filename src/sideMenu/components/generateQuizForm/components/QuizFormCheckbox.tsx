@@ -35,7 +35,6 @@ const QuizFormCheckbox = ({
             display: "flex",
             alignItems: "center",
             width: "max-content",
-            fontSize: "17px",
           }}
         >
           {checkbox.name}

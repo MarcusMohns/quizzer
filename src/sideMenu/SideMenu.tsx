@@ -96,7 +96,7 @@ export default function SideMenu({
             sx={{
               height: "40px",
               width: "12px",
-              backgroundColor: "secondary.dark",
+              backgroundColor: "primary.dark",
               borderRadius: 3,
             }}
           />
