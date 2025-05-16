@@ -15,7 +15,7 @@ interface SelectTimerProps {
   handleSetTimeLimit: (timeLimit: { minutes: number; seconds: number }) => void;
 }
 const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
-  const minutes = [0, 1, 2, 5, 7, 10, 15, 20, 25, 30];
+  const minutes = [0, 1, 2, 5, 7, 10, 15, 20, 25, 30, 45, 60];
   const seconds = [0, 5, 10, 15, 20, 25, 30, 40, 50];
 
   const handleChange = (event: SelectChangeEvent<number>) => {
