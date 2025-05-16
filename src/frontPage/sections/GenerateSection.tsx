@@ -70,7 +70,7 @@ const GenerateSection = ({
           in={visibleStates["generate-section"]}
           container={refs.current[3]}
           timeout={1000}
-          style={{ transitionDelay: "400ms" }}
+          style={{ transitionDelay: "300ms" }}
         >
           <Box>
             <Typography
@@ -100,7 +100,7 @@ const GenerateSection = ({
               color="warning"
               size="large"
               variant="outlined"
-              sx={{ my: 2 }}
+              sx={{ my: 2, boxShadow: 2 }}
               onClick={() => handleSideMenuOpen(true)}
               endIcon={<MenuIcon />}
             >
