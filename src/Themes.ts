@@ -86,9 +86,9 @@ export const lightTheme = createTheme({
       contrastText: "#dfdfdf",
     },
     warning: {
-      main: "#09317a",
-      light: "#9ab4e4",
-      dark: "#2b5197",
+      main: "#eb7100",
+      light: "#f7c364",
+      dark: "#cf8b0c",
     },
   },
 });
