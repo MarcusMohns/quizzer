@@ -60,15 +60,15 @@ const Footer = () => {
             </Link>
           </Tooltip>
         </Box>
-        <Typography
-          sx={{
-            visibility: "hidden",
-            display: { xs: "none", lg: "flex" },
-          }}
-          variant="subtitle2"
-          component="p"
-        >
-          Made by @MarcusMohns using React and Material-UI
+        <Typography variant="subtitle2" component="p">
+          Vectors and icons by{" "}
+          <Link
+            href="https://www.svgrepo.com"
+            target="_blank"
+            sx={{ textDecoration: "none", ml: 0.5 }}
+          >
+            https://www.svgrepo.com/
+          </Link>
         </Typography>
       </Box>
     </Box>
