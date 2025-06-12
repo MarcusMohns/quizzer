@@ -41,12 +41,24 @@ const Footer = () => {
           }}
         >
           <Tooltip title="GitHub" aria-label="scrollToTop" placement="left">
-            <Link href="#" underline="hover">
+            <Link
+              href="#"
+              underline="hover"
+              target="_blank"
+              rel="noopener"
+              color="text.secondary"
+            >
               <GitHubIcon fontSize="large" />
             </Link>
           </Tooltip>
           <Tooltip title="LinkedIn" aria-label="scrollToTop" placement="top">
-            <Link href="#" underline="hover">
+            <Link
+              href="#"
+              underline="hover"
+              target="_blank"
+              rel="noopener"
+              color="text.secondary"
+            >
               <LinkedInIcon fontSize="large" />
             </Link>
           </Tooltip>
@@ -55,7 +67,13 @@ const Footer = () => {
             aria-label="scrollToTop"
             placement="right"
           >
-            <Link href="#" underline="hover">
+            <Link
+              href="#"
+              underline="hover"
+              target="_blank"
+              rel="noopener"
+              color="text.secondary"
+            >
               <FireplaceIcon fontSize="large" />
             </Link>
           </Tooltip>
@@ -66,6 +84,8 @@ const Footer = () => {
             href="https://www.svgrepo.com"
             target="_blank"
             sx={{ textDecoration: "none", ml: 0.5 }}
+            underline="hover"
+            color="text.primary"
           >
             https://www.svgrepo.com/
           </Link>

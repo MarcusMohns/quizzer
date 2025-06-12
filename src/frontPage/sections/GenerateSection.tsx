@@ -99,13 +99,14 @@ const GenerateSection = ({
               id="generate-quiz-button"
               color="warning"
               size="large"
-              variant="outlined"
-              sx={{ my: 2, boxShadow: 2 }}
+              variant="contained"
+              sx={{ my: 2, fontWeight: "bold", boxShadow: 2 }}
               onClick={() => handleSideMenuOpen(true)}
               endIcon={<MenuIcon />}
             >
               Generate Quiz
             </Button>
+
             <Typography
               id="generate-section-text"
               sx={{
@@ -118,7 +119,7 @@ const GenerateSection = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="subtitle2"
-                color="warning"
+                color="warning.light"
               >
                 the-trivia-api
               </Link>{" "}

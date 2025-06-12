@@ -27,6 +27,7 @@ const StyledAlert = ({ severity, title, correctAnswer }: StyledAlertProps) => {
           m: 2,
           backgroundColor: "background.default",
           color: "text.primary",
+          boxShadow: 2,
         }}
       >
         <AlertTitle
@@ -49,7 +50,6 @@ const StyledAlert = ({ severity, title, correctAnswer }: StyledAlertProps) => {
             component="span"
             sx={{
               display: "inline-block",
-              fontWeight: "bold",
               fontSize: "1.1rem",
               color: severity === "success" ? "success.main" : "error.main",
             }}

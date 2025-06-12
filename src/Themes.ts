@@ -2,8 +2,10 @@ import { createTheme } from "@mui/material/styles";
 
 export const darkTheme = createTheme({
   typography: {
-    fontFamily: "monospace, Segoe UI,Roboto,Raleway",
+    fontFamily: "Nunito, monospace, Segoe UI,Roboto,Raleway",
     fontSize: 14,
+    fontWeightRegular: 600,
+    fontWeightBold: 800,
   },
   palette: {
     mode: "dark",
@@ -19,7 +21,7 @@ export const darkTheme = createTheme({
     },
     secondary: {
       main: "#2e395c",
-      light: "#43558f",
+      light: "#4e609e",
       dark: "#2a3250",
       contrastText: "#ffffff",
     },
@@ -46,24 +48,26 @@ export const darkTheme = createTheme({
 
 export const lightTheme = createTheme({
   typography: {
-    fontFamily: "monospace, Segoe UI,Roboto,Raleway",
+    fontFamily: "Nunito, monospace, Segoe UI,Roboto,Raleway",
     fontSize: 14,
+    fontWeightRegular: 600,
+    fontWeightBold: 800,
   },
   palette: {
     mode: "light",
     background: {
-      default: "#e9ebff",
-      paper: "#f8f9fb",
+      default: "#fffbf5",
+      paper: "#f4ede2",
     },
     primary: {
-      main: "#cedaff",
+      main: "#f3e9d9",
       light: "#ffffff",
-      dark: "#95a8e2",
+      dark: "#bd9e71",
       contrastText: "#000000",
     },
     secondary: {
-      main: "#a2b7f0",
-      light: "#f3f6ff",
+      main: "#f1e5d2",
+      light: "#bd9c6c",
       dark: "#849af1",
       contrastText: "#000000",
     },
@@ -86,9 +90,9 @@ export const lightTheme = createTheme({
       contrastText: "#dfdfdf",
     },
     warning: {
-      main: "#c26610",
-      light: "#b37133",
-      dark: "#9c4d03",
+      main: "#e6c56a",
+      light: "#af964a",
+      dark: "#e2b63e",
     },
   },
 });

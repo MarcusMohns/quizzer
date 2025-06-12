@@ -60,6 +60,7 @@ const WelcomeSection = ({
               sx={{ textAlign: "center" }}
               variant="h2"
               component="h1"
+              fontWeight={500}
             >
               Welcome to Quizzer
             </Typography>
@@ -114,7 +115,7 @@ const WelcomeSection = ({
                   <Button
                     onClick={() => handleSideMenuOpen(true)}
                     color="warning"
-                    variant="outlined"
+                    variant="contained"
                     endIcon={<MenuIcon />}
                     sx={{ fontWeight: "bold", boxShadow: 2 }}
                     size="large"
@@ -124,8 +125,8 @@ const WelcomeSection = ({
                   <Button
                     // handleScroll(1) refers to the index of the scrollRef we want to scroll (scrollRefs[1] in this case is the CardsSection)
                     onClick={() => handleScroll(1)}
-                    color="warning"
-                    variant="contained"
+                    color="info"
+                    variant="outlined"
                     endIcon={<KeyboardDoubleArrowDownIcon />}
                     sx={{ fontWeight: "bold", boxShadow: 2 }}
                     size="large"
