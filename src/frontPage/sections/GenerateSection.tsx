@@ -34,7 +34,7 @@ const GenerateSection = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "50vh",
+        minHeight: "700px",
         height: "100vh",
         width: "100%",
         backgroundColor: "background.paper",

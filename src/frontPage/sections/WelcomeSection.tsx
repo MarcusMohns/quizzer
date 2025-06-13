@@ -37,7 +37,7 @@ const WelcomeSection = ({
         alignItems: "center",
         justifyContent: "flex-start",
         width: "100%",
-        minHeight: "100%",
+        minHeight: "min-content",
         height: { xs: "100vh", md: "93vh" },
         backgroundImage: "url(images/cloudy.svg)",
         backgroundPosition: "bottom",
