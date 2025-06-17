@@ -42,7 +42,7 @@ const Footer = () => {
         >
           <Tooltip title="GitHub" aria-label="scrollToTop" placement="left">
             <Link
-              href="#"
+              href="https://github.com/MarcusMohns"
               underline="hover"
               target="_blank"
               rel="noopener"
@@ -53,7 +53,7 @@ const Footer = () => {
           </Tooltip>
           <Tooltip title="LinkedIn" aria-label="scrollToTop" placement="top">
             <Link
-              href="#"
+              href="https://www.linkedin.com/in/marcus-mohns-845303224/"
               underline="hover"
               target="_blank"
               rel="noopener"
@@ -68,7 +68,7 @@ const Footer = () => {
             placement="right"
           >
             <Link
-              href="#"
+              href="https://marcusmohns.onrender.com/"
               underline="hover"
               target="_blank"
               rel="noopener"
