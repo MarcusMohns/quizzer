@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useCallback,
-  Suspense,
-  lazy,
-  useMemo,
-} from "react";
+import { Suspense, lazy } from "react";
 import Box from "@mui/material/Box";
 import QuizStepper from "./components/QuizStepper.tsx";
 import QuizControls from "./components/QuizControls.tsx";
@@ -17,7 +10,8 @@ import StartPageSkeleton from "./components/startPage/components/StartPageSkelet
 import QuizSkeleton from "./quiz/components/QuizSkeleton.tsx";
 const StartPage = lazy(() => import("./components/startPage/StartPage.tsx"));
 const Quiz = lazy(() => import("./quiz/Quiz.tsx"));
-import { QuizState, QuizQuestion, QuizResult } from "../store.tsx";
+import useQuizzer from "./useQuizzer.ts";
+import { QuizState } from "../store.tsx";
 
 interface QuizzerProps {
   quizData: QuizState;
@@ -25,106 +19,23 @@ interface QuizzerProps {
 }
 
 const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
-  const [quizState, setQuizState] = useState({
-    started: false,
-    completed: false,
+  const {
+    handleSetQuizState,
+    handleSetActiveStep,
+    activeStep,
+    results,
+    quizState,
+    completeQuiz,
+    handleReset,
+    allQuestionsAnswered,
+    resetQuizData,
+    timeLimit,
+    handleSetTimeLimit,
+    handleSetResults,
+  } = useQuizzer({
+    quizData,
+    handleSetQuizData,
   });
-  const [activeStep, setActiveStep] = useState(0);
-  const [timeLimit, setTimeLimit] = useState({ minutes: 1, seconds: 0 });
-
-  // Create an object with keys as question numbers and values as "Not Answered"
-  const initialResults = useMemo(
-    () =>
-      quizData.map((question, idx) => ({
-        selectedAnswer: "Not Answered",
-        correctlyAnswered: false,
-        pickedAnswerIndex: -1,
-        correctAnswer: question.correctAnswer,
-        category: question.category,
-        questionText: question.question.text,
-        questionNum: idx + 1,
-      })),
-    [quizData]
-  );
-
-  const [results, setResults] = useState<QuizResult[]>(initialResults);
-
-  const handleSetQuizState = useCallback(
-    (newState: { started: boolean; completed: boolean }) => {
-      setQuizState(newState);
-    },
-    [setQuizState]
-  );
-
-  const handleSetResults = useCallback(
-    (
-      questionData: QuizQuestion,
-      selectedAnswer: string,
-      pickedAnswerIndex: number
-    ) => {
-      setResults((prevResults) => {
-        const newResults = [...prevResults];
-        newResults[activeStep] = {
-          selectedAnswer: selectedAnswer,
-          pickedAnswerIndex: pickedAnswerIndex,
-          correctlyAnswered: selectedAnswer === questionData.correctAnswer,
-          correctAnswer: questionData.correctAnswer,
-          questionNum: activeStep + 1,
-          category: questionData.category,
-          questionText: questionData.question.text,
-        };
-        return newResults;
-      });
-    },
-    [activeStep, setResults]
-  );
-
-  const handleSetTimeLimit = useCallback(
-    (timeLimit: { minutes: number; seconds: number }) => {
-      setTimeLimit(timeLimit);
-    },
-    [setTimeLimit]
-  );
-
-  const handleSetActiveStep = useCallback(
-    (step: number) => setActiveStep(step),
-    [setActiveStep]
-  );
-
-  const handleReset = useCallback(() => {
-    setActiveStep(0);
-    setQuizState({ started: false, completed: false });
-    setResults(initialResults);
-  }, [initialResults, setActiveStep, setQuizState, setResults]);
-
-  const resetQuizData = useCallback(() => {
-    handleSetQuizData(null);
-  }, [handleSetQuizData]);
-
-  const completeQuiz = useCallback(() => {
-    setQuizState((prevQuizState) => ({ ...prevQuizState, completed: true }));
-  }, [setQuizState]);
-
-  // Check if all questions are answered
-  const allQuestionsAnswered = useMemo(
-    () =>
-      results.filter((result) => result.selectedAnswer === "Not Answered")
-        .length === 0,
-    [results]
-  );
-
-  useEffect(() => {
-    // Reset Quiz when quizData changes
-    handleReset();
-  }, [quizData, handleReset]);
-
-  useEffect(() => {
-    // if all questions are answered complete the quiz
-    if (allQuestionsAnswered) {
-      completeQuiz();
-    }
-  }, [results, allQuestionsAnswered, completeQuiz]);
-
   const ControlsAndStepper = () => (
     <>
       <QuizControls
@@ -180,7 +91,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
       </Button>
       {quizState.completed && (
         <ResultsModal
-          setActiveStep={setActiveStep}
+          setActiveStep={handleSetActiveStep}
           results={results}
           handleReset={handleReset}
           totalQuestions={quizData!.length}
@@ -204,8 +115,6 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
               timeLimit={timeLimit}
               quizState={quizState}
               handleSetQuizState={handleSetQuizState}
-              completeQuiz={completeQuiz}
-              allQuestionsAnswered={allQuestionsAnswered}
             />
             <ControlsAndStepper />
           </Suspense>

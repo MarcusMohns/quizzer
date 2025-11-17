@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useEffect } from "react";
 import tags from "../../store.tsx";
 import Fade from "@mui/material/Fade";
 import AnswerResultAlert from "./components/AnswerResultAlert.tsx";
@@ -9,6 +9,7 @@ import Answers from "./components/Answers.tsx";
 import Question from "./components/Question.tsx";
 import QuizTimer from "./components/quizTimer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
+import useQuiz from "./useQuiz.ts";
 
 interface QuizProps {
   questionData: QuizQuestion;
@@ -28,8 +29,6 @@ interface QuizProps {
     started: boolean;
     completed: boolean;
   }) => void;
-  completeQuiz: () => void;
-  allQuestionsAnswered: boolean;
 }
 
 const Quiz = ({
@@ -41,41 +40,16 @@ const Quiz = ({
   quizState,
   handleSetQuizState,
 }: QuizProps) => {
-  const prevSelectedAnswerIndex = useMemo(
-    () =>
-      // Quiz will be rerendered when the user moves to the next/previous question
-      // so we need set the selected answer to the value saved in results (if it exists)
-      results[activeStep].pickedAnswerIndex === -1
-        ? -1
-        : results[activeStep].pickedAnswerIndex,
-    [activeStep, results]
-  );
-
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(
-    prevSelectedAnswerIndex
-  );
-
-  const sortedAnswers = useMemo(
-    // Sort answers alphabetically ('shuffling' them)
-    () => [questionData.correctAnswer, ...questionData.incorrectAnswers].sort(),
-    [questionData]
-  );
-
-  const handleSelectedAnswerIndex = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const answerIndex = Number(e.target.value);
-      setSelectedAnswerIndex(answerIndex);
-      handleSetResults(questionData, e.target.name, answerIndex);
-    },
-    [handleSetResults, questionData]
-  );
-
-  // Set the selected answer to the previous selected answer
-  useEffect(() => {
-    setSelectedAnswerIndex(prevSelectedAnswerIndex);
-  }, [activeStep, prevSelectedAnswerIndex]);
+  const { selectedAnswerIndex, handleSelectedAnswerIndex, sortedAnswers } =
+    useQuiz({
+      results,
+      activeStep,
+      questionData,
+      handleSetResults,
+    });
 
   useEffect(() => {
+    // Scroll to the Quiz
     scrollTo({ top: 170, left: 0, behavior: "smooth" });
   }, []);
 
