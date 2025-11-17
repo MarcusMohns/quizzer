@@ -1,5 +1,5 @@
 import LabledProgressBar from "./components/LabledProgressBar.tsx";
-import useTimer from "./useTimer.ts";
+import useQuizTimer from "./useQuizTimer.ts";
 
 interface QuizTimerProps {
   timeLimit: { minutes: number; seconds: number };
@@ -18,16 +18,16 @@ const QuizTimer = ({
   quizState,
   handleSetQuizState,
 }: QuizTimerProps) => {
-  const { timer, progress } = useTimer({
+  const { timer, progress } = useQuizTimer({
     timeLimit,
     handleSetQuizState,
     quizState,
   });
 
-  return !quizState.completed ? (
-    <LabledProgressBar value={progress} timer={timer} />
-  ) : (
+  return quizState.completed ? (
     <LabledProgressBar value={0} timer={0} />
+  ) : (
+    <LabledProgressBar value={progress} timer={timer} />
   );
 };
 export default QuizTimer;

@@ -12,7 +12,7 @@ interface useTimerProps {
   }) => void;
 }
 
-export const useTimer = ({
+export const useQuizTimer = ({
   timeLimit,
   handleSetQuizState,
   quizState,
@@ -27,30 +27,30 @@ export const useTimer = ({
   const [progress, setProgress] = useState(100);
 
   useEffect(() => {
-    if (timer === 0) {
-      handleSetQuizState({ ...quizState, completed: true });
-      return;
-    }
-
+    if (quizState.completed) return;
     const intervalId = setInterval(() => {
       setTimer((prevTimer) => prevTimer - INTERVAL_MILLIS);
     }, INTERVAL_MILLIS);
 
-    if (quizState.completed) {
-      clearInterval(intervalId);
-    }
-
     return () => {
       clearInterval(intervalId);
     };
-  }, [timer, timeLimitInMillis, handleSetQuizState, quizState]);
+  }, [quizState.completed]);
 
   useEffect(() => {
     // Update Progress every time timer changes
     setProgress((timer / timeLimitInMillis) * 100);
   }, [timer, timeLimitInMillis]);
 
+  useEffect(() => {
+    if (timer === 0 && !quizState.completed) {
+      // If timer is 0 and quiz is not completed
+      handleSetQuizState({ started: true, completed: true });
+      // Complete the quiz
+    }
+  }, [timer, handleSetQuizState, quizState]);
+
   return { timer, progress };
 };
 
-export default useTimer;
+export default useQuizTimer;
