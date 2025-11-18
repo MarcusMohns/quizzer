@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { QuizQuestion } from "../../../store";
 
 interface QuestionProps {
@@ -11,30 +12,30 @@ interface QuestionProps {
 const Question = ({ questionData, activeStep }: QuestionProps) => {
   return (
     <Fade in={true} appear={true} timeout={800} key={questionData.id}>
-      <Typography
-        variant="h5"
+      <Box
         sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: { xs: "center", md: "flex-start" },
           minHeight: "100px",
-          mb: { xs: 5, md: 2 },
-          display: { xs: "flex", md: "ruby" },
-          flexDirection: "column",
+          mb: { xs: 4, md: 1 },
+          mt: 1,
           textAlign: "center",
         }}
       >
         <Avatar
           variant="rounded"
           sx={{
-            alignSelf: "center",
-            ml: { xs: "0", md: "auto" },
-            mr: 1,
+            mr: 0.5,
             bgcolor: "primary.main",
             color: "primary.contrastText",
+            alignSelf: "top",
           }}
         >
           {activeStep + 1}
         </Avatar>
-        {questionData.question.text}
-      </Typography>
+        <Typography variant="h6">{questionData.question.text}</Typography>
+      </Box>
     </Fade>
   );
 };
