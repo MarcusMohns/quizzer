@@ -3,25 +3,25 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import ThemeToggler from "./components/ThemeToggler.tsx";
-import SideMenu from "../sideMenu/SideMenu.tsx";
+import SideMenu from "../side-menu/SideMenu.tsx";
 import { QuizState } from "../store.tsx";
 
 interface NavbarProps {
-  handleSetDarkMode: () => void;
+  toggleDarkMode: () => void;
   handleSideMenuOpen: (
     open: boolean,
     event?: React.SyntheticEvent<object, Event>
   ) => void;
   handleSetQuizData: (data: QuizState | null) => void;
-  darkMode: boolean;
+  isDarkMode: boolean;
   sideMenuOpen: boolean;
 }
 
 export default function Navbar({
-  handleSetDarkMode,
+  toggleDarkMode,
   handleSideMenuOpen,
   handleSetQuizData,
-  darkMode,
+  isDarkMode,
   sideMenuOpen,
 }: NavbarProps) {
   const resetQuizData = () => {
@@ -55,10 +55,9 @@ export default function Navbar({
           >
             🐦 Quizzer
           </Typography>
-
           <ThemeToggler
-            darkMode={darkMode}
-            handleSetDarkMode={handleSetDarkMode}
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
           />
         </Toolbar>
       </AppBar>

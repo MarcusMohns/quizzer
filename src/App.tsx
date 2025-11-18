@@ -2,46 +2,22 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-
 import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Themes.ts";
 import Navbar from "./navbar/Navbar.tsx";
 import Quizzer from "./quizzer/Quizzer.tsx";
-import FrontPage from "./frontPage/FrontPage.tsx";
+import FrontPage from "./front-page/FrontPage.tsx";
 import Footer from "./Footer.tsx";
 import { QuizState } from "./store.tsx";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import useDarkmode from "./useDarkmode.ts";
 
 function App() {
-  const systemPrefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const localStorageDarkMode = localStorage.getItem("Darkmode");
-
-  const initialDarkMode = useMemo(() => {
-    if (localStorageDarkMode === "true") {
-      // Check local storage for dark mode first
-      return true;
-    } else if (localStorageDarkMode === "false") {
-      return false;
-      // Check for system preference
-    } else if (systemPrefersDarkMode) {
-      return true;
-    } else {
-      // Default to use light mode
-      return false;
-    }
-  }, [localStorageDarkMode, systemPrefersDarkMode]);
-
-  const [darkMode, setDarkMode] = useState<boolean>(initialDarkMode);
+  const { isDarkMode, toggleDarkMode } = useDarkmode();
   const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);
   const [quizData, setQuizData] = useState<QuizState | null>(null);
-
-  const handleSetDarkMode = useCallback(() => {
-    localStorage.setItem("Darkmode", (!darkMode).toString());
-    setDarkMode((oldDarkMode) => !oldDarkMode);
-  }, [darkMode]);
 
   const handleSideMenuOpen = useCallback(
     (open: boolean, event?: React.SyntheticEvent<object, Event>) => {
@@ -54,24 +30,22 @@ function App() {
       ) {
         return;
       }
-
       setSideMenuOpen(open);
     },
     []
   );
-
   const handleSetQuizData = useCallback((data: QuizState | null) => {
     setQuizData(data);
   }, []);
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Navbar
-        handleSetDarkMode={handleSetDarkMode}
+        toggleDarkMode={toggleDarkMode}
         handleSideMenuOpen={handleSideMenuOpen}
         handleSetQuizData={handleSetQuizData}
-        darkMode={darkMode}
+        isDarkMode={isDarkMode}
         sideMenuOpen={sideMenuOpen}
       />
       {/* If there is no quizData display Frontpage */}

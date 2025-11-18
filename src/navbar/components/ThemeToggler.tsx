@@ -3,13 +3,13 @@ import Stack from "@mui/material/Stack";
 import { MaterialUISwitch } from "./MaterialUISwitch";
 
 interface ThemeTogglerProps {
-  darkMode: boolean;
-  handleSetDarkMode: (darkMode: boolean) => void;
+  isDarkMode: boolean;
+  toggleDarkMode: (darkMode: boolean) => void;
 }
 
-const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
-  const toggleDarkMode = () => {
-    handleSetDarkMode(!darkMode);
+const ThemeToggler = ({ isDarkMode, toggleDarkMode }: ThemeTogglerProps) => {
+  const handleToggleDarkMode = () => {
+    toggleDarkMode(!isDarkMode);
   };
   return (
     <Stack
@@ -31,9 +31,9 @@ const ThemeToggler = ({ darkMode, handleSetDarkMode }: ThemeTogglerProps) => {
         Light
       </Typography>
       <MaterialUISwitch
-        onChange={toggleDarkMode}
+        onChange={handleToggleDarkMode}
         slotProps={{ input: { "aria-label": "darkmode-toggle" } }}
-        checked={darkMode}
+        checked={isDarkMode}
         name={"theme-toggle"}
       />
       <Typography
