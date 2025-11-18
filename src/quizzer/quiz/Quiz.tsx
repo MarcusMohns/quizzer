@@ -7,7 +7,7 @@ import CategoryImage from "./components/CategoryImage.tsx";
 import Tags from "./components/Tags.tsx";
 import Answers from "./components/Answers.tsx";
 import Question from "./components/Question.tsx";
-import QuizTimer from "./components/quizTimer/QuizTimer.tsx";
+import QuizTimer from "./components/quiz-timer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 import useQuiz from "./useQuiz.ts";
 

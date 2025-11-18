@@ -4,7 +4,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Typography } from "@mui/material";
 import StyledMenuIconButton from "./components/StyledMenuIconButton.tsx";
 const GenerateQuizForm = lazy(
-  () => import("./components/generateQuizForm/GenerateQuizForm.tsx")
+  () => import("./components/generate-quiz-form/GenerateQuizForm.tsx")
 );
 import { QuizState } from "../store.tsx";
 import SideMenuSkeleton from "./components/SideMenuSkeleton.tsx";
