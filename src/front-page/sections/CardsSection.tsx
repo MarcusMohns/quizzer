@@ -52,7 +52,7 @@ const CardsSection = ({
             id="existing-quiz-header"
             sx={{
               textAlign: "center",
-              width: "100%",
+              mx: 3,
             }}
             variant="h4"
           >

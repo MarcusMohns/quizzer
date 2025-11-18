@@ -6,6 +6,7 @@ import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import { Refs, VisibleStates } from "../store";
+import AnimatedCogwheel from "../../css-animations/animated-cogwheel/AnimatedCogwheel";
 
 interface GenerateSectionInterface {
   visibleStates: VisibleStates;
@@ -82,6 +83,7 @@ const GenerateSection = ({
               variant="h4"
             >
               Generate a quiz!
+              <AnimatedCogwheel />
             </Typography>
             <Typography sx={{ textAlign: "center" }}>
               Select different categories, difficulty and quantity
