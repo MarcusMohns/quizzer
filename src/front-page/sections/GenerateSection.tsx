@@ -85,9 +85,6 @@ const GenerateSection = ({
               Generate a quiz!
               <AnimatedCogwheel />
             </Typography>
-            <Typography sx={{ textAlign: "center" }}>
-              Select different categories, difficulty and quantity
-            </Typography>
           </Box>
         </Slide>
 
@@ -97,6 +94,9 @@ const GenerateSection = ({
           style={{ transitionDelay: "900ms" }}
         >
           <Box sx={{ textAlign: "center", my: 3 }}>
+            <Typography sx={{ textAlign: "center" }}>
+              Select different categories, difficulty and quantity
+            </Typography>
             <Button
               id="generate-quiz-button"
               color="warning"
