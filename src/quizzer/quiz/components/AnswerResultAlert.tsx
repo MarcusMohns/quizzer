@@ -68,7 +68,7 @@ const AnswerResultAlert = ({
   alertShown,
 }: AnswerResultAlertProps) => {
   return (
-    <Box sx={{ minHeight: { xs: "120px", sm: "150px" } }}>
+    <Box sx={{ minHeight: { xs: "120px", sm: "150px", zIndex: 1 } }}>
       {alertShown &&
         (correctlyAnswered ? (
           <StyledAlert
