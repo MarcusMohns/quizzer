@@ -12,7 +12,6 @@ const StartPage = lazy(() => import("./components/start-page/StartPage.tsx"));
 const Quiz = lazy(() => import("./quiz/Quiz.tsx"));
 import useQuizzer from "./useQuizzer.ts";
 import { QuizState } from "../store.tsx";
-import AnimatedSquares from "../css-animations/animated-squares/AnimatedSquares.tsx";
 
 interface QuizzerProps {
   quizData: QuizState;
@@ -63,14 +62,12 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
       component="section"
       sx={{
         display: "flex",
-        position: "relative",
         flexDirection: "column",
         minHeight: "600px",
         alignItems: "center",
         py: 5,
       }}
     >
-      <AnimatedSquares />
       <Button
         variant="outlined"
         // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
@@ -97,12 +94,13 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
 
       {quizState.started ? (
         activeStep === quizData.length ? (
-          // If last step render results
+          // If last step and quiz is started render results
           <>
             <Results results={results} timeLimit={timeLimit} />
             <ControlsAndStepper />
           </>
         ) : (
+          // If not last step render quiz
           <Suspense fallback={<QuizSkeleton />}>
             <Quiz
               questionData={quizData[activeStep]}
@@ -117,6 +115,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
           </Suspense>
         )
       ) : (
+        // If not started render StartPage
         <Suspense fallback={<StartPageSkeleton />}>
           <StartPage
             timeLimit={timeLimit}

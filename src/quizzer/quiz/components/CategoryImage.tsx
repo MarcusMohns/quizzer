@@ -17,6 +17,7 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
           height: "200px",
           justifySelf: "center",
           mb: 2,
+          zIndex: 1,
         }}
       >
         <Box

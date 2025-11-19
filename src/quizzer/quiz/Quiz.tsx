@@ -10,7 +10,7 @@ import Question from "./components/Question.tsx";
 import QuizTimer from "./components/quiz-timer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 import useQuiz from "./useQuiz.ts";
-
+import AnimatedSquares from "../../css-animations/animated-squares/AnimatedSquares.tsx";
 interface QuizProps {
   questionData: QuizQuestion;
   handleSetResults: (
@@ -59,6 +59,7 @@ const Quiz = ({
         sx={{
           display: "flex",
           flexDirection: "column",
+          position: "relative",
           alignItems: "center",
           mt: { xs: 2, md: 4 },
           borderRadius: "10px",
@@ -66,6 +67,7 @@ const Quiz = ({
           width: "100%",
         }}
       >
+        <AnimatedSquares />
         <CategoryImage
           image={tags[questionData.category].image}
           title={tags[questionData.category].title}
