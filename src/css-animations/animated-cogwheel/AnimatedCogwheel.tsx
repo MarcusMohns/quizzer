@@ -64,7 +64,7 @@ const AnimatedCogwheel = () => {
       className="cogwheel-container"
       sx={{
         overflow: "hidden",
-        padding: "10px 0",
+        padding: "10px",
       }}
     >
       <CogWheel
