@@ -21,6 +21,7 @@ const Question = ({ questionData, activeStep }: QuestionProps) => {
           mb: { xs: 4, md: 1 },
           mt: 1,
           textAlign: "center",
+          zIndex: 1,
         }}
       >
         <Avatar
