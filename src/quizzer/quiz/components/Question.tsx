@@ -27,7 +27,6 @@ const Question = ({ questionData, activeStep }: QuestionProps) => {
         <Avatar
           variant="rounded"
           sx={{
-            mr: 0.5,
             bgcolor: "primary.main",
             color: "primary.contrastText",
             alignSelf: "top",

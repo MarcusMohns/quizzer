@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -37,8 +38,19 @@ export default function ResultsModal({
 
   const correctAnswers = results.reduce(
     (count, result) => count + (result.correctlyAnswered ? 1 : 0),
-    0
+    0,
   );
+
+  useEffect(() => {
+    if (correctAnswers === totalQuestions) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        zIndex: 2000,
+      });
+    }
+  }, [correctAnswers, totalQuestions]);
 
   return (
     <Modal
@@ -70,8 +82,8 @@ export default function ResultsModal({
             {correctAnswers < 2
               ? "Nice try! 🌠"
               : correctAnswers === totalQuestions
-              ? "Perfect! 🌠"
-              : "Well done! 🌠"}
+                ? "Perfect! 🌠"
+                : "Well done! 🌠"}
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h4" py={2}>
             {`${correctAnswers} correct out of ${totalQuestions} total questions! 🎉`}

@@ -9,7 +9,7 @@ interface useQuizProps {
   handleSetResults: (
     questionData: QuizQuestion,
     selectedAnswer: string,
-    pickedAnswerIndex: number
+    pickedAnswerIndex: number,
   ) => void;
 }
 
@@ -26,26 +26,27 @@ const useQuiz = ({
       results[activeStep].pickedAnswerIndex === -1
         ? -1
         : results[activeStep].pickedAnswerIndex,
-    [activeStep, results]
+    [activeStep, results],
   );
 
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(
-    prevSelectedAnswerIndex
+    prevSelectedAnswerIndex,
   );
 
   const sortedAnswers = useMemo(
     // Sort answers alphabetically ('shuffling' them)
     () => [questionData.correctAnswer, ...questionData.incorrectAnswers].sort(),
-    [questionData]
+    [questionData],
   );
 
   const handleSelectedAnswerIndex = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(e);
       const answerIndex = Number(e.target.value);
       setSelectedAnswerIndex(answerIndex);
       handleSetResults(questionData, e.target.name, answerIndex);
     },
-    [handleSetResults, questionData]
+    [handleSetResults, questionData],
   );
 
   // Set the selected answer to the previous selected answer

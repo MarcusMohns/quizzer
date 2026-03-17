@@ -1,5 +1,7 @@
 import { Suspense, lazy } from "react";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
 import QuizStepper from "./components/QuizStepper.tsx";
 import QuizControls from "./components/QuizControls.tsx";
 import Results from "./components/Results.tsx";
@@ -58,76 +60,84 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
     </>
   );
   return (
-    <Box
-      component="section"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "600px",
-        alignItems: "center",
-        py: 5,
-      }}
-    >
-      <Button
-        variant="outlined"
-        // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
-        onClick={resetQuizData}
-        size="small"
+    <Container maxWidth="md" sx={{ py: 5 }}>
+      <Box
         sx={{
-          alignSelf: "flex-start",
-          mx: "10%",
-          my: 2,
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
         }}
-        color="info"
-        startIcon={<NavigateBeforeIcon />}
       >
-        Back to Frontpage
-      </Button>
-      {quizState.completed && (
-        <ResultsModal
-          setActiveStep={handleSetActiveStep}
-          results={results}
-          handleReset={handleReset}
-          totalQuestions={quizData!.length}
-        />
-      )}
-
-      {quizState.started ? (
-        activeStep === quizData.length ? (
-          // If last step and quiz is started render results
-          <>
-            <Results results={results} timeLimit={timeLimit} />
-            <ControlsAndStepper />
-          </>
-        ) : (
-          // If not last step render quiz
-          <Suspense fallback={<QuizSkeleton />}>
-            <Quiz
-              questionData={quizData[activeStep]}
-              handleSetResults={handleSetResults}
-              results={results}
-              activeStep={activeStep}
-              timeLimit={timeLimit}
-              quizState={quizState}
-              handleSetQuizState={handleSetQuizState}
-            />
-            <ControlsAndStepper />
-          </Suspense>
-        )
-      ) : (
-        // If not started render StartPage
-        <Suspense fallback={<StartPageSkeleton />}>
-          <StartPage
-            timeLimit={timeLimit}
-            handleSetTimeLimit={handleSetTimeLimit}
-            quizState={quizState}
-            handleSetQuizState={handleSetQuizState}
-            quizData={quizData}
-            resetQuizData={resetQuizData}
+        <Button
+          variant="outlined"
+          // Emptying quizData renders the FrontPage, Quiz is only rendered if quizData has data
+          onClick={resetQuizData}
+          size="small"
+          sx={{
+            alignSelf: "flex-start",
+          }}
+          color="info"
+          startIcon={<NavigateBeforeIcon />}
+        >
+          Back to Frontpage
+        </Button>
+        {quizState.completed && (
+          <ResultsModal
+            setActiveStep={handleSetActiveStep}
+            results={results}
+            handleReset={handleReset}
+            totalQuestions={quizData!.length}
           />
-        </Suspense>
-      )}
-    </Box>
+        )}
+        <Paper
+          elevation={3}
+          sx={{
+            minHeight: "600px",
+            display: "flex",
+            flexDirection: "column",
+            py: 2,
+          }}
+        >
+          {quizState.started ? (
+            activeStep === quizData.length ? (
+              // If last step and quiz is started render results
+              <Results results={results} timeLimit={timeLimit} />
+            ) : (
+              // If not last step render quiz
+              <Suspense fallback={<QuizSkeleton />}>
+                <Quiz
+                  questionData={quizData[activeStep]}
+                  handleSetResults={handleSetResults}
+                  results={results}
+                  activeStep={activeStep}
+                  timeLimit={timeLimit}
+                  quizState={quizState}
+                  handleSetQuizState={handleSetQuizState}
+                  handleSetActiveStep={handleSetActiveStep}
+                />
+              </Suspense>
+            )
+          ) : (
+            // If not started render StartPage
+            <Suspense fallback={<StartPageSkeleton />}>
+              <StartPage
+                timeLimit={timeLimit}
+                handleSetTimeLimit={handleSetTimeLimit}
+                quizState={quizState}
+                handleSetQuizState={handleSetQuizState}
+                quizData={quizData}
+                resetQuizData={resetQuizData}
+              />
+            </Suspense>
+          )}
+        </Paper>
+        {quizState.started && (
+          <Paper elevation={3} sx={{ p: 2, bgcolor: "secondary.main" }}>
+            <ControlsAndStepper />
+          </Paper>
+        )}
+      </Box>
+    </Container>
   );
 };
 export default Quizzer;

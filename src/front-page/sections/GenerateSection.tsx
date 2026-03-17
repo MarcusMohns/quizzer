@@ -13,7 +13,7 @@ interface GenerateSectionInterface {
   refs: Refs;
   handleSideMenuOpen: (
     open: boolean,
-    event?: React.SyntheticEvent<object, Event>
+    event?: React.SyntheticEvent<object, Event>,
   ) => void;
 }
 
@@ -75,6 +75,13 @@ const GenerateSection = ({
         >
           <Box>
             <Typography
+              variant="h3"
+              sx={{ fontWeight: "semibold", fontSize: "2rem" }}
+              mb={2}
+            >
+              Generate a quiz!
+            </Typography>
+            <Typography
               id="generate-section-header"
               sx={{
                 textAlign: "center",
@@ -82,7 +89,6 @@ const GenerateSection = ({
               }}
               variant="h4"
             >
-              Generate a quiz!
               <AnimatedCogwheel />
             </Typography>
           </Box>

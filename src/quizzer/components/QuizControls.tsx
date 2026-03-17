@@ -1,4 +1,4 @@
-import Box from "@mui/material/Box";
+import { useCallback, useEffect } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
@@ -32,55 +32,56 @@ const QuizControls = ({
   allQuestionsAnswered,
   quizState,
 }: QuizControlsProps) => {
-  const isLastStep = () => activeStep === quizData.length - 1;
+  const isLastStep = useCallback(
+    () => activeStep === quizData.length - 1,
+    [activeStep, quizData.length],
+  );
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const newActiveStep =
       isLastStep() && !allQuestionsAnswered && !quizState.completed
         ? results.findIndex(
-            (result) => result.selectedAnswer === "Not Answered"
+            (result) => result.selectedAnswer === "Not Answered",
           )
         : activeStep + 1;
     handleSetActiveStep(newActiveStep);
-  };
+  }, [
+    activeStep,
+    allQuestionsAnswered,
+    handleSetActiveStep,
+    isLastStep,
+    results,
+    quizState.completed,
+  ]);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     handleSetActiveStep(activeStep - 1);
-  };
+  }, [activeStep, handleSetActiveStep]);
 
-  const ButtonStack = (props: { children: React.ReactNode }) => (
-    <Stack
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: { xs: "92%", md: "60%", lg: "40%", xl: "30%" },
-        my: "30px",
-      }}
-      direction="row"
-      spacing={{ xs: 1, md: 2 }}
-    >
-      {props.children}
-    </Stack>
-  );
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft" && activeStep > 0) {
+        handleBack();
+      } else if (event.key === "ArrowRight" && activeStep < quizData.length) {
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeStep, quizData.length, handleBack, handleNext]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      <ButtonStack>
+    <Stack spacing={2} sx={{ width: "100%" }}>
+      <Stack direction="row" spacing={2}>
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
           variant="contained"
           color="primary"
           size="large"
-          sx={{ width: "50%", height: "100%" }}
+          sx={{ flex: 1 }}
           startIcon={<NavigateBeforeIcon />}
         >
           Back
@@ -91,23 +92,20 @@ const QuizControls = ({
           variant="contained"
           color="primary"
           size="large"
-          sx={{ width: "50%", height: "100%" }}
+          sx={{ flex: 1 }}
           endIcon={<NavigateNextIcon />}
         >
           Next
         </Button>
-      </ButtonStack>
-      <ButtonStack>
+      </Stack>
+      <Stack direction="row" spacing={2}>
         <Button
           onClick={handleReset}
-          variant="outlined"
+          variant="contained"
           color="error"
           size="large"
+          sx={{ flex: 1 }}
           startIcon={<RestartAltIcon />}
-          sx={{
-            width: "50%",
-            backgroundColor: "background.default",
-          }}
         >
           Reset Quiz
         </Button>
@@ -116,13 +114,10 @@ const QuizControls = ({
             <Button
               onClick={() => handleSetActiveStep(quizData.length)}
               color="info"
-              variant="outlined"
+              variant="contained"
               size="large"
+              sx={{ flex: 1 }}
               startIcon={<DvrIcon />}
-              sx={{
-                width: "50%",
-                backgroundColor: "background.default",
-              }}
             >
               Results
             </Button>
@@ -131,19 +126,16 @@ const QuizControls = ({
           <Button
             onClick={completeQuiz}
             color="success"
-            variant="outlined"
-            sx={{
-              width: "50%",
-              backgroundColor: "background.default",
-            }}
+            variant="contained"
+            sx={{ flex: 1 }}
             size="large"
             endIcon={<DoneAllIcon />}
           >
             Complete
           </Button>
         )}
-      </ButtonStack>
-    </Box>
+      </Stack>
+    </Stack>
   );
 };
 export default QuizControls;

@@ -7,6 +7,18 @@ import DvrIcon from "@mui/icons-material/Dvr";
 import { QuizState, QuizResult } from "../../store";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import { styled } from "@mui/material/styles";
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+
+const DashedConnector = styled(StepConnector)(({ theme }) => ({
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor: theme.palette.divider,
+    borderTopStyle: "dashed",
+    borderTopWidth: 2,
+  },
+}));
 
 interface QuizStepperProps {
   quizData: QuizState;
@@ -31,33 +43,26 @@ export default function QuizStepper({
   };
 
   return (
-    <Box
-      sx={{
-        p: { xs: 1, sm: 5 },
-        pb: 4,
-        display: "flex",
-        alignItems: "flex-end",
-        justifyContent: "center",
-      }}
-    >
+    <Box sx={{ width: "100%", pt: 2 }}>
       <Stepper
         nonLinear
         activeStep={activeStep}
+        connector={<DashedConnector />}
         sx={{
           flexWrap: "wrap",
-          borderRadius: "5px",
           justifyContent: "center",
         }}
-        connector={<>―</>}
       >
         {quizData.map((step, index) => {
           const completed = results[index].selectedAnswer !== "Not Answered";
           return (
             <Tooltip title={step.question.text} key={step.question.text}>
-              <Step completed={completed} sx={{ m: 1, ml: 2 }}>
+              <Step completed={completed} sx={{ ml: 1 }}>
                 <StepButton
                   onClick={handleStep(index)}
-                  aria-label={`step-${index}`}
+                  sx={{
+                    borderRadius: "50%",
+                  }}
                   icon={
                     !completed ? null : results[index].correctlyAnswered ? (
                       <CheckCircleOutlineOutlinedIcon
@@ -75,15 +80,15 @@ export default function QuizStepper({
         })}
 
         <Tooltip title="Results">
-          <Step>
+          <Step completed={quizState.completed}>
             <StepButton
-              name="Result"
               onClick={handleStep(quizData.length)}
-              icon={<DvrIcon sx={{ ml: 1, pr: 0 }} />}
+              icon={<DvrIcon />}
               disabled={!quizState.completed}
-            >
-              Results
-            </StepButton>
+              sx={{
+                borderRadius: "50%",
+              }}
+            />
           </Step>
         </Tooltip>
       </Stepper>

@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import { useEffect } from "react";
 import tags from "../../store.tsx";
 import Fade from "@mui/material/Fade";
@@ -16,7 +17,7 @@ interface QuizProps {
   handleSetResults: (
     questionData: QuizQuestion,
     selectedAnswer: string,
-    pickedAnswerIndex: number
+    pickedAnswerIndex: number,
   ) => void;
   results: QuizResult[];
   activeStep: number;
@@ -29,6 +30,7 @@ interface QuizProps {
     started: boolean;
     completed: boolean;
   }) => void;
+  handleSetActiveStep: (step: number) => void;
 }
 
 const Quiz = ({
@@ -39,6 +41,7 @@ const Quiz = ({
   timeLimit,
   quizState,
   handleSetQuizState,
+  handleSetActiveStep,
 }: QuizProps) => {
   const { selectedAnswerIndex, handleSelectedAnswerIndex, sortedAnswers } =
     useQuiz({
@@ -53,47 +56,54 @@ const Quiz = ({
     scrollTo({ top: 170, left: 0, behavior: "smooth" });
   }, []);
 
+  const handleNextQuestion = () => {
+    handleSetActiveStep(activeStep + 1);
+  };
+
+  const isLastQuestion = activeStep === results.length - 1;
   return (
     <Fade in={true} appear={true} timeout={1500}>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
           position: "relative",
-          alignItems: "center",
-          mt: { xs: 2, md: 4 },
-          borderRadius: "10px",
-          px: { sm: "5%", lg: "20%" },
           width: "100%",
         }}
       >
         <AnimatedSquares />
-        <CategoryImage
-          image={tags[questionData.category].image}
-          title={tags[questionData.category].title}
-        />
-        <Question questionData={questionData} activeStep={activeStep} />
-        <QuizTimer
-          timeLimit={timeLimit}
-          quizState={quizState}
-          handleSetQuizState={handleSetQuizState}
-        />
-        <Tags questionData={questionData} />
-        <Answers
-          selectedAnswerIndex={selectedAnswerIndex}
-          handleSelectedAnswerIndex={handleSelectedAnswerIndex}
-          sortedAnswers={sortedAnswers}
-          questionData={questionData}
-          activeStep={activeStep}
-          results={results}
-          correctlyAnswered={results[activeStep].correctlyAnswered}
-          quizState={quizState}
-        />
-        <AnswerResultAlert
-          correctlyAnswered={results[activeStep].correctlyAnswered}
-          alertShown={results[activeStep].selectedAnswer !== "Not Answered"}
-          questionData={questionData}
-        />
+        <Stack
+          spacing={3}
+          alignItems="center"
+          sx={{ position: "relative", zIndex: 1, width: "100%", p: 2 }}
+        >
+          <CategoryImage
+            image={tags[questionData.category].image}
+            title={tags[questionData.category].title}
+          />
+          <Question questionData={questionData} activeStep={activeStep} />
+          <QuizTimer
+            timeLimit={timeLimit}
+            quizState={quizState}
+            handleSetQuizState={handleSetQuizState}
+          />
+          <Tags questionData={questionData} />
+          <Answers
+            selectedAnswerIndex={selectedAnswerIndex}
+            handleSelectedAnswerIndex={handleSelectedAnswerIndex}
+            sortedAnswers={sortedAnswers}
+            questionData={questionData}
+            activeStep={activeStep}
+            results={results}
+            correctlyAnswered={results[activeStep].correctlyAnswered}
+            quizState={quizState}
+          />
+          <AnswerResultAlert
+            correctlyAnswered={results[activeStep].correctlyAnswered}
+            alertShown={results[activeStep].selectedAnswer !== "Not Answered"}
+            questionData={questionData}
+            handleNextQuestion={handleNextQuestion}
+            isLastQuestion={isLastQuestion}
+          />
+        </Stack>
       </Box>
     </Fade>
   );
