@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
@@ -73,7 +74,16 @@ const QuizControls = ({
   }, [activeStep, quizData.length, handleBack, handleNext]);
 
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 2,
+        width: "100%",
+      }}
+    >
       <Stack direction="row" spacing={2}>
         <Button
           onClick={handleBack}
@@ -81,7 +91,7 @@ const QuizControls = ({
           variant="contained"
           color="primary"
           size="large"
-          sx={{ flex: 1 }}
+          sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
           startIcon={<NavigateBeforeIcon />}
         >
           Back
@@ -92,7 +102,7 @@ const QuizControls = ({
           variant="contained"
           color="primary"
           size="large"
-          sx={{ flex: 1 }}
+          sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
           endIcon={<NavigateNextIcon />}
         >
           Next
@@ -104,10 +114,10 @@ const QuizControls = ({
           variant="contained"
           color="error"
           size="large"
-          sx={{ flex: 1 }}
+          sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
           startIcon={<RestartAltIcon />}
         >
-          Reset Quiz
+          Reset
         </Button>
         {quizState.completed ? (
           activeStep !== quizData.length && (
@@ -116,7 +126,7 @@ const QuizControls = ({
               color="info"
               variant="contained"
               size="large"
-              sx={{ flex: 1 }}
+              sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
               startIcon={<DvrIcon />}
             >
               Results
@@ -127,15 +137,15 @@ const QuizControls = ({
             onClick={completeQuiz}
             color="success"
             variant="contained"
-            sx={{ flex: 1 }}
             size="large"
+            sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
             endIcon={<DoneAllIcon />}
           >
             Complete
           </Button>
         )}
       </Stack>
-    </Stack>
+    </Box>
   );
 };
 export default QuizControls;

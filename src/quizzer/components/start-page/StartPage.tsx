@@ -3,10 +3,12 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import QuizInfo from "./components/QuizInfo.tsx";
 import SelectTimer from "./components/SelectTimer.tsx";
 import Fade from "@mui/material/Fade";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { QuizState } from "../../../store.tsx";
 
 interface StartPageProps {
@@ -42,36 +44,55 @@ const StartPage = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "600px",
           height: "100%",
           width: "100%",
-          px: { sm: "5%", lg: "20%" },
+          maxWidth: "900px",
+          mx: "auto",
+          px: { xs: 2, md: 6 },
+          py: 4,
           alignItems: "center",
+          gap: 3,
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
+          component="h1"
+          fontWeight="800"
           sx={{
             textAlign: "center",
-            fontSize: { xs: "1.7rem", sm: "2rem" },
-            p: 2,
+            mb: 3,
+            background: (theme) =>
+              `linear-gradient(45deg, ${theme.palette.warning.light}, ${theme.palette.warning.dark})`,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
-          Your quiz is ready🎺
+          Your quiz is ready!
         </Typography>
         <QuizInfo quizData={quizData} />
+        <Divider flexItem>
+          <Typography variant="overline" color="text.secondary">
+            Settings
+          </Typography>
+        </Divider>
+
         <SelectTimer
           timeLimit={timeLimit}
           handleSetTimeLimit={handleSetTimeLimit}
         />
 
-        <Box>
-          <Stack spacing={2} direction="row" sx={{ mb: 5 }}>
+        <Box sx={{ width: "100%", mt: 2 }}>
+          <Stack
+            spacing={3}
+            direction="row"
+            sx={{ justifyContent: "center", width: "100%" }}
+          >
             <Button
               variant="outlined"
               onClick={resetQuizData}
               startIcon={<NavigateBeforeIcon />}
               color="info"
+              sx={{ borderRadius: 2, px: 3 }}
             >
               Back
             </Button>
@@ -82,9 +103,15 @@ const StartPage = ({
               }
               disabled={timeLimit.minutes === 0 && timeLimit.seconds === 0}
               size="large"
-              sx={{ width: "200px", color: "primary.contrastText" }}
-              color="success"
-              endIcon={"💥"}
+              sx={{
+                minWidth: "200px",
+                borderRadius: 2,
+                py: 1.5,
+                fontWeight: "bold",
+                boxShadow: 4,
+              }}
+              color="primary"
+              endIcon={<RocketLaunchIcon />}
             >
               Start Quiz!
             </Button>

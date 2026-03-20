@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -6,6 +5,9 @@ import FormControl from "@mui/material/FormControl";
 import Stack from "@mui/material/Stack";
 import InputLabel from "@mui/material/InputLabel";
 import { SelectChangeEvent } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 interface SelectTimerProps {
   timeLimit: {
@@ -26,17 +28,28 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
   };
 
   return (
-    <Box
+    <Paper
+      elevation={5}
       sx={{
+        width: "100%",
+        p: 3,
+        borderRadius: 4,
+        mt: 3,
+        mb: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        mt: 3,
-        mb: 2,
       }}
     >
-      Set a time limit for the full quiz ⏲️
+      <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+        <AccessTimeIcon color="primary" />
+        <Typography variant="h6" fontWeight="bold">
+          Time Limit
+        </Typography>
+      </Stack>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        Set a time limit for the full quiz
+      </Typography>
       <Stack
         direction="row"
         sx={{
@@ -57,7 +70,6 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
             variant="outlined"
             onChange={handleChange}
             aria-hidden="false"
-            sx={{ backgroundColor: "background.default" }}
           >
             {minutes.map((minute) => (
               <MenuItem value={minute} key={minute} aria-label="minutes">
@@ -77,7 +89,6 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
             variant="outlined"
             onChange={handleChange}
             aria-hidden="false"
-            sx={{ backgroundColor: "background.default" }}
           >
             {seconds.map((second) => (
               <MenuItem value={second} key={second} aria-label="seconds">
@@ -98,7 +109,7 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
       >
         Add some time to the timer
       </FormHelperText>
-    </Box>
+    </Paper>
   );
 };
 

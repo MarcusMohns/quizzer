@@ -56,20 +56,27 @@ const Answers = ({
             results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
           const isCorrect = answer === questionData.correctAnswer;
 
-          let borderColor = theme.palette.primary.dark;
-          let bgcolor = theme.palette.primary.dark;
+          const isDarkMode = theme.palette.mode === "dark";
+          let borderColor = theme.palette.secondary.main;
+          let bgcolor: string = theme.palette.secondary.main;
+
+          let avatarColor = theme.palette.primary.light;
 
           if (isLocked) {
             if (isCorrect) {
               borderColor = theme.palette.success.main;
-              bgcolor = alpha(theme.palette.success.main, 0.15);
+              bgcolor = alpha(theme.palette.success.main, 0.55);
+              avatarColor = theme.palette.success.main;
             } else if (isSelected) {
               borderColor = theme.palette.error.main;
-              bgcolor = alpha(theme.palette.error.main, 0.15);
+              bgcolor = alpha(theme.palette.error.main, 0.55);
+              avatarColor = theme.palette.error.main;
             }
           } else if (isSelected) {
-            borderColor = theme.palette.primary.main;
-            bgcolor = alpha(theme.palette.primary.main, 0.1);
+            borderColor = theme.palette.secondary.main;
+            bgcolor = isDarkMode
+              ? alpha(theme.palette.primary.main, 0.4)
+              : alpha(theme.palette.primary.main, 0.6);
           }
 
           return (
@@ -99,7 +106,6 @@ const Answers = ({
                     textAlign: "left",
                     transition: "all 0.2s ease-in-out",
                     "&:hover": {
-                      bgcolor: !isLocked ? theme.palette.primary.main : bgcolor,
                       transform: !isLocked ? "scale(1.02)" : "none",
                     },
                   }}
@@ -110,15 +116,10 @@ const Answers = ({
                       height: 32,
                       fontSize: "0.9rem",
                       fontWeight: "bold",
-                      bgcolor:
-                        isLocked && (isCorrect || (isSelected && !isCorrect))
-                          ? "background.paper"
-                          : "secondary.main",
-                      color:
-                        isLocked && (isCorrect || (isSelected && !isCorrect))
-                          ? "text.primary"
-                          : "primary.contrastText",
-                      mr: 2,
+                      bgcolor: avatarColor,
+                      color: "primary.contrastText",
+                      mr: 1,
+                      alignSelf: "flex-start",
                     }}
                   >
                     {LETTERS[index]}
@@ -128,7 +129,11 @@ const Answers = ({
                     value={index}
                     label={answer}
                     control={<StyledRadio sx={{ display: "none" }} />}
-                    sx={{ m: 0, width: "100%" }}
+                    sx={{
+                      m: 0,
+                      width: "100%",
+                      height: "100%",
+                    }}
                     name={answer}
                   />
                 </ButtonBase>

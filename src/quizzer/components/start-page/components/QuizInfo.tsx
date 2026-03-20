@@ -1,8 +1,10 @@
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
 import tags, { QuizState } from "../../../../store";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
   const tagsAndCategories = {
@@ -18,109 +20,144 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
   const uniqueCategories = [...new Set(tagsAndCategories.categories)];
   const uniqueDifficulties = [...new Set(tagsAndCategories.difficulties)];
   const uniqueTags = [...new Set(tagsAndCategories.tags)];
-  const stackStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    p: 1,
-  };
 
   return (
-    <Box
+    <Paper
+      elevation={5}
       sx={{
-        flexDirection: "column",
-        alignItems: "center",
         width: "100%",
+        p: 4,
+        borderRadius: 4,
+        mt: 2,
       }}
     >
-      <Typography
-        sx={{
-          textAlign: "center",
-          p: 1,
-          backgroundColor: "rgba(0,0,0,0.1)",
-          borderRadius: 5,
-          mx: 2,
-        }}
-        variant="h5"
-      >
-        {quizData.length} Questions 📕
-      </Typography>
-
       <Box
         sx={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          p: 1,
-          borderRadius: 5,
-          m: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          extAlign: "center",
         }}
       >
-        <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          📚 This quiz will test you on the following{" "}
-          {uniqueCategories.length > 1 ? "categories" : "category"}:
+        <Stack
+          direction="row"
+          spacing={1}
+          useFlexGap
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography variant="h2" component="span" fontWeight="800">
+            {quizData.length}
+          </Typography>
+          <Typography variant="h5" component="span" color="text.secondary">
+            Questions
+          </Typography>
+        </Stack>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100%",
+          my: 3,
+        }}
+      >
+        <Typography variant="overline" color="text.secondary" gutterBottom>
+          Categories
         </Typography>
-        <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
+        <Stack
+          direction="row"
+          spacing={1}
+          useFlexGap
+          flexWrap="wrap"
+          justifyContent="center"
+        >
           {uniqueCategories.map((category) => (
             <Chip
+              key={category}
               label={tags[category].title}
               icon={tags[category].icon}
-              key={category}
-              sx={{ p: 2, fontSize: "0.9rem" }}
+              variant="outlined"
+              sx={{ borderRadius: 2 }}
             />
           ))}
         </Stack>
       </Box>
-
       <Box
         sx={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          p: 1,
-          borderRadius: 5,
-          m: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100%",
+          my: 3,
         }}
       >
-        <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          👀 The questions will be about:
+        <Typography variant="overline" color="text.secondary" gutterBottom>
+          Difficulty
         </Typography>
-        <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
-          {uniqueTags.map((tag) => (
-            <Chip label={tag} key={tag} />
-          ))}
-        </Stack>
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: "rgba(0,0,0,0.1)",
-          p: 1,
-          borderRadius: 5,
-          m: 2,
-        }}
-      >
-        <Typography sx={{ textAlign: "center" }} variant="subtitle2">
-          🦾 and the{" "}
-          {uniqueDifficulties.length > 1 ? "difficulties" : "difficulty"} will
-          be:
-        </Typography>
-        <Stack direction="row" spacing={1} useFlexGap sx={stackStyles}>
+        <Stack
+          direction="row"
+          spacing={1}
+          useFlexGap
+          flexWrap="wrap"
+          justifyContent="center"
+        >
           {uniqueDifficulties.map((difficulty) => (
             <Chip
               label={difficulty}
               key={difficulty}
-              sx={{ p: 2, fontSize: "0.9rem" }}
+              variant="outlined"
+              sx={{ borderRadius: 2, textTransform: "capitalize" }}
               icon={
                 <span role="img" aria-label="difficulty-emoji">
                   {difficulty === "easy"
                     ? "🍏"
                     : difficulty === "medium"
-                    ? "🍋"
-                    : "🌶️"}
+                      ? "🍋"
+                      : "🌶️"}
                 </span>
               }
             />
           ))}
         </Stack>
       </Box>
-    </Box>
+
+      {uniqueTags.length > 0 && (
+        <Grid size={{ xs: 12 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mt: 1,
+            }}
+          >
+            <Typography variant="overline" color="text.secondary" gutterBottom>
+              Tags
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={1}
+              useFlexGap
+              flexWrap="wrap"
+              justifyContent="center"
+            >
+              {uniqueTags.map((tag) => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  size="small"
+                  sx={{ bgcolor: "action.hover" }}
+                />
+              ))}
+            </Stack>
+          </Box>
+        </Grid>
+      )}
+    </Paper>
   );
 };
 

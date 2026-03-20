@@ -14,7 +14,7 @@ interface WelcomeSectionInterface {
   handleScroll: (idx: number) => void;
   handleSideMenuOpen: (
     open: boolean,
-    event?: React.SyntheticEvent<object, Event>
+    event?: React.SyntheticEvent<object, Event>,
   ) => void;
 }
 
@@ -112,7 +112,6 @@ const WelcomeSection = ({
                   we've got a quiz for you. Dive in and start quizzing now!
                 </Typography>
               </Fade>
-
               <Fade
                 in={visibleStates["welcome-box"]}
                 timeout={600}
@@ -124,7 +123,12 @@ const WelcomeSection = ({
                     color="warning"
                     variant="contained"
                     endIcon={<MenuIcon />}
-                    sx={{ fontWeight: "bold", boxShadow: 2 }}
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "1.1rem",
+                      boxShadow: 2,
+                      p: 1.5,
+                    }}
                     size="large"
                   >
                     Generate a quiz
@@ -135,10 +139,15 @@ const WelcomeSection = ({
                     color="info"
                     variant="outlined"
                     endIcon={<KeyboardDoubleArrowDownIcon />}
-                    sx={{ fontWeight: "bold", boxShadow: 2 }}
+                    sx={{
+                      fontWeight: "bold",
+                      boxShadow: 2,
+                      p: 1.5,
+                      fontSize: "1.1rem",
+                    }}
                     size="large"
                   >
-                    Pick an existing Quiz
+                    Pick an existing quiz
                   </Button>
                 </Stack>
               </Fade>

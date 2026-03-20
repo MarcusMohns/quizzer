@@ -39,7 +39,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
     handleSetQuizData,
   });
   const ControlsAndStepper = () => (
-    <>
+    <Paper elevation={3} sx={{ p: 2 }}>
       <QuizControls
         activeStep={activeStep}
         handleSetActiveStep={handleSetActiveStep}
@@ -57,7 +57,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
         results={results}
         quizState={quizState}
       />
-    </>
+    </Paper>
   );
   return (
     <Container maxWidth="md" sx={{ py: 5 }}>
@@ -131,11 +131,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
             </Suspense>
           )}
         </Paper>
-        {quizState.started && (
-          <Paper elevation={3} sx={{ p: 2, bgcolor: "secondary.main" }}>
-            <ControlsAndStepper />
-          </Paper>
-        )}
+        {quizState.started && <ControlsAndStepper />}
       </Box>
     </Container>
   );
