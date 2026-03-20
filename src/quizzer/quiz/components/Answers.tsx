@@ -7,7 +7,7 @@ import Fade from "@mui/material/Fade";
 import StyledRadio from "./StyledRadio";
 import { QuizQuestion } from "../../../store";
 import { QuizResult } from "../../../store";
-import { alpha, Theme } from "@mui/material/styles";
+import { alpha, useTheme } from "@mui/material/styles";
 const LETTERS = ["A", "B", "C", "D"];
 const TimeoutDelay = [100, 200, 300, 400];
 
@@ -37,6 +37,8 @@ const Answers = ({
   // correctlyAnswered,
   quizState,
 }: AnswerProps) => {
+  const theme = useTheme();
+
   return (
     <RadioGroup
       value={selectedAnswerIndex}
@@ -54,20 +56,20 @@ const Answers = ({
             results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
           const isCorrect = answer === questionData.correctAnswer;
 
-          let borderColor = "divider";
-          let bgcolor: string | ((theme: Theme) => string) = "primary.main";
+          let borderColor = theme.palette.primary.dark;
+          let bgcolor = theme.palette.primary.dark;
 
           if (isLocked) {
             if (isCorrect) {
-              borderColor = "success.main";
-              bgcolor = (theme) => alpha(theme.palette.success.main, 0.15);
+              borderColor = theme.palette.success.main;
+              bgcolor = alpha(theme.palette.success.main, 0.15);
             } else if (isSelected) {
-              borderColor = "error.main";
-              bgcolor = (theme) => alpha(theme.palette.error.main, 0.15);
+              borderColor = theme.palette.error.main;
+              bgcolor = alpha(theme.palette.error.main, 0.15);
             }
           } else if (isSelected) {
-            borderColor = "primary.main";
-            bgcolor = (theme) => alpha(theme.palette.primary.main, 0.1);
+            borderColor = theme.palette.primary.main;
+            bgcolor = alpha(theme.palette.primary.main, 0.1);
           }
 
           return (
@@ -85,18 +87,20 @@ const Answers = ({
                 <ButtonBase
                   sx={{
                     width: "100%",
-                    borderRadius: 3,
+                    height: "100%",
+                    borderRadius: 2,
                     p: 2,
-                    border: "2px solid",
+                    border: "1px solid",
                     borderColor: borderColor,
                     bgcolor: bgcolor,
-                    transition: "all 0.2s ease-in-out",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-start",
                     textAlign: "left",
+                    transition: "all 0.2s ease-in-out",
                     "&:hover": {
-                      bgcolor: !isLocked ? "action.hover" : bgcolor,
+                      bgcolor: !isLocked ? theme.palette.primary.main : bgcolor,
+                      transform: !isLocked ? "scale(1.02)" : "none",
                     },
                   }}
                 >
@@ -109,7 +113,7 @@ const Answers = ({
                       bgcolor:
                         isLocked && (isCorrect || (isSelected && !isCorrect))
                           ? "background.paper"
-                          : "primary.main",
+                          : "secondary.main",
                       color:
                         isLocked && (isCorrect || (isSelected && !isCorrect))
                           ? "text.primary"
