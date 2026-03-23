@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -8,6 +9,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DvrIcon from "@mui/icons-material/Dvr";
 import Fade from "@mui/material/Fade";
 import { QuizResult } from "../../store";
+import { alpha, useTheme } from "@mui/material/styles";
 
 interface ResultsModalProps {
   handleReset: () => void;
@@ -23,6 +25,7 @@ export default function ResultsModal({
   totalQuestions,
 }: ResultsModalProps) {
   const [open, setOpen] = useState(true);
+  const theme = useTheme();
 
   const handleClose = () => setOpen(false);
 
@@ -52,6 +55,14 @@ export default function ResultsModal({
     }
   }, [correctAnswers, totalQuestions]);
 
+  const isPassing = correctAnswers > 0;
+  const isPerfect = correctAnswers === totalQuestions;
+  const statusColor = isPerfect
+    ? theme.palette.success.main
+    : isPassing
+      ? theme.palette.info.dark
+      : theme.palette.error.main;
+
   return (
     <Modal
       open={open}
@@ -70,57 +81,86 @@ export default function ResultsModal({
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: { xs: "90%", sm: 400 },
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
-            borderRadius: 1,
+            borderRadius: 3,
             textAlign: "center",
+            outline: "none",
           }}
         >
-          <Typography variant="h5" component="h3">
-            {correctAnswers < 2
-              ? "Nice try! 🌠"
-              : correctAnswers === totalQuestions
-                ? "Perfect! 🌠"
-                : "Well done! 🌠"}
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h4" py={2}>
-            {`${correctAnswers} correct out of ${totalQuestions} total questions! 🎉`}
-          </Typography>
-
           <Box
             sx={{
-              alignSelf: "center",
+              width: 50,
+              height: 50,
+              borderRadius: "50%",
+              bgcolor: alpha(statusColor, 0.1),
               display: "flex",
-              flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              width: "100%",
-              mt: 2,
+              mx: "auto",
+              mb: 2,
             }}
           >
+            <Typography
+              variant="h3"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              fontSize={30}
+            >
+              {isPerfect ? "🏆" : isPassing ? "🎉" : "💪"}
+            </Typography>
+          </Box>
+
+          <Typography
+            variant="h4"
+            component="h3"
+            fontWeight="bold"
+            gutterBottom
+            sx={{ color: statusColor }}
+          >
+            {correctAnswers < 2
+              ? "Nice try!"
+              : correctAnswers === totalQuestions
+                ? "Perfect!"
+                : "Well done!"}
+          </Typography>
+          <Typography
+            id="modal-modal-title"
+            variant="body1"
+            color="text.secondary"
+            sx={{ mb: 4 }}
+          >
+            You got <strong>{correctAnswers}</strong> correct out of{" "}
+            <strong>{totalQuestions}</strong> questions!
+          </Typography>
+
+          <Stack direction="row" spacing={2} justifyContent="center">
             <Button
               onClick={handleResetClick}
-              size="medium"
+              size="large"
               variant="outlined"
               color="error"
-              sx={{ m: 1 }}
+              sx={{ flex: 1, borderRadius: 2 }}
               startIcon={<RestartAltIcon />}
             >
               Reset
             </Button>
             <Button
               onClick={handleResultClick}
-              size="medium"
-              variant="outlined"
-              color="info"
-              sx={{ m: 1 }}
+              size="large"
+              variant="contained"
+              color="primary"
+              sx={{ flex: 1, borderRadius: 2, boxShadow: 2 }}
               startIcon={<DvrIcon />}
             >
               Full Results
             </Button>
-          </Box>
+          </Stack>
         </Box>
       </Fade>
     </Modal>

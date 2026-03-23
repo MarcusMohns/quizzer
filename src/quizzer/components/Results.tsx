@@ -1,19 +1,14 @@
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import tags from "../../store";
 import Grow from "@mui/material/Grow";
 import Zoom from "@mui/material/Zoom";
-import Fade from "@mui/material/Fade";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import { useEffect } from "react";
 import { QuizResult } from "../../store";
+import ResultCard from "./ResultCard";
 
 interface ResultsProps {
   results: QuizResult[];
@@ -24,10 +19,10 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
   const totalQuestions = results.length;
   const correctAnswers = Object.values(results).reduce(
     (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
-    0
+    0,
   );
   const categories = Array.from(
-    new Set(results.map((question) => question.category))
+    new Set(results.map((question) => question.category)),
   );
 
   useEffect(() => {
@@ -35,13 +30,14 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ width: "100%", maxWidth: 800, mx: "auto", px: 2, pb: 5 }}>
       <Zoom in={true} appear={true} timeout={300}>
         <Typography
           id=""
           variant="h4"
           component="h2"
-          sx={{ mt: 5, textAlign: "center" }}
+          sx={{ mt: 5, textAlign: "center", fontWeight: "bold" }}
+          color="info"
         >
           {((correctAnswers / totalQuestions) * 100).toFixed(2)}% Correct! 🎊
         </Typography>
@@ -51,7 +47,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           id=""
           variant="h6"
           component="h3"
-          sx={{ mt: 1, textAlign: "center" }}
+          sx={{ mt: 1, textAlign: "center", color: "text.secondary" }}
         >
           {correctAnswers} correct out of {totalQuestions} total questions! 🎈
         </Typography>
@@ -62,10 +58,14 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
         timeout={900}
         style={{ transitionDelay: "300ms" }}
       >
-        <Box sx={{ textAlign: "center", p: 1 }}>
+        <Typography
+          variant="subtitle1"
+          sx={{ textAlign: "center", p: 1, mb: 4, fontStyle: "italic" }}
+          color="text.disabled"
+        >
           The time limit was {timeLimit.minutes} minute and {timeLimit.seconds}{" "}
           seconds 🕰️
-        </Box>
+        </Typography>
       </Grow>
       <Stack
         direction="row"
@@ -75,7 +75,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           alignItems: "center",
           flexWrap: "wrap",
           justifyContent: { xs: "center" },
-          mt: 5,
+          mb: 4,
         }}
       >
         {categories.map((category) => (
@@ -88,70 +88,13 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           />
         ))}
       </Stack>
-      <Fade in={true} appear={true} timeout={700}>
-        <List dense={true}>
-          {results.map((result, index) =>
-            result.selectedAnswer === "Not Answered" ? (
-              <ListItem
-                key={index}
-                sx={{
-                  backgroundColor: "info.contrastText",
-                  m: 1,
-                  boxShadow: 1,
-                  width: "auto",
-                }}
-              >
-                <ListItemIcon>{result.questionNum}</ListItemIcon>
-                <ListItemText
-                  primary={result.questionText}
-                  secondary={`No answer was picked. The correct answer was: ${result.correctAnswer}`}
-                />
-                <ListItemIcon>
-                  <HelpOutlineOutlinedIcon />
-                </ListItemIcon>
-              </ListItem>
-            ) : result.correctlyAnswered ? (
-              <ListItem
-                key={index}
-                sx={{
-                  backgroundColor: "success.contrastText",
-                  m: 1,
-                  boxShadow: 1,
-                  width: "auto",
-                }}
-              >
-                <ListItemIcon>{result.questionNum}</ListItemIcon>
-                <ListItemText
-                  primary={result.questionText}
-                  secondary={`Correct!  the answer was: ${result.correctAnswer}`}
-                />
-                <ListItemIcon>
-                  <CheckCircleOutlineIcon />
-                </ListItemIcon>
-              </ListItem>
-            ) : (
-              <ListItem
-                key={index}
-                sx={{
-                  backgroundColor: "error.contrastText",
-                  m: 1,
-                  boxShadow: 1,
-                  width: "auto",
-                }}
-              >
-                <ListItemIcon>{result.questionNum}</ListItemIcon>
-                <ListItemText
-                  primary={result.questionText}
-                  secondary={`Incorrect - You picked ${result.selectedAnswer}, the correct answer was: ${result.correctAnswer}`}
-                />
-                <ListItemIcon>
-                  <CancelOutlinedIcon />
-                </ListItemIcon>
-              </ListItem>
-            )
-          )}
+      <Box sx={{ width: "100%" }}>
+        <List disablePadding>
+          {results.map((result, index) => (
+            <ResultCard key={index} index={index} result={result} />
+          ))}
         </List>
-      </Fade>
+      </Box>
     </Box>
   );
 };

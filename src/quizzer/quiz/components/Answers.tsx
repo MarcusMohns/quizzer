@@ -1,5 +1,4 @@
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import ButtonBase from "@mui/material/ButtonBase";
 import Avatar from "@mui/material/Avatar";
@@ -7,7 +6,9 @@ import Fade from "@mui/material/Fade";
 import StyledRadio from "./StyledRadio";
 import { QuizQuestion } from "../../../store";
 import { QuizResult } from "../../../store";
+import Typography from "@mui/material/Typography";
 import { alpha, useTheme } from "@mui/material/styles";
+import { useEffect } from "react";
 const LETTERS = ["A", "B", "C", "D"];
 const TimeoutDelay = [100, 200, 300, 400];
 
@@ -38,6 +39,40 @@ const Answers = ({
   quizState,
 }: AnswerProps) => {
   const theme = useTheme();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isLocked =
+        results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
+
+      if (isLocked) {
+        return;
+      }
+
+      const key = event.key.toUpperCase();
+      const index = LETTERS.indexOf(key);
+
+      if (index !== -1 && index < sortedAnswers.length) {
+        handleSelectedAnswerIndex({
+          target: {
+            value: index.toString(),
+            name: sortedAnswers[index],
+          },
+        } as React.ChangeEvent<HTMLInputElement>);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    activeStep,
+    handleSelectedAnswerIndex,
+    quizState.completed,
+    results,
+    sortedAnswers,
+  ]);
 
   return (
     <RadioGroup
@@ -92,6 +127,8 @@ const Answers = ({
                 style={{ transitionDelay: `${TimeoutDelay[index]}ms` }}
               >
                 <ButtonBase
+                  component="label"
+                  disabled={isLocked}
                   sx={{
                     width: "100%",
                     height: "100%",
@@ -101,10 +138,11 @@ const Answers = ({
                     borderColor: borderColor,
                     bgcolor: bgcolor,
                     display: "flex",
+                    transform: isSelected ? "scale(1.02)" : "none",
                     alignItems: "center",
                     justifyContent: "flex-start",
                     textAlign: "left",
-                    transition: "all 0.2s ease-in-out",
+                    transition: "all 0.5s ease-in-out",
                     "&:hover": {
                       transform: !isLocked ? "scale(1.02)" : "none",
                     },
@@ -124,18 +162,13 @@ const Answers = ({
                   >
                     {LETTERS[index]}
                   </Avatar>
-                  <FormControlLabel
-                    disabled={isLocked}
+                  <StyledRadio
                     value={index}
-                    label={answer}
-                    control={<StyledRadio sx={{ display: "none" }} />}
-                    sx={{
-                      m: 0,
-                      width: "100%",
-                      height: "100%",
-                    }}
+                    disabled={isLocked}
                     name={answer}
+                    sx={{ display: "none" }}
                   />
+                  <Typography variant="body1">{answer}</Typography>
                 </ButtonBase>
               </Fade>
             </Grid>

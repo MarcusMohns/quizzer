@@ -73,7 +73,7 @@ const AnswerResultAlert = ({
         >
           <Box
             sx={{
-              p: 2,
+              p: 1,
               borderRadius: "50%",
               bgcolor: (theme) =>
                 alpha(
@@ -85,13 +85,13 @@ const AnswerResultAlert = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              mb: 2,
+              mb: 1,
             }}
           >
             {correctlyAnswered ? (
-              <CheckCircleOutlineIcon color="success" sx={{ fontSize: 60 }} />
+              <CheckCircleOutlineIcon color="success" sx={{ fontSize: 30 }} />
             ) : (
-              <CancelOutlinedIcon color="error" sx={{ fontSize: 60 }} />
+              <CancelOutlinedIcon color="error" sx={{ fontSize: 30 }} />
             )}
           </Box>
 

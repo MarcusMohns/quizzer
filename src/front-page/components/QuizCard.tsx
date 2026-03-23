@@ -39,6 +39,7 @@ export const QuizCard = ({
       <CardHeader
         sx={{
           bgcolor: "background.default",
+          borderRadius: "7px",
           mb: 2,
         }}
         avatar={<Avatar src={icon} sx={{ bgcolor: "primary.light" }} />}

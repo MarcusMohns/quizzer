@@ -30,7 +30,7 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
             width: "100%",
             height: "100%",
             borderRadius: { xs: "0px", sm: "10px" },
-            backgroundColor: "primary.dark",
+            backgroundColor: "secondary.dark",
             boxShadow: 2,
           }}
         />

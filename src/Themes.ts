@@ -22,19 +22,19 @@ export const darkTheme = createTheme({
     secondary: {
       main: "#2e395c",
       light: "#4e609e",
-      dark: "#2a3250",
+      dark: "#ffaa48a9",
       contrastText: "#ffffff",
     },
     success: {
-      main: "#39973c",
-      light: "#49a54e",
+      main: "#4caf50",
+      light: "#81c784",
       dark: "#388e3c",
       contrastText: "#ffffff",
     },
     error: {
-      main: "#c02b2b",
-      light: "#e24442",
-      dark: "#ac1d1d",
+      main: "#d32f2f",
+      light: "#ef5350",
+      dark: "#c62828",
       contrastText: "#ffffff",
     },
     info: {
@@ -80,7 +80,7 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#ffbd68",
       light: "#ffce8f",
-      dark: "#ffb049",
+      dark: "#a2bbf1",
       contrastText: "#000000",
     },
     success: {
@@ -102,9 +102,9 @@ export const lightTheme = createTheme({
       contrastText: "#dfdfdf",
     },
     warning: {
-      main: "#ebb76e",
-      light: "#ffecd2",
-      dark: "#e0a24b",
+      main: "#ffaa48a9",
+      light: "#ffb96aa9",
+      dark: "#db8d34a9",
       contrastText: "#000000",
     },
   },

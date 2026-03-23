@@ -5,16 +5,17 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import CircularProgress from "@mui/material/CircularProgress";
 import fetchQuiz from "./store";
-import DifficulyCheckboxes from "./components/DifficultyCheckboxes";
+import DifficultyCheckboxes from "./components/DifficultyCheckboxes";
 import CategoryCheckboxes from "./components/CategoryCheckboxes";
 import { QuizState } from "../../../store";
 import { someChecked, allChecked, defaultFormData } from "./store";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 interface GenerateQuizFormProps {
   setQuizData: (data: QuizState | null) => void;
   handleSideMenuOpen: (
     open: boolean,
-    event?: React.SyntheticEvent<object, Event>
+    event?: React.SyntheticEvent<object, Event>,
   ) => void;
 }
 
@@ -39,7 +40,7 @@ const GenerateQuizForm = ({
         setQuizData,
         setLoading,
         handleSideMenuOpen,
-        setError
+        setError,
       );
       setLoading(true);
     } else {
@@ -61,11 +62,11 @@ const GenerateQuizForm = ({
         categories: prevData.categories.map((category) =>
           category.id === event.target.name
             ? { ...category, checked: event.target.checked }
-            : category
+            : category,
         ),
       }));
     },
-    []
+    [],
   );
 
   const handleCheckedDifficulty = useCallback(
@@ -75,11 +76,11 @@ const GenerateQuizForm = ({
         difficulties: prevData.difficulties.map((difficulty) =>
           difficulty.id === event.target.name
             ? { ...difficulty, checked: event.target.checked }
-            : difficulty
+            : difficulty,
         ),
       }));
     },
-    []
+    [],
   );
 
   const toggleCategoryCheckBoxes = useCallback(() => {
@@ -108,8 +109,8 @@ const GenerateQuizForm = ({
       sx={{
         display: "flex",
         flexDirection: "column",
-        px: 3,
-        width: "300px",
+        gap: 3,
+        width: "100%",
       }}
       noValidate
       autoComplete="off"
@@ -123,8 +124,8 @@ const GenerateQuizForm = ({
         onChange={handleQtyChange}
         type="number"
         label="Number of Questions:"
-        color="info"
-        sx={{ minWidth: 120 }}
+        color="primary"
+        sx={{ width: "100%" }}
         helperText="Enter a number between 1 & 50"
         error={Number(formData.qty) <= 0 || Number(formData.qty) > 50}
       />
@@ -134,7 +135,7 @@ const GenerateQuizForm = ({
         toggleCategoryCheckBoxes={toggleCategoryCheckBoxes}
         handleCheckedCategory={handleCheckedCategory}
       />
-      <DifficulyCheckboxes
+      <DifficultyCheckboxes
         difficulties={formData.difficulties}
         toggleDifficultyCheckBoxes={toggleDifficultyCheckBoxes}
         handleCheckedDifficulty={handleCheckedDifficulty}
@@ -156,9 +157,17 @@ const GenerateQuizForm = ({
       <Button
         variant="contained"
         type="submit"
-        color="secondary"
+        color="primary"
         disabled={loading}
-        sx={{ mb: 2, mt: "auto", boxShadow: 3 }}
+        size="large"
+        startIcon={!loading && <AutoAwesomeIcon />}
+        sx={{
+          mt: 2,
+          py: 1.5,
+          borderRadius: 2,
+          fontWeight: "bold",
+          boxShadow: 3,
+        }}
         loading={loading}
         loadingIndicator={
           <Box

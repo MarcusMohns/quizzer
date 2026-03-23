@@ -1,61 +1,55 @@
 import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormLabel from "@mui/material/FormLabel";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
-import QuizFormCheckbox from "./QuizFormCheckbox.tsx";
+import FormLabel from "@mui/material/FormLabel";
+import QuizFormCheckbox from "./QuizFormCheckbox";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import { FormData } from "../store";
 import { memo } from "react";
-import { allChecked, someChecked, FormData } from "../store.tsx";
 
 interface CategoryCheckboxesProps {
   categories: FormData["categories"];
-  toggleCategoryCheckBoxes: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  toggleCategoryCheckBoxes: () => void;
   handleCheckedCategory: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 const CategoryCheckboxes = ({
   categories,
   toggleCategoryCheckBoxes,
   handleCheckedCategory,
 }: CategoryCheckboxesProps) => {
-  // return true if all objects in array are checked
+  const allChecked = categories.every((c) => c.checked);
+  const someChecked = categories.some((c) => c.checked);
+
   return (
     <FormControl
-      sx={{ m: 0.5, minWidth: 120 }}
-      error={!someChecked(categories)}
+      component="fieldset"
+      error={!someChecked}
+      sx={{ width: "100%" }}
     >
-      <FormLabel color="info" id="category-select-label">
-        Select Category
-      </FormLabel>
-      <FormGroup>
-        <FormControlLabel
-          label="All Categories"
-          sx={{
-            userSelect: "none",
-            "&:hover": {
-              backgroundColor: "secondary.light",
-            },
-          }}
-          control={
-            <Checkbox
-              checked={allChecked(categories)}
-              indeterminate={someChecked(categories)}
-              onChange={toggleCategoryCheckBoxes}
-              name={"all-categories-checkbox"}
-              color="info"
-            />
-          }
-        />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 1,
+        }}
+      >
+        <FormLabel component="legend" color="info">
+          Categories
+        </FormLabel>
+        <Button size="small" onClick={toggleCategoryCheckBoxes} color="info">
+          {allChecked ? "Unselect All" : "Select All"}
+        </Button>
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         {categories.map((category) => (
           <QuizFormCheckbox
             checkbox={category}
             handleChecked={handleCheckedCategory}
-            key={category.id}
           />
         ))}
-      </FormGroup>
+      </Box>
       <FormHelperText>Select at least one category</FormHelperText>
     </FormControl>
   );

@@ -51,6 +51,12 @@ export default function QuizStepper({
         sx={{
           flexWrap: "wrap",
           justifyContent: "center",
+          "& .MuiStepIcon-root:not(.Mui-active)": {
+            color: "primary.dark",
+          },
+          "& .MuiStepIcon-root.Mui-active": {
+            color: "secondary.dark",
+          },
         }}
       >
         {quizData.map((step, index) => {

@@ -111,7 +111,7 @@ const QuizControls = ({
       <Stack direction="row" spacing={2} sx={{ width: "75%" }}>
         <Button
           onClick={handleReset}
-          variant="contained"
+          variant="outlined"
           color="error"
           size="large"
           sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
@@ -124,7 +124,7 @@ const QuizControls = ({
             <Button
               onClick={() => handleSetActiveStep(quizData.length)}
               color="info"
-              variant="contained"
+              variant="outlined"
               size="large"
               sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
               startIcon={<DvrIcon />}
@@ -136,7 +136,7 @@ const QuizControls = ({
           <Button
             onClick={completeQuiz}
             color="success"
-            variant="contained"
+            variant="outlined"
             size="large"
             sx={{ borderRadius: 2, boxShadow: 3, flex: 1, minWidth: "120px" }}
             endIcon={<DoneAllIcon />}

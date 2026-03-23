@@ -1,23 +1,20 @@
 import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import FormHelperText from "@mui/material/FormHelperText";
 import QuizFormCheckbox from "./QuizFormCheckbox";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import { memo } from "react";
 import { FormData } from "../store";
 
 interface DifficulyCheckboxesProps {
   difficulties: FormData["difficulties"];
-  toggleDifficultyCheckBoxes: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  toggleDifficultyCheckBoxes: () => void;
   handleCheckedDifficulty: (event: React.ChangeEvent<HTMLInputElement>) => void;
   allChecked: (difficulties: FormData["difficulties"]) => boolean;
   someChecked: (difficulties: FormData["difficulties"]) => boolean;
 }
-const DifficulyCheckboxes = ({
+const DifficultyCheckboxes = ({
   difficulties,
   toggleDifficultyCheckBoxes,
   handleCheckedDifficulty,
@@ -26,42 +23,36 @@ const DifficulyCheckboxes = ({
 }: DifficulyCheckboxesProps) => {
   return (
     <FormControl
-      sx={{ m: 0.5, minWidth: 120 }}
+      component="fieldset"
+      sx={{ width: "100%" }}
       error={!someChecked(difficulties)}
     >
-      <FormLabel color="info" id="difficulty-select-label">
-        Select Difficulty
-      </FormLabel>
-      <FormGroup>
-        <FormControlLabel
-          label="All Difficulties"
-          sx={{
-            userSelect: "none",
-            "&:hover": {
-              backgroundColor: "secondary.light",
-            },
-          }}
-          control={
-            <Checkbox
-              checked={allChecked(difficulties)}
-              indeterminate={someChecked(difficulties)}
-              onChange={toggleDifficultyCheckBoxes}
-              name={"all-difficulties-checkbox"}
-              color="info"
-            />
-          }
-        />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 1,
+        }}
+      >
+        <FormLabel component="legend" color="info">
+          Difficulty
+        </FormLabel>
+        <Button size="small" onClick={toggleDifficultyCheckBoxes} color="info">
+          {allChecked(difficulties) ? "Unselect All" : "Select All"}
+        </Button>
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         {difficulties.map((difficulty) => (
           <QuizFormCheckbox
             checkbox={difficulty}
             handleChecked={handleCheckedDifficulty}
-            key={difficulty.id}
           />
         ))}
-      </FormGroup>
+      </Box>
       <FormHelperText>Select at least one difficulty</FormHelperText>
     </FormControl>
   );
 };
 
-export default memo(DifficulyCheckboxes);
+export default memo(DifficultyCheckboxes);

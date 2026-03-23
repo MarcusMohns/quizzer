@@ -62,7 +62,11 @@ const StartPage = ({
             textAlign: "center",
             mb: 3,
             background: (theme) =>
-              `linear-gradient(45deg, ${theme.palette.warning.light}, ${theme.palette.warning.dark})`,
+              `linear-gradient(45deg, ${
+                theme.palette.mode === "dark"
+                  ? theme.palette.warning.light
+                  : theme.palette.primary.dark
+              }, ${theme.palette.warning.dark})`,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
