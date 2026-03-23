@@ -125,7 +125,7 @@ const WelcomeSection = ({
                     endIcon={<MenuIcon />}
                     sx={{
                       fontWeight: "bold",
-                      fontSize: "1.1rem",
+
                       boxShadow: 2,
                       p: 1.5,
                     }}
@@ -143,7 +143,6 @@ const WelcomeSection = ({
                       fontWeight: "bold",
                       boxShadow: 2,
                       p: 1.5,
-                      fontSize: "1.1rem",
                     }}
                     size="large"
                   >

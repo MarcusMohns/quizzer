@@ -60,9 +60,6 @@ export default function QuizStepper({
               <Step completed={completed} sx={{ ml: 1 }}>
                 <StepButton
                   onClick={handleStep(index)}
-                  sx={{
-                    borderRadius: "50%",
-                  }}
                   icon={
                     !completed ? null : results[index].correctlyAnswered ? (
                       <CheckCircleOutlineOutlinedIcon

@@ -84,7 +84,7 @@ const QuizControls = ({
         width: "100%",
       }}
     >
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} sx={{ width: "75%" }}>
         <Button
           onClick={handleBack}
           disabled={activeStep === 0}
@@ -108,7 +108,7 @@ const QuizControls = ({
           Next
         </Button>
       </Stack>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} sx={{ width: "75%" }}>
         <Button
           onClick={handleReset}
           variant="contained"

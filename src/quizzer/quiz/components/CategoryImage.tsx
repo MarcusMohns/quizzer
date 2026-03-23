@@ -30,7 +30,8 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
             width: "100%",
             height: "100%",
             borderRadius: { xs: "0px", sm: "10px" },
-            backgroundColor: "secondary.dark",
+            backgroundColor: "primary.dark",
+            boxShadow: 2,
           }}
         />
         <Typography

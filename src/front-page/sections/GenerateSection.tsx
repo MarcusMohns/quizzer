@@ -127,7 +127,7 @@ const GenerateSection = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="subtitle2"
-                color="warning.light"
+                color="inherit"
               >
                 the-trivia-api
               </Link>{" "}

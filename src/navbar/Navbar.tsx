@@ -10,7 +10,7 @@ interface NavbarProps {
   toggleDarkMode: () => void;
   handleSideMenuOpen: (
     open: boolean,
-    event?: React.SyntheticEvent<object, Event>
+    event?: React.SyntheticEvent<object, Event>,
   ) => void;
   handleSetQuizData: (data: QuizState | null) => void;
   isDarkMode: boolean;
@@ -33,7 +33,7 @@ export default function Navbar({
       <AppBar
         position="static"
         sx={{
-          backgroundColor: "primary",
+          backgroundColor: "background.paper",
         }}
       >
         <Toolbar>
