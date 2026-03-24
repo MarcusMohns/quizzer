@@ -16,25 +16,41 @@ const Question = ({ questionData, activeStep }: QuestionProps) => {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          alignItems: { xs: "center", md: "flex-start" },
-          minHeight: "100px",
-          mb: { xs: 4, md: 1 },
-          mt: 1,
-          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          mt: 2,
+          mb: 4,
+          px: 2,
           zIndex: 1,
         }}
       >
         <Avatar
-          variant="rounded"
           sx={{
-            bgcolor: "primary.main",
-            color: "primary.contrastText",
-            alignSelf: "top",
+            bgcolor: "secondary.main",
+            color: "secondary.contrastText",
+            width: 48,
+            height: 48,
+            mr: { xs: 0, md: 1 },
+            mb: { xs: 2, md: 0 },
+            boxShadow: 3,
+            fontSize: "1.4rem",
+            fontWeight: "bold",
           }}
         >
           {activeStep + 1}
         </Avatar>
-        <Typography variant="h6">{questionData.question.text}</Typography>
+        <Typography
+          variant="h5"
+          component="h2"
+          sx={{
+            textAlign: { xs: "center", md: "left" },
+            fontWeight: "bold",
+            lineHeight: 1.3,
+          }}
+        >
+          {questionData.question.text}
+        </Typography>
       </Box>
     </Fade>
   );
