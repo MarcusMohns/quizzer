@@ -29,7 +29,7 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
 
   return (
     <Paper
-      elevation={5}
+      elevation={1}
       sx={{
         width: "100%",
         p: 3,
@@ -37,12 +37,13 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
         mt: 3,
         mb: 2,
         display: "flex",
+        bgcolor: "primary.dark",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
       <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
-        <AccessTimeIcon color="primary" />
+        <AccessTimeIcon color="info" />
         <Typography variant="h6" fontWeight="bold">
           Time Limit
         </Typography>

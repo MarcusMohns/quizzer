@@ -23,11 +23,12 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
 
   return (
     <Paper
-      elevation={5}
+      elevation={1}
       sx={{
         width: "100%",
         p: 4,
         borderRadius: 4,
+        bgcolor: "primary.dark",
         mt: 2,
       }}
     >
@@ -36,6 +37,7 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+
           height: "100%",
           width: "100%",
           extAlign: "center",
@@ -81,6 +83,7 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
               label={tags[category].title}
               icon={tags[category].icon}
               variant="outlined"
+              color="info"
               sx={{ borderRadius: 2 }}
             />
           ))}
@@ -110,6 +113,7 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
               label={difficulty}
               key={difficulty}
               variant="outlined"
+              color="info"
               sx={{ borderRadius: 2, textTransform: "capitalize" }}
               icon={
                 <span role="img" aria-label="difficulty-emoji">

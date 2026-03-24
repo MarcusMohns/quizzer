@@ -61,6 +61,7 @@ const Quiz = ({
   };
 
   const isLastQuestion = activeStep === results.length - 1;
+  const quizIsStarted = quizState.started && !quizState.completed;
   return (
     <Fade in={true} appear={true} timeout={1500}>
       <Box
@@ -69,7 +70,7 @@ const Quiz = ({
           width: "100%",
         }}
       >
-        <AnimatedSquares />
+        {quizIsStarted && <AnimatedSquares />}
         <Stack
           spacing={3}
           alignItems="center"

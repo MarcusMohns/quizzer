@@ -46,7 +46,6 @@ const StartPage = ({
           flexDirection: "column",
           height: "100%",
           width: "100%",
-          maxWidth: "900px",
           mx: "auto",
           px: { xs: 2, md: 6 },
           py: 4,
@@ -79,12 +78,10 @@ const StartPage = ({
             Settings
           </Typography>
         </Divider>
-
         <SelectTimer
           timeLimit={timeLimit}
           handleSetTimeLimit={handleSetTimeLimit}
         />
-
         <Box sx={{ width: "100%", mt: 2 }}>
           <Stack
             spacing={3}
