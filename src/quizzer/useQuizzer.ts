@@ -26,7 +26,7 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
         questionText: question.question.text,
         questionNum: idx + 1,
       })),
-    [quizData]
+    [quizData],
   );
 
   const [results, setResults] = useState<QuizResult[]>(initialResults);
@@ -35,14 +35,14 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
     (newState: { started: boolean; completed: boolean }) => {
       setQuizState(newState);
     },
-    [setQuizState]
+    [setQuizState],
   );
 
   const handleSetResults = useCallback(
     (
       questionData: QuizQuestion,
       selectedAnswer: string,
-      pickedAnswerIndex: number
+      pickedAnswerIndex: number,
     ) => {
       setResults((prevResults) => {
         const newResults = [...prevResults];
@@ -58,19 +58,19 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
         return newResults;
       });
     },
-    [activeStep, setResults]
+    [activeStep, setResults],
   );
 
   const handleSetTimeLimit = useCallback(
     (timeLimit: { minutes: number; seconds: number }) => {
       setTimeLimit(timeLimit);
     },
-    [setTimeLimit]
+    [setTimeLimit],
   );
 
   const handleSetActiveStep = useCallback(
     (step: number) => setActiveStep(step),
-    [setActiveStep]
+    [setActiveStep],
   );
 
   const handleReset = useCallback(() => {
@@ -92,7 +92,7 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
     () =>
       results.filter((result) => result.selectedAnswer === "Not Answered")
         .length === 0,
-    [results]
+    [results],
   );
 
   useEffect(() => {

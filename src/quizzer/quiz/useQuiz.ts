@@ -41,7 +41,6 @@ const useQuiz = ({
 
   const handleSelectedAnswerIndex = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(e);
       const answerIndex = Number(e.target.value);
       setSelectedAnswerIndex(answerIndex);
       handleSetResults(questionData, e.target.name, answerIndex);

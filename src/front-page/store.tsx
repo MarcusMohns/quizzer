@@ -22,7 +22,6 @@ export interface Refs {
 export const useElementOnScreen = (options: options) => {
   const { root, rootMargin, threshold } = options;
 
-  //   const refs = useRef<Refs>({ current: [] });
   const refs = useRef<HTMLElement[]>([]);
 
   const [visibleStates, setVisibleStates] = useState<VisibleStates>({
