@@ -94,7 +94,6 @@ const Answers = ({
           const isDarkMode = theme.palette.mode === "dark";
           let borderColor = theme.palette.secondary.main;
           let bgcolor: string = theme.palette.secondary.main;
-
           let avatarColor = theme.palette.secondary.dark;
 
           if (isLocked) {
