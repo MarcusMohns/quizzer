@@ -95,7 +95,7 @@ const Answers = ({
           let borderColor = theme.palette.secondary.main;
           let bgcolor: string = theme.palette.secondary.main;
 
-          let avatarColor = theme.palette.primary.light;
+          let avatarColor = theme.palette.secondary.dark;
 
           if (isLocked) {
             if (isCorrect) {
