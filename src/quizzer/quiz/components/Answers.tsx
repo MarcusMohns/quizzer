@@ -8,7 +8,7 @@ import { QuizQuestion } from "../../../store";
 import { QuizResult } from "../../../store";
 import Typography from "@mui/material/Typography";
 import { alpha, useTheme } from "@mui/material/styles";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 const LETTERS = ["A", "B", "C", "D"];
 const TimeoutDelay = [100, 200, 300, 400];
 

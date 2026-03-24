@@ -4,7 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme, lightTheme } from "./Themes.ts";
 import Navbar from "./navbar/Navbar.tsx";
@@ -32,7 +32,7 @@ function App() {
       }
       setSideMenuOpen(open);
     },
-    []
+    [],
   );
   const handleSetQuizData = useCallback((data: QuizState | null) => {
     setQuizData(data);

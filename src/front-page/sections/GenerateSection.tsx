@@ -7,7 +7,7 @@ import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import { VisibleStates } from "../store";
 import AnimatedCogwheel from "../../css-animations/animated-cogwheel/AnimatedCogwheel";
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 
 interface GenerateSectionInterface {
   visibleStates: VisibleStates;

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-interface options {
-  root: null;
+interface Options {
+  root: Element | Document | null;
   rootMargin: string;
-  threshold: number;
+  threshold: number | number[];
 }
 
 export interface VisibleStates {
@@ -15,8 +15,9 @@ export interface VisibleStates {
   "quiz-cards": boolean;
 }
 
-export const useElementOnScreen = (options: options) => {
+export const useElementOnScreen = (options: Options) => {
   const elementsRef = useRef<Set<HTMLElement>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const [visibleStates, setVisibleStates] = useState<VisibleStates>({
     "welcome-message": false,
@@ -36,18 +37,24 @@ export const useElementOnScreen = (options: options) => {
       });
     }, options);
 
+    observerRef.current = observer;
     elementsRef.current.forEach((element) => observer.observe(element));
 
     return () => {
       observer.disconnect();
+      observerRef.current = null;
     };
   }, [options]);
 
   const registerRef = useCallback((node: HTMLElement | null) => {
     if (node) {
-      // We only add to the set here; the observer in useEffect handles the actual observation
-      // or we could store the observer in a ref and observe immediately.
       elementsRef.current.add(node);
+
+      // If the observer is already active (useEffect has run), observe this new node immediately.
+      // This fixes issues where late-mounting components weren't being observed.
+      if (observerRef.current) {
+        observerRef.current.observe(node);
+      }
     }
   }, []);
 
