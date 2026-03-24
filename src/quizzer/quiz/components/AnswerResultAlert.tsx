@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -27,10 +27,36 @@ const AnswerResultAlert = ({
   isLastQuestion,
 }: AnswerResultAlertProps) => {
   const [open, setOpen] = useState(false);
+  const prevQuestionId = useRef(questionData.id);
+  const prevAlertShown = useRef(alertShown);
+
+  // Latch the data to display so it doesn't change during exit transitions when props update
+  const [displayData, setDisplayData] = useState({
+    correctlyAnswered,
+    correctAnswer: questionData.correctAnswer,
+    isLastQuestion,
+  });
 
   useEffect(() => {
-    setOpen(alertShown);
-  }, [alertShown]);
+    const questionChanged = questionData.id !== prevQuestionId.current;
+    const alertBecameTrue = alertShown && !prevAlertShown.current;
+
+    if (questionChanged) {
+      setOpen(false);
+      prevQuestionId.current = questionData.id;
+    } else if (alertBecameTrue) {
+      setOpen(true);
+    }
+    prevAlertShown.current = alertShown;
+
+    if (alertShown) {
+      setDisplayData({
+        correctlyAnswered,
+        correctAnswer: questionData.correctAnswer,
+        isLastQuestion,
+      });
+    }
+  }, [alertShown, correctlyAnswered, questionData, isLastQuestion]);
 
   const handleClose = () => setOpen(false);
 
@@ -77,7 +103,7 @@ const AnswerResultAlert = ({
               borderRadius: "50%",
               bgcolor: (theme) =>
                 alpha(
-                  correctlyAnswered
+                  displayData.correctlyAnswered
                     ? theme.palette.success.main
                     : theme.palette.error.main,
                   0.1,
@@ -88,7 +114,7 @@ const AnswerResultAlert = ({
               mb: 1,
             }}
           >
-            {correctlyAnswered ? (
+            {displayData.correctlyAnswered ? (
               <CheckCircleOutlineIcon color="success" sx={{ fontSize: 30 }} />
             ) : (
               <CancelOutlinedIcon color="error" sx={{ fontSize: 30 }} />
@@ -98,11 +124,13 @@ const AnswerResultAlert = ({
           <Typography
             variant="h5"
             component="h2"
-            color={correctlyAnswered ? "success.main" : "error.main"}
+            color={
+              displayData.correctlyAnswered ? "success.main" : "error.main"
+            }
             fontWeight="bold"
             gutterBottom
           >
-            {correctlyAnswered ? "Correct!" : "Incorrect!"}
+            {displayData.correctlyAnswered ? "Correct!" : "Incorrect!"}
           </Typography>
 
           <Typography variant="body1" color="text.secondary">
@@ -116,17 +144,23 @@ const AnswerResultAlert = ({
             color="text.primary"
             sx={{ fontSize: "1.1rem", mb: 2 }}
           >
-            {questionData.correctAnswer}
+            {displayData.correctAnswer}
           </Typography>
           <Button
             onClick={onNextClick}
             variant="contained"
-            color={isLastQuestion ? "success" : "primary"}
+            color={displayData.isLastQuestion ? "success" : "primary"}
             size="large"
-            endIcon={isLastQuestion ? <DoneAllIcon /> : <NavigateNextIcon />}
+            endIcon={
+              displayData.isLastQuestion ? (
+                <DoneAllIcon />
+              ) : (
+                <NavigateNextIcon />
+              )
+            }
             sx={{ width: "100%", borderRadius: 2, py: 1.5 }}
           >
-            {isLastQuestion ? "Finish Quiz" : "Next Question"}
+            {displayData.isLastQuestion ? "Finish Quiz" : "Next Question"}
           </Button>
         </Box>
       </Zoom>
