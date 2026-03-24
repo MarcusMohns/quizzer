@@ -2,28 +2,26 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import { preparedQuizzes } from "../store.tsx";
-import { VisibleStates, Refs } from "../store.tsx";
+import { VisibleStates } from "../store.tsx";
 import { QuizState } from "../../store.tsx";
 import QuizCard from "../components/QuizCard.tsx";
 
 interface CardsSectionInterface {
   visibleStates: VisibleStates;
-  refs: Refs;
-  scrollRef: Refs;
+  registerRef: (node: HTMLElement | null) => void;
+  setScrollRef: (node: HTMLElement | null) => void;
   handleSetQuizData: (data: QuizState | null) => void;
 }
 
 const CardsSection = ({
   visibleStates,
-  refs,
+  registerRef,
   handleSetQuizData,
-  scrollRef,
+  setScrollRef,
 }: CardsSectionInterface) => {
   return (
     <Box
-      ref={(el) => {
-        scrollRef.current[1] = el as HTMLElement;
-      }}
+      ref={setScrollRef}
       component="section"
       sx={{
         width: { xs: "100%" },
@@ -42,12 +40,7 @@ const CardsSection = ({
         }}
       />
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
-        <Box
-          ref={(el) => {
-            refs.current[4] = el as HTMLElement;
-          }}
-          id="quiz-cards-container"
-        >
+        <Box ref={registerRef} id="quiz-cards-container">
           <Typography
             id="existing-quiz-header"
             sx={{
@@ -66,9 +59,7 @@ const CardsSection = ({
           >
             <Box
               id="quiz-cards"
-              ref={(el) => {
-                refs.current[5] = el as HTMLElement;
-              }}
+              ref={registerRef}
               sx={{
                 display: "flex",
                 flexDirection: "row",

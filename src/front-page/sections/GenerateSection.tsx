@@ -5,12 +5,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
-import { Refs, VisibleStates } from "../store";
+import { VisibleStates } from "../store";
 import AnimatedCogwheel from "../../css-animations/animated-cogwheel/AnimatedCogwheel";
+import { useState, useCallback } from "react";
 
 interface GenerateSectionInterface {
   visibleStates: VisibleStates;
-  refs: Refs;
+  registerRef: (node: HTMLElement | null) => void;
   handleSideMenuOpen: (
     open: boolean,
     event?: React.SyntheticEvent<object, Event>,
@@ -18,15 +19,22 @@ interface GenerateSectionInterface {
 }
 
 const GenerateSection = ({
-  refs,
+  registerRef,
   visibleStates,
   handleSideMenuOpen,
 }: GenerateSectionInterface) => {
+  const [containerNode, setContainerNode] = useState<HTMLElement | null>(null);
+  const handleRef = useCallback(
+    (node: HTMLElement | null) => {
+      setContainerNode(node);
+      registerRef(node);
+    },
+    [registerRef],
+  );
+
   return (
     <Box
-      ref={(el) => {
-        refs.current[3] = el as HTMLElement;
-      }}
+      ref={handleRef}
       component="section"
       id="generate-section"
       sx={{
@@ -69,7 +77,7 @@ const GenerateSection = ({
       >
         <Slide
           in={visibleStates["generate-section"]}
-          container={refs.current[3]}
+          container={containerNode}
           timeout={1000}
           style={{ transitionDelay: "300ms" }}
         >

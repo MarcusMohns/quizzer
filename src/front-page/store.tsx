@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface options {
   root: null;
@@ -15,14 +15,8 @@ export interface VisibleStates {
   "quiz-cards": boolean;
 }
 
-export interface Refs {
-  current: HTMLElement[];
-}
-
 export const useElementOnScreen = (options: options) => {
-  const { root, rootMargin, threshold } = options;
-
-  const refs = useRef<HTMLElement[]>([]);
+  const elementsRef = useRef<Set<HTMLElement>>(new Set());
 
   const [visibleStates, setVisibleStates] = useState<VisibleStates>({
     "welcome-message": false,
@@ -32,32 +26,32 @@ export const useElementOnScreen = (options: options) => {
     "quiz-cards": false,
   });
 
-  const callbackFunction = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      setVisibleStates((prevVisibleStates) => ({
-        ...prevVisibleStates,
-        [entry.target.id]: entry.isIntersecting,
-      }));
-    });
-  };
-
   useEffect(() => {
-    const currentRefs = Array.from(refs.current);
-    const observer = new IntersectionObserver(callbackFunction, {
-      root: root,
-      rootMargin: rootMargin,
-      threshold: threshold,
-    });
-    currentRefs.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-    return () => {
-      currentRefs.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        setVisibleStates((prevVisibleStates) => ({
+          ...prevVisibleStates,
+          [entry.target.id]: entry.isIntersecting,
+        }));
       });
+    }, options);
+
+    elementsRef.current.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
     };
-  }, [refs, root, rootMargin, threshold]);
-  return { refs, visibleStates };
+  }, [options]);
+
+  const registerRef = useCallback((node: HTMLElement | null) => {
+    if (node) {
+      // We only add to the set here; the observer in useEffect handles the actual observation
+      // or we could store the observer in a ref and observe immediately.
+      elementsRef.current.add(node);
+    }
+  }, []);
+
+  return { registerRef, visibleStates };
 };
 
 export const preparedQuizzes = [

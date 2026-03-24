@@ -5,12 +5,12 @@ import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import Fade from "@mui/material/Fade";
-import { Refs, VisibleStates } from "../store";
+import { VisibleStates } from "../store";
 
 interface WelcomeSectionInterface {
   visibleStates: VisibleStates;
-  refs: Refs;
-  scrollRef: Refs;
+  registerRef: (node: HTMLElement | null) => void;
+  setScrollRef: (node: HTMLElement | null) => void;
   handleScroll: (idx: number) => void;
   handleSideMenuOpen: (
     open: boolean,
@@ -19,17 +19,15 @@ interface WelcomeSectionInterface {
 }
 
 const WelcomeSection = ({
-  refs,
+  registerRef,
   visibleStates,
   handleSideMenuOpen,
   handleScroll,
-  scrollRef,
+  setScrollRef,
 }: WelcomeSectionInterface) => {
   return (
     <Box
-      ref={(el) => {
-        scrollRef.current[0] = el as HTMLElement;
-      }}
+      ref={setScrollRef}
       component="section"
       sx={{
         display: "flex",
@@ -54,12 +52,7 @@ const WelcomeSection = ({
         }}
       >
         <Fade in={visibleStates["welcome-message"]} timeout={500}>
-          <Stack
-            id="welcome-message"
-            ref={(el) => {
-              refs.current[0] = el as HTMLElement;
-            }}
-          >
+          <Stack id="welcome-message" ref={registerRef}>
             <Typography sx={{ textAlign: "center" }} variant="overline">
               Good Quizzing
             </Typography>
@@ -79,9 +72,7 @@ const WelcomeSection = ({
           style={{ transitionDelay: "200ms" }}
         >
           <Box
-            ref={(el) => {
-              refs.current[1] = el as HTMLElement;
-            }}
+            ref={registerRef}
             id="welcome-box"
             sx={{
               display: "flex",
