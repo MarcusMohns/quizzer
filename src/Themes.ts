@@ -25,18 +25,6 @@ export const darkTheme = createTheme({
       dark: "#ffaa48a9",
       contrastText: "#ffffff",
     },
-    success: {
-      main: "#4caf50",
-      light: "#81c784",
-      dark: "#388e3c",
-      contrastText: "#ffffff",
-    },
-    error: {
-      main: "#d32f2f",
-      light: "#ef5350",
-      dark: "#c62828",
-      contrastText: "#ffffff",
-    },
     info: {
       main: "#b8b8b8",
       light: "#dddddd",
