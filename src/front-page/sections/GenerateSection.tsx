@@ -70,9 +70,8 @@ const GenerateSection = ({
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          width: { sm: "100%", md: "50%" },
+          width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },
           mt: 20,
-          mx: 2,
         }}
       >
         <Slide
@@ -83,8 +82,16 @@ const GenerateSection = ({
         >
           <Box>
             <Typography
-              variant="h3"
-              sx={{ fontWeight: "semibold", fontSize: "2rem" }}
+              variant="h2"
+              component="h2"
+              sx={{
+                fontWeight: 800,
+                background: (theme) =>
+                  `linear-gradient(45deg, ${theme.palette.warning.main}, ${theme.palette.error.main})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
+              }}
               mb={2}
             >
               Generate a quiz!
@@ -108,7 +115,11 @@ const GenerateSection = ({
           style={{ transitionDelay: "900ms" }}
         >
           <Box sx={{ textAlign: "center", my: 3 }}>
-            <Typography sx={{ textAlign: "center" }}>
+            <Typography
+              sx={{ textAlign: "center", mb: 3 }}
+              color="text.secondary"
+              variant="body1"
+            >
               Select different categories, difficulty and quantity
             </Typography>
             <Button
@@ -116,7 +127,15 @@ const GenerateSection = ({
               color="warning"
               size="large"
               variant="contained"
-              sx={{ my: 2, fontWeight: "bold", boxShadow: 2 }}
+              sx={{
+                my: 2,
+                fontWeight: "bold",
+                borderRadius: 2,
+                boxShadow: 4,
+                p: 1.5,
+                transition: "transform 0.2s",
+                "&:hover": { transform: "translateY(-2px)" },
+              }}
               onClick={() => handleSideMenuOpen(true)}
               endIcon={<MenuIcon />}
             >
@@ -126,6 +145,8 @@ const GenerateSection = ({
             <Typography
               id="generate-section-text"
               sx={{
+                mt: 2,
+                color: "text.disabled",
                 fontSize: "0.9rem",
               }}
             >

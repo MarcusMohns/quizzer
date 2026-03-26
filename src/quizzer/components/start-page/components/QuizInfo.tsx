@@ -5,6 +5,7 @@ import tags, { QuizState } from "../../../../store";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { alpha } from "@mui/material";
 
 const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
   const tagsAndCategories = {
@@ -28,7 +29,7 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
         width: "100%",
         p: 4,
         borderRadius: 4,
-        bgcolor: "primary.dark",
+        bgcolor: (theme) => alpha(theme.palette.primary.dark, 0.25),
         mt: 2,
       }}
     >

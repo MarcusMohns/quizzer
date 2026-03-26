@@ -9,6 +9,7 @@ import Zoom from "@mui/material/Zoom";
 import { useEffect } from "react";
 import { QuizResult } from "../../store";
 import ResultCard from "./ResultCard";
+import { Paper, alpha } from "@mui/material";
 
 interface ResultsProps {
   results: QuizResult[];
@@ -17,7 +18,7 @@ interface ResultsProps {
 
 const Results = ({ results, timeLimit }: ResultsProps) => {
   const totalQuestions = results.length;
-  const correctAnswers = Object.values(results).reduce(
+  const correctAnswers = results.reduce(
     (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
     0,
   );
@@ -30,43 +31,76 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
   }, []);
 
   return (
-    <Box sx={{ width: "100%", maxWidth: 800, mx: "auto", px: 2, pb: 5 }}>
+    <Paper
+      elevation={3}
+      sx={{
+        width: "100%",
+        backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.8),
+        mx: "auto",
+        px: { xs: 2, md: 4 },
+        py: 5,
+        pb: 5,
+        boxShadow: (theme) =>
+          `0 8px 32px ${alpha(theme.palette.common.black, 0.1)}`,
+        border: (theme) => `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+      }}
+    >
       <Zoom in={true} appear={true} timeout={300}>
-        <Typography
-          id=""
-          variant="h4"
-          component="h2"
-          sx={{ mt: 5, textAlign: "center", fontWeight: "bold" }}
-          color="info"
-        >
-          {((correctAnswers / totalQuestions) * 100).toFixed(2)}% Correct! 🎊
-        </Typography>
+        <Box sx={{ textAlign: "center", mb: 2 }}>
+          <Typography
+            variant="h2"
+            component="h2"
+            sx={{
+              fontWeight: 900,
+              background: (theme) =>
+                `linear-gradient(45deg, ${theme.palette.success.main}, ${theme.palette.secondary.dark})`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontSize: { xs: "3rem", md: "4.5rem" },
+              mb: 1,
+            }}
+          >
+            {((correctAnswers / totalQuestions) * 100).toFixed(0)}%
+          </Typography>
+          <Typography variant="h5" fontWeight="700" color="text.primary">
+            Quiz Complete! 🎊
+          </Typography>
+        </Box>
       </Zoom>
+
       <Grow in={true} appear={true} timeout={900}>
         <Typography
-          id=""
           variant="h6"
           component="h3"
-          sx={{ mt: 1, textAlign: "center", color: "text.secondary" }}
+          sx={{ textAlign: "center", color: "text.primary", fontWeight: 500 }}
         >
-          {correctAnswers} correct out of {totalQuestions} total questions! 🎈
+          You got {correctAnswers} out of {totalQuestions} questions right! 🎈
         </Typography>
       </Grow>
+
       <Grow
         in={true}
         appear={true}
         timeout={900}
         style={{ transitionDelay: "300ms" }}
       >
-        <Typography
-          variant="subtitle1"
-          sx={{ textAlign: "center", p: 1, mb: 4, fontStyle: "italic" }}
-          color="text.disabled"
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 1,
+            mb: 4,
+          }}
         >
-          The time limit was {timeLimit.minutes} minute and {timeLimit.seconds}{" "}
-          seconds 🕰️
-        </Typography>
+          <Chip
+            icon={<span>🕰️</span>}
+            label={`Time Limit: ${timeLimit.minutes}m ${timeLimit.seconds}s`}
+            size="small"
+            sx={{ fontWeight: "bold", color: "text.secondary" }}
+          />
+        </Box>
       </Grow>
+
       <Stack
         direction="row"
         spacing={1}
@@ -81,10 +115,15 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
         {categories.map((category) => (
           <Chip
             key={category}
-            variant="outlined"
+            variant="filled"
             label={tags[category].title}
             icon={tags[category].icon}
-            sx={{ width: "min-content" }}
+            sx={{
+              width: "min-content",
+              bgcolor: (theme) => alpha(theme.palette.secondary.dark, 0.4),
+              fontWeight: "bold",
+              border: "none",
+            }}
           />
         ))}
       </Stack>
@@ -95,7 +134,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           ))}
         </List>
       </Box>
-    </Box>
+    </Paper>
   );
 };
 export default Results;

@@ -10,10 +10,11 @@ import Button from "@mui/material/Button";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import StartPageSkeleton from "./components/start-page/components/StartPageSkeleton.tsx";
 import QuizSkeleton from "./quiz/components/QuizSkeleton.tsx";
-const StartPage = lazy(() => import("./components/start-page/StartPage.tsx"));
-const Quiz = lazy(() => import("./quiz/Quiz.tsx"));
 import useQuizzer from "./useQuizzer.ts";
 import { QuizState } from "../store.tsx";
+
+const StartPage = lazy(() => import("./components/start-page/StartPage.tsx"));
+const Quiz = lazy(() => import("./quiz/Quiz.tsx"));
 
 interface QuizzerProps {
   quizData: QuizState;
@@ -93,9 +94,10 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
           elevation={3}
           sx={{
             minHeight: "600px",
+            width: "100%",
             display: "flex",
             flexDirection: "column",
-            py: 2,
+            bgcolor: "transparent",
           }}
         >
           {quizState.started ? (

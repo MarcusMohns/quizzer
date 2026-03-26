@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Fade from "@mui/material/Fade";
+import { alpha } from "@mui/material";
 
 interface CategoryImageProps {
   image: string;
@@ -30,7 +31,7 @@ const CategoryImage = ({ image, title }: CategoryImageProps) => {
             width: "100%",
             height: "100%",
             borderRadius: { xs: "0px", sm: "10px" },
-            backgroundColor: "secondary.dark",
+            bgcolor: (theme) => alpha(theme.palette.secondary.dark, 0.95),
             boxShadow: 2,
           }}
         />

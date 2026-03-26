@@ -45,7 +45,7 @@ const ResultCard = ({ result, index }: ResultCardProps) => {
       style={{ transitionDelay: `${index * 50}ms` }}
     >
       <Paper
-        elevation={6}
+        elevation={3}
         sx={{
           mb: 1.5,
           borderRadius: 2,

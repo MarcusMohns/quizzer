@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { useEffect } from "react";
 import tags from "../../store.tsx";
@@ -12,6 +11,7 @@ import QuizTimer from "./components/quiz-timer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 import useQuiz from "./useQuiz.ts";
 import AnimatedSquares from "../../css-animations/animated-squares/AnimatedSquares.tsx";
+import { Paper } from "@mui/material";
 interface QuizProps {
   questionData: QuizQuestion;
   handleSetResults: (
@@ -53,7 +53,7 @@ const Quiz = ({
 
   useEffect(() => {
     // Scroll to the Quiz
-    scrollTo({ top: 170, left: 0, behavior: "smooth" });
+    scrollTo({ top: 138, left: 0, behavior: "smooth" });
   }, []);
 
   const handleNextQuestion = () => {
@@ -64,10 +64,13 @@ const Quiz = ({
   const quizIsStarted = quizState.started && !quizState.completed;
   return (
     <Fade in={true} appear={true} timeout={1500}>
-      <Box
+      <Paper
+        elevation={3}
         sx={{
           position: "relative",
           width: "100%",
+          bgcolor: "background.paper",
+          borderRadius: "10px",
         }}
       >
         {quizIsStarted && <AnimatedSquares />}
@@ -105,7 +108,7 @@ const Quiz = ({
             isLastQuestion={isLastQuestion}
           />
         </Stack>
-      </Box>
+      </Paper>
     </Fade>
   );
 };

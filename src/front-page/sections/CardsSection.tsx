@@ -26,13 +26,16 @@ const CardsSection = ({
       sx={{
         width: { xs: "100%" },
         minHeight: "100vh",
+        pb: 10,
+        backgroundColor: "background.default",
+        position: "relative",
       }}
     >
       {/* Divider box giving the Card & Generate section a rounded transition  */}
       <Box
         sx={{
           width: "100%",
-          height: "70px",
+          height: "80px",
           borderRadius: { xs: "0%", md: "100%" },
           position: "relative",
           backgroundColor: "background.default",
@@ -40,47 +43,62 @@ const CardsSection = ({
         }}
       />
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
-        <Box ref={registerRef} id="quiz-cards-container">
+        <Box
+          ref={registerRef}
+          id="quiz-cards-container"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            pt: 4,
+          }}
+        >
           <Typography
             id="existing-quiz-header"
+            variant="h2"
+            component="h2"
             sx={{
               textAlign: "center",
+              fontWeight: 800,
+              mb: 4,
               mx: 3,
+              background: (theme) =>
+                `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.info.main})`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
             }}
-            variant="h4"
           >
-            ...or find an existing quiz in our list of quizzes!
+            ...or pick a ready-made quiz
           </Typography>
 
-          <Fade
-            in={visibleStates["quiz-cards-container"]}
-            timeout={500}
-            style={{ transitionDelay: "500ms" }}
+          <Box
+            id="quiz-cards"
+            ref={registerRef}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 4,
+              p: { xs: 3, md: 8 },
+              width: { xs: "95%", lg: "90%" },
+            }}
           >
-            <Box
-              id="quiz-cards"
-              ref={registerRef}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                p: 5,
-              }}
-            >
-              {preparedQuizzes.map((quiz) => (
-                <QuizCard
-                  key={quiz.category}
-                  description={quiz.description}
-                  image={quiz.image}
-                  icon={quiz.icon}
-                  header={quiz.category}
-                  questions={quiz.questions}
-                  handleSetQuizData={handleSetQuizData}
-                />
-              ))}
-            </Box>
-          </Fade>
+            {preparedQuizzes.map((quiz, index) => (
+              <QuizCard
+                key={quiz.category}
+                description={quiz.description}
+                image={quiz.image}
+                icon={quiz.icon}
+                header={quiz.category}
+                questions={quiz.questions}
+                handleSetQuizData={handleSetQuizData}
+                index={index}
+                visible={visibleStates["quiz-cards-container"]}
+              />
+            ))}
+          </Box>
         </Box>
       </Fade>
     </Box>

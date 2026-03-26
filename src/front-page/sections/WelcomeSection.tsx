@@ -38,7 +38,7 @@ const WelcomeSection = ({
         width: "100%",
         minHeight: "min-content",
         height: { xs: "100vh", md: "93vh" },
-        backgroundImage: "url(images/cloudy.svg)",
+        backgroundImage: "url(/images/cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
         zIndex: 10,
@@ -46,10 +46,8 @@ const WelcomeSection = ({
     >
       <Box
         sx={{
-          width: { sm: "100%", md: "50%" },
+          width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },
           mt: { xs: 5, md: 10 },
-          backgroundColor: "background.default",
-          borderRadius: 3,
         }}
       >
         <Fade in={visibleStates["welcome-message"]} timeout={500}>
@@ -58,10 +56,17 @@ const WelcomeSection = ({
               Good Quizzing
             </Typography>
             <Typography
-              sx={{ textAlign: "center" }}
               variant="h2"
               component="h1"
-              fontWeight={500}
+              fontWeight={800}
+              sx={{
+                textAlign: "center",
+                background: (theme) =>
+                  `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.info.main})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: { xs: "2.5rem", md: "3.75rem" },
+              }}
             >
               Welcome to Quizzer
             </Typography>
@@ -97,7 +102,11 @@ const WelcomeSection = ({
                 timeout={400}
                 style={{ transitionDelay: "300ms" }}
               >
-                <Typography sx={{ textAlign: "center" }}>
+                <Typography
+                  sx={{ textAlign: "center", lineHeight: 1.6 }}
+                  color="text.secondary"
+                  variant="body1"
+                >
                   Welcome to Quizzer, your ultimate destination for fun and
                   challenging quizzes! Whether you're looking to test your
                   knowledge, learn something new, or just have a good time,
@@ -117,9 +126,11 @@ const WelcomeSection = ({
                     endIcon={<MenuIcon />}
                     sx={{
                       fontWeight: "bold",
-
-                      boxShadow: 2,
+                      borderRadius: 2,
+                      boxShadow: 4,
                       p: 1.5,
+                      transition: "transform 0.2s",
+                      "&:hover": { transform: "translateY(-2px)" },
                     }}
                     size="large"
                   >
@@ -133,8 +144,10 @@ const WelcomeSection = ({
                     endIcon={<KeyboardDoubleArrowDownIcon />}
                     sx={{
                       fontWeight: "bold",
-                      boxShadow: 2,
+                      borderRadius: 2,
                       p: 1.5,
+                      borderWidth: 2,
+                      "&:hover": { borderWidth: 2 },
                     }}
                     size="large"
                   >

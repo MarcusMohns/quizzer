@@ -8,6 +8,7 @@ import { SelectChangeEvent } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { alpha } from "@mui/material";
 
 interface SelectTimerProps {
   timeLimit: {
@@ -37,7 +38,7 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
         mt: 3,
         mb: 2,
         display: "flex",
-        bgcolor: "primary.dark",
+        bgcolor: (theme) => alpha(theme.palette.primary.dark, 0.25),
         flexDirection: "column",
         alignItems: "center",
       }}

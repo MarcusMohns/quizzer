@@ -10,6 +10,7 @@ import Fade from "@mui/material/Fade";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { QuizState } from "../../../store.tsx";
+import { alpha } from "@mui/material/styles";
 
 interface StartPageProps {
   timeLimit: { minutes: number; seconds: number };
@@ -35,7 +36,7 @@ const StartPage = ({
   resetQuizData,
 }: StartPageProps) => {
   useEffect(() => {
-    scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    scrollTo({ top: 100, left: 0, behavior: "smooth" });
   }, []);
   return (
     <Fade in={true} timeout={1000}>
@@ -46,6 +47,7 @@ const StartPage = ({
           flexDirection: "column",
           height: "100%",
           width: "100%",
+          bgcolor: (theme) => alpha(theme.palette.primary.dark, 0.15),
           mx: "auto",
           px: { xs: 2, md: 6 },
           py: 4,
@@ -64,7 +66,7 @@ const StartPage = ({
               `linear-gradient(45deg, ${
                 theme.palette.mode === "dark"
                   ? theme.palette.warning.light
-                  : theme.palette.primary.dark
+                  : theme.palette.secondary.dark
               }, ${theme.palette.warning.dark})`,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
