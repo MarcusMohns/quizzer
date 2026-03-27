@@ -62,7 +62,9 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
         spacing={2}
       >
         <FormControl fullWidth>
-          <InputLabel id="minutes">Minutes</InputLabel>
+          <InputLabel id="minutes" color="info">
+            Minutes
+          </InputLabel>
           <Select
             labelId="minutes"
             name="minutes"
@@ -81,7 +83,9 @@ const SelectTimer = ({ timeLimit, handleSetTimeLimit }: SelectTimerProps) => {
           </Select>
         </FormControl>
         <FormControl fullWidth>
-          <InputLabel id="seconds">Seconds</InputLabel>
+          <InputLabel id="seconds" color="info">
+            Seconds
+          </InputLabel>
           <Select
             labelId="seconds"
             name="seconds"

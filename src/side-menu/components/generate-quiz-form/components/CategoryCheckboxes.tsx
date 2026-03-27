@@ -45,6 +45,7 @@ const CategoryCheckboxes = ({
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         {categories.map((category) => (
           <QuizFormCheckbox
+            key={category.id}
             checkbox={category}
             handleChecked={handleCheckedCategory}
           />

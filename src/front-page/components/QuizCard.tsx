@@ -46,7 +46,7 @@ export const QuizCard = ({
           p: 1,
           transition: "all 0.3s ease-in-out",
           backgroundColor: "background.paper",
-          border: (theme) => `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+          boxShadow: 3,
         }}
       >
         <CardHeader

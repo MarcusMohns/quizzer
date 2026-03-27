@@ -45,6 +45,7 @@ const DifficultyCheckboxes = ({
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
         {difficulties.map((difficulty) => (
           <QuizFormCheckbox
+            key={difficulty.id}
             checkbox={difficulty}
             handleChecked={handleCheckedDifficulty}
           />
