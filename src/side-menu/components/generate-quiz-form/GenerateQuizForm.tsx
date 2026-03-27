@@ -29,12 +29,11 @@ const GenerateQuizForm = ({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (
-      someChecked(formData.categories) &&
-      someChecked(formData.difficulties) &&
-      Number(formData.qty) > 0 &&
-      Number(formData.qty) < 50
-    ) {
+    const qtyNum = Number(formData.qty);
+    const isCategoryValid = someChecked(formData.categories);
+    const isDifficultyValid = someChecked(formData.difficulties);
+
+    if (isCategoryValid && isDifficultyValid && qtyNum > 0 && qtyNum <= 50) {
       fetchQuiz(
         formData,
         setQuizData,
@@ -42,7 +41,6 @@ const GenerateQuizForm = ({
         handleSideMenuOpen,
         setError,
       );
-      setLoading(true);
     } else {
       console.error("Missing category or difficulty");
     }
@@ -86,20 +84,20 @@ const GenerateQuizForm = ({
   const toggleCategoryCheckBoxes = useCallback(() => {
     setFormData((prevData) => ({
       ...prevData,
-      categories: prevData.categories.map((category) => ({
-        ...category,
-        checked: allChecked(prevData.categories) ? false : true,
-      })),
+      categories: (function (cats) {
+        const isAll = allChecked(cats);
+        return cats.map((c) => ({ ...c, checked: !isAll }));
+      })(prevData.categories),
     }));
   }, []);
 
   const toggleDifficultyCheckBoxes = useCallback(() => {
     setFormData((prevData) => ({
       ...prevData,
-      difficulties: prevData.difficulties.map((difficulty) => ({
-        ...difficulty,
-        checked: allChecked(prevData.difficulties) ? false : true,
-      })),
+      difficulties: (function (diffs) {
+        const isAll = allChecked(diffs);
+        return diffs.map((d) => ({ ...d, checked: !isAll }));
+      })(prevData.difficulties),
     }));
   }, []);
 
@@ -139,8 +137,6 @@ const GenerateQuizForm = ({
         difficulties={formData.difficulties}
         toggleDifficultyCheckBoxes={toggleDifficultyCheckBoxes}
         handleCheckedDifficulty={handleCheckedDifficulty}
-        allChecked={allChecked}
-        someChecked={someChecked}
       />
       {error.bool && (
         <Alert

@@ -11,21 +11,20 @@ interface DifficulyCheckboxesProps {
   difficulties: FormData["difficulties"];
   toggleDifficultyCheckBoxes: () => void;
   handleCheckedDifficulty: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  allChecked: (difficulties: FormData["difficulties"]) => boolean;
-  someChecked: (difficulties: FormData["difficulties"]) => boolean;
 }
 const DifficultyCheckboxes = ({
   difficulties,
   toggleDifficultyCheckBoxes,
   handleCheckedDifficulty,
-  allChecked,
-  someChecked,
 }: DifficulyCheckboxesProps) => {
+  const isAllChecked = difficulties.every((d) => d.checked);
+  const isSomeChecked = difficulties.some((d) => d.checked);
+
   return (
     <FormControl
       component="fieldset"
       sx={{ width: "100%" }}
-      error={!someChecked(difficulties)}
+      error={!isSomeChecked}
     >
       <Box
         sx={{
@@ -39,7 +38,7 @@ const DifficultyCheckboxes = ({
           Difficulty
         </FormLabel>
         <Button size="small" onClick={toggleDifficultyCheckBoxes} color="info">
-          {allChecked(difficulties) ? "Unselect All" : "Select All"}
+          {isAllChecked ? "Unselect All" : "Select All"}
         </Button>
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>

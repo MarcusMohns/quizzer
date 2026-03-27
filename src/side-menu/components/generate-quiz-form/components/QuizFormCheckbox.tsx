@@ -5,6 +5,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import { alpha, useTheme } from "@mui/material/styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { memo } from "react";
 
 interface QuizFormCheckboxProps {
   checkbox: FormCheckBox;
@@ -63,4 +64,4 @@ const QuizFormCheckbox = ({
   );
 };
 
-export default QuizFormCheckbox;
+export default memo(QuizFormCheckbox);
