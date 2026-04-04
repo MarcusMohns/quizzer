@@ -1,5 +1,6 @@
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
+import confetti from "canvas-confetti";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -25,6 +26,17 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
   const categories = Array.from(
     new Set(results.map((question) => question.category)),
   );
+
+  useEffect(() => {
+    if (correctAnswers === totalQuestions) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        zIndex: 2000,
+      });
+    }
+  }, [correctAnswers, totalQuestions]);
 
   useEffect(() => {
     scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -100,7 +112,6 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
           />
         </Box>
       </Grow>
-
       <Stack
         direction="row"
         spacing={1}
