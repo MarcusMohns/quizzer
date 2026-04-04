@@ -22,6 +22,7 @@ interface QuizProps {
   results: QuizResult[];
   activeStep: number;
   timeLimit: { minutes: number; seconds: number };
+  handleReset: () => void;
   quizState: {
     started: boolean;
     completed: boolean;
@@ -40,6 +41,7 @@ const Quiz = ({
   activeStep,
   timeLimit,
   quizState,
+  handleReset,
   handleSetQuizState,
   handleSetActiveStep,
 }: QuizProps) => {
@@ -60,7 +62,12 @@ const Quiz = ({
     handleSetActiveStep(activeStep + 1);
   };
 
-  const isLastQuestion = activeStep === results.length - 1;
+  const handleGoToResults = () => {
+    const totalQuestions = results.length;
+    handleSetActiveStep(totalQuestions);
+  };
+
+  const isLastQuestion = quizState.completed;
   const quizIsStarted = quizState.started && !quizState.completed;
   return (
     <Fade in={true} appear={true} timeout={1500}>
@@ -104,7 +111,9 @@ const Quiz = ({
             correctlyAnswered={results[activeStep].correctlyAnswered}
             alertShown={results[activeStep].selectedAnswer !== "Not Answered"}
             questionData={questionData}
+            handleReset={handleReset}
             handleNextQuestion={handleNextQuestion}
+            handleGoToResults={handleGoToResults}
             isLastQuestion={isLastQuestion}
           />
         </Stack>

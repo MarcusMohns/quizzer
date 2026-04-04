@@ -15,7 +15,9 @@ interface AnswerResultAlertProps {
   correctlyAnswered: boolean;
   questionData: QuizQuestion;
   alertShown: boolean;
+  handleReset: () => void;
   handleNextQuestion: () => void;
+  handleGoToResults: () => void;
   isLastQuestion: boolean;
 }
 
@@ -23,7 +25,9 @@ const AnswerResultAlert = ({
   correctlyAnswered,
   questionData,
   alertShown,
+  handleReset,
   handleNextQuestion,
+  handleGoToResults,
   isLastQuestion,
 }: AnswerResultAlertProps) => {
   const [open, setOpen] = useState(false);
@@ -147,7 +151,9 @@ const AnswerResultAlert = ({
             {displayData.correctAnswer}
           </Typography>
           <Button
-            onClick={onNextClick}
+            onClick={
+              displayData.isLastQuestion ? handleGoToResults : onNextClick
+            }
             variant="contained"
             color={displayData.isLastQuestion ? "success" : "primary"}
             size="large"
