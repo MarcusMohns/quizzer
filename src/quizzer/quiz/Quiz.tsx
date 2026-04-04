@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack";
 import { useEffect } from "react";
 import tags from "../../store.tsx";
 import Fade from "@mui/material/Fade";
-import AnswerResultAlert from "./components/AnswerResultAlert.tsx";
+import ResultAlert from "./components/ResultAlert.tsx";
 import CategoryImage from "./components/CategoryImage.tsx";
 import Tags from "./components/Tags.tsx";
 import Answers from "./components/Answers.tsx";
@@ -67,8 +67,8 @@ const Quiz = ({
     handleSetActiveStep(totalQuestions);
   };
 
-  const isLastQuestion = quizState.completed;
-  const quizIsStarted = quizState.started && !quizState.completed;
+  const quizCompleted = quizState.completed;
+  const quizStarted = quizState.started && !quizState.completed;
   return (
     <Fade in={true} appear={true} timeout={1500}>
       <Paper
@@ -80,7 +80,7 @@ const Quiz = ({
           borderRadius: "10px",
         }}
       >
-        {quizIsStarted && <AnimatedSquares />}
+        {quizStarted && <AnimatedSquares />}
         <Stack
           spacing={3}
           alignItems="center"
@@ -107,14 +107,14 @@ const Quiz = ({
             correctlyAnswered={results[activeStep].correctlyAnswered}
             quizState={quizState}
           />
-          <AnswerResultAlert
+          <ResultAlert
             correctlyAnswered={results[activeStep].correctlyAnswered}
             alertShown={results[activeStep].selectedAnswer !== "Not Answered"}
             questionData={questionData}
             handleReset={handleReset}
             handleNextQuestion={handleNextQuestion}
             handleGoToResults={handleGoToResults}
-            isLastQuestion={isLastQuestion}
+            quizCompleted={quizCompleted}
           />
         </Stack>
       </Paper>
