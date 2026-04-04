@@ -39,12 +39,12 @@ const Answers = ({
   quizState,
 }: AnswerProps) => {
   const theme = useTheme();
+  const isLocked =
+    results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const isLocked =
-        results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
-
+      // If the quiz is completed or the user has already picked an answer, ignore keyboard input
       if (isLocked) {
         return;
       }
@@ -87,8 +87,6 @@ const Answers = ({
       <Grid container spacing={2} sx={{ width: "100%", height: "100%" }}>
         {sortedAnswers.map((answer, index) => {
           const isSelected = selectedAnswerIndex === index;
-          const isLocked =
-            results[activeStep].pickedAnswerIndex !== -1 || quizState.completed;
           const isCorrect = answer === questionData.correctAnswer;
 
           const isDarkMode = theme.palette.mode === "dark";
