@@ -5,7 +5,6 @@ import Paper from "@mui/material/Paper";
 import QuizStepper from "./components/QuizStepper.tsx";
 import QuizControls from "./components/QuizControls.tsx";
 import Results from "./components/Results.tsx";
-import ResultsModal from "./components/ResultsModal.tsx";
 import Button from "@mui/material/Button";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import StartPageSkeleton from "./components/start-page/components/StartPageSkeleton.tsx";
@@ -82,14 +81,6 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
         >
           Back to Frontpage
         </Button>
-        {quizState.completed && (
-          <ResultsModal
-            setActiveStep={handleSetActiveStep}
-            results={results}
-            handleReset={handleReset}
-            totalQuestions={quizData!.length}
-          />
-        )}
         <Paper
           elevation={3}
           sx={{
@@ -111,6 +102,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
                   questionData={quizData[activeStep]}
                   handleSetResults={handleSetResults}
                   results={results}
+                  handleReset={handleReset}
                   activeStep={activeStep}
                   timeLimit={timeLimit}
                   quizState={quizState}
