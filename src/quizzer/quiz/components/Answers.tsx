@@ -103,6 +103,10 @@ const Answers = ({
               borderColor = theme.palette.error.main;
               bgcolor = alpha(theme.palette.error.main, 0.55);
               avatarColor = theme.palette.error.main;
+            } else {
+              borderColor = theme.palette.divider;
+              bgcolor = alpha(theme.palette.action.disabledBackground, 0.05);
+              avatarColor = theme.palette.action.disabled;
             }
           } else if (isSelected) {
             borderColor = theme.palette.secondary.main;
@@ -133,16 +137,14 @@ const Answers = ({
                     p: 2,
                     border: "1px solid",
                     borderColor: borderColor,
-                    bgcolor: bgcolor,
+                    backgroundColor: bgcolor,
                     display: "flex",
-                    transform: isSelected ? "scale(1.02)" : "none",
                     alignItems: "center",
                     justifyContent: "flex-start",
                     textAlign: "left",
-                    transition: "all 0.5s ease-in-out",
-                    "&:hover": {
-                      transform: !isLocked ? "scale(1.02)" : "none",
-                    },
+                    cursor: isLocked ? "default" : "pointer",
+                    transition: "all 0.3s ease-in-out",
+                    opacity: isLocked && !isCorrect && !isSelected ? 0.7 : 1,
                   }}
                 >
                   <Avatar
@@ -151,10 +153,19 @@ const Answers = ({
                       height: 32,
                       fontSize: "0.9rem",
                       fontWeight: "bold",
-                      bgcolor: avatarColor,
-                      color: "primary.contrastText",
+                      backgroundColor: avatarColor,
+                      color:
+                        isLocked && !isCorrect && !isSelected
+                          ? "text.disabled"
+                          : "primary.contrastText",
+                      border: "1px solid",
+                      borderColor:
+                        isLocked && !isCorrect && !isSelected
+                          ? "divider"
+                          : "transparent",
                       mr: 1,
                       alignSelf: "flex-start",
+                      transition: "all 0.3s ease-in-out",
                     }}
                   >
                     {LETTERS[index]}
@@ -165,7 +176,18 @@ const Answers = ({
                     name={answer}
                     sx={{ display: "none" }}
                   />
-                  <Typography variant="body1">{answer}</Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color:
+                        isLocked && !isCorrect && !isSelected
+                          ? "text.disabled"
+                          : "text.primary",
+                      transition: "all 0.3s ease-in-out",
+                    }}
+                  >
+                    {answer}
+                  </Typography>
                 </ButtonBase>
               </Fade>
             </Grid>
