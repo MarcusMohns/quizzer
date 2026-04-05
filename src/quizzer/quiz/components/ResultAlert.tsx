@@ -37,6 +37,10 @@ const ResultAlert = ({
   const prevQuestionId = useRef(questionData.id);
   const prevAlertShown = useRef(alertShown);
 
+  // Initialize based on current state so that if we remount (e.g., coming back from results)
+  // we don't trigger the completion alert again immediately.
+  const hasShownCompletion = useRef(quizCompleted);
+
   // Latch the data to display so it doesn't change during exit transitions when props update
   const [displayData, setDisplayData] = useState({
     correctlyAnswered,
@@ -46,14 +50,23 @@ const ResultAlert = ({
   });
 
   useEffect(() => {
+    if (!quizCompleted) {
+      hasShownCompletion.current = false;
+    }
+
     const questionChanged = questionData.id !== prevQuestionId.current;
     const alertBecameTrue = alertShown && !prevAlertShown.current;
+    const shouldShowCompletion = quizCompleted && !hasShownCompletion.current;
 
     if (questionChanged) {
       setOpen(false);
       prevQuestionId.current = questionData.id;
-    } else if (alertBecameTrue || quizCompleted) {
+    } else if ((!quizCompleted && alertBecameTrue) || shouldShowCompletion) {
+      // Only show standard alerts if the quiz isn't over, otherwise only show the completion alert once
       setOpen(true);
+      if (shouldShowCompletion) {
+        hasShownCompletion.current = true;
+      }
     }
     prevAlertShown.current = alertShown;
 
@@ -103,10 +116,7 @@ const ResultAlert = ({
             outline: "none",
             textAlign: "center",
             display: "flex",
-            background: (theme) =>
-              displayData.quizCompleted
-                ? `linear-gradient(to bottom, ${theme.palette.background.paper}, ${alpha(theme.palette.primary.main, 0.05)})`
-                : theme.palette.background.paper,
+            background: "primary.light",
             flexDirection: "column",
             alignItems: "center",
             gap: displayData.quizCompleted ? 0.5 : 1,
@@ -150,6 +160,9 @@ const ResultAlert = ({
               sx={{
                 p: 1,
                 borderRadius: "50%",
+                bgColor: displayData.correctlyAnswered
+                  ? "success.main"
+                  : "error.main",
                 bgcolor: (theme) =>
                   alpha(
                     displayData.correctlyAnswered
@@ -288,11 +301,11 @@ const ResultAlert = ({
                 </Button>
                 <Button
                   onClick={handleReset}
-                  variant="text"
-                  color="inherit"
+                  variant="outlined"
+                  color="error"
                   size="small"
                   startIcon={<ReplayIcon />}
-                  sx={{ borderRadius: 2, opacity: 0.7 }}
+                  sx={{ borderRadius: 2 }}
                 >
                   Restart Quiz
                 </Button>
