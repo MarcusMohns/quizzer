@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FireplaceIcon from "@mui/icons-material/Fireplace";
@@ -9,8 +8,55 @@ import Tooltip from "@mui/material/Tooltip";
 
 const Footer = () => {
   return (
-    <Box>
-      <Divider orientation="horizontal" variant="middle" flexItem />
+    <Box
+      sx={{
+        position: "relative",
+        py: 3,
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "background.default" : "#7094fd",
+      }}
+    >
+      {/* Floating Bubbles scattered at the bottom */}
+      {[
+        { s: 16, l: "15%", d: "0s", x: 15 },
+        { s: 12, l: "45%", d: "2s", x: -20 },
+        { s: 24, l: "75%", d: "4s", x: 10 },
+        { s: 14, l: "90%", d: "1s", x: -10 },
+      ].map((b, i) => (
+        <Box
+          key={i}
+          sx={{
+            position: "absolute",
+            bottom: "20px",
+            left: b.l,
+            width: b.s,
+            height: b.s,
+            borderRadius: "50%",
+            border: "1px solid rgba(255,255,255,0.5)",
+            background: "rgba(255,255,255,0.2)",
+            animation: `footerBubbleRise 6s infinite ease-in ${b.d}`,
+            pointerEvents: "none",
+            zIndex: 1,
+            "@keyframes footerBubbleRise": {
+              "0%": {
+                transform: "translateY(0) translateX(0) scale(0.5)",
+                opacity: 0,
+              },
+              "20%": { opacity: 0.6 },
+              "50%": {
+                transform: `translateY(-80px) translateX(${b.x}px) scale(1)`,
+              },
+              "100%": {
+                transform: `translateY(-180px) translateX(${
+                  b.x * -0.5
+                }px) scale(1.3)`,
+                opacity: 0,
+              },
+            },
+          }}
+        />
+      ))}
+
       <Box
         sx={{
           display: "flex",
@@ -18,14 +64,30 @@ const Footer = () => {
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          width: "100%",
-          height: "250px",
-          px: 8,
+          width: { xs: "90%", md: "80%" },
+          minHeight: "100px",
+          mx: "auto",
+          px: 6,
+          py: { xs: 3, md: 0 },
+          position: "relative",
+          zIndex: 1,
+          backgroundColor: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(255, 255, 255, 0.05)"
+              : "primary.light",
+          backdropFilter: "blur(12px)",
+          borderRadius: 6,
+          boxShadow: (theme) =>
+            theme.palette.mode === "dark"
+              ? "0 8px 32px 0 rgba(0, 0, 0, 0.4)"
+              : "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
+          gap: { xs: 2, lg: 6 },
         }}
       >
-        <Typography variant="subtitle2" component="p">
+        <Typography variant="subtitle2" component="p" fontWeight={500}>
           Made by @MarcusMohns using React and Material-UI
         </Typography>
+
         <Box
           sx={{
             display: "flex",
@@ -37,6 +99,10 @@ const Footer = () => {
             mx: "auto",
             "& svg": {
               m: 1,
+              transition: "transform 0.3s ease-in-out, color 0.3s",
+              "&:hover": {
+                transform: "translateY(-5px) scale(1.2)",
+              },
             },
           }}
         >
@@ -83,8 +149,8 @@ const Footer = () => {
           <Link
             href="https://www.svgrepo.com"
             target="_blank"
-            sx={{ textDecoration: "none", ml: 0.5 }}
-            underline="hover"
+            sx={{ ml: 0.5 }}
+            underline="always"
             color="text.primary"
           >
             https://www.svgrepo.com/
