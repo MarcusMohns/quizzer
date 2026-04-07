@@ -13,6 +13,8 @@ interface CardsSectionInterface {
   handleSetQuizData: (data: QuizState | null) => void;
 }
 
+const WAVY_MASK = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C75,95 225,95 300,60 C375,25 525,25 600,60 C675,95 825,95 900,60 C975,25 1125,5 1200,60 V120 H0 Z" fill="black"/></svg>')`;
+
 const CardsSection = ({
   visibleStates,
   registerRef,
@@ -27,7 +29,8 @@ const CardsSection = ({
         width: { xs: "100%" },
         minHeight: "100vh",
         pb: 10,
-        backgroundColor: "background.default",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "background.default" : "#7094fd",
         position: "relative",
       }}
     >
@@ -35,11 +38,15 @@ const CardsSection = ({
       <Box
         sx={{
           width: "100%",
-          height: "80px",
-          borderRadius: { xs: "0%", md: "100%" },
+          height: "100px",
           position: "relative",
-          backgroundColor: "background.default",
-          top: "-37px",
+          backgroundColor: (theme) =>
+            theme.palette.mode === "dark" ? "background.default" : "#7094fd",
+          top: "-100px",
+          maskImage: WAVY_MASK,
+          WebkitMaskImage: WAVY_MASK,
+          maskSize: "100% 100%",
+          maskRepeat: "no-repeat",
         }}
       />
       <Fade in={visibleStates["quiz-cards-container"]} timeout={500}>
@@ -53,24 +60,89 @@ const CardsSection = ({
             pt: 4,
           }}
         >
-          <Typography
-            id="existing-quiz-header"
-            variant="h2"
-            component="h2"
-            sx={{
-              textAlign: "center",
-              fontWeight: 800,
-              mb: 4,
-              mx: 3,
-              background: (theme) =>
-                `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.info.main})`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontSize: { xs: "2.5rem", md: "3.5rem" },
-            }}
+          <Box
+            sx={{ position: "relative", display: "inline-block", mb: 4, mx: 3 }}
           >
-            ...or pick a ready-made quiz
-          </Typography>
+            <Typography
+              id="existing-quiz-header"
+              variant="h2"
+              component="h2"
+              sx={{
+                textAlign: "center",
+                fontWeight: 800,
+                background: (theme) =>
+                  theme.palette.mode === "dark"
+                    ? `linear-gradient(180deg, #4fc3f7 0%, ${theme.palette.info.main} 50%, ${theme.palette.primary.main} 100%)`
+                    : `linear-gradient(180deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                // Optimized glow for light mode legibility
+                textShadow: (theme) =>
+                  theme.palette.mode === "dark"
+                    ? "0px 4px 15px rgba(0, 188, 212, 0.2)"
+                    : `0px 0px 3px #ffa629`,
+                letterSpacing: "0.02em",
+                // Gentle floating animation to make the text feel buoyant
+                animation: "buoyancy 4s infinite ease-in-out",
+                "@keyframes buoyancy": {
+                  "0%, 100%": { transform: "translateY(0)" },
+                  "50%": { transform: "translateY(-8px)" },
+                },
+              }}
+            >
+              ...or pick a ready-made quiz
+            </Typography>
+
+            {/* Floating Bubbles */}
+            {[
+              { s: 14, l: "103%", d: "0s", x: 10 },
+              { s: 12, l: "108%", d: "1.5s", x: -15 },
+              { s: 20, l: "100%", d: "3s", x: 20 },
+            ].map((b, i) => (
+              <Box
+                key={i}
+                sx={{
+                  position: "absolute",
+                  // Positioned above the text on mobile, at the end of text on desktop
+                  bottom: { xs: "100%", md: "10px" },
+                  left: { xs: "50%", md: b.l },
+                  marginLeft: { xs: `${b.x}px`, md: 0 },
+                  width: b.s,
+                  height: b.s,
+                  borderRadius: "50%",
+                  border: (theme) =>
+                    `1px solid ${
+                      theme.palette.mode === "dark"
+                        ? "rgba(255,255,255,0.4)"
+                        : "rgba(255,255,255,0.7)"
+                    }`,
+                  background: (theme) =>
+                    theme.palette.mode === "dark"
+                      ? "rgba(255,255,255,0.1)"
+                      : "rgba(255,255,255,0.3)",
+                  animation: `bubbleRise 5s infinite ease-in ${b.d}`,
+                  pointerEvents: "none",
+                  "@keyframes bubbleRise": {
+                    "0%": {
+                      transform: "translateY(0) translateX(0) scale(0.5)",
+                      opacity: 0,
+                    },
+                    "20%": { opacity: 0.6 },
+                    "50%": {
+                      transform: `translateY(-60px) translateX(${b.x}px) scale(1)`,
+                    },
+                    "100%": {
+                      transform: `translateY(-150px) translateX(${
+                        b.x * -0.5
+                      }px) scale(1.3)`,
+                      opacity: 0,
+                    },
+                  },
+                }}
+              />
+            ))}
+          </Box>
 
           <Box
             id="quiz-cards"

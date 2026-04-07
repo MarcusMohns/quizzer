@@ -46,7 +46,8 @@ const GenerateSection = ({
         minHeight: "700px",
         height: "100vh",
         width: "100%",
-        backgroundColor: "background.paper",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "#1a1f3b" : "#ffe49b",
       }}
     >
       <Box
@@ -55,7 +56,10 @@ const GenerateSection = ({
           top: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: "url(/images/cloudy.svg)",
+          backgroundImage: (theme) =>
+            theme.palette.mode === "dark"
+              ? "url(/images/dark-cloudy.svg)"
+              : "url(/images/light-cloudy.svg)",
           transform: "scaleY(-1)",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",

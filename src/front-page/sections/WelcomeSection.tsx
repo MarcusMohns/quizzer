@@ -38,7 +38,10 @@ const WelcomeSection = ({
         width: "100%",
         minHeight: "min-content",
         height: { xs: "100vh", md: "93vh" },
-        backgroundImage: "url(/images/cloudy.svg)",
+        backgroundImage: (theme) =>
+          theme.palette.mode === "dark"
+            ? "url(/images/dark-cloudy.svg)"
+            : "url(/images/light-cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
         zIndex: 10,
