@@ -13,11 +13,13 @@ interface FrontPageProps {
     open: boolean,
     event?: React.SyntheticEvent<object, Event>,
   ) => void;
+  isDarkMode: boolean;
 }
 
 const FrontPage = ({
   handleSetQuizData,
   handleSideMenuOpen,
+  isDarkMode,
 }: FrontPageProps) => {
   const observerOptions = useMemo(
     () => ({
@@ -64,6 +66,7 @@ const FrontPage = ({
         visibleStates={visibleStates}
         handleSideMenuOpen={handleSideMenuOpen}
         handleScroll={handleScroll}
+        isDarkMode={isDarkMode}
       />
       <GenerateSection
         registerRef={registerRef}

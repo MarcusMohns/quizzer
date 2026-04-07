@@ -53,6 +53,7 @@ function App() {
         <FrontPage
           handleSetQuizData={handleSetQuizData}
           handleSideMenuOpen={handleSideMenuOpen}
+          isDarkMode={isDarkMode}
         />
       ) : (
         <Quizzer quizData={quizData} handleSetQuizData={handleSetQuizData} />

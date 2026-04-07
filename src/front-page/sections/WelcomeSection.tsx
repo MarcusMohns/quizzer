@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import Fade from "@mui/material/Fade";
+import CelestialBody from "../components/CelestialBody.tsx";
 import { VisibleStates } from "../store";
 
 interface WelcomeSectionInterface {
@@ -17,6 +18,7 @@ interface WelcomeSectionInterface {
     open: boolean,
     event?: React.SyntheticEvent<object, Event>,
   ) => void;
+  isDarkMode: boolean;
 }
 
 const WelcomeSection = ({
@@ -25,6 +27,7 @@ const WelcomeSection = ({
   handleSideMenuOpen,
   handleScroll,
   setScrollRef,
+  isDarkMode,
 }: WelcomeSectionInterface) => {
   return (
     <Box
@@ -33,6 +36,7 @@ const WelcomeSection = ({
       sx={{
         display: "flex",
         flexDirection: "column",
+        position: "relative",
         alignItems: "center",
         justifyContent: "flex-start",
         width: "100%",
@@ -44,9 +48,12 @@ const WelcomeSection = ({
             : "url(/images/light-cloudy.svg)",
         backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
+        transition:
+          "background-image 0.5s ease-in-out, background-color 0.5s ease-in-out",
         zIndex: 10,
       }}
     >
+      <CelestialBody isDarkMode={isDarkMode} />
       <Box
         sx={{
           width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },
