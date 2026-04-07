@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import tags from "../../store";
 import Grow from "@mui/material/Grow";
 import Zoom from "@mui/material/Zoom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { QuizResult } from "../../store";
 import ResultCard from "./ResultCard";
 import { Paper, alpha } from "@mui/material";
@@ -18,16 +18,21 @@ interface ResultsProps {
 }
 
 const Results = ({ results, timeLimit }: ResultsProps) => {
-  const totalQuestions = results.length;
-  const correctAnswers = results.reduce(
-    (count, result) => count + (result.correctlyAnswered === true ? 1 : 0),
-    0,
-  );
-  const categories = Array.from(
-    new Set(results.map((question) => question.category)),
-  );
+  const { totalQuestions, correctAnswers, categories } = useMemo(() => {
+    return {
+      totalQuestions: results.length,
+      correctAnswers: results.reduce(
+        (count, result) => count + (result.correctlyAnswered ? 1 : 0),
+        0,
+      ),
+      categories: Array.from(new Set(results.map((q) => q.category))),
+    };
+  }, [results]);
 
-  const scorePercentage = (correctAnswers / totalQuestions) * 100;
+  const scorePercentage = useMemo(
+    () => (correctAnswers / totalQuestions) * 100,
+    [correctAnswers, totalQuestions],
+  );
 
   const getFeedback = () => {
     if (scorePercentage === 100)
@@ -55,7 +60,7 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
     };
   };
 
-  const feedback = getFeedback();
+  const feedback = useMemo(() => getFeedback(), [scorePercentage]);
 
   useEffect(() => {
     if (scorePercentage >= 80) {

@@ -1,5 +1,5 @@
 import Stack from "@mui/material/Stack";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import tags from "../../store.tsx";
 import Fade from "@mui/material/Fade";
 import ResultAlert from "./components/ResultAlert.tsx";
@@ -58,7 +58,7 @@ const Quiz = ({
     scrollTo({ top: 138, left: 0, behavior: "smooth" });
   }, []);
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = useCallback(() => {
     const isLastStep = activeStep === results.length - 1;
     const allQuestionsAnswered = results.every(
       (result) => result.selectedAnswer !== "Not Answered",
@@ -71,12 +71,12 @@ const Quiz = ({
     } else {
       handleSetActiveStep(activeStep + 1);
     }
-  };
+  }, [activeStep, results, quizState.completed, handleSetActiveStep]);
 
-  const handleGoToResults = () => {
+  const handleGoToResults = useCallback(() => {
     const totalQuestions = results.length;
     handleSetActiveStep(totalQuestions);
-  };
+  }, [results.length, handleSetActiveStep]);
 
   const quizCompleted = quizState.completed;
   const quizStarted = quizState.started && !quizState.completed;

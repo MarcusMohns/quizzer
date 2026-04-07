@@ -89,9 +89,7 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
 
   // Check if all questions are answered
   const allQuestionsAnswered = useMemo(
-    () =>
-      results.filter((result) => result.selectedAnswer === "Not Answered")
-        .length === 0,
+    () => results.every((result) => result.selectedAnswer !== "Not Answered"),
     [results],
   );
 
@@ -105,7 +103,7 @@ const useQuizzer = ({ quizData, handleSetQuizData }: useQuizzerProps) => {
     if (allQuestionsAnswered) {
       completeQuiz();
     }
-  }, [results, allQuestionsAnswered, completeQuiz]);
+  }, [allQuestionsAnswered, completeQuiz]);
 
   return {
     quizData,
