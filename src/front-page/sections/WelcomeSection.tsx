@@ -43,7 +43,6 @@ const WelcomeSection = ({
             ? "url(/images/dark-cloudy.svg)"
             : "url(/images/light-cloudy.svg)",
         backgroundPosition: "bottom",
-        transition: "background-image 0.1s ease-in-out",
         backgroundRepeat: "no-repeat",
         zIndex: 10,
       }}
