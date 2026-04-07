@@ -66,6 +66,7 @@ const GenerateSection = ({
           transform: "scaleY(-1)",
           translate: "0 -2px",
           backgroundPosition: "bottom",
+          transition: "background-image 0.1s ease-in-out",
           backgroundRepeat: "no-repeat",
           pointerEvents: "none",
           zIndex: 10,
