@@ -78,7 +78,7 @@ const FrontPage = ({
       />
       <ScrollTopButton
         scrollToTop={scrollToTop}
-        visible={visibleStates["quiz-cards-container"]}
+        visible={!visibleStates["welcome-message"]}
       />
     </Box>
   );

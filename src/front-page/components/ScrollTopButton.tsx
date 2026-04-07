@@ -11,7 +11,7 @@ interface ScrollTopButtonProps {
 
 const ScrollTopButton = ({ scrollToTop, visible }: ScrollTopButtonProps) => {
   return (
-    <Box sx={{ position: "fixed", bottom: 16, right: 16 }}>
+    <Box sx={{ position: "fixed", bottom: 16, right: 16, zIndex: 5 }}>
       <Tooltip title="Scroll to top" aria-label="scrollToTop" placement="left">
         <Zoom in={visible} appear={true}>
           <Fab color="secondary" onClick={scrollToTop}>
