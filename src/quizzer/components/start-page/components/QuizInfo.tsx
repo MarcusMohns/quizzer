@@ -38,7 +38,6 @@ const QuizInfo = ({ quizData }: { quizData: QuizState }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-
           height: "100%",
           width: "100%",
           extAlign: "center",
