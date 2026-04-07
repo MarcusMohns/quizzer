@@ -6,14 +6,22 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Tooltip from "@mui/material/Tooltip";
 
-const Footer = () => {
+interface FooterProps {
+  isFrontPage: boolean;
+}
+
+const Footer = ({ isFrontPage }: FooterProps) => {
   return (
     <Box
       sx={{
         position: "relative",
         py: 3,
         backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "background.default" : "#7094fd",
+          theme.palette.mode === "dark"
+            ? "background.default"
+            : isFrontPage
+              ? "#7094fd"
+              : theme.palette.background.default,
       }}
     >
       {/* Floating Bubbles scattered at the bottom */}
@@ -56,7 +64,6 @@ const Footer = () => {
           }}
         />
       ))}
-
       <Box
         sx={{
           display: "flex",
@@ -68,7 +75,7 @@ const Footer = () => {
           minHeight: "100px",
           mx: "auto",
           px: 6,
-          py: { xs: 3, md: 0 },
+          py: { xs: 3, md: 1, lg: 0 },
           position: "relative",
           zIndex: 1,
           backgroundColor: (theme) =>

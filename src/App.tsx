@@ -48,7 +48,7 @@ function App() {
         isDarkMode={isDarkMode}
         sideMenuOpen={sideMenuOpen}
       />
-      {/* If there is no quizData display Frontpage */}
+      {/* If there is no quizData, display Frontpage */}
       {!quizData ? (
         <FrontPage
           handleSetQuizData={handleSetQuizData}
@@ -57,7 +57,7 @@ function App() {
       ) : (
         <Quizzer quizData={quizData} handleSetQuizData={handleSetQuizData} />
       )}
-      <Footer />
+      <Footer isFrontPage={!quizData} />
     </ThemeProvider>
   );
 }

@@ -31,8 +31,8 @@ export default function SideMenu({
   return (
     <Box>
       <StyledMenuIconButton
-        handleSideMenuOpen={handleSideMenuOpen}
-        open={true}
+        handleSideMenuOpen={handleSideMenuOpen} // This button opens the menu
+        open={sideMenuOpen}
       />
       <SwipeableDrawer
         open={sideMenuOpen}
@@ -66,8 +66,8 @@ export default function SideMenu({
           </Typography>
           <StyledMenuIconButton
             handleSideMenuOpen={handleSideMenuOpen}
-            open={false}
-          />
+            open={sideMenuOpen}
+          />{" "}
         </Box>
         <Divider />
         <Box sx={{ p: 2, overflowY: "auto" }}>

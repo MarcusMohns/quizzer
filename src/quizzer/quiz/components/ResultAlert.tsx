@@ -152,7 +152,7 @@ const ResultAlert = ({
                   gap: 0.5,
                 }}
               >
-                <CelebrationIcon fontSize="small" /> All questions answered
+                <CelebrationIcon fontSize="small" /> Well done!
               </Typography>
             </Box>
           ) : (
