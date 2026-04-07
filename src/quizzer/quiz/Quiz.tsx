@@ -59,7 +59,18 @@ const Quiz = ({
   }, []);
 
   const handleNextQuestion = () => {
-    handleSetActiveStep(activeStep + 1);
+    const isLastStep = activeStep === results.length - 1;
+    const allQuestionsAnswered = results.every(
+      (result) => result.selectedAnswer !== "Not Answered",
+    );
+
+    if (isLastStep && !allQuestionsAnswered && !quizState.completed) {
+      handleSetActiveStep(
+        results.findIndex((r) => r.selectedAnswer === "Not Answered"),
+      );
+    } else {
+      handleSetActiveStep(activeStep + 1);
+    }
   };
 
   const handleGoToResults = () => {
