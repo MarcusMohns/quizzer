@@ -27,8 +27,38 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
     new Set(results.map((question) => question.category)),
   );
 
+  const scorePercentage = (correctAnswers / totalQuestions) * 100;
+
+  const getFeedback = () => {
+    if (scorePercentage === 100)
+      return {
+        title: "Perfect Score! 🏆",
+        message: "Absolute mastery! You didn't miss a single thing.",
+        color: "success.main",
+      };
+    if (scorePercentage >= 80)
+      return {
+        title: "Outstanding! 🌟",
+        message: "Excellent work! You have a great handle on these topics.",
+        color: "primary.main",
+      };
+    if (scorePercentage >= 50)
+      return {
+        title: "Well Done! 👍",
+        message: "Solid effort! A few more rounds and you'll be an expert.",
+        color: "warning.main",
+      };
+    return {
+      title: "Nice try! 📚",
+      message: "Every mistake is a lesson. Try again to boost your score!",
+      color: "text.secondary",
+    };
+  };
+
+  const feedback = getFeedback();
+
   useEffect(() => {
-    if (correctAnswers === totalQuestions) {
+    if (scorePercentage >= 80) {
       confetti({
         particleCount: 150,
         spread: 70,
@@ -72,22 +102,30 @@ const Results = ({ results, timeLimit }: ResultsProps) => {
               mb: 1,
             }}
           >
-            {((correctAnswers / totalQuestions) * 100).toFixed(0)}%
+            {scorePercentage.toFixed(0)}%
           </Typography>
           <Typography variant="h5" fontWeight="700" color="text.primary">
-            Quiz Complete! 🎊
+            {feedback.title}
           </Typography>
         </Box>
       </Zoom>
 
       <Grow in={true} appear={true} timeout={900}>
-        <Typography
-          variant="h6"
-          component="h3"
-          sx={{ textAlign: "center", color: "text.primary", fontWeight: 500 }}
-        >
-          You got {correctAnswers} out of {totalQuestions} questions right! 🎈
-        </Typography>
+        <Box sx={{ textAlign: "center", mb: 1 }}>
+          <Typography
+            variant="h6"
+            component="h3"
+            sx={{ color: "text.primary", fontWeight: 500 }}
+          >
+            You got {correctAnswers} out of {totalQuestions} questions right! 🎈
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.secondary", fontStyle: "italic", mt: 0.5 }}
+          >
+            {feedback.message}
+          </Typography>
+        </Box>
       </Grow>
 
       <Grow
