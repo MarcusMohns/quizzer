@@ -44,7 +44,10 @@ const GenerateSection = ({
         alignItems: "center",
         justifyContent: "center",
         minHeight: "700px",
-        height: "100vh",
+        height: {
+          xs: "130vh",
+          sm: "100vh",
+        },
         width: "100%",
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "#1a1f3b" : "#ffe49b",
@@ -61,6 +64,7 @@ const GenerateSection = ({
               ? "url(/images/dark-cloudy.svg)"
               : "url(/images/light-cloudy.svg)",
           transform: "scaleY(-1)",
+          translate: "0 -2px",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
           pointerEvents: "none",

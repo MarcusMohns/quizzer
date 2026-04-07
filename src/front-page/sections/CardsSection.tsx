@@ -14,6 +14,7 @@ interface CardsSectionInterface {
 }
 
 const WAVY_MASK = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C75,95 225,95 300,60 C375,25 525,25 600,60 C675,95 825,95 900,60 C975,25 1125,5 1200,60 V120 H0 Z" fill="black"/></svg>')`;
+const FLATTER_WAVY_MASK = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C75,75 225,75 300,60 C375,45 525,45 600,60 C675,75 825,75 900,60 C975,45 1125,45 1200,60 V120 H0 Z" fill="black"/></svg>')`;
 
 const CardsSection = ({
   visibleStates,
@@ -43,8 +44,8 @@ const CardsSection = ({
           backgroundColor: (theme) =>
             theme.palette.mode === "dark" ? "background.default" : "#7094fd",
           top: "-100px",
-          maskImage: WAVY_MASK,
-          WebkitMaskImage: WAVY_MASK,
+          maskImage: { xs: FLATTER_WAVY_MASK, md: WAVY_MASK },
+          WebkitMaskImage: { xs: FLATTER_WAVY_MASK, md: WAVY_MASK },
           maskSize: "100% 100%",
           maskRepeat: "no-repeat",
         }}
