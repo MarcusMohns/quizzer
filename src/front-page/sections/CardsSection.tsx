@@ -29,7 +29,7 @@ const CardsSection = ({
       sx={{
         width: { xs: "100%" },
         minHeight: "100vh",
-        pb: 10,
+        pb: { xs: 10, md: 20 },
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "background.default" : "#7094fd",
         position: "relative",

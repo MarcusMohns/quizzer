@@ -50,7 +50,7 @@ const GenerateSection = ({
         },
         width: "100%",
         backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1a1f3b" : "#ffe49b",
+          theme.palette.mode === "dark" ? "#1a1f3b" : "#ffddaf",
       }}
     >
       <Box

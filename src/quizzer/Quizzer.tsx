@@ -60,7 +60,7 @@ const Quizzer = ({ quizData, handleSetQuizData }: QuizzerProps) => {
     </Paper>
   );
   return (
-    <Container maxWidth="md" sx={{ py: 5 }}>
+    <Container maxWidth="md" sx={{ py: 5, pb: { xs: 10, md: 30 } }}>
       <Box
         sx={{
           display: "flex",
