@@ -58,8 +58,7 @@ const WelcomeSection = ({
               : "none",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
-          transition:
-            "filter 0.5s ease-in-out, background-color 0.5s ease-in-out",
+          transition: "filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
           pointerEvents: "none",
           zIndex: 10,
         }}

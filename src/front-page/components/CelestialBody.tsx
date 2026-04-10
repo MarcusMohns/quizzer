@@ -11,6 +11,7 @@ interface CelestialBodyProps {
 const CelestialBody = ({ isDarkMode }: CelestialBodyProps) => {
   return (
     <Box
+      key={isDarkMode ? "moon" : "sun"}
       sx={{
         position: "absolute",
         top: { xs: 10, md: 40 },
