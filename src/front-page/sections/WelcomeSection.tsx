@@ -42,18 +42,28 @@ const WelcomeSection = ({
         width: "100%",
         minHeight: "min-content",
         height: { xs: "100vh", md: "93vh" },
-        backgroundImage: (theme) =>
-          theme.palette.mode === "dark"
-            ? "url(/images/dark-cloudy.svg)"
-            : "url(/images/light-cloudy.svg)",
-        backgroundPosition: "bottom",
-        backgroundRepeat: "no-repeat",
-        transition:
-          "background-image 0.5s ease-in-out, background-color 0.5s ease-in-out",
-        zIndex: 10,
       }}
     >
       <CelestialBody isDarkMode={isDarkMode} />
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 1,
+          width: "100%",
+          height: "100%",
+          backgroundImage: "url(/images/cloudy.svg)",
+          filter: (theme) =>
+            theme.palette.mode === "dark"
+              ? "invert(1) brightness(0.5) hue-rotate(180deg) saturate(1.5)"
+              : "none",
+          backgroundPosition: "bottom",
+          backgroundRepeat: "no-repeat",
+          transition:
+            "filter 0.5s ease-in-out, background-color 0.5s ease-in-out",
+          pointerEvents: "none",
+          zIndex: 10,
+        }}
+      />
       <Box
         sx={{
           width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },

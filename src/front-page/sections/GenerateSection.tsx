@@ -59,16 +59,17 @@ const GenerateSection = ({
           top: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: (theme) =>
+          backgroundImage: "url(/images/cloudy.svg)",
+          filter: (theme) =>
             theme.palette.mode === "dark"
-              ? "url(/images/dark-cloudy.svg)"
-              : "url(/images/light-cloudy.svg)",
+              ? "invert(1) brightness(0.5) hue-rotate(180deg) saturate(1.5)"
+              : "none",
           transform: "scaleY(-1)",
           translate: "0 -2px",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
           transition:
-            "background-image 0.5s ease-in-out, background-color 0.5s ease-in-out",
+            "filter 0.5s ease-in-out, background-color 0.5s ease-in-out",
           pointerEvents: "none",
           zIndex: 10,
         }}
