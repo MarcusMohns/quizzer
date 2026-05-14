@@ -1,10 +1,10 @@
-import "./AnimatedSquares.css";
+import "./AnimatedBubbles.css";
 import Box from "@mui/material/Box";
 
-const Square = ({ style }: { style: React.CSSProperties }) => {
+const Bubble = ({ style }: { style: React.CSSProperties }) => {
   return (
     <Box
-      className="square"
+      className="bubble"
       sx={{
         ...style,
         // Combine the rising animation with the horizontal wobble
@@ -40,61 +40,61 @@ const Square = ({ style }: { style: React.CSSProperties }) => {
   );
 };
 
-const squares = [
+const bubbles = [
   {
     left: "33%",
     width: "20px",
     height: "20px",
-    animation: "animate-squares 22s linear 0s infinite",
+    animation: "animate-bubbles 22s linear 0s infinite",
   },
   {
     left: "88%",
     width: "20px",
     height: "20px",
-    animation: "animate-squares 15s linear 0s infinite",
+    animation: "animate-bubbles 15s linear 0s infinite",
   },
   {
     left: "75%",
     width: "45px",
     height: "45px",
-    animation: "animate-squares 25s linear 1s infinite",
+    animation: "animate-bubbles 25s linear 1s infinite",
   },
   {
     left: "70%",
     width: "20px",
     height: "20px",
-    animation: "animate-squares 18s linear 0s infinite",
+    animation: "animate-bubbles 18s linear 0s infinite",
   },
   {
     left: "11%",
     width: "28px",
     height: "28px",
-    animation: "animate-squares 15s linear 0s infinite",
+    animation: "animate-bubbles 15s linear 0s infinite",
   },
   {
     left: "40%",
     width: "11px",
     height: "11px",
-    animation: "animate-squares 25s linear 0s infinite",
+    animation: "animate-bubbles 25s linear 0s infinite",
   },
   {
     left: "28%",
     width: "20px",
     height: "20px",
-    animation: "animate-squares 17s linear 0s infinite",
+    animation: "animate-bubbles 17s linear 0s infinite",
   },
   {
     left: "88%",
     width: "30px",
     height: "30px",
-    animation: "animate-squares 35s linear 3s infinite",
+    animation: "animate-bubbles 35s linear 3s infinite",
   },
 ];
 
-const AnimatedSquares = () => {
+const AnimatedBubbles = () => {
   return (
     <Box
-      className="bg-animated-squares"
+      className="bg-animated-bubbles"
       sx={{
         width: "100%",
         height: "100%",
@@ -102,11 +102,11 @@ const AnimatedSquares = () => {
         overflow: "hidden",
       }}
     >
-      {[...Array(squares.length)].map((_, index) => (
-        <Square key={index} style={squares[index]} />
+      {[...Array(bubbles.length)].map((_, index) => (
+        <Bubble key={index} style={bubbles[index]} />
       ))}
     </Box>
   );
 };
 
-export default AnimatedSquares;
+export default AnimatedBubbles;

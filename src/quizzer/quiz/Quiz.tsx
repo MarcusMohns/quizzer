@@ -10,7 +10,7 @@ import Question from "./components/Question.tsx";
 import QuizTimer from "./components/quiz-timer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 import useQuiz from "./useQuiz.ts";
-import AnimatedSquares from "../../css-animations/animated-squares/AnimatedSquares.tsx";
+import AnimatedBubbles from "../../css-animations/bubbles/AnimatedBubbles.tsx";
 import { Paper } from "@mui/material";
 interface QuizProps {
   questionData: QuizQuestion;
@@ -91,7 +91,7 @@ const Quiz = ({
           borderRadius: "10px",
         }}
       >
-        {quizStarted && <AnimatedSquares />}
+        {quizStarted && <AnimatedBubbles />}
         <Stack
           spacing={3}
           alignItems="center"

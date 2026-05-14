@@ -5,8 +5,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "@mui/material/Link";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
+import { useTheme } from "@mui/material/styles";
 import { VisibleStates } from "../store";
-import AnimatedCogwheel from "../../css-animations/animated-cogwheel/AnimatedCogwheel";
+import DrizzleAnimation from "../../css-animations/drizzle/DrizzleAnimation";
+import LightningAnimation from "../../css-animations/lightning/LightningAnimation";
 import React, { useState, useCallback } from "react";
 
 interface GenerateSectionInterface {
@@ -24,6 +26,7 @@ const GenerateSection = ({
   handleSideMenuOpen,
 }: GenerateSectionInterface) => {
   const [containerNode, setContainerNode] = useState<HTMLElement | null>(null);
+  const theme = useTheme();
   const handleRef = useCallback(
     (node: HTMLElement | null) => {
       setContainerNode(node);
@@ -92,6 +95,32 @@ const GenerateSection = ({
         >
           <Box>
             <Typography
+              id="generate-section-header"
+              sx={{
+                textAlign: "center",
+                zIndex: 0,
+              }}
+              variant="h4"
+            >
+              {theme.palette.mode === "dark" ? (
+                <LightningAnimation
+                  key={
+                    visibleStates["generate-section"]
+                      ? "lightning-visible"
+                      : "lightning-hidden"
+                  }
+                />
+              ) : (
+                <DrizzleAnimation
+                  key={
+                    visibleStates["generate-section"]
+                      ? "drizzle-visible"
+                      : "drizzle-hidden"
+                  }
+                />
+              )}
+            </Typography>
+            <Typography
               variant="h2"
               component="h2"
               sx={{
@@ -106,19 +135,8 @@ const GenerateSection = ({
             >
               Generate a quiz!
             </Typography>
-            <Typography
-              id="generate-section-header"
-              sx={{
-                textAlign: "center",
-                zIndex: 0,
-              }}
-              variant="h4"
-            >
-              <AnimatedCogwheel />
-            </Typography>
           </Box>
         </Slide>
-
         <Fade
           in={visibleStates["generate-section"]}
           timeout={600}
