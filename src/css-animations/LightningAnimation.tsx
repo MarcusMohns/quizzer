@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
 import { keyframes } from "@mui/system";
 

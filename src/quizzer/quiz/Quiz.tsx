@@ -10,7 +10,7 @@ import Question from "./components/Question.tsx";
 import QuizTimer from "./components/quiz-timer/QuizTimer.tsx";
 import { QuizQuestion, QuizResult } from "../../store.tsx";
 import useQuiz from "./useQuiz.ts";
-import AnimatedBubbles from "../../css-animations/bubbles/AnimatedBubbles.tsx";
+import AnimatedBubbles from "../../css-animations/AnimatedBubbles.tsx";
 import { Paper } from "@mui/material";
 interface QuizProps {
   questionData: QuizQuestion;

@@ -7,8 +7,8 @@ import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import { useTheme } from "@mui/material/styles";
 import { VisibleStates } from "../store";
-import DrizzleAnimation from "../../css-animations/drizzle/DrizzleAnimation";
-import LightningAnimation from "../../css-animations/lightning/LightningAnimation";
+import DrizzleAnimation from "../../css-animations/DrizzleAnimation";
+import LightningAnimation from "../../css-animations/LightningAnimation";
 import React, { useState, useCallback } from "react";
 
 interface GenerateSectionInterface {

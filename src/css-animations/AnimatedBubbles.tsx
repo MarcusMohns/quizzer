@@ -1,14 +1,34 @@
-import "./AnimatedBubbles.css";
 import Box from "@mui/material/Box";
+import { keyframes } from "@mui/system";
 
-const Bubble = ({ style }: { style: React.CSSProperties }) => {
+const animateBubbles = keyframes`
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+`;
+
+const bubbleWobble = keyframes`
+  from { margin-left: -15px; }
+  to { margin-left: 15px; }
+`;
+
+interface BubbleProps {
+  left: string;
+  width: string;
+  height: string;
+  duration: string;
+  delay: string;
+}
+
+const Bubble = ({ style }: { style: BubbleProps }) => {
   return (
     <Box
       className="bubble"
       sx={{
-        ...style,
+        left: style.left,
+        width: style.width,
+        height: style.height,
         // Combine the rising animation with the horizontal wobble
-        animation: `${style.animation}, bubble-wobble 4s ease-in-out infinite alternate`,
+        animation: `${animateBubbles} ${style.duration} linear ${style.delay} infinite, ${bubbleWobble} 4s ease-in-out infinite alternate`,
         position: "absolute",
         // Translucent background with a slight tint
         background: (theme) =>
@@ -45,49 +65,57 @@ const bubbles = [
     left: "33%",
     width: "20px",
     height: "20px",
-    animation: "animate-bubbles 22s linear 0s infinite",
+    duration: "22s",
+    delay: "0s",
   },
   {
     left: "88%",
     width: "20px",
     height: "20px",
-    animation: "animate-bubbles 15s linear 0s infinite",
+    duration: "15s",
+    delay: "0s",
   },
   {
     left: "75%",
     width: "45px",
     height: "45px",
-    animation: "animate-bubbles 25s linear 1s infinite",
+    duration: "25s",
+    delay: "1s",
   },
   {
     left: "70%",
     width: "20px",
     height: "20px",
-    animation: "animate-bubbles 18s linear 0s infinite",
+    duration: "18s",
+    delay: "0s",
   },
   {
     left: "11%",
     width: "28px",
     height: "28px",
-    animation: "animate-bubbles 15s linear 0s infinite",
+    duration: "15s",
+    delay: "0s",
   },
   {
     left: "40%",
     width: "11px",
     height: "11px",
-    animation: "animate-bubbles 25s linear 0s infinite",
+    duration: "25s",
+    delay: "0s",
   },
   {
     left: "28%",
     width: "20px",
     height: "20px",
-    animation: "animate-bubbles 17s linear 0s infinite",
+    duration: "17s",
+    delay: "0s",
   },
   {
     left: "88%",
     width: "30px",
     height: "30px",
-    animation: "animate-bubbles 35s linear 3s infinite",
+    duration: "35s",
+    delay: "3s",
   },
 ];
 

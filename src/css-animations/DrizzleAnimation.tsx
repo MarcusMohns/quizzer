@@ -2,9 +2,9 @@ import Box from "@mui/material/Box";
 import { keyframes } from "@mui/system";
 
 const fall = keyframes`
-  from { transform: translateY(-45px); opacity: 0; }
+  from { transform: translateY(-45px) rotate(-25deg); opacity: 0; }
   50% { opacity: 1; }
-  to { transform: translateY(45px); opacity: 0; }
+  to { transform: translateY(45px) rotate(-25deg); opacity: 0; }
 `;
 
 const splash = keyframes`
@@ -24,6 +24,7 @@ const DrizzleAnimation = () => {
         height: "120px",
         gap: 8,
         overflow: "hidden",
+        transform: "rotate(12deg)",
         width: "100%",
       }}
     >
