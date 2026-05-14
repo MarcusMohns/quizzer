@@ -34,7 +34,7 @@ const Bubble = ({ style }: { style: BubbleProps }) => {
         background: (theme) =>
           theme.palette.mode === "dark"
             ? "rgba(255, 255, 255, 0.08)"
-            : "rgba(255, 255, 255, 0.2)",
+            : "rgba(87, 159, 228, 0.82)",
         // Glassy border
         border: "1px solid rgba(255, 255, 255, 0.3)",
         // Inset shadows create a 3D spherical look
