@@ -84,7 +84,7 @@ const GenerateSection = ({
           justifyContent: "center",
           textAlign: "center",
           width: { xs: "90%", sm: "80%", md: "60%", lg: "50%" },
-          mt: 20,
+          mt: { xs: 0, sm: 20 },
         }}
       >
         <Slide
